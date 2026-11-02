@@ -1,0 +1,62 @@
+{
+  "pasos_seleccion": [
+    {
+      "paso": 1,
+      "aportes": [
+        {
+          "nodo": 1,
+          "ganancia": 3
+        },
+        {
+          "nodo": 2,
+          "ganancia": 2
+        },
+        {
+          "nodo": 3,
+          "ganancia": 2
+        }
+      ],
+      "elegido": 1,
+      "ganancia_elegido": 3,
+      "valor_despues": 3
+    },
+    {
+      "paso": 2,
+      "aportes": [
+        {
+          "nodo": 2,
+          "ganancia": 1
+        },
+        {
+          "nodo": 3,
+          "ganancia": 2
+        }
+      ],
+      "elegido": 3,
+      "ganancia_elegido": 2,
+      "valor_despues": 5
+    }
+  ],
+  "unidades_reparto": [
+    {
+      "unidad": 1,
+      "nodo": 1,
+      "ganancia": 6.238324625039508
+    },
+    {
+      "unidad": 2,
+      "nodo": 3,
+      "ganancia": 4.1588830833596715
+    },
+    {
+      "unidad": 3,
+      "nodo": 1,
+      "ganancia": 3.6491859729734797
+    },
+    {
+      "unidad": 4,
+      "nodo": 1,
+      "ganancia": 2.589138652066028
+    }
+  ]
+}

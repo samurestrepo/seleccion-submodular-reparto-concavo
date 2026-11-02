@@ -1,0 +1,44 @@
+CASO: contraejemplo_seleccion
+N = 3, k = 2, B = 4
+
+== Verificación de la entrada ==
+  [OK] 1 ≤ k < N: k = 2, N = 3
+  [OK] B ≥ 0: B = 4
+  [OK] ids únicos: sin repetidos
+  [OK] cada u_i creciente y cóncava en {0, …, B}: todas cumplen
+
+== Parte 2: selección de nodos (voraz) ==
+  Paso 1: Δ(1) = 4, Δ(2) = 3, Δ(3) = 3
+    → elige el nodo 1 (Δ = 4); f(S) = 4
+  Paso 2: Δ(2) = 1, Δ(3) = 1
+    → elige el nodo 2 (Δ = 1); f(S) = 5
+  Resultado: S = [1, 2], f(S) = 5, llamadas a Δ = 5
+
+== Parte 1: reparto del presupuesto (voraz con montículo) ==
+  Unidad 1: al nodo 1 (Δ = 9)
+  Unidad 2: al nodo 2 (Δ = 7)
+  Unidad 3: al nodo 2 (Δ = 6)
+  Unidad 4: al nodo 1 (Δ = 5)
+  Resultado: x_1 = 2, x_2 = 2; utilidad total = 27.000000
+
+== Verificación: Parte 2 ==
+  [OK] S ⊆ V: S = [1, 2]
+  [OK] S sin repetidos: |S| = 2
+  [OK] |S| ≤ k: |S| = 2, k = 2
+  [OK] valor acumulado = f(S) recalculada: acumulado = 5, recalculado = 5
+  [OK] llamadas a Δ = k·N − k(k−1)/2: contadas = 5, fórmula = 5
+
+== Verificación: Parte 1 ==
+  [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
+  [OK] Σ x_i = B: Σ x_i = 4, B = 4
+  [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 27.000000, recalculada = 27.000000
+  [OK] extracciones = inserciones = B: extracciones = 4, inserciones = 4
+
+== Verificación: Ejecución ==
+  [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
+
+== Tiempos (solo los algoritmos, sin lectura ni escritura) ==
+  Parte 2 (selección): 0.000014605 s
+  Parte 1 (reparto):   0.000016190 s
+
+TODAS LAS VERIFICACIONES: CUMPLEN
