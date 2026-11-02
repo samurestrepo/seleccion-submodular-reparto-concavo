@@ -5,6 +5,7 @@ Este archivo se lee al abrir cualquier sesión sobre este repositorio, en el PC 
 Es la fuente de verdad sobre **cómo se trabaja aquí**. El estado del trabajo está en `docs/agente/`.
 
 ## 1. Antes de hacer cualquier cosa
+0. `git pull` para traer lo último: el repo se trabaja desde dos lugares (Claude Code en VS Code y el chat del proyecto en claude.ai) y GitHub es la única fuente de verdad.
 1. Lee `docs/agente/BITACORA_TECNICA.md`: estado actual, último cambio y pendientes.
 2. Lee `docs/agente/MAPA_DEL_CODIGO.md`: qué archivo hace qué y dónde está su documentación.
 3. Si la tarea toca un módulo, lee su ficha en `docs/modulos/` **antes** de abrir el código.
@@ -35,6 +36,9 @@ El enunciado está en `docs/curso/enunciado_proyecto_final.md` y el informe de l
 2. Agrega una entrada al registro de `docs/agente/BITACORA_TECNICA.md` (fecha, qué, por qué, archivos, pruebas).
 3. Si tomaste una decisión de diseño, regístrala en `DECISIONES.md`.
 4. Si escribiste algo que Samuel todavía no sabría rehacer solo, márcalo en la sección **"Deuda de estudio"** de la bitácora.
+5. Con `python -m pytest` en verde, haz commit y `git push` a `main` (con permiso de Samuel). Lo que no está en GitHub no existe para la otra sesión.
+
+**Qué va dónde:** lo técnico (código, fichas, bitácora técnica, decisiones) vive en este repo. El estado de estudio de Samuel (su nivel, sus errores, los parciales) vive en la bitácora del proyecto de claude.ai, que no está en el repo; no lo dupliques aquí.
 
 ## 5. Integridad académica
 Una tarea copiada se califica con 0. Este código lo tiene que poder explicar y modificar Samuel.
