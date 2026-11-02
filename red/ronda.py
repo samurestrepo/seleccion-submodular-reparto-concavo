@@ -17,21 +17,45 @@ from red.verificacion import (Verificacion, verificar_conteo_llamadas, verificar
                               verificar_reparto, verificar_seleccion)
 
 
+def _resultado_rechazado(nombre, entrada, verificaciones):
+    """Resultado de un caso que no se ejecuta: la entrada, sus verificaciones y el motivo en la traza."""
+    traza = Traza()
+    traza.entrada_rechazada([f"{v['nombre']}: {v['detalle']}" for v in verificaciones if not v["cumple"]])
+    return {
+        "caso": nombre,
+        "entrada": entrada,
+        "verificaciones": {"entrada": verificaciones},
+        "traza": traza.a_diccionario(),
+        "todas_cumplen": False,
+    }
+
+
+def resultado_de_error(nombre, mensaje):
+    """Resultado de un caso cuyo archivo no se pudo leer o no tiene la forma esperada.
+
+    Recibe el nombre del caso y el mensaje del error. N, k y B quedan en None porque no se conocen.
+    """
+    verificacion = Verificacion("archivo legible y con la forma esperada", False, mensaje)
+    return _resultado_rechazado(nombre, {"N": None, "k": None, "B": None}, [verificacion.a_diccionario()])
+
+
 def ejecutar_ronda(instancia):
     """Corre una ronda sobre la instancia y devuelve un diccionario con todo el resultado.
 
-    Si la entrada no cumple sus restricciones, no corre los algoritmos
-    y devuelve solo las verificaciones de entrada.
-    Tiempo de los algoritmos: O(k·M + B lg k) (informe 6.7).
+    Si la entrada no cumple sus restricciones, no corre los algoritmos: devuelve
+    las verificaciones de entrada y una traza con el motivo.
+    Tiempo de los algoritmos: O(k·(N + M) + B(1 + lg k)), con M = Σ |C_v|.
     """
+    entrada = {"N": instancia.N, "k": instancia.k, "B": instancia.B}
+    verificaciones_entrada = [v.a_diccionario() for v in verificar_entrada(instancia)]
+    if not all(v["cumple"] for v in verificaciones_entrada):
+        return _resultado_rechazado(instancia.nombre, entrada, verificaciones_entrada)
+
     resultado = {
         "caso": instancia.nombre,
-        "entrada": {"N": instancia.N, "k": instancia.k, "B": instancia.B},
-        "verificaciones": {"entrada": [v.a_diccionario() for v in verificar_entrada(instancia)]},
+        "entrada": entrada,
+        "verificaciones": {"entrada": verificaciones_entrada},
     }
-    if not all(v["cumple"] for v in resultado["verificaciones"]["entrada"]):
-        resultado["todas_cumplen"] = False
-        return resultado
 
     V = instancia.ids()
     utilidades = instancia.utilidades()

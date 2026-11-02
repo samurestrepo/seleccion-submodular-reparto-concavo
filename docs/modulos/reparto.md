@@ -6,7 +6,9 @@ Resuelve la **Parte 1** de la ronda: reparte B unidades entre los nodos que elig
 ## Funciones públicas
 | Función | Recibe | Devuelve | Complejidad (tiempo · espacio) |
 |---|---|---|---|
-| `repartir_presupuesto(S, B, utilidades, traza=None)` | ids elegidos, B, diccionario id → utilidad, traza opcional | `ResultadoReparto` con `x`, `utilidad`, `extracciones` e `inserciones` | Peor caso O(N + B lg N); mejor caso Θ(N + B), con N = \|S\| · Θ(N) |
+| `repartir_presupuesto(S, B, utilidades, traza=None)` | ids elegidos, B, diccionario id → utilidad, traza opcional | `ResultadoReparto` con `x`, `utilidad`, `extracciones` e `inserciones` | Peor caso O(N + B lg N). Con `heapq`, Θ(N + B(1 + lg N)) para toda entrada, con N = \|S\| · Θ(N) |
+
+**Precondiciones** (en el docstring; aquí no se comprueban, para seguir el pseudocódigo, decisión 19): B ≥ 0, S sin repetidos y cada u_i creciente y cóncava. `ronda.py` ya las valida antes de llamar. Si no se cumplen: con B < 0 devuelve x en 0 sin avisar; con ids repetidos da un resultado sin sentido; sin concavidad pierde la garantía de óptimo. La única comprobación es la que ya existía: S vacío con B > 0 lanza `ValueError`.
 
 ## Cómo funciona
 1. **Línea 1:** x[i] ← 0 para cada nodo.
@@ -24,11 +26,26 @@ Resuelve la **Parte 1** de la ronda: reparte B unidades entre los nodos que elig
 - Las líneas 4 y 6 se podrían fusionar en `heapq.heapreplace` (el informe lo menciona). Se dejaron separadas para que el código se lea como el pseudocódigo; la complejidad es la misma.
 - Los contadores `extracciones` e `inserciones` deben valer B; la verificación lo revisa.
 
+### Por qué no hay un mejor caso Θ(N + B) (decisión 15)
+Un montículo de libro (MAX-HEAPIFY) pone el último elemento en la raíz y lo baja comparando con sus hijos; **puede parar pronto** si ya quedó en su lugar. `heapq.heappop` no hace eso. Su función interna `_siftup` trabaja así:
+
+1. Saca la raíz y deja un **hueco** arriba.
+2. Sube el hijo menor al hueco, y repite: el hueco baja un nivel en cada paso **hasta llegar a una hoja, sin parar antes**.
+3. Pone en ese hueco el elemento que estaba de último y lo sube lo que haga falta (normalmente muy poco).
+
+¿Por qué lo hacen así? Porque el último elemento casi siempre pertenece cerca del fondo: compararlo en cada nivel sería gastar comparaciones. Pero la consecuencia es que **cada extracción cuesta unas lg N comparaciones, sea cual sea la entrada**. Medido: exactamente lg N con ganancias empatadas, con un nodo dominante y con log de a igual, y un poco más (hasta lg N + 0.46) con a distintos, para N de 64 a 131072. `heappush` sí puede costar 1 comparación, pero el `heappop` de cada vuelta no se puede evitar. Esa medición es de cuatro familias de entradas; lo que la extiende a toda entrada es la lectura de `_siftup`.
+
+Por eso el costo es **Θ(N + B(1 + lg N))**:
+- **N:** armar la lista y `heapify`, y sumar la utilidad al final.
+- **B·lg N:** un `heappop` y un `heappush` por vuelta.
+- **El 1 (caso N = 1):** lg 1 = 0, así que la fórmula O(N + B lg N) daría O(1), pero el ciclo **igual da B vueltas**. Con un solo nodo el tiempo es Θ(B) (medido: 0.13 s con B = 10⁵ y 7.7 s con B = 4·10⁶). Para N ≥ 2, 1 + lg N y lg N son del mismo orden y el peor caso O(N + B lg N) sigue siendo correcto.
+
 ## Cómo modificarlo
-- **Desempatar por el mayor índice:** guardar `(-ganancia, -i)` en las líneas 42 y 53, y deshacer el signo del índice al sacar (línea 48).
-- **Permitir gastar menos de B ("≤ B") con Δ negativas:** justo después de la línea 50 (`delta = -menos_delta`), si `delta < 0`, salir del ciclo (y quitar la verificación Σ x_i = B).
-- **Tope por nodo (x_i ≤ c_i):** en la línea 53, no reinsertar al nodo si llegó a su tope (y detener el ciclo si el montículo queda vacío).
-- Cualquier cambio aquí: correr `pruebas/test_reparto.py`.
+Las recetas completas, con todo lo que hay que tocar, están en `docs/agente/GUIA_CAMBIOS.md`; se probaron aplicándolas en copias.
+- **Desempatar por el mayor índice:** receta 1. Aquí: guardar `(-ganancia, -i)` en `# línea 2` y `# línea 6 del pseudocódigo`, y deshacer el signo del índice en `# línea 4`.
+- **Permitir gastar menos de B ("≤ B") con Δ negativas:** receta 2. Aquí: antes de `# línea 4 del pseudocódigo`, `if -H[0][0] < 0: break`. También cambian `utilidades.py` y `verificacion.py`.
+- **Tope por nodo (x_i ≤ c_i):** receta 3. Aquí: parámetro `topes`, filtrar en `# línea 2`, `if not H: break` antes de `# línea 4` y reinsertar solo si no llegó a su tope en `# línea 6`. También cambian `entrada.py`, `ronda.py` y `verificacion.py`.
+- Cualquier cambio aquí: correr `pruebas/test_reparto.py` y después `python -m pytest`.
 
 ## Pruebas
 `pruebas/test_reparto.py`:
@@ -40,6 +57,7 @@ Resuelve la **Parte 1** de la ronda: reparte B unidades entre los nodos que elig
 ## Preguntas probables en la sustentación
 - **¿Por qué el negativo?** Porque `heapq` solo hace montículos de mínimos; con −ganancia, el mínimo es la mayor ganancia.
 - **¿De dónde sale O(N + B lg N)?** heapify es O(N); el ciclo corre B veces y cada vuelta hace un pop y un push de O(lg N), porque el montículo siempre tiene N elementos (altura ⌊lg N⌋). Calcular Δ es O(1).
+- **¿Cuál es el mejor caso?** No hay uno más barato con `heapq`: `heappop` siempre baja hasta una hoja, así que es Θ(N + B(1 + lg N)) para toda entrada. El 1 es por N = 1: lg 1 = 0, pero el ciclo igual da B vueltas.
 - **¿Por qué es óptimo?** Con concavidad, la lista de ganancias de cada nodo no aumenta; tomar siempre la mayor equivale a quedarse con las B mayores de todas las listas (argumento de intercambio, entrega posterior).
 
-_Última actualización: 2026-11-02 · creación_
+_Última actualización: 2026-11-02 · complejidad real con heapq, precondiciones y recetas completas; sin cambio de lógica_

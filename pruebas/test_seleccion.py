@@ -1,5 +1,6 @@
 import math
 import random
+import tracemalloc
 
 import pytest
 
@@ -37,6 +38,29 @@ def test_contraejemplo_el_voraz_no_es_exacto():
 def test_empate_gana_el_menor_indice():
     S, _, _ = correr({1: frozenset("a"), 2: frozenset("b"), 3: frozenset("c")}, 2)
     assert S == [1, 2]
+
+
+def test_sin_traza_no_se_guardan_los_aportes():
+    # H4: sin traza el espacio es O(k + |U|); antes se guardaba una pareja (v, Δ) por candidato
+    N = 20000
+    conjuntos = {i: frozenset() for i in range(N)}
+    conjuntos[0] = frozenset("a")
+    V = sorted(conjuntos)
+    f = OraculoCobertura(conjuntos)
+    tracemalloc.start()
+    try:
+        seleccionar_nodos(f, V, 1)
+        _, pico = tracemalloc.get_traced_memory()
+    finally:
+        tracemalloc.stop()
+    # Las parejas ocupaban unos 72 bytes por candidato (1.4 MB en total); sin ellas casi nada
+    assert pico < 100_000
+
+
+def test_con_traza_si_se_guardan_los_aportes():
+    traza = Traza()
+    correr({1: frozenset("a"), 2: frozenset("b"), 3: frozenset("c")}, 1, traza)
+    assert [a["nodo"] for a in traza.pasos_seleccion[0]["aportes"]] == [1, 2, 3]
 
 
 @pytest.mark.parametrize("N, k", [(3, 1), (3, 2), (10, 4), (25, 7)])

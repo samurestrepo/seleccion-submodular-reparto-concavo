@@ -32,9 +32,12 @@ python ejecutar.py casos/profesora --salida resultados/profesora
 
 Por cada caso se crea `<salida>/<caso>/` con:
 - `salida.json`: selección, reparto, tiempos y verificaciones;
-- `traza.txt` y `traza.json`: ganancias marginales de cada paso de la selección, cada unidad del reparto y el resultado de cada verificación.
+- `traza.json`: ganancias marginales de cada paso de la selección y cada unidad del reparto;
+- `traza.txt`: lo mismo en texto legible, más el resultado de cada verificación.
 
-Además `<salida>/resumen.csv` tiene una fila por caso. El programa termina con código 0 si todas las verificaciones cumplen.
+Un caso rechazado (archivo con forma inválida o entrada que no cumple las restricciones) no detiene a los demás: los algoritmos no corren y sus tres archivos traen el motivo.
+
+Además `<salida>/resumen.csv` tiene una fila por caso **de la última corrida**: no acumula, y si ya existía se reemplaza con un aviso por consola. Dos archivos con el mismo nombre de caso son un error: corre solo el primero. El programa termina con código 0 si todas las verificaciones cumplen.
 
 ## Generar instancias sintéticas
 ```
@@ -45,7 +48,7 @@ python -m red.generador --N 50 --k 5 --B 100 --semilla 1 --salida casos/propios/
 ```
 python -m pytest
 ```
-Incluyen los ejemplos del informe, los dos contraejemplos, el conteo exacto de llamadas k·N − k(k−1)/2, la comparación del reparto contra fuerza bruta y la cota (1 − 1/e) en instancias pequeñas.
+Incluyen los ejemplos del informe, los dos contraejemplos, el conteo exacto de llamadas k·N − k(k−1)/2, la comparación del reparto contra fuerza bruta, la cota (1 − 1/e) en instancias pequeñas, archivos y entradas inválidos, y las ramas de fallo de las verificaciones. Pasan desde la raíz y desde `pruebas/`, y no escriben en `resultados/`.
 
 ## Formato de entrada (provisional)
 Mientras llegan los casos de la docente se usa el formato del informe (sección 6.5); ver `MANUAL_TECNICO.md`, sección 3.

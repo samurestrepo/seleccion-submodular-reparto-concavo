@@ -21,7 +21,7 @@ def test_ganancia_es_lo_nuevo_que_aporta():
 
 def test_ganancia_coincide_con_la_resta_de_valores():
     f = OraculoCobertura(CONJUNTOS)
-    for S in ([], [1], [2], [1, 2]):
+    for S in ([], [1], [2], [3], [1, 2], [1, 3], [2, 3]):
         cubiertos = set().union(*(CONJUNTOS[v] for v in S))
-        for v in (3,):
+        for v in sorted(set(CONJUNTOS) - set(S)):
             assert f.ganancia(v, cubiertos) == f.valor(S + [v]) - f.valor(S)

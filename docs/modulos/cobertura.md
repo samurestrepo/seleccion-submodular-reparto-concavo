@@ -25,10 +25,10 @@ Es el **oráculo f** de la Parte 2: dado un equipo S, dice cuántos elementos di
 - **Imprimir cuántas llamadas se hicieron:** ya está en `salida.json` y en la traza (`llamadas_ganancia`).
 
 ## Pruebas
-`pruebas/test_cobertura.py`: los valores del informe (f({1,3}) = 5, f({1,2}) = 4), la tabla de submodularidad de la sección 5.6 (Δ(3 \| ∅) = 2, Δ(3 \| {2}) = 1) y que la ganancia coincide con la resta de valores.
+`pruebas/test_cobertura.py`: los valores del informe (f({1,3}) = 5, f({1,2}) = 4), la tabla de submodularidad de la sección 5.6 (Δ(3 \| ∅) = 2, Δ(3 \| {2}) = 1) y que la ganancia coincide con la resta de valores en todos los pares (S, v) de ese ejemplo.
 
 ## Preguntas probables en la sustentación
 - **¿Qué cuenta como "llamada a f"?** Cada evaluación de Δ(v \| S) en el voraz. Se cuentan con `llamadas_ganancia`.
 - **¿Cuánto cuesta una llamada con cobertura?** O(\|C_v\|), porque cada pregunta "¿ya está cubierto?" es O(1) esperado en un `set`.
 
-_Última actualización: 2026-11-02 · creación_
+_Última actualización: 2026-11-02 · la prueba de la resta cubre todos los pares; el código no cambió_

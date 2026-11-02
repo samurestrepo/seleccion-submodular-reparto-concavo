@@ -2,6 +2,7 @@
 
 Los algoritmos llaman a paso_seleccion y unidad_reparto (línea 9 de
 SELECCIONAR-NODOS y línea 7 de REPARTIR-PRESUPUESTO). Lo demás lo agrega ronda.py.
+Si un caso se rechaza, los algoritmos no corren y la traza guarda el motivo.
 """
 
 import json
@@ -15,11 +16,12 @@ def _numero(valor):
 
 
 class Traza:
-    """Guarda los pasos de la Parte 2 y las unidades de la Parte 1."""
+    """Guarda los pasos de la Parte 2, las unidades de la Parte 1 y el motivo de un rechazo."""
 
     def __init__(self):
         self.pasos_seleccion = []
         self.unidades_reparto = []
+        self.motivo_rechazo = None   # lista de textos si el caso se rechazó; None si corrió
 
     def paso_seleccion(self, paso, aportes, elegido, ganancia, valor):
         """Un paso del voraz de selección: Δ de cada candidato, el elegido y f(S) después."""
@@ -35,8 +37,16 @@ class Traza:
         """Una unidad del reparto: qué nodo la recibe y cuánto aporta."""
         self.unidades_reparto.append({"unidad": unidad, "nodo": nodo, "ganancia": ganancia})
 
+    def entrada_rechazada(self, motivos):
+        """Anota por qué el caso no se ejecutó. motivos: lista de textos."""
+        self.motivo_rechazo = motivos
+
     def a_diccionario(self):
-        return {"pasos_seleccion": self.pasos_seleccion, "unidades_reparto": self.unidades_reparto}
+        """La traza como diccionario para JSON. "motivo_rechazo" solo aparece si hubo rechazo."""
+        datos = {"pasos_seleccion": self.pasos_seleccion, "unidades_reparto": self.unidades_reparto}
+        if self.motivo_rechazo is not None:
+            datos["motivo_rechazo"] = self.motivo_rechazo
+        return datos
 
 
 def escribir_json(ruta, datos):
@@ -46,17 +56,32 @@ def escribir_json(ruta, datos):
 
 
 def a_texto(resultado):
-    """Convierte el resultado completo de una ronda (ver ronda.py) en un reporte de texto."""
+    """Convierte el resultado de una ronda (ver ronda.py) en un reporte de texto.
+
+    Sirve también para un caso rechazado: ese reporte trae la entrada y el motivo.
+    Tiempo O(tamaño del resultado).
+    """
     lineas = []
     e = resultado["entrada"]
     lineas.append(f"CASO: {resultado['caso']}")
-    lineas.append(f"N = {e['N']}, k = {e['k']}, B = {e['B']}")
+    if e["N"] is None:
+        lineas.append("N, k y B: no se pudieron leer del archivo")
+    else:
+        lineas.append(f"N = {e['N']}, k = {e['k']}, B = {e['B']}")
     lineas.append("")
 
     lineas.append("== Verificación de la entrada ==")
     for v in resultado["verificaciones"]["entrada"]:
         lineas.append(f"  [{'OK' if v['cumple'] else 'FALLA'}] {v['nombre']}: {v['detalle']}")
     lineas.append("")
+
+    if "seleccion" not in resultado:
+        lineas.append("== Caso rechazado: los algoritmos no se ejecutaron ==")
+        for motivo in resultado["traza"]["motivo_rechazo"]:
+            lineas.append(f"  Motivo: {motivo}")
+        lineas.append("")
+        lineas.append("TODAS LAS VERIFICACIONES: HAY FALLAS")
+        return "\n".join(lineas) + "\n"
 
     lineas.append("== Parte 2: selección de nodos (voraz) ==")
     for p in resultado["traza"]["pasos_seleccion"]:

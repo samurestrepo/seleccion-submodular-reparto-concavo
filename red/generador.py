@@ -38,9 +38,14 @@ def generar_instancia(N, k, B, tam_universo=None, max_cubre=None, semilla=0):
 
 
 def main(argumentos=None):
+    """Lee los parámetros de la línea de comandos y escribe la instancia en --salida.
+
+    El texto de ayuda evita símbolos como el de "menor o igual": en una consola
+    Windows con cp1252 no se pueden imprimir y --help fallaría.
+    """
     p = argparse.ArgumentParser(description="Genera una instancia sintética del Proyecto Red.")
     p.add_argument("--N", type=int, required=True, help="número de nodos candidatos")
-    p.add_argument("--k", type=int, required=True, help="nodos a seleccionar (1 ≤ k < N)")
+    p.add_argument("--k", type=int, required=True, help="nodos a seleccionar (1 <= k < N)")
     p.add_argument("--B", type=int, required=True, help="unidades de presupuesto")
     p.add_argument("--universo", type=int, default=None, help="tamaño del universo (por omisión 2N)")
     p.add_argument("--max-cubre", type=int, default=None, help="máximo de elementos por nodo (por omisión 5)")

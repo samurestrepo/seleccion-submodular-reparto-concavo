@@ -9,7 +9,7 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `red/cobertura.py` | Oráculo f de cobertura: f(S) y Δ(v \| S); cuenta las llamadas | `docs/modulos/cobertura.md` | hecho |
 | `red/seleccion.py` | Parte 2: voraz de selección, Θ(N·k) llamadas a f | `docs/modulos/seleccion.md` | hecho |
 | `red/utilidades.py` | Familias de u_i (log, raíz, tabla) y su ganancia marginal Δ_i(x) en O(1) | `docs/modulos/utilidades.md` | hecho |
-| `red/reparto.py` | Parte 1: voraz con montículo (heapq), O(N + B lg N) | `docs/modulos/reparto.md` | hecho |
+| `red/reparto.py` | Parte 1: voraz con montículo (heapq), peor caso O(N + B lg N) | `docs/modulos/reparto.md` | hecho |
 | `red/verificacion.py` | Comprobar las restricciones de entrada y de salida | `docs/modulos/verificacion.md` | hecho |
 | `red/traza.py` | Registrar el paso a paso y escribirlo en texto y JSON | `docs/modulos/traza.md` | hecho |
 | `red/ronda.py` | Orquestar una ronda: Parte 2, luego Parte 1, verificar y medir tiempos | `docs/modulos/ronda.md` | hecho |
@@ -20,7 +20,14 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 ## Otros
 | Ruta | Contenido |
 |---|---|
-| `pruebas/` | Pruebas con pytest: `test_<módulo>.py` y `test_ronda.py` (integración y línea de comandos) |
+| `CLAUDE.md` | Reglas de trabajo del repositorio; se lee al abrir cualquier sesión |
+| `.claude/agents/ingeniero-red.md` | Definición del agente `ingeniero-red` |
+| `.gitignore` | Lo que git no versiona: `__pycache__/`, `*.pyc`, `.pytest_cache/`, `.venv/` |
+| `pruebas/` | Pruebas con pytest: `test_<módulo>.py`, más `test_ronda.py` (integración) y `test_ejecutar.py` (línea de comandos). Pasan desde la raíz y desde `pruebas/`, y escriben solo en `tmp_path` |
+| `pruebas/test_verificacion.py` | Ramas de fallo de las verificaciones y revisión de la concavidad, con su costo medido sin reloj |
+| `pruebas/test_traza.py` | Lo que anota la traza y el reporte de un caso válido o rechazado |
+| `pruebas/test_ejecutar.py` | Lotes con archivos malos, evidencias de casos rechazados, colisiones de nombres y `resumen.csv` |
+| `pruebas/test_generador.py` | Ayuda imprimible en cp1252, instancia guardada reproducible y a > 0 |
 | `pruebas/__init__.py` | Marca `pruebas/` como paquete (para importar `fuerza_bruta`) |
 | `pruebas/fuerza_bruta.py` | Fuerza bruta **solo para pruebas** (comparar el reparto y la cota 1 − 1/e en instancias pequeñas) |
 | `pytest.ini` | Le dice a pytest que las pruebas están en `pruebas/` |

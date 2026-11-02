@@ -27,33 +27,36 @@ class ResultadoReparto:
 def repartir_presupuesto(S, B, utilidades, traza=None):
     """Reparte B unidades entre los nodos de S para maximizar Σ u_i(x_i).
 
-    Recibe: S (ids de los nodos elegidos), B y el diccionario id → utilidad; traza opcional.
+    Recibe: S (ids de los nodos elegidos, sin repetir), B y el diccionario id → utilidad; traza opcional.
+    Precondiciones: B ≥ 0 y cada u_i creciente y cóncava (si no, no hay garantía de óptimo).
+    Aquí no se comprueban, para seguir el pseudocódigo; las valida ronda.py.
     Devuelve: ResultadoReparto.
-    Complejidad: O(N + B lg N) en el peor caso, Θ(N + B) en el mejor, con N = |S|.
-    Espacio Θ(N): el montículo y x tienen un elemento por nodo.
+    Complejidad, con N = |S|: peor caso O(N + B lg N). Con heapq es Θ(N + B(1 + lg N)) para toda
+    entrada, porque heappop siempre baja hasta una hoja. El 1 cubre N = 1: lg 1 = 0, pero el ciclo
+    igual da B vueltas. Espacio Θ(N): el montículo y x tienen un elemento por nodo.
     """
     if B > 0 and len(S) == 0:
         raise ValueError("no hay nodos a quienes repartir el presupuesto")
 
     x = {}
-    for i in S:                                              # línea 1
+    for i in S:                                              # línea 1 del pseudocódigo
         x[i] = 0
 
-    H = [(-utilidades[i].ganancia(0), i) for i in S]         # línea 2: parejas (−Δ_i(0), i)
-    heapq.heapify(H)                                         # línea 2: BUILD-HEAP en O(N)
+    H = [(-utilidades[i].ganancia(0), i) for i in S]         # línea 2 del pseudocódigo: parejas (−Δ_i(0), i)
+    heapq.heapify(H)                                         # línea 2 del pseudocódigo: BUILD-HEAP en O(N)
     extracciones = 0
     inserciones = 0
 
-    for unidad in range(1, B + 1):                           # línea 3
-        menos_delta, i = heapq.heappop(H)                    # línea 4: EXTRAER-MÁXIMO, O(lg N)
+    for unidad in range(1, B + 1):                           # línea 3 del pseudocódigo
+        menos_delta, i = heapq.heappop(H)                    # línea 4 del pseudocódigo: EXTRAER-MÁXIMO, O(lg N)
         extracciones += 1
         delta = -menos_delta                                 # se deshace el signo
-        x[i] = x[i] + 1                                      # línea 5
+        x[i] = x[i] + 1                                      # línea 5 del pseudocódigo
         siguiente = utilidades[i].ganancia(x[i])             # Δ_i de la próxima unidad de i
-        heapq.heappush(H, (-siguiente, i))                   # línea 6: INSERTAR, O(lg N)
+        heapq.heappush(H, (-siguiente, i))                   # línea 6 del pseudocódigo: INSERTAR, O(lg N)
         inserciones += 1
-        if traza is not None:                                # línea 7
+        if traza is not None:                                # línea 7 del pseudocódigo
             traza.unidad_reparto(unidad, i, delta)
 
-    utilidad = sum(utilidades[i].valor(x[i]) for i in S)     # línea 8
+    utilidad = sum(utilidades[i].valor(x[i]) for i in S)     # línea 8 del pseudocódigo
     return ResultadoReparto(x, utilidad, extracciones, inserciones)
