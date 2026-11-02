@@ -1,0 +1,4 @@
+caso,N,k,B,S,f(S),utilidad_reparto,tiempo_seleccion_s,tiempo_reparto_s,todas_cumplen
+convexa_rechazada,2,1,2,,,,,,False
+ids_repetidos,3,1,2,,,,,,False
+k_igual_a_N,3,3,2,,,,,,False

@@ -1,21 +1,21 @@
 {
-  "caso": "sintetico_N40_k5_B60",
+  "caso": "borde_nodo_sin_cobertura",
   "entrada": {
-    "N": 40,
-    "k": 5,
-    "B": 60
+    "N": 3,
+    "k": 2,
+    "B": 3
   },
   "verificaciones": {
     "entrada": [
       {
         "nombre": "1 ≤ k < N",
         "cumple": true,
-        "detalle": "k = 5, N = 40"
+        "detalle": "k = 2, N = 3"
       },
       {
         "nombre": "B ≥ 0",
         "cumple": true,
-        "detalle": "B = 60"
+        "detalle": "B = 3"
       },
       {
         "nombre": "ids únicos",
@@ -32,27 +32,27 @@
       {
         "nombre": "S ⊆ V",
         "cumple": true,
-        "detalle": "S = [11, 16, 18, 3, 27]"
+        "detalle": "S = [2, 3]"
       },
       {
         "nombre": "S sin repetidos",
         "cumple": true,
-        "detalle": "|S| = 5"
+        "detalle": "|S| = 2"
       },
       {
         "nombre": "|S| ≤ k",
         "cumple": true,
-        "detalle": "|S| = 5, k = 5"
+        "detalle": "|S| = 2, k = 2"
       },
       {
         "nombre": "valor acumulado = f(S) recalculada",
         "cumple": true,
-        "detalle": "acumulado = 23, recalculado = 23"
+        "detalle": "acumulado = 3, recalculado = 3"
       },
       {
         "nombre": "llamadas a Δ = k·N − k(k−1)/2",
         "cumple": true,
-        "detalle": "contadas = 190, fórmula = 190"
+        "detalle": "contadas = 5, fórmula = 5"
       }
     ],
     "reparto": [
@@ -64,17 +64,17 @@
       {
         "nombre": "Σ x_i = B",
         "cumple": true,
-        "detalle": "Σ x_i = 60, B = 60"
+        "detalle": "Σ x_i = 3, B = 3"
       },
       {
         "nombre": "utilidad acumulada = Σ u_i(x_i) recalculada",
         "cumple": true,
-        "detalle": "acumulada = 91.371239, recalculada = 91.371239"
+        "detalle": "acumulada = 2.107361, recalculada = 2.107361"
       },
       {
         "nombre": "extracciones = inserciones = B",
         "cumple": true,
-        "detalle": "extracciones = 60, inserciones = 60"
+        "detalle": "extracciones = 3, inserciones = 3"
       }
     ],
     "ejecucion": [
@@ -87,31 +87,25 @@
   },
   "seleccion": {
     "S": [
-      11,
-      16,
-      18,
-      3,
-      27
+      2,
+      3
     ],
-    "valor": 23,
-    "llamadas_ganancia": 190,
+    "valor": 3,
+    "llamadas_ganancia": 5,
     "llamadas_valor": 1
   },
   "reparto": {
     "x": {
-      "11": 10,
-      "16": 12,
-      "18": 6,
-      "3": 25,
-      "27": 7
+      "2": 2,
+      "3": 1
     },
-    "utilidad": 91.37123857497211,
-    "extracciones": 60,
-    "inserciones": 60
+    "utilidad": 2.1073607429330403,
+    "extracciones": 3,
+    "inserciones": 3
   },
   "tiempos_segundos": {
-    "seleccion": 8.06049999937386e-05,
-    "reparto": 4.95569999543477e-05
+    "seleccion": 7.079999988945929e-06,
+    "reparto": 1.1595000003694622e-05
   },
   "todas_cumplen": true
 }

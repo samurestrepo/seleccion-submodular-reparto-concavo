@@ -1,0 +1,7 @@
+{
+  "pasos_seleccion": [],
+  "unidades_reparto": [],
+  "motivo_rechazo": [
+    "1 ≤ k < N: k = 3, N = 3"
+  ]
+}

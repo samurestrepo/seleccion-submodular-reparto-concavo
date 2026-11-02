@@ -1,0 +1,4806 @@
+{
+  "pasos_seleccion": [
+    {
+      "paso": 1,
+      "aportes": [
+        {
+          "nodo": 1,
+          "ganancia": 2
+        },
+        {
+          "nodo": 2,
+          "ganancia": 4
+        },
+        {
+          "nodo": 3,
+          "ganancia": 4
+        },
+        {
+          "nodo": 4,
+          "ganancia": 2
+        },
+        {
+          "nodo": 5,
+          "ganancia": 1
+        },
+        {
+          "nodo": 6,
+          "ganancia": 4
+        },
+        {
+          "nodo": 7,
+          "ganancia": 4
+        },
+        {
+          "nodo": 8,
+          "ganancia": 3
+        },
+        {
+          "nodo": 9,
+          "ganancia": 3
+        },
+        {
+          "nodo": 10,
+          "ganancia": 2
+        },
+        {
+          "nodo": 11,
+          "ganancia": 5
+        },
+        {
+          "nodo": 12,
+          "ganancia": 2
+        },
+        {
+          "nodo": 13,
+          "ganancia": 5
+        },
+        {
+          "nodo": 14,
+          "ganancia": 4
+        },
+        {
+          "nodo": 15,
+          "ganancia": 2
+        },
+        {
+          "nodo": 16,
+          "ganancia": 5
+        },
+        {
+          "nodo": 17,
+          "ganancia": 3
+        },
+        {
+          "nodo": 18,
+          "ganancia": 5
+        },
+        {
+          "nodo": 19,
+          "ganancia": 3
+        },
+        {
+          "nodo": 20,
+          "ganancia": 3
+        },
+        {
+          "nodo": 21,
+          "ganancia": 1
+        },
+        {
+          "nodo": 22,
+          "ganancia": 2
+        },
+        {
+          "nodo": 23,
+          "ganancia": 1
+        },
+        {
+          "nodo": 24,
+          "ganancia": 3
+        },
+        {
+          "nodo": 25,
+          "ganancia": 1
+        },
+        {
+          "nodo": 26,
+          "ganancia": 2
+        },
+        {
+          "nodo": 27,
+          "ganancia": 4
+        },
+        {
+          "nodo": 28,
+          "ganancia": 2
+        },
+        {
+          "nodo": 29,
+          "ganancia": 5
+        },
+        {
+          "nodo": 30,
+          "ganancia": 1
+        },
+        {
+          "nodo": 31,
+          "ganancia": 4
+        },
+        {
+          "nodo": 32,
+          "ganancia": 1
+        },
+        {
+          "nodo": 33,
+          "ganancia": 4
+        },
+        {
+          "nodo": 34,
+          "ganancia": 1
+        },
+        {
+          "nodo": 35,
+          "ganancia": 4
+        },
+        {
+          "nodo": 36,
+          "ganancia": 2
+        },
+        {
+          "nodo": 37,
+          "ganancia": 5
+        },
+        {
+          "nodo": 38,
+          "ganancia": 4
+        },
+        {
+          "nodo": 39,
+          "ganancia": 4
+        },
+        {
+          "nodo": 40,
+          "ganancia": 2
+        },
+        {
+          "nodo": 41,
+          "ganancia": 2
+        },
+        {
+          "nodo": 42,
+          "ganancia": 3
+        },
+        {
+          "nodo": 43,
+          "ganancia": 1
+        },
+        {
+          "nodo": 44,
+          "ganancia": 5
+        },
+        {
+          "nodo": 45,
+          "ganancia": 3
+        },
+        {
+          "nodo": 46,
+          "ganancia": 5
+        },
+        {
+          "nodo": 47,
+          "ganancia": 2
+        },
+        {
+          "nodo": 48,
+          "ganancia": 4
+        },
+        {
+          "nodo": 49,
+          "ganancia": 3
+        },
+        {
+          "nodo": 50,
+          "ganancia": 3
+        },
+        {
+          "nodo": 51,
+          "ganancia": 1
+        },
+        {
+          "nodo": 52,
+          "ganancia": 1
+        },
+        {
+          "nodo": 53,
+          "ganancia": 5
+        },
+        {
+          "nodo": 54,
+          "ganancia": 1
+        },
+        {
+          "nodo": 55,
+          "ganancia": 5
+        },
+        {
+          "nodo": 56,
+          "ganancia": 3
+        },
+        {
+          "nodo": 57,
+          "ganancia": 3
+        },
+        {
+          "nodo": 58,
+          "ganancia": 3
+        },
+        {
+          "nodo": 59,
+          "ganancia": 5
+        },
+        {
+          "nodo": 60,
+          "ganancia": 2
+        },
+        {
+          "nodo": 61,
+          "ganancia": 4
+        },
+        {
+          "nodo": 62,
+          "ganancia": 1
+        },
+        {
+          "nodo": 63,
+          "ganancia": 5
+        },
+        {
+          "nodo": 64,
+          "ganancia": 1
+        },
+        {
+          "nodo": 65,
+          "ganancia": 5
+        },
+        {
+          "nodo": 66,
+          "ganancia": 2
+        },
+        {
+          "nodo": 67,
+          "ganancia": 2
+        },
+        {
+          "nodo": 68,
+          "ganancia": 3
+        },
+        {
+          "nodo": 69,
+          "ganancia": 2
+        },
+        {
+          "nodo": 70,
+          "ganancia": 5
+        },
+        {
+          "nodo": 71,
+          "ganancia": 2
+        },
+        {
+          "nodo": 72,
+          "ganancia": 5
+        },
+        {
+          "nodo": 73,
+          "ganancia": 3
+        },
+        {
+          "nodo": 74,
+          "ganancia": 4
+        },
+        {
+          "nodo": 75,
+          "ganancia": 2
+        },
+        {
+          "nodo": 76,
+          "ganancia": 2
+        },
+        {
+          "nodo": 77,
+          "ganancia": 2
+        },
+        {
+          "nodo": 78,
+          "ganancia": 2
+        },
+        {
+          "nodo": 79,
+          "ganancia": 2
+        },
+        {
+          "nodo": 80,
+          "ganancia": 2
+        },
+        {
+          "nodo": 81,
+          "ganancia": 2
+        },
+        {
+          "nodo": 82,
+          "ganancia": 3
+        },
+        {
+          "nodo": 83,
+          "ganancia": 5
+        },
+        {
+          "nodo": 84,
+          "ganancia": 5
+        },
+        {
+          "nodo": 85,
+          "ganancia": 1
+        },
+        {
+          "nodo": 86,
+          "ganancia": 1
+        },
+        {
+          "nodo": 87,
+          "ganancia": 2
+        },
+        {
+          "nodo": 88,
+          "ganancia": 2
+        },
+        {
+          "nodo": 89,
+          "ganancia": 3
+        },
+        {
+          "nodo": 90,
+          "ganancia": 1
+        },
+        {
+          "nodo": 91,
+          "ganancia": 3
+        },
+        {
+          "nodo": 92,
+          "ganancia": 5
+        },
+        {
+          "nodo": 93,
+          "ganancia": 2
+        },
+        {
+          "nodo": 94,
+          "ganancia": 3
+        },
+        {
+          "nodo": 95,
+          "ganancia": 2
+        },
+        {
+          "nodo": 96,
+          "ganancia": 1
+        },
+        {
+          "nodo": 97,
+          "ganancia": 1
+        },
+        {
+          "nodo": 98,
+          "ganancia": 1
+        },
+        {
+          "nodo": 99,
+          "ganancia": 2
+        },
+        {
+          "nodo": 100,
+          "ganancia": 3
+        },
+        {
+          "nodo": 101,
+          "ganancia": 4
+        },
+        {
+          "nodo": 102,
+          "ganancia": 5
+        },
+        {
+          "nodo": 103,
+          "ganancia": 5
+        },
+        {
+          "nodo": 104,
+          "ganancia": 3
+        },
+        {
+          "nodo": 105,
+          "ganancia": 1
+        },
+        {
+          "nodo": 106,
+          "ganancia": 3
+        },
+        {
+          "nodo": 107,
+          "ganancia": 2
+        },
+        {
+          "nodo": 108,
+          "ganancia": 2
+        },
+        {
+          "nodo": 109,
+          "ganancia": 5
+        },
+        {
+          "nodo": 110,
+          "ganancia": 3
+        },
+        {
+          "nodo": 111,
+          "ganancia": 1
+        },
+        {
+          "nodo": 112,
+          "ganancia": 1
+        },
+        {
+          "nodo": 113,
+          "ganancia": 2
+        },
+        {
+          "nodo": 114,
+          "ganancia": 2
+        },
+        {
+          "nodo": 115,
+          "ganancia": 3
+        },
+        {
+          "nodo": 116,
+          "ganancia": 5
+        },
+        {
+          "nodo": 117,
+          "ganancia": 2
+        },
+        {
+          "nodo": 118,
+          "ganancia": 3
+        },
+        {
+          "nodo": 119,
+          "ganancia": 2
+        },
+        {
+          "nodo": 120,
+          "ganancia": 4
+        },
+        {
+          "nodo": 121,
+          "ganancia": 5
+        },
+        {
+          "nodo": 122,
+          "ganancia": 2
+        },
+        {
+          "nodo": 123,
+          "ganancia": 4
+        },
+        {
+          "nodo": 124,
+          "ganancia": 4
+        },
+        {
+          "nodo": 125,
+          "ganancia": 5
+        },
+        {
+          "nodo": 126,
+          "ganancia": 3
+        },
+        {
+          "nodo": 127,
+          "ganancia": 2
+        },
+        {
+          "nodo": 128,
+          "ganancia": 2
+        },
+        {
+          "nodo": 129,
+          "ganancia": 4
+        },
+        {
+          "nodo": 130,
+          "ganancia": 2
+        },
+        {
+          "nodo": 131,
+          "ganancia": 4
+        },
+        {
+          "nodo": 132,
+          "ganancia": 2
+        },
+        {
+          "nodo": 133,
+          "ganancia": 5
+        },
+        {
+          "nodo": 134,
+          "ganancia": 3
+        },
+        {
+          "nodo": 135,
+          "ganancia": 2
+        },
+        {
+          "nodo": 136,
+          "ganancia": 2
+        },
+        {
+          "nodo": 137,
+          "ganancia": 2
+        },
+        {
+          "nodo": 138,
+          "ganancia": 3
+        },
+        {
+          "nodo": 139,
+          "ganancia": 5
+        },
+        {
+          "nodo": 140,
+          "ganancia": 5
+        },
+        {
+          "nodo": 141,
+          "ganancia": 1
+        },
+        {
+          "nodo": 142,
+          "ganancia": 4
+        },
+        {
+          "nodo": 143,
+          "ganancia": 1
+        },
+        {
+          "nodo": 144,
+          "ganancia": 1
+        },
+        {
+          "nodo": 145,
+          "ganancia": 4
+        },
+        {
+          "nodo": 146,
+          "ganancia": 1
+        },
+        {
+          "nodo": 147,
+          "ganancia": 1
+        },
+        {
+          "nodo": 148,
+          "ganancia": 3
+        },
+        {
+          "nodo": 149,
+          "ganancia": 2
+        },
+        {
+          "nodo": 150,
+          "ganancia": 3
+        },
+        {
+          "nodo": 151,
+          "ganancia": 4
+        },
+        {
+          "nodo": 152,
+          "ganancia": 3
+        },
+        {
+          "nodo": 153,
+          "ganancia": 1
+        },
+        {
+          "nodo": 154,
+          "ganancia": 1
+        },
+        {
+          "nodo": 155,
+          "ganancia": 5
+        },
+        {
+          "nodo": 156,
+          "ganancia": 5
+        },
+        {
+          "nodo": 157,
+          "ganancia": 3
+        },
+        {
+          "nodo": 158,
+          "ganancia": 4
+        },
+        {
+          "nodo": 159,
+          "ganancia": 5
+        },
+        {
+          "nodo": 160,
+          "ganancia": 3
+        }
+      ],
+      "elegido": 11,
+      "ganancia_elegido": 5,
+      "valor_despues": 5
+    },
+    {
+      "paso": 2,
+      "aportes": [
+        {
+          "nodo": 1,
+          "ganancia": 2
+        },
+        {
+          "nodo": 2,
+          "ganancia": 4
+        },
+        {
+          "nodo": 3,
+          "ganancia": 4
+        },
+        {
+          "nodo": 4,
+          "ganancia": 2
+        },
+        {
+          "nodo": 5,
+          "ganancia": 1
+        },
+        {
+          "nodo": 6,
+          "ganancia": 4
+        },
+        {
+          "nodo": 7,
+          "ganancia": 4
+        },
+        {
+          "nodo": 8,
+          "ganancia": 3
+        },
+        {
+          "nodo": 9,
+          "ganancia": 3
+        },
+        {
+          "nodo": 10,
+          "ganancia": 2
+        },
+        {
+          "nodo": 12,
+          "ganancia": 2
+        },
+        {
+          "nodo": 13,
+          "ganancia": 4
+        },
+        {
+          "nodo": 14,
+          "ganancia": 4
+        },
+        {
+          "nodo": 15,
+          "ganancia": 2
+        },
+        {
+          "nodo": 16,
+          "ganancia": 5
+        },
+        {
+          "nodo": 17,
+          "ganancia": 3
+        },
+        {
+          "nodo": 18,
+          "ganancia": 5
+        },
+        {
+          "nodo": 19,
+          "ganancia": 3
+        },
+        {
+          "nodo": 20,
+          "ganancia": 3
+        },
+        {
+          "nodo": 21,
+          "ganancia": 1
+        },
+        {
+          "nodo": 22,
+          "ganancia": 2
+        },
+        {
+          "nodo": 23,
+          "ganancia": 1
+        },
+        {
+          "nodo": 24,
+          "ganancia": 3
+        },
+        {
+          "nodo": 25,
+          "ganancia": 1
+        },
+        {
+          "nodo": 26,
+          "ganancia": 2
+        },
+        {
+          "nodo": 27,
+          "ganancia": 4
+        },
+        {
+          "nodo": 28,
+          "ganancia": 2
+        },
+        {
+          "nodo": 29,
+          "ganancia": 5
+        },
+        {
+          "nodo": 30,
+          "ganancia": 1
+        },
+        {
+          "nodo": 31,
+          "ganancia": 4
+        },
+        {
+          "nodo": 32,
+          "ganancia": 1
+        },
+        {
+          "nodo": 33,
+          "ganancia": 4
+        },
+        {
+          "nodo": 34,
+          "ganancia": 1
+        },
+        {
+          "nodo": 35,
+          "ganancia": 4
+        },
+        {
+          "nodo": 36,
+          "ganancia": 2
+        },
+        {
+          "nodo": 37,
+          "ganancia": 5
+        },
+        {
+          "nodo": 38,
+          "ganancia": 4
+        },
+        {
+          "nodo": 39,
+          "ganancia": 4
+        },
+        {
+          "nodo": 40,
+          "ganancia": 2
+        },
+        {
+          "nodo": 41,
+          "ganancia": 2
+        },
+        {
+          "nodo": 42,
+          "ganancia": 3
+        },
+        {
+          "nodo": 43,
+          "ganancia": 1
+        },
+        {
+          "nodo": 44,
+          "ganancia": 5
+        },
+        {
+          "nodo": 45,
+          "ganancia": 3
+        },
+        {
+          "nodo": 46,
+          "ganancia": 5
+        },
+        {
+          "nodo": 47,
+          "ganancia": 2
+        },
+        {
+          "nodo": 48,
+          "ganancia": 4
+        },
+        {
+          "nodo": 49,
+          "ganancia": 3
+        },
+        {
+          "nodo": 50,
+          "ganancia": 3
+        },
+        {
+          "nodo": 51,
+          "ganancia": 1
+        },
+        {
+          "nodo": 52,
+          "ganancia": 1
+        },
+        {
+          "nodo": 53,
+          "ganancia": 5
+        },
+        {
+          "nodo": 54,
+          "ganancia": 1
+        },
+        {
+          "nodo": 55,
+          "ganancia": 5
+        },
+        {
+          "nodo": 56,
+          "ganancia": 3
+        },
+        {
+          "nodo": 57,
+          "ganancia": 3
+        },
+        {
+          "nodo": 58,
+          "ganancia": 3
+        },
+        {
+          "nodo": 59,
+          "ganancia": 5
+        },
+        {
+          "nodo": 60,
+          "ganancia": 2
+        },
+        {
+          "nodo": 61,
+          "ganancia": 4
+        },
+        {
+          "nodo": 62,
+          "ganancia": 1
+        },
+        {
+          "nodo": 63,
+          "ganancia": 5
+        },
+        {
+          "nodo": 64,
+          "ganancia": 0
+        },
+        {
+          "nodo": 65,
+          "ganancia": 5
+        },
+        {
+          "nodo": 66,
+          "ganancia": 2
+        },
+        {
+          "nodo": 67,
+          "ganancia": 2
+        },
+        {
+          "nodo": 68,
+          "ganancia": 3
+        },
+        {
+          "nodo": 69,
+          "ganancia": 2
+        },
+        {
+          "nodo": 70,
+          "ganancia": 5
+        },
+        {
+          "nodo": 71,
+          "ganancia": 2
+        },
+        {
+          "nodo": 72,
+          "ganancia": 5
+        },
+        {
+          "nodo": 73,
+          "ganancia": 3
+        },
+        {
+          "nodo": 74,
+          "ganancia": 4
+        },
+        {
+          "nodo": 75,
+          "ganancia": 2
+        },
+        {
+          "nodo": 76,
+          "ganancia": 2
+        },
+        {
+          "nodo": 77,
+          "ganancia": 2
+        },
+        {
+          "nodo": 78,
+          "ganancia": 2
+        },
+        {
+          "nodo": 79,
+          "ganancia": 2
+        },
+        {
+          "nodo": 80,
+          "ganancia": 2
+        },
+        {
+          "nodo": 81,
+          "ganancia": 2
+        },
+        {
+          "nodo": 82,
+          "ganancia": 3
+        },
+        {
+          "nodo": 83,
+          "ganancia": 5
+        },
+        {
+          "nodo": 84,
+          "ganancia": 4
+        },
+        {
+          "nodo": 85,
+          "ganancia": 1
+        },
+        {
+          "nodo": 86,
+          "ganancia": 1
+        },
+        {
+          "nodo": 87,
+          "ganancia": 2
+        },
+        {
+          "nodo": 88,
+          "ganancia": 2
+        },
+        {
+          "nodo": 89,
+          "ganancia": 3
+        },
+        {
+          "nodo": 90,
+          "ganancia": 1
+        },
+        {
+          "nodo": 91,
+          "ganancia": 3
+        },
+        {
+          "nodo": 92,
+          "ganancia": 5
+        },
+        {
+          "nodo": 93,
+          "ganancia": 2
+        },
+        {
+          "nodo": 94,
+          "ganancia": 3
+        },
+        {
+          "nodo": 95,
+          "ganancia": 2
+        },
+        {
+          "nodo": 96,
+          "ganancia": 1
+        },
+        {
+          "nodo": 97,
+          "ganancia": 1
+        },
+        {
+          "nodo": 98,
+          "ganancia": 1
+        },
+        {
+          "nodo": 99,
+          "ganancia": 2
+        },
+        {
+          "nodo": 100,
+          "ganancia": 3
+        },
+        {
+          "nodo": 101,
+          "ganancia": 4
+        },
+        {
+          "nodo": 102,
+          "ganancia": 5
+        },
+        {
+          "nodo": 103,
+          "ganancia": 5
+        },
+        {
+          "nodo": 104,
+          "ganancia": 3
+        },
+        {
+          "nodo": 105,
+          "ganancia": 1
+        },
+        {
+          "nodo": 106,
+          "ganancia": 3
+        },
+        {
+          "nodo": 107,
+          "ganancia": 2
+        },
+        {
+          "nodo": 108,
+          "ganancia": 2
+        },
+        {
+          "nodo": 109,
+          "ganancia": 5
+        },
+        {
+          "nodo": 110,
+          "ganancia": 3
+        },
+        {
+          "nodo": 111,
+          "ganancia": 1
+        },
+        {
+          "nodo": 112,
+          "ganancia": 1
+        },
+        {
+          "nodo": 113,
+          "ganancia": 2
+        },
+        {
+          "nodo": 114,
+          "ganancia": 2
+        },
+        {
+          "nodo": 115,
+          "ganancia": 3
+        },
+        {
+          "nodo": 116,
+          "ganancia": 5
+        },
+        {
+          "nodo": 117,
+          "ganancia": 2
+        },
+        {
+          "nodo": 118,
+          "ganancia": 3
+        },
+        {
+          "nodo": 119,
+          "ganancia": 2
+        },
+        {
+          "nodo": 120,
+          "ganancia": 4
+        },
+        {
+          "nodo": 121,
+          "ganancia": 5
+        },
+        {
+          "nodo": 122,
+          "ganancia": 2
+        },
+        {
+          "nodo": 123,
+          "ganancia": 4
+        },
+        {
+          "nodo": 124,
+          "ganancia": 4
+        },
+        {
+          "nodo": 125,
+          "ganancia": 4
+        },
+        {
+          "nodo": 126,
+          "ganancia": 3
+        },
+        {
+          "nodo": 127,
+          "ganancia": 2
+        },
+        {
+          "nodo": 128,
+          "ganancia": 2
+        },
+        {
+          "nodo": 129,
+          "ganancia": 4
+        },
+        {
+          "nodo": 130,
+          "ganancia": 2
+        },
+        {
+          "nodo": 131,
+          "ganancia": 4
+        },
+        {
+          "nodo": 132,
+          "ganancia": 2
+        },
+        {
+          "nodo": 133,
+          "ganancia": 5
+        },
+        {
+          "nodo": 134,
+          "ganancia": 3
+        },
+        {
+          "nodo": 135,
+          "ganancia": 2
+        },
+        {
+          "nodo": 136,
+          "ganancia": 2
+        },
+        {
+          "nodo": 137,
+          "ganancia": 2
+        },
+        {
+          "nodo": 138,
+          "ganancia": 2
+        },
+        {
+          "nodo": 139,
+          "ganancia": 5
+        },
+        {
+          "nodo": 140,
+          "ganancia": 5
+        },
+        {
+          "nodo": 141,
+          "ganancia": 1
+        },
+        {
+          "nodo": 142,
+          "ganancia": 4
+        },
+        {
+          "nodo": 143,
+          "ganancia": 1
+        },
+        {
+          "nodo": 144,
+          "ganancia": 1
+        },
+        {
+          "nodo": 145,
+          "ganancia": 4
+        },
+        {
+          "nodo": 146,
+          "ganancia": 1
+        },
+        {
+          "nodo": 147,
+          "ganancia": 1
+        },
+        {
+          "nodo": 148,
+          "ganancia": 3
+        },
+        {
+          "nodo": 149,
+          "ganancia": 2
+        },
+        {
+          "nodo": 150,
+          "ganancia": 3
+        },
+        {
+          "nodo": 151,
+          "ganancia": 4
+        },
+        {
+          "nodo": 152,
+          "ganancia": 3
+        },
+        {
+          "nodo": 153,
+          "ganancia": 1
+        },
+        {
+          "nodo": 154,
+          "ganancia": 1
+        },
+        {
+          "nodo": 155,
+          "ganancia": 5
+        },
+        {
+          "nodo": 156,
+          "ganancia": 5
+        },
+        {
+          "nodo": 157,
+          "ganancia": 3
+        },
+        {
+          "nodo": 158,
+          "ganancia": 4
+        },
+        {
+          "nodo": 159,
+          "ganancia": 5
+        },
+        {
+          "nodo": 160,
+          "ganancia": 3
+        }
+      ],
+      "elegido": 16,
+      "ganancia_elegido": 5,
+      "valor_despues": 10
+    },
+    {
+      "paso": 3,
+      "aportes": [
+        {
+          "nodo": 1,
+          "ganancia": 2
+        },
+        {
+          "nodo": 2,
+          "ganancia": 4
+        },
+        {
+          "nodo": 3,
+          "ganancia": 4
+        },
+        {
+          "nodo": 4,
+          "ganancia": 2
+        },
+        {
+          "nodo": 5,
+          "ganancia": 1
+        },
+        {
+          "nodo": 6,
+          "ganancia": 4
+        },
+        {
+          "nodo": 7,
+          "ganancia": 2
+        },
+        {
+          "nodo": 8,
+          "ganancia": 3
+        },
+        {
+          "nodo": 9,
+          "ganancia": 3
+        },
+        {
+          "nodo": 10,
+          "ganancia": 2
+        },
+        {
+          "nodo": 12,
+          "ganancia": 1
+        },
+        {
+          "nodo": 13,
+          "ganancia": 4
+        },
+        {
+          "nodo": 14,
+          "ganancia": 4
+        },
+        {
+          "nodo": 15,
+          "ganancia": 2
+        },
+        {
+          "nodo": 17,
+          "ganancia": 2
+        },
+        {
+          "nodo": 18,
+          "ganancia": 5
+        },
+        {
+          "nodo": 19,
+          "ganancia": 3
+        },
+        {
+          "nodo": 20,
+          "ganancia": 3
+        },
+        {
+          "nodo": 21,
+          "ganancia": 1
+        },
+        {
+          "nodo": 22,
+          "ganancia": 2
+        },
+        {
+          "nodo": 23,
+          "ganancia": 1
+        },
+        {
+          "nodo": 24,
+          "ganancia": 3
+        },
+        {
+          "nodo": 25,
+          "ganancia": 1
+        },
+        {
+          "nodo": 26,
+          "ganancia": 2
+        },
+        {
+          "nodo": 27,
+          "ganancia": 4
+        },
+        {
+          "nodo": 28,
+          "ganancia": 2
+        },
+        {
+          "nodo": 29,
+          "ganancia": 5
+        },
+        {
+          "nodo": 30,
+          "ganancia": 1
+        },
+        {
+          "nodo": 31,
+          "ganancia": 4
+        },
+        {
+          "nodo": 32,
+          "ganancia": 1
+        },
+        {
+          "nodo": 33,
+          "ganancia": 4
+        },
+        {
+          "nodo": 34,
+          "ganancia": 1
+        },
+        {
+          "nodo": 35,
+          "ganancia": 4
+        },
+        {
+          "nodo": 36,
+          "ganancia": 2
+        },
+        {
+          "nodo": 37,
+          "ganancia": 5
+        },
+        {
+          "nodo": 38,
+          "ganancia": 4
+        },
+        {
+          "nodo": 39,
+          "ganancia": 4
+        },
+        {
+          "nodo": 40,
+          "ganancia": 2
+        },
+        {
+          "nodo": 41,
+          "ganancia": 2
+        },
+        {
+          "nodo": 42,
+          "ganancia": 3
+        },
+        {
+          "nodo": 43,
+          "ganancia": 1
+        },
+        {
+          "nodo": 44,
+          "ganancia": 5
+        },
+        {
+          "nodo": 45,
+          "ganancia": 3
+        },
+        {
+          "nodo": 46,
+          "ganancia": 5
+        },
+        {
+          "nodo": 47,
+          "ganancia": 2
+        },
+        {
+          "nodo": 48,
+          "ganancia": 4
+        },
+        {
+          "nodo": 49,
+          "ganancia": 3
+        },
+        {
+          "nodo": 50,
+          "ganancia": 3
+        },
+        {
+          "nodo": 51,
+          "ganancia": 1
+        },
+        {
+          "nodo": 52,
+          "ganancia": 1
+        },
+        {
+          "nodo": 53,
+          "ganancia": 5
+        },
+        {
+          "nodo": 54,
+          "ganancia": 1
+        },
+        {
+          "nodo": 55,
+          "ganancia": 5
+        },
+        {
+          "nodo": 56,
+          "ganancia": 3
+        },
+        {
+          "nodo": 57,
+          "ganancia": 3
+        },
+        {
+          "nodo": 58,
+          "ganancia": 3
+        },
+        {
+          "nodo": 59,
+          "ganancia": 5
+        },
+        {
+          "nodo": 60,
+          "ganancia": 2
+        },
+        {
+          "nodo": 61,
+          "ganancia": 4
+        },
+        {
+          "nodo": 62,
+          "ganancia": 1
+        },
+        {
+          "nodo": 63,
+          "ganancia": 5
+        },
+        {
+          "nodo": 64,
+          "ganancia": 0
+        },
+        {
+          "nodo": 65,
+          "ganancia": 5
+        },
+        {
+          "nodo": 66,
+          "ganancia": 2
+        },
+        {
+          "nodo": 67,
+          "ganancia": 2
+        },
+        {
+          "nodo": 68,
+          "ganancia": 2
+        },
+        {
+          "nodo": 69,
+          "ganancia": 2
+        },
+        {
+          "nodo": 70,
+          "ganancia": 5
+        },
+        {
+          "nodo": 71,
+          "ganancia": 2
+        },
+        {
+          "nodo": 72,
+          "ganancia": 5
+        },
+        {
+          "nodo": 73,
+          "ganancia": 3
+        },
+        {
+          "nodo": 74,
+          "ganancia": 4
+        },
+        {
+          "nodo": 75,
+          "ganancia": 2
+        },
+        {
+          "nodo": 76,
+          "ganancia": 2
+        },
+        {
+          "nodo": 77,
+          "ganancia": 2
+        },
+        {
+          "nodo": 78,
+          "ganancia": 2
+        },
+        {
+          "nodo": 79,
+          "ganancia": 2
+        },
+        {
+          "nodo": 80,
+          "ganancia": 2
+        },
+        {
+          "nodo": 81,
+          "ganancia": 2
+        },
+        {
+          "nodo": 82,
+          "ganancia": 3
+        },
+        {
+          "nodo": 83,
+          "ganancia": 4
+        },
+        {
+          "nodo": 84,
+          "ganancia": 4
+        },
+        {
+          "nodo": 85,
+          "ganancia": 1
+        },
+        {
+          "nodo": 86,
+          "ganancia": 1
+        },
+        {
+          "nodo": 87,
+          "ganancia": 2
+        },
+        {
+          "nodo": 88,
+          "ganancia": 2
+        },
+        {
+          "nodo": 89,
+          "ganancia": 3
+        },
+        {
+          "nodo": 90,
+          "ganancia": 1
+        },
+        {
+          "nodo": 91,
+          "ganancia": 3
+        },
+        {
+          "nodo": 92,
+          "ganancia": 5
+        },
+        {
+          "nodo": 93,
+          "ganancia": 2
+        },
+        {
+          "nodo": 94,
+          "ganancia": 3
+        },
+        {
+          "nodo": 95,
+          "ganancia": 2
+        },
+        {
+          "nodo": 96,
+          "ganancia": 1
+        },
+        {
+          "nodo": 97,
+          "ganancia": 1
+        },
+        {
+          "nodo": 98,
+          "ganancia": 1
+        },
+        {
+          "nodo": 99,
+          "ganancia": 2
+        },
+        {
+          "nodo": 100,
+          "ganancia": 3
+        },
+        {
+          "nodo": 101,
+          "ganancia": 4
+        },
+        {
+          "nodo": 102,
+          "ganancia": 5
+        },
+        {
+          "nodo": 103,
+          "ganancia": 5
+        },
+        {
+          "nodo": 104,
+          "ganancia": 3
+        },
+        {
+          "nodo": 105,
+          "ganancia": 1
+        },
+        {
+          "nodo": 106,
+          "ganancia": 3
+        },
+        {
+          "nodo": 107,
+          "ganancia": 2
+        },
+        {
+          "nodo": 108,
+          "ganancia": 2
+        },
+        {
+          "nodo": 109,
+          "ganancia": 5
+        },
+        {
+          "nodo": 110,
+          "ganancia": 3
+        },
+        {
+          "nodo": 111,
+          "ganancia": 1
+        },
+        {
+          "nodo": 112,
+          "ganancia": 1
+        },
+        {
+          "nodo": 113,
+          "ganancia": 2
+        },
+        {
+          "nodo": 114,
+          "ganancia": 2
+        },
+        {
+          "nodo": 115,
+          "ganancia": 3
+        },
+        {
+          "nodo": 116,
+          "ganancia": 5
+        },
+        {
+          "nodo": 117,
+          "ganancia": 2
+        },
+        {
+          "nodo": 118,
+          "ganancia": 3
+        },
+        {
+          "nodo": 119,
+          "ganancia": 2
+        },
+        {
+          "nodo": 120,
+          "ganancia": 4
+        },
+        {
+          "nodo": 121,
+          "ganancia": 5
+        },
+        {
+          "nodo": 122,
+          "ganancia": 2
+        },
+        {
+          "nodo": 123,
+          "ganancia": 4
+        },
+        {
+          "nodo": 124,
+          "ganancia": 4
+        },
+        {
+          "nodo": 125,
+          "ganancia": 4
+        },
+        {
+          "nodo": 126,
+          "ganancia": 3
+        },
+        {
+          "nodo": 127,
+          "ganancia": 2
+        },
+        {
+          "nodo": 128,
+          "ganancia": 2
+        },
+        {
+          "nodo": 129,
+          "ganancia": 4
+        },
+        {
+          "nodo": 130,
+          "ganancia": 2
+        },
+        {
+          "nodo": 131,
+          "ganancia": 4
+        },
+        {
+          "nodo": 132,
+          "ganancia": 2
+        },
+        {
+          "nodo": 133,
+          "ganancia": 5
+        },
+        {
+          "nodo": 134,
+          "ganancia": 3
+        },
+        {
+          "nodo": 135,
+          "ganancia": 2
+        },
+        {
+          "nodo": 136,
+          "ganancia": 2
+        },
+        {
+          "nodo": 137,
+          "ganancia": 2
+        },
+        {
+          "nodo": 138,
+          "ganancia": 2
+        },
+        {
+          "nodo": 139,
+          "ganancia": 4
+        },
+        {
+          "nodo": 140,
+          "ganancia": 5
+        },
+        {
+          "nodo": 141,
+          "ganancia": 1
+        },
+        {
+          "nodo": 142,
+          "ganancia": 4
+        },
+        {
+          "nodo": 143,
+          "ganancia": 1
+        },
+        {
+          "nodo": 144,
+          "ganancia": 1
+        },
+        {
+          "nodo": 145,
+          "ganancia": 4
+        },
+        {
+          "nodo": 146,
+          "ganancia": 1
+        },
+        {
+          "nodo": 147,
+          "ganancia": 1
+        },
+        {
+          "nodo": 148,
+          "ganancia": 3
+        },
+        {
+          "nodo": 149,
+          "ganancia": 2
+        },
+        {
+          "nodo": 150,
+          "ganancia": 3
+        },
+        {
+          "nodo": 151,
+          "ganancia": 4
+        },
+        {
+          "nodo": 152,
+          "ganancia": 3
+        },
+        {
+          "nodo": 153,
+          "ganancia": 1
+        },
+        {
+          "nodo": 154,
+          "ganancia": 1
+        },
+        {
+          "nodo": 155,
+          "ganancia": 5
+        },
+        {
+          "nodo": 156,
+          "ganancia": 5
+        },
+        {
+          "nodo": 157,
+          "ganancia": 3
+        },
+        {
+          "nodo": 158,
+          "ganancia": 4
+        },
+        {
+          "nodo": 159,
+          "ganancia": 5
+        },
+        {
+          "nodo": 160,
+          "ganancia": 3
+        }
+      ],
+      "elegido": 18,
+      "ganancia_elegido": 5,
+      "valor_despues": 15
+    },
+    {
+      "paso": 4,
+      "aportes": [
+        {
+          "nodo": 1,
+          "ganancia": 2
+        },
+        {
+          "nodo": 2,
+          "ganancia": 4
+        },
+        {
+          "nodo": 3,
+          "ganancia": 4
+        },
+        {
+          "nodo": 4,
+          "ganancia": 2
+        },
+        {
+          "nodo": 5,
+          "ganancia": 1
+        },
+        {
+          "nodo": 6,
+          "ganancia": 4
+        },
+        {
+          "nodo": 7,
+          "ganancia": 2
+        },
+        {
+          "nodo": 8,
+          "ganancia": 3
+        },
+        {
+          "nodo": 9,
+          "ganancia": 3
+        },
+        {
+          "nodo": 10,
+          "ganancia": 2
+        },
+        {
+          "nodo": 12,
+          "ganancia": 1
+        },
+        {
+          "nodo": 13,
+          "ganancia": 4
+        },
+        {
+          "nodo": 14,
+          "ganancia": 4
+        },
+        {
+          "nodo": 15,
+          "ganancia": 2
+        },
+        {
+          "nodo": 17,
+          "ganancia": 2
+        },
+        {
+          "nodo": 19,
+          "ganancia": 3
+        },
+        {
+          "nodo": 20,
+          "ganancia": 3
+        },
+        {
+          "nodo": 21,
+          "ganancia": 1
+        },
+        {
+          "nodo": 22,
+          "ganancia": 2
+        },
+        {
+          "nodo": 23,
+          "ganancia": 1
+        },
+        {
+          "nodo": 24,
+          "ganancia": 3
+        },
+        {
+          "nodo": 25,
+          "ganancia": 1
+        },
+        {
+          "nodo": 26,
+          "ganancia": 2
+        },
+        {
+          "nodo": 27,
+          "ganancia": 4
+        },
+        {
+          "nodo": 28,
+          "ganancia": 2
+        },
+        {
+          "nodo": 29,
+          "ganancia": 5
+        },
+        {
+          "nodo": 30,
+          "ganancia": 1
+        },
+        {
+          "nodo": 31,
+          "ganancia": 4
+        },
+        {
+          "nodo": 32,
+          "ganancia": 1
+        },
+        {
+          "nodo": 33,
+          "ganancia": 4
+        },
+        {
+          "nodo": 34,
+          "ganancia": 1
+        },
+        {
+          "nodo": 35,
+          "ganancia": 3
+        },
+        {
+          "nodo": 36,
+          "ganancia": 2
+        },
+        {
+          "nodo": 37,
+          "ganancia": 5
+        },
+        {
+          "nodo": 38,
+          "ganancia": 4
+        },
+        {
+          "nodo": 39,
+          "ganancia": 4
+        },
+        {
+          "nodo": 40,
+          "ganancia": 2
+        },
+        {
+          "nodo": 41,
+          "ganancia": 2
+        },
+        {
+          "nodo": 42,
+          "ganancia": 3
+        },
+        {
+          "nodo": 43,
+          "ganancia": 1
+        },
+        {
+          "nodo": 44,
+          "ganancia": 5
+        },
+        {
+          "nodo": 45,
+          "ganancia": 3
+        },
+        {
+          "nodo": 46,
+          "ganancia": 5
+        },
+        {
+          "nodo": 47,
+          "ganancia": 2
+        },
+        {
+          "nodo": 48,
+          "ganancia": 4
+        },
+        {
+          "nodo": 49,
+          "ganancia": 3
+        },
+        {
+          "nodo": 50,
+          "ganancia": 3
+        },
+        {
+          "nodo": 51,
+          "ganancia": 1
+        },
+        {
+          "nodo": 52,
+          "ganancia": 1
+        },
+        {
+          "nodo": 53,
+          "ganancia": 5
+        },
+        {
+          "nodo": 54,
+          "ganancia": 1
+        },
+        {
+          "nodo": 55,
+          "ganancia": 5
+        },
+        {
+          "nodo": 56,
+          "ganancia": 3
+        },
+        {
+          "nodo": 57,
+          "ganancia": 3
+        },
+        {
+          "nodo": 58,
+          "ganancia": 3
+        },
+        {
+          "nodo": 59,
+          "ganancia": 5
+        },
+        {
+          "nodo": 60,
+          "ganancia": 2
+        },
+        {
+          "nodo": 61,
+          "ganancia": 4
+        },
+        {
+          "nodo": 62,
+          "ganancia": 1
+        },
+        {
+          "nodo": 63,
+          "ganancia": 5
+        },
+        {
+          "nodo": 64,
+          "ganancia": 0
+        },
+        {
+          "nodo": 65,
+          "ganancia": 5
+        },
+        {
+          "nodo": 66,
+          "ganancia": 2
+        },
+        {
+          "nodo": 67,
+          "ganancia": 2
+        },
+        {
+          "nodo": 68,
+          "ganancia": 2
+        },
+        {
+          "nodo": 69,
+          "ganancia": 2
+        },
+        {
+          "nodo": 70,
+          "ganancia": 4
+        },
+        {
+          "nodo": 71,
+          "ganancia": 2
+        },
+        {
+          "nodo": 72,
+          "ganancia": 5
+        },
+        {
+          "nodo": 73,
+          "ganancia": 3
+        },
+        {
+          "nodo": 74,
+          "ganancia": 4
+        },
+        {
+          "nodo": 75,
+          "ganancia": 2
+        },
+        {
+          "nodo": 76,
+          "ganancia": 2
+        },
+        {
+          "nodo": 77,
+          "ganancia": 2
+        },
+        {
+          "nodo": 78,
+          "ganancia": 2
+        },
+        {
+          "nodo": 79,
+          "ganancia": 2
+        },
+        {
+          "nodo": 80,
+          "ganancia": 2
+        },
+        {
+          "nodo": 81,
+          "ganancia": 2
+        },
+        {
+          "nodo": 82,
+          "ganancia": 3
+        },
+        {
+          "nodo": 83,
+          "ganancia": 4
+        },
+        {
+          "nodo": 84,
+          "ganancia": 4
+        },
+        {
+          "nodo": 85,
+          "ganancia": 1
+        },
+        {
+          "nodo": 86,
+          "ganancia": 1
+        },
+        {
+          "nodo": 87,
+          "ganancia": 2
+        },
+        {
+          "nodo": 88,
+          "ganancia": 2
+        },
+        {
+          "nodo": 89,
+          "ganancia": 3
+        },
+        {
+          "nodo": 90,
+          "ganancia": 1
+        },
+        {
+          "nodo": 91,
+          "ganancia": 3
+        },
+        {
+          "nodo": 92,
+          "ganancia": 5
+        },
+        {
+          "nodo": 93,
+          "ganancia": 2
+        },
+        {
+          "nodo": 94,
+          "ganancia": 3
+        },
+        {
+          "nodo": 95,
+          "ganancia": 2
+        },
+        {
+          "nodo": 96,
+          "ganancia": 1
+        },
+        {
+          "nodo": 97,
+          "ganancia": 1
+        },
+        {
+          "nodo": 98,
+          "ganancia": 1
+        },
+        {
+          "nodo": 99,
+          "ganancia": 2
+        },
+        {
+          "nodo": 100,
+          "ganancia": 3
+        },
+        {
+          "nodo": 101,
+          "ganancia": 4
+        },
+        {
+          "nodo": 102,
+          "ganancia": 5
+        },
+        {
+          "nodo": 103,
+          "ganancia": 5
+        },
+        {
+          "nodo": 104,
+          "ganancia": 3
+        },
+        {
+          "nodo": 105,
+          "ganancia": 1
+        },
+        {
+          "nodo": 106,
+          "ganancia": 3
+        },
+        {
+          "nodo": 107,
+          "ganancia": 2
+        },
+        {
+          "nodo": 108,
+          "ganancia": 2
+        },
+        {
+          "nodo": 109,
+          "ganancia": 5
+        },
+        {
+          "nodo": 110,
+          "ganancia": 3
+        },
+        {
+          "nodo": 111,
+          "ganancia": 1
+        },
+        {
+          "nodo": 112,
+          "ganancia": 1
+        },
+        {
+          "nodo": 113,
+          "ganancia": 2
+        },
+        {
+          "nodo": 114,
+          "ganancia": 2
+        },
+        {
+          "nodo": 115,
+          "ganancia": 3
+        },
+        {
+          "nodo": 116,
+          "ganancia": 5
+        },
+        {
+          "nodo": 117,
+          "ganancia": 1
+        },
+        {
+          "nodo": 118,
+          "ganancia": 3
+        },
+        {
+          "nodo": 119,
+          "ganancia": 2
+        },
+        {
+          "nodo": 120,
+          "ganancia": 4
+        },
+        {
+          "nodo": 121,
+          "ganancia": 5
+        },
+        {
+          "nodo": 122,
+          "ganancia": 2
+        },
+        {
+          "nodo": 123,
+          "ganancia": 3
+        },
+        {
+          "nodo": 124,
+          "ganancia": 4
+        },
+        {
+          "nodo": 125,
+          "ganancia": 4
+        },
+        {
+          "nodo": 126,
+          "ganancia": 3
+        },
+        {
+          "nodo": 127,
+          "ganancia": 2
+        },
+        {
+          "nodo": 128,
+          "ganancia": 2
+        },
+        {
+          "nodo": 129,
+          "ganancia": 4
+        },
+        {
+          "nodo": 130,
+          "ganancia": 2
+        },
+        {
+          "nodo": 131,
+          "ganancia": 4
+        },
+        {
+          "nodo": 132,
+          "ganancia": 2
+        },
+        {
+          "nodo": 133,
+          "ganancia": 4
+        },
+        {
+          "nodo": 134,
+          "ganancia": 3
+        },
+        {
+          "nodo": 135,
+          "ganancia": 2
+        },
+        {
+          "nodo": 136,
+          "ganancia": 2
+        },
+        {
+          "nodo": 137,
+          "ganancia": 2
+        },
+        {
+          "nodo": 138,
+          "ganancia": 2
+        },
+        {
+          "nodo": 139,
+          "ganancia": 4
+        },
+        {
+          "nodo": 140,
+          "ganancia": 5
+        },
+        {
+          "nodo": 141,
+          "ganancia": 1
+        },
+        {
+          "nodo": 142,
+          "ganancia": 4
+        },
+        {
+          "nodo": 143,
+          "ganancia": 1
+        },
+        {
+          "nodo": 144,
+          "ganancia": 1
+        },
+        {
+          "nodo": 145,
+          "ganancia": 4
+        },
+        {
+          "nodo": 146,
+          "ganancia": 1
+        },
+        {
+          "nodo": 147,
+          "ganancia": 1
+        },
+        {
+          "nodo": 148,
+          "ganancia": 3
+        },
+        {
+          "nodo": 149,
+          "ganancia": 2
+        },
+        {
+          "nodo": 150,
+          "ganancia": 3
+        },
+        {
+          "nodo": 151,
+          "ganancia": 4
+        },
+        {
+          "nodo": 152,
+          "ganancia": 3
+        },
+        {
+          "nodo": 153,
+          "ganancia": 1
+        },
+        {
+          "nodo": 154,
+          "ganancia": 1
+        },
+        {
+          "nodo": 155,
+          "ganancia": 5
+        },
+        {
+          "nodo": 156,
+          "ganancia": 5
+        },
+        {
+          "nodo": 157,
+          "ganancia": 3
+        },
+        {
+          "nodo": 158,
+          "ganancia": 4
+        },
+        {
+          "nodo": 159,
+          "ganancia": 5
+        },
+        {
+          "nodo": 160,
+          "ganancia": 3
+        }
+      ],
+      "elegido": 29,
+      "ganancia_elegido": 5,
+      "valor_despues": 20
+    },
+    {
+      "paso": 5,
+      "aportes": [
+        {
+          "nodo": 1,
+          "ganancia": 2
+        },
+        {
+          "nodo": 2,
+          "ganancia": 3
+        },
+        {
+          "nodo": 3,
+          "ganancia": 3
+        },
+        {
+          "nodo": 4,
+          "ganancia": 2
+        },
+        {
+          "nodo": 5,
+          "ganancia": 1
+        },
+        {
+          "nodo": 6,
+          "ganancia": 4
+        },
+        {
+          "nodo": 7,
+          "ganancia": 2
+        },
+        {
+          "nodo": 8,
+          "ganancia": 3
+        },
+        {
+          "nodo": 9,
+          "ganancia": 3
+        },
+        {
+          "nodo": 10,
+          "ganancia": 2
+        },
+        {
+          "nodo": 12,
+          "ganancia": 1
+        },
+        {
+          "nodo": 13,
+          "ganancia": 4
+        },
+        {
+          "nodo": 14,
+          "ganancia": 4
+        },
+        {
+          "nodo": 15,
+          "ganancia": 2
+        },
+        {
+          "nodo": 17,
+          "ganancia": 2
+        },
+        {
+          "nodo": 19,
+          "ganancia": 3
+        },
+        {
+          "nodo": 20,
+          "ganancia": 3
+        },
+        {
+          "nodo": 21,
+          "ganancia": 1
+        },
+        {
+          "nodo": 22,
+          "ganancia": 2
+        },
+        {
+          "nodo": 23,
+          "ganancia": 1
+        },
+        {
+          "nodo": 24,
+          "ganancia": 3
+        },
+        {
+          "nodo": 25,
+          "ganancia": 1
+        },
+        {
+          "nodo": 26,
+          "ganancia": 2
+        },
+        {
+          "nodo": 27,
+          "ganancia": 4
+        },
+        {
+          "nodo": 28,
+          "ganancia": 2
+        },
+        {
+          "nodo": 30,
+          "ganancia": 1
+        },
+        {
+          "nodo": 31,
+          "ganancia": 4
+        },
+        {
+          "nodo": 32,
+          "ganancia": 1
+        },
+        {
+          "nodo": 33,
+          "ganancia": 4
+        },
+        {
+          "nodo": 34,
+          "ganancia": 1
+        },
+        {
+          "nodo": 35,
+          "ganancia": 3
+        },
+        {
+          "nodo": 36,
+          "ganancia": 2
+        },
+        {
+          "nodo": 37,
+          "ganancia": 5
+        },
+        {
+          "nodo": 38,
+          "ganancia": 4
+        },
+        {
+          "nodo": 39,
+          "ganancia": 4
+        },
+        {
+          "nodo": 40,
+          "ganancia": 2
+        },
+        {
+          "nodo": 41,
+          "ganancia": 2
+        },
+        {
+          "nodo": 42,
+          "ganancia": 3
+        },
+        {
+          "nodo": 43,
+          "ganancia": 1
+        },
+        {
+          "nodo": 44,
+          "ganancia": 5
+        },
+        {
+          "nodo": 45,
+          "ganancia": 3
+        },
+        {
+          "nodo": 46,
+          "ganancia": 5
+        },
+        {
+          "nodo": 47,
+          "ganancia": 2
+        },
+        {
+          "nodo": 48,
+          "ganancia": 4
+        },
+        {
+          "nodo": 49,
+          "ganancia": 3
+        },
+        {
+          "nodo": 50,
+          "ganancia": 3
+        },
+        {
+          "nodo": 51,
+          "ganancia": 1
+        },
+        {
+          "nodo": 52,
+          "ganancia": 1
+        },
+        {
+          "nodo": 53,
+          "ganancia": 5
+        },
+        {
+          "nodo": 54,
+          "ganancia": 1
+        },
+        {
+          "nodo": 55,
+          "ganancia": 5
+        },
+        {
+          "nodo": 56,
+          "ganancia": 3
+        },
+        {
+          "nodo": 57,
+          "ganancia": 3
+        },
+        {
+          "nodo": 58,
+          "ganancia": 3
+        },
+        {
+          "nodo": 59,
+          "ganancia": 5
+        },
+        {
+          "nodo": 60,
+          "ganancia": 2
+        },
+        {
+          "nodo": 61,
+          "ganancia": 4
+        },
+        {
+          "nodo": 62,
+          "ganancia": 1
+        },
+        {
+          "nodo": 63,
+          "ganancia": 5
+        },
+        {
+          "nodo": 64,
+          "ganancia": 0
+        },
+        {
+          "nodo": 65,
+          "ganancia": 5
+        },
+        {
+          "nodo": 66,
+          "ganancia": 2
+        },
+        {
+          "nodo": 67,
+          "ganancia": 2
+        },
+        {
+          "nodo": 68,
+          "ganancia": 2
+        },
+        {
+          "nodo": 69,
+          "ganancia": 2
+        },
+        {
+          "nodo": 70,
+          "ganancia": 3
+        },
+        {
+          "nodo": 71,
+          "ganancia": 2
+        },
+        {
+          "nodo": 72,
+          "ganancia": 5
+        },
+        {
+          "nodo": 73,
+          "ganancia": 3
+        },
+        {
+          "nodo": 74,
+          "ganancia": 4
+        },
+        {
+          "nodo": 75,
+          "ganancia": 2
+        },
+        {
+          "nodo": 76,
+          "ganancia": 2
+        },
+        {
+          "nodo": 77,
+          "ganancia": 2
+        },
+        {
+          "nodo": 78,
+          "ganancia": 2
+        },
+        {
+          "nodo": 79,
+          "ganancia": 2
+        },
+        {
+          "nodo": 80,
+          "ganancia": 2
+        },
+        {
+          "nodo": 81,
+          "ganancia": 2
+        },
+        {
+          "nodo": 82,
+          "ganancia": 3
+        },
+        {
+          "nodo": 83,
+          "ganancia": 4
+        },
+        {
+          "nodo": 84,
+          "ganancia": 4
+        },
+        {
+          "nodo": 85,
+          "ganancia": 1
+        },
+        {
+          "nodo": 86,
+          "ganancia": 1
+        },
+        {
+          "nodo": 87,
+          "ganancia": 2
+        },
+        {
+          "nodo": 88,
+          "ganancia": 1
+        },
+        {
+          "nodo": 89,
+          "ganancia": 3
+        },
+        {
+          "nodo": 90,
+          "ganancia": 1
+        },
+        {
+          "nodo": 91,
+          "ganancia": 3
+        },
+        {
+          "nodo": 92,
+          "ganancia": 3
+        },
+        {
+          "nodo": 93,
+          "ganancia": 2
+        },
+        {
+          "nodo": 94,
+          "ganancia": 3
+        },
+        {
+          "nodo": 95,
+          "ganancia": 2
+        },
+        {
+          "nodo": 96,
+          "ganancia": 1
+        },
+        {
+          "nodo": 97,
+          "ganancia": 1
+        },
+        {
+          "nodo": 98,
+          "ganancia": 1
+        },
+        {
+          "nodo": 99,
+          "ganancia": 2
+        },
+        {
+          "nodo": 100,
+          "ganancia": 3
+        },
+        {
+          "nodo": 101,
+          "ganancia": 4
+        },
+        {
+          "nodo": 102,
+          "ganancia": 5
+        },
+        {
+          "nodo": 103,
+          "ganancia": 5
+        },
+        {
+          "nodo": 104,
+          "ganancia": 3
+        },
+        {
+          "nodo": 105,
+          "ganancia": 1
+        },
+        {
+          "nodo": 106,
+          "ganancia": 3
+        },
+        {
+          "nodo": 107,
+          "ganancia": 1
+        },
+        {
+          "nodo": 108,
+          "ganancia": 2
+        },
+        {
+          "nodo": 109,
+          "ganancia": 5
+        },
+        {
+          "nodo": 110,
+          "ganancia": 3
+        },
+        {
+          "nodo": 111,
+          "ganancia": 1
+        },
+        {
+          "nodo": 112,
+          "ganancia": 1
+        },
+        {
+          "nodo": 113,
+          "ganancia": 2
+        },
+        {
+          "nodo": 114,
+          "ganancia": 2
+        },
+        {
+          "nodo": 115,
+          "ganancia": 3
+        },
+        {
+          "nodo": 116,
+          "ganancia": 5
+        },
+        {
+          "nodo": 117,
+          "ganancia": 1
+        },
+        {
+          "nodo": 118,
+          "ganancia": 3
+        },
+        {
+          "nodo": 119,
+          "ganancia": 2
+        },
+        {
+          "nodo": 120,
+          "ganancia": 4
+        },
+        {
+          "nodo": 121,
+          "ganancia": 4
+        },
+        {
+          "nodo": 122,
+          "ganancia": 2
+        },
+        {
+          "nodo": 123,
+          "ganancia": 3
+        },
+        {
+          "nodo": 124,
+          "ganancia": 4
+        },
+        {
+          "nodo": 125,
+          "ganancia": 4
+        },
+        {
+          "nodo": 126,
+          "ganancia": 3
+        },
+        {
+          "nodo": 127,
+          "ganancia": 2
+        },
+        {
+          "nodo": 128,
+          "ganancia": 2
+        },
+        {
+          "nodo": 129,
+          "ganancia": 4
+        },
+        {
+          "nodo": 130,
+          "ganancia": 2
+        },
+        {
+          "nodo": 131,
+          "ganancia": 4
+        },
+        {
+          "nodo": 132,
+          "ganancia": 2
+        },
+        {
+          "nodo": 133,
+          "ganancia": 4
+        },
+        {
+          "nodo": 134,
+          "ganancia": 3
+        },
+        {
+          "nodo": 135,
+          "ganancia": 2
+        },
+        {
+          "nodo": 136,
+          "ganancia": 2
+        },
+        {
+          "nodo": 137,
+          "ganancia": 2
+        },
+        {
+          "nodo": 138,
+          "ganancia": 2
+        },
+        {
+          "nodo": 139,
+          "ganancia": 4
+        },
+        {
+          "nodo": 140,
+          "ganancia": 5
+        },
+        {
+          "nodo": 141,
+          "ganancia": 1
+        },
+        {
+          "nodo": 142,
+          "ganancia": 4
+        },
+        {
+          "nodo": 143,
+          "ganancia": 1
+        },
+        {
+          "nodo": 144,
+          "ganancia": 1
+        },
+        {
+          "nodo": 145,
+          "ganancia": 4
+        },
+        {
+          "nodo": 146,
+          "ganancia": 1
+        },
+        {
+          "nodo": 147,
+          "ganancia": 1
+        },
+        {
+          "nodo": 148,
+          "ganancia": 3
+        },
+        {
+          "nodo": 149,
+          "ganancia": 2
+        },
+        {
+          "nodo": 150,
+          "ganancia": 3
+        },
+        {
+          "nodo": 151,
+          "ganancia": 4
+        },
+        {
+          "nodo": 152,
+          "ganancia": 3
+        },
+        {
+          "nodo": 153,
+          "ganancia": 1
+        },
+        {
+          "nodo": 154,
+          "ganancia": 1
+        },
+        {
+          "nodo": 155,
+          "ganancia": 5
+        },
+        {
+          "nodo": 156,
+          "ganancia": 5
+        },
+        {
+          "nodo": 157,
+          "ganancia": 3
+        },
+        {
+          "nodo": 158,
+          "ganancia": 4
+        },
+        {
+          "nodo": 159,
+          "ganancia": 5
+        },
+        {
+          "nodo": 160,
+          "ganancia": 3
+        }
+      ],
+      "elegido": 37,
+      "ganancia_elegido": 5,
+      "valor_despues": 25
+    }
+  ],
+  "unidades_reparto": [
+    {
+      "unidad": 1,
+      "nodo": 16,
+      "ganancia": 5.13
+    },
+    {
+      "unidad": 2,
+      "nodo": 11,
+      "ganancia": 4.73
+    },
+    {
+      "unidad": 3,
+      "nodo": 18,
+      "ganancia": 3.6944744723845084
+    },
+    {
+      "unidad": 4,
+      "nodo": 29,
+      "ganancia": 3.1746140869645494
+    },
+    {
+      "unidad": 5,
+      "nodo": 18,
+      "ganancia": 2.1611290262165164
+    },
+    {
+      "unidad": 6,
+      "nodo": 16,
+      "ganancia": 2.1249155749739783
+    },
+    {
+      "unidad": 7,
+      "nodo": 37,
+      "ganancia": 1.9754694645958442
+    },
+    {
+      "unidad": 8,
+      "nodo": 11,
+      "ganancia": 1.95923015002474
+    },
+    {
+      "unidad": 9,
+      "nodo": 29,
+      "ganancia": 1.8570301951353931
+    },
+    {
+      "unidad": 10,
+      "nodo": 16,
+      "ganancia": 1.6305050678543616
+    },
+    {
+      "unidad": 11,
+      "nodo": 18,
+      "ganancia": 1.533345446167992
+    },
+    {
+      "unidad": 12,
+      "nodo": 11,
+      "ganancia": 1.5033701697760486
+    },
+    {
+      "unidad": 13,
+      "nodo": 16,
+      "ganancia": 1.37457935717166
+    },
+    {
+      "unidad": 14,
+      "nodo": 29,
+      "ganancia": 1.3175838918291563
+    },
+    {
+      "unidad": 15,
+      "nodo": 11,
+      "ganancia": 1.2673996801992118
+    },
+    {
+      "unidad": 16,
+      "nodo": 16,
+      "ganancia": 1.2110287245739215
+    },
+    {
+      "unidad": 17,
+      "nodo": 18,
+      "ganancia": 1.1893551285047375
+    },
+    {
+      "unidad": 18,
+      "nodo": 37,
+      "ganancia": 1.155575558108269
+    },
+    {
+      "unidad": 19,
+      "nodo": 11,
+      "ganancia": 1.1166015335740056
+    },
+    {
+      "unidad": 20,
+      "nodo": 16,
+      "ganancia": 1.0948536559037816
+    },
+    {
+      "unidad": 21,
+      "nodo": 29,
+      "ganancia": 1.0219974650190808
+    },
+    {
+      "unidad": 22,
+      "nodo": 11,
+      "ganancia": 1.0094849497904264
+    },
+    {
+      "unidad": 23,
+      "nodo": 16,
+      "ganancia": 1.006821845283648
+    },
+    {
+      "unidad": 24,
+      "nodo": 18,
+      "ganancia": 0.9717738977117794
+    },
+    {
+      "unidad": 25,
+      "nodo": 16,
+      "ganancia": 0.9371269241866056
+    },
+    {
+      "unidad": 26,
+      "nodo": 11,
+      "ganancia": 0.9283172179710828
+    },
+    {
+      "unidad": 27,
+      "nodo": 16,
+      "ganancia": 0.8801688500520441
+    },
+    {
+      "unidad": 28,
+      "nodo": 11,
+      "ganancia": 0.8640565987139652
+    },
+    {
+      "unidad": 29,
+      "nodo": 29,
+      "ganancia": 0.8350327301163114
+    },
+    {
+      "unidad": 30,
+      "nodo": 16,
+      "ganancia": 0.8324843966637872
+    },
+    {
+      "unidad": 31,
+      "nodo": 18,
+      "ganancia": 0.8216231234792861
+    },
+    {
+      "unidad": 32,
+      "nodo": 37,
+      "ganancia": 0.8198939064875752
+    },
+    {
+      "unidad": 33,
+      "nodo": 11,
+      "ganancia": 0.8115396999505204
+    },
+    {
+      "unidad": 34,
+      "nodo": 16,
+      "ganancia": 0.7918007778594145
+    },
+    {
+      "unidad": 35,
+      "nodo": 11,
+      "ganancia": 0.7675733325964345
+    },
+    {
+      "unidad": 36,
+      "nodo": 16,
+      "ganancia": 0.7565561111334773
+    },
+    {
+      "unidad": 37,
+      "nodo": 11,
+      "ganancia": 0.7300619257846073
+    },
+    {
+      "unidad": 38,
+      "nodo": 16,
+      "ganancia": 0.725636757473584
+    },
+    {
+      "unidad": 39,
+      "nodo": 18,
+      "ganancia": 0.7117223226887042
+    },
+    {
+      "unidad": 40,
+      "nodo": 29,
+      "ganancia": 0.7060101136088441
+    },
+    {
+      "unidad": 41,
+      "nodo": 16,
+      "ganancia": 0.6982243510200554
+    },
+    {
+      "unidad": 42,
+      "nodo": 11,
+      "ganancia": 0.6975653812205351
+    },
+    {
+      "unidad": 43,
+      "nodo": 16,
+      "ganancia": 0.6737021718937299
+    },
+    {
+      "unidad": 44,
+      "nodo": 11,
+      "ganancia": 0.6690568933430932
+    },
+    {
+      "unidad": 45,
+      "nodo": 16,
+      "ganancia": 0.6515954339559507
+    },
+    {
+      "unidad": 46,
+      "nodo": 11,
+      "ganancia": 0.6437819064960735
+    },
+    {
+      "unidad": 47,
+      "nodo": 37,
+      "ganancia": 0.6359591212454974
+    },
+    {
+      "unidad": 48,
+      "nodo": 16,
+      "ganancia": 0.6315318594185975
+    },
+    {
+      "unidad": 49,
+      "nodo": 18,
+      "ganancia": 0.6277835800485256
+    },
+    {
+      "unidad": 50,
+      "nodo": 11,
+      "ganancia": 0.6211717881203391
+    },
+    {
+      "unidad": 51,
+      "nodo": 16,
+      "ganancia": 0.613214865503334
+    },
+    {
+      "unidad": 52,
+      "nodo": 29,
+      "ganancia": 0.611573778220313
+    },
+    {
+      "unidad": 53,
+      "nodo": 11,
+      "ganancia": 0.6007887724389178
+    },
+    {
+      "unidad": 54,
+      "nodo": 16,
+      "ganancia": 0.5964048554417261
+    },
+    {
+      "unidad": 55,
+      "nodo": 11,
+      "ganancia": 0.5822896091715357
+    },
+    {
+      "unidad": 56,
+      "nodo": 16,
+      "ganancia": 0.5809058687841855
+    },
+    {
+      "unidad": 57,
+      "nodo": 16,
+      "ganancia": 0.5665558659756158
+    },
+    {
+      "unidad": 58,
+      "nodo": 11,
+      "ganancia": 0.5654008409026829
+    },
+    {
+      "unidad": 59,
+      "nodo": 18,
+      "ganancia": 0.5615715484562145
+    },
+    {
+      "unidad": 60,
+      "nodo": 16,
+      "ganancia": 0.5532195327707363
+    },
+    {
+      "unidad": 61,
+      "nodo": 11,
+      "ganancia": 0.5499015528731697
+    },
+    {
+      "unidad": 62,
+      "nodo": 16,
+      "ganancia": 0.5407828667000523
+    },
+    {
+      "unidad": 63,
+      "nodo": 29,
+      "ganancia": 0.5394463033062369
+    },
+    {
+      "unidad": 64,
+      "nodo": 11,
+      "ganancia": 0.5356110642006229
+    },
+    {
+      "unidad": 65,
+      "nodo": 16,
+      "ganancia": 0.5291490463611588
+    },
+    {
+      "unidad": 66,
+      "nodo": 11,
+      "ganancia": 0.5223799699931106
+    },
+    {
+      "unidad": 67,
+      "nodo": 37,
+      "ganancia": 0.5196164368627709
+    },
+    {
+      "unidad": 68,
+      "nodo": 16,
+      "ganancia": 0.5182352390445928
+    },
+    {
+      "unidad": 69,
+      "nodo": 11,
+      "ganancia": 0.5100835068237011
+    },
+    {
+      "unidad": 70,
+      "nodo": 18,
+      "ganancia": 0.5080032583570517
+    },
+    {
+      "unidad": 71,
+      "nodo": 16,
+      "ganancia": 0.5079701047309868
+    },
+    {
+      "unidad": 72,
+      "nodo": 11,
+      "ganancia": 0.4986165613043383
+    },
+    {
+      "unidad": 73,
+      "nodo": 16,
+      "ganancia": 0.49829182375403747
+    },
+    {
+      "unidad": 74,
+      "nodo": 16,
+      "ganancia": 0.4891465230376788
+    },
+    {
+      "unidad": 75,
+      "nodo": 11,
+      "ganancia": 0.4878898614597027
+    },
+    {
+      "unidad": 76,
+      "nodo": 29,
+      "ganancia": 0.48255116171284484
+    },
+    {
+      "unidad": 77,
+      "nodo": 16,
+      "ganancia": 0.4804870090773008
+    },
+    {
+      "unidad": 78,
+      "nodo": 11,
+      "ganancia": 0.4778270332711365
+    },
+    {
+      "unidad": 79,
+      "nodo": 16,
+      "ganancia": 0.4722717394150173
+    },
+    {
+      "unidad": 80,
+      "nodo": 11,
+      "ganancia": 0.4683622992938723
+    },
+    {
+      "unidad": 81,
+      "nodo": 16,
+      "ganancia": 0.46446398130299116
+    },
+    {
+      "unidad": 82,
+      "nodo": 18,
+      "ganancia": 0.46377063935472584
+    },
+    {
+      "unidad": 83,
+      "nodo": 11,
+      "ganancia": 0.4594386601084963
+    },
+    {
+      "unidad": 84,
+      "nodo": 16,
+      "ganancia": 0.4570311185779019
+    },
+    {
+      "unidad": 85,
+      "nodo": 11,
+      "ganancia": 0.45100644326866046
+    },
+    {
+      "unidad": 86,
+      "nodo": 16,
+      "ganancia": 0.44994407684417226
+    },
+    {
+      "unidad": 87,
+      "nodo": 16,
+      "ganancia": 0.44317684381630684
+    },
+    {
+      "unidad": 88,
+      "nodo": 11,
+      "ganancia": 0.44302213507517507
+    },
+    {
+      "unidad": 89,
+      "nodo": 37,
+      "ganancia": 0.43932943750768594
+    },
+    {
+      "unidad": 90,
+      "nodo": 16,
+      "ganancia": 0.4367060667446374
+    },
+    {
+      "unidad": 91,
+      "nodo": 29,
+      "ganancia": 0.4365206235038084
+    },
+    {
+      "unidad": 92,
+      "nodo": 11,
+      "ganancia": 0.43544743224815363
+    },
+    {
+      "unidad": 93,
+      "nodo": 16,
+      "ganancia": 0.4305107126989718
+    },
+    {
+      "unidad": 94,
+      "nodo": 11,
+      "ganancia": 0.4282484661916435
+    },
+    {
+      "unidad": 95,
+      "nodo": 18,
+      "ganancia": 0.4266276318999491
+    },
+    {
+      "unidad": 96,
+      "nodo": 16,
+      "ganancia": 0.424571780429865
+    },
+    {
+      "unidad": 97,
+      "nodo": 11,
+      "ganancia": 0.4213951639129583
+    },
+    {
+      "unidad": 98,
+      "nodo": 16,
+      "ganancia": 0.4188720548009819
+    },
+    {
+      "unidad": 99,
+      "nodo": 11,
+      "ganancia": 0.41486071802591695
+    },
+    {
+      "unidad": 100,
+      "nodo": 16,
+      "ganancia": 0.41339589655293807
+    },
+    {
+      "unidad": 101,
+      "nodo": 11,
+      "ganancia": 0.40862114449339515
+    },
+    {
+      "unidad": 102,
+      "nodo": 16,
+      "ganancia": 0.40812906154378936
+    },
+    {
+      "unidad": 103,
+      "nodo": 16,
+      "ganancia": 0.40305854470293667
+    },
+    {
+      "unidad": 104,
+      "nodo": 11,
+      "ganancia": 0.4026549114429123
+    },
+    {
+      "unidad": 105,
+      "nodo": 29,
+      "ganancia": 0.3985121066125039
+    },
+    {
+      "unidad": 106,
+      "nodo": 16,
+      "ganancia": 0.39817244480180847
+    },
+    {
+      "unidad": 107,
+      "nodo": 11,
+      "ganancia": 0.39694262593881646
+    },
+    {
+      "unidad": 108,
+      "nodo": 18,
+      "ganancia": 0.394995491579337
+    },
+    {
+      "unidad": 109,
+      "nodo": 16,
+      "ganancia": 0.39345984683694013
+    },
+    {
+      "unidad": 110,
+      "nodo": 11,
+      "ganancia": 0.391466768310579
+    },
+    {
+      "unidad": 111,
+      "nodo": 16,
+      "ganancia": 0.3889107193771437
+    },
+    {
+      "unidad": 112,
+      "nodo": 11,
+      "ganancia": 0.3862114657326785
+    },
+    {
+      "unidad": 113,
+      "nodo": 16,
+      "ganancia": 0.3845158246753613
+    },
+    {
+      "unidad": 114,
+      "nodo": 11,
+      "ganancia": 0.38116229838116666
+    },
+    {
+      "unidad": 115,
+      "nodo": 37,
+      "ganancia": 0.38056446897988927
+    },
+    {
+      "unidad": 116,
+      "nodo": 16,
+      "ganancia": 0.38026663971086094
+    },
+    {
+      "unidad": 117,
+      "nodo": 11,
+      "ganancia": 0.3763061327684447
+    },
+    {
+      "unidad": 118,
+      "nodo": 16,
+      "ganancia": 0.37615528662472997
+    },
+    {
+      "unidad": 119,
+      "nodo": 16,
+      "ganancia": 0.37217447125600245
+    },
+    {
+      "unidad": 120,
+      "nodo": 11,
+      "ganancia": 0.3716309778645055
+    },
+    {
+      "unidad": 121,
+      "nodo": 16,
+      "ganancia": 0.3683174286866375
+    },
+    {
+      "unidad": 122,
+      "nodo": 18,
+      "ganancia": 0.3677320050254522
+    },
+    {
+      "unidad": 123,
+      "nodo": 11,
+      "ganancia": 0.36712586041180373
+    },
+    {
+      "unidad": 124,
+      "nodo": 29,
+      "ganancia": 0.3665956011447964
+    },
+    {
+      "unidad": 125,
+      "nodo": 16,
+      "ganancia": 0.36457787486989446
+    },
+    {
+      "unidad": 126,
+      "nodo": 11,
+      "ganancia": 0.36278071647928556
+    },
+    {
+      "unidad": 127,
+      "nodo": 16,
+      "ganancia": 0.3609499635549298
+    },
+    {
+      "unidad": 128,
+      "nodo": 11,
+      "ganancia": 0.35858629681361975
+    },
+    {
+      "unidad": 129,
+      "nodo": 16,
+      "ganancia": 0.35742824783570626
+    },
+    {
+      "unidad": 130,
+      "nodo": 11,
+      "ganancia": 0.35453408395993335
+    },
+    {
+      "unidad": 131,
+      "nodo": 16,
+      "ganancia": 0.3540076457485313
+    },
+    {
+      "unidad": 132,
+      "nodo": 16,
+      "ganancia": 0.3506834094240503
+    },
+    {
+      "unidad": 133,
+      "nodo": 11,
+      "ganancia": 0.35061621946050536
+    },
+    {
+      "unidad": 134,
+      "nodo": 16,
+      "ganancia": 0.3474510973676388
+    },
+    {
+      "unidad": 135,
+      "nodo": 11,
+      "ganancia": 0.34682543971441504
+    },
+    {
+      "unidad": 136,
+      "nodo": 16,
+      "ganancia": 0.3443065494998905
+    },
+    {
+      "unidad": 137,
+      "nodo": 18,
+      "ganancia": 0.3439903176632537
+    },
+    {
+      "unidad": 138,
+      "nodo": 11,
+      "ganancia": 0.3431550193062165
+    },
+    {
+      "unidad": 139,
+      "nodo": 16,
+      "ganancia": 0.3412458646383101
+    },
+    {
+      "unidad": 140,
+      "nodo": 11,
+      "ganancia": 0.33959872079684317
+    },
+    {
+      "unidad": 141,
+      "nodo": 29,
+      "ganancia": 0.33941451246404597
+    },
+    {
+      "unidad": 142,
+      "nodo": 16,
+      "ganancia": 0.3382653801429001
+    },
+    {
+      "unidad": 143,
+      "nodo": 11,
+      "ganancia": 0.3361507501237
+    },
+    {
+      "unidad": 144,
+      "nodo": 37,
+      "ganancia": 0.3356816516206944
+    },
+    {
+      "unidad": 145,
+      "nodo": 16,
+      "ganancia": 0.3353616534841066
+    },
+    {
+      "unidad": 146,
+      "nodo": 11,
+      "ganancia": 0.3328057168839891
+    },
+    {
+      "unidad": 147,
+      "nodo": 16,
+      "ganancia": 0.3325314455221431
+    },
+    {
+      "unidad": 148,
+      "nodo": 16,
+      "ganancia": 0.32977170531303557
+    },
+    {
+      "unidad": 149,
+      "nodo": 11,
+      "ganancia": 0.32955859888165406
+    },
+    {
+      "unidad": 150,
+      "nodo": 16,
+      "ganancia": 0.3270795562794575
+    },
+    {
+      "unidad": 151,
+      "nodo": 11,
+      "ganancia": 0.32640471040750896
+    },
+    {
+      "unidad": 152,
+      "nodo": 16,
+      "ganancia": 0.32445228360345624
+    },
+    {
+      "unidad": 153,
+      "nodo": 11,
+      "ganancia": 0.3233396737964469
+    },
+    {
+      "unidad": 154,
+      "nodo": 18,
+      "ganancia": 0.32312923428159834
+    },
+    {
+      "unidad": 155,
+      "nodo": 16,
+      "ganancia": 0.321887322715952
+    },
+    {
+      "unidad": 156,
+      "nodo": 11,
+      "ganancia": 0.32035939386918955
+    },
+    {
+      "unidad": 157,
+      "nodo": 16,
+      "ganancia": 0.31938224877155363
+    },
+    {
+      "unidad": 158,
+      "nodo": 11,
+      "ganancia": 0.31746003491900154
+    },
+    {
+      "unidad": 159,
+      "nodo": 16,
+      "ganancia": 0.3169347670109275
+    },
+    {
+      "unidad": 160,
+      "nodo": 29,
+      "ganancia": 0.3159873514102376
+    },
+    {
+      "unidad": 161,
+      "nodo": 11,
+      "ganancia": 0.31463799994916286
+    },
+    {
+      "unidad": 162,
+      "nodo": 16,
+      "ganancia": 0.3145427039231876
+    },
+    {
+      "unidad": 163,
+      "nodo": 16,
+      "ganancia": 0.3122039991315262
+    },
+    {
+      "unidad": 164,
+      "nodo": 11,
+      "ganancia": 0.311889911905638
+    },
+    {
+      "unidad": 165,
+      "nodo": 16,
+      "ganancia": 0.30991669793252896
+    },
+    {
+      "unidad": 166,
+      "nodo": 11,
+      "ganancia": 0.30921259668222945
+    },
+    {
+      "unidad": 167,
+      "nodo": 16,
+      "ganancia": 0.3076789444283534
+    },
+    {
+      "unidad": 168,
+      "nodo": 11,
+      "ganancia": 0.306603067703648
+    },
+    {
+      "unidad": 169,
+      "nodo": 16,
+      "ganancia": 0.30548897519664564
+    },
+    {
+      "unidad": 170,
+      "nodo": 18,
+      "ganancia": 0.3046543457669255
+    },
+    {
+      "unidad": 171,
+      "nodo": 11,
+      "ganancia": 0.3040585119163097
+    },
+    {
+      "unidad": 172,
+      "nodo": 16,
+      "ganancia": 0.30334511344914006
+    },
+    {
+      "unidad": 173,
+      "nodo": 11,
+      "ganancia": 0.3015762770373911
+    },
+    {
+      "unidad": 174,
+      "nodo": 16,
+      "ganancia": 0.30124576363506606
+    },
+    {
+      "unidad": 175,
+      "nodo": 37,
+      "ganancia": 0.30027746962480517
+    },
+    {
+      "unidad": 176,
+      "nodo": 16,
+      "ganancia": 0.2991894064497487
+    },
+    {
+      "unidad": 177,
+      "nodo": 11,
+      "ganancia": 0.29915385993067645
+    },
+    {
+      "unidad": 178,
+      "nodo": 16,
+      "ganancia": 0.2971745942130255
+    },
+    {
+      "unidad": 179,
+      "nodo": 11,
+      "ganancia": 0.29678889599345837
+    },
+    {
+      "unidad": 180,
+      "nodo": 29,
+      "ganancia": 0.2955864268100754
+    },
+    {
+      "unidad": 181,
+      "nodo": 16,
+      "ganancia": 0.2951999465856119
+    },
+    {
+      "unidad": 182,
+      "nodo": 11,
+      "ganancia": 0.2944791494521368
+    },
+    {
+      "unidad": 183,
+      "nodo": 16,
+      "ganancia": 0.29326414659427513
+    },
+    {
+      "unidad": 184,
+      "nodo": 11,
+      "ganancia": 0.29222250447595854
+    },
+    {
+      "unidad": 185,
+      "nodo": 16,
+      "ganancia": 0.2913659369402666
+    },
+    {
+      "unidad": 186,
+      "nodo": 11,
+      "ganancia": 0.2900169570285982
+    },
+    {
+      "unidad": 187,
+      "nodo": 16,
+      "ganancia": 0.28950411656711594
+    },
+    {
+      "unidad": 188,
+      "nodo": 18,
+      "ganancia": 0.28817828937056866
+    },
+    {
+      "unidad": 189,
+      "nodo": 11,
+      "ganancia": 0.28786060738637786
+    },
+    {
+      "unidad": 190,
+      "nodo": 16,
+      "ganancia": 0.2876775374667133
+    },
+    {
+      "unidad": 191,
+      "nodo": 16,
+      "ganancia": 0.28588510170431647
+    },
+    {
+      "unidad": 192,
+      "nodo": 11,
+      "ganancia": 0.28575165325942464
+    },
+    {
+      "unidad": 193,
+      "nodo": 16,
+      "ganancia": 0.28412575864494727
+    },
+    {
+      "unidad": 194,
+      "nodo": 11,
+      "ganancia": 0.28368838345927827
+    },
+    {
+      "unidad": 195,
+      "nodo": 16,
+      "ganancia": 0.2823985023653037
+    },
+    {
+      "unidad": 196,
+      "nodo": 11,
+      "ganancia": 0.2816691720624007
+    },
+    {
+      "unidad": 197,
+      "nodo": 16,
+      "ganancia": 0.28070236923666414
+    },
+    {
+      "unidad": 198,
+      "nodo": 11,
+      "ganancia": 0.27969247302426226
+    },
+    {
+      "unidad": 199,
+      "nodo": 16,
+      "ganancia": 0.27903643566559566
+    },
+    {
+      "unidad": 200,
+      "nodo": 11,
+      "ganancia": 0.2777568152034817
+    },
+    {
+      "unidad": 201,
+      "nodo": 29,
+      "ganancia": 0.2776607679192722
+    },
+    {
+      "unidad": 202,
+      "nodo": 16,
+      "ganancia": 0.27739981598044494
+    },
+    {
+      "unidad": 203,
+      "nodo": 11,
+      "ganancia": 0.2758607977597052
+    },
+    {
+      "unidad": 204,
+      "nodo": 16,
+      "ganancia": 0.27579166045266845
+    },
+    {
+      "unidad": 205,
+      "nodo": 16,
+      "ganancia": 0.2742111534427636
+    },
+    {
+      "unidad": 206,
+      "nodo": 11,
+      "ganancia": 0.2740030858923248
+    },
+    {
+      "unidad": 207,
+      "nodo": 18,
+      "ganancia": 0.2733932590856458
+    },
+    {
+      "unidad": 208,
+      "nodo": 16,
+      "ganancia": 0.2726575116619827
+    },
+    {
+      "unidad": 209,
+      "nodo": 11,
+      "ganancia": 0.2721824068908276
+    },
+    {
+      "unidad": 210,
+      "nodo": 37,
+      "ganancia": 0.2716340124423251
+    },
+    {
+      "unidad": 211,
+      "nodo": 16,
+      "ganancia": 0.27112998254098386
+    },
+    {
+      "unidad": 212,
+      "nodo": 11,
+      "ganancia": 0.2703975464699653
+    },
+    {
+      "unidad": 213,
+      "nodo": 16,
+      "ganancia": 0.26962784269795037
+    },
+    {
+      "unidad": 214,
+      "nodo": 11,
+      "ganancia": 0.26864734536597723
+    },
+    {
+      "unidad": 215,
+      "nodo": 16,
+      "ganancia": 0.2681503964991876
+    },
+    {
+      "unidad": 216,
+      "nodo": 11,
+      "ganancia": 0.26693069617201814
+    },
+    {
+      "unidad": 217,
+      "nodo": 16,
+      "ganancia": 0.26669697470536136
+    },
+    {
+      "unidad": 218,
+      "nodo": 16,
+      "ganancia": 0.2652669331976796
+    },
+    {
+      "unidad": 219,
+      "nodo": 11,
+      "ganancia": 0.2652465403932851
+    },
+    {
+      "unidad": 220,
+      "nodo": 16,
+      "ganancia": 0.2638596517784464
+    },
+    {
+      "unidad": 221,
+      "nodo": 11,
+      "ganancia": 0.2635938657039816
+    },
+    {
+      "unidad": 222,
+      "nodo": 16,
+      "ganancia": 0.26247453304083024
+    },
+    {
+      "unidad": 223,
+      "nodo": 11,
+      "ganancia": 0.26197170338998177
+    },
+    {
+      "unidad": 224,
+      "nodo": 29,
+      "ganancia": 0.2617855353869647
+    },
+    {
+      "unidad": 225,
+      "nodo": 16,
+      "ganancia": 0.261111001303199
+    },
+    {
+      "unidad": 226,
+      "nodo": 11,
+      "ganancia": 0.260379125962551
+    },
+    {
+      "unidad": 227,
+      "nodo": 18,
+      "ganancia": 0.2600515750230734
+    },
+    {
+      "unidad": 228,
+      "nodo": 16,
+      "ganancia": 0.2597685016038298
+    },
+    {
+      "unidad": 229,
+      "nodo": 11,
+      "ganancia": 0.258815244929707
+    },
+    {
+      "unidad": 230,
+      "nodo": 16,
+      "ganancia": 0.2584464987517592
+    },
+    {
+      "unidad": 231,
+      "nodo": 11,
+      "ganancia": 0.2572792087131148
+    },
+    {
+      "unidad": 232,
+      "nodo": 16,
+      "ganancia": 0.2571444764303976
+    },
+    {
+      "unidad": 233,
+      "nodo": 16,
+      "ganancia": 0.25586193635016485
+    },
+    {
+      "unidad": 234,
+      "nodo": 11,
+      "ganancia": 0.2557702006993239
+    },
+    {
+      "unidad": 235,
+      "nodo": 16,
+      "ganancia": 0.25459839744729607
+    },
+    {
+      "unidad": 236,
+      "nodo": 11,
+      "ganancia": 0.2542874374154138
+    },
+    {
+      "unidad": 237,
+      "nodo": 16,
+      "ganancia": 0.2533533951256217
+    },
+    {
+      "unidad": 238,
+      "nodo": 11,
+      "ganancia": 0.2528301668195496
+    },
+    {
+      "unidad": 239,
+      "nodo": 16,
+      "ganancia": 0.252126480538891
+    },
+    {
+      "unidad": 240,
+      "nodo": 11,
+      "ganancia": 0.2513976666980895
+    },
+    {
+      "unidad": 241,
+      "nodo": 16,
+      "ganancia": 0.2509172199107681
+    },
+    {
+      "unidad": 242,
+      "nodo": 11,
+      "ganancia": 0.249989243161572
+    },
+    {
+      "unidad": 243,
+      "nodo": 16,
+      "ganancia": 0.24972519389057624
+    },
+    {
+      "unidad": 244,
+      "nodo": 11,
+      "ganancia": 0.24860422923222103
+    },
+    {
+      "unidad": 245,
+      "nodo": 16,
+      "ganancia": 0.24854999694220936
+    },
+    {
+      "unidad": 246,
+      "nodo": 37,
+      "ganancia": 0.24798242442044494
+    },
+    {
+      "unidad": 247,
+      "nodo": 18,
+      "ganancia": 0.2479516833339801
+    },
+    {
+      "unidad": 248,
+      "nodo": 29,
+      "ganancia": 0.24762787341786208
+    },
+    {
+      "unidad": 249,
+      "nodo": 16,
+      "ganancia": 0.24739123676452124
+    },
+    {
+      "unidad": 250,
+      "nodo": 11,
+      "ganancia": 0.24724198351679405
+    },
+    {
+      "unidad": 251,
+      "nodo": 16,
+      "ganancia": 0.24624853374108113
+    },
+    {
+      "unidad": 252,
+      "nodo": 11,
+      "ganancia": 0.24590188895835752
+    },
+    {
+      "unidad": 253,
+      "nodo": 16,
+      "ganancia": 0.2451215204176478
+    },
+    {
+      "unidad": 254,
+      "nodo": 11,
+      "ganancia": 0.24458335166179523
+    },
+    {
+      "unidad": 255,
+      "nodo": 16,
+      "ganancia": 0.24400984100577006
+    },
+    {
+      "unidad": 256,
+      "nodo": 11,
+      "ganancia": 0.24328579978791964
+    },
+    {
+      "unidad": 257,
+      "nodo": 16,
+      "ganancia": 0.24291315091085863
+    },
+    {
+      "unidad": 258,
+      "nodo": 11,
+      "ganancia": 0.242008682511333
+    },
+    {
+      "unidad": 259,
+      "nodo": 16,
+      "ganancia": 0.2418311162833504
+    },
+    {
+      "unidad": 260,
+      "nodo": 16,
+      "ganancia": 0.24076341359187126
+    },
+    {
+      "unidad": 261,
+      "nodo": 11,
+      "ganancia": 0.24075146903784628
+    },
+    {
+      "unidad": 262,
+      "nodo": 16,
+      "ganancia": 0.23970972921668476
+    },
+    {
+      "unidad": 263,
+      "nodo": 11,
+      "ganancia": 0.23951364767760452
+    },
+    {
+      "unidad": 264,
+      "nodo": 16,
+      "ganancia": 0.23866975906269516
+    },
+    {
+      "unidad": 265,
+      "nodo": 11,
+      "ganancia": 0.23829472496994697
+    },
+    {
+      "unidad": 266,
+      "nodo": 16,
+      "ganancia": 0.23764320819079643
+    },
+    {
+      "unidad": 267,
+      "nodo": 11,
+      "ganancia": 0.23709422485687526
+    },
+    {
+      "unidad": 268,
+      "nodo": 18,
+      "ganancia": 0.2369278945025428
+    },
+    {
+      "unidad": 269,
+      "nodo": 16,
+      "ganancia": 0.23662979046630284
+    },
+    {
+      "unidad": 270,
+      "nodo": 11,
+      "ganancia": 0.23591168790181172
+    },
+    {
+      "unidad": 271,
+      "nodo": 16,
+      "ganancia": 0.2356292282241057
+    },
+    {
+      "unidad": 272,
+      "nodo": 29,
+      "ganancia": 0.234923288294981
+    },
+    {
+      "unidad": 273,
+      "nodo": 11,
+      "ganancia": 0.23474667055081255
+    },
+    {
+      "unidad": 274,
+      "nodo": 16,
+      "ganancia": 0.23464125194882968
+    },
+    {
+      "unidad": 275,
+      "nodo": 16,
+      "ganancia": 0.23366559996996017
+    },
+    {
+      "unidad": 276,
+      "nodo": 11,
+      "ganancia": 0.23359874443357143
+    },
+    {
+      "unidad": 277,
+      "nodo": 16,
+      "ganancia": 0.23270201817064873
+    },
+    {
+      "unidad": 278,
+      "nodo": 11,
+      "ganancia": 0.2324674957015489
+    },
+    {
+      "unidad": 279,
+      "nodo": 16,
+      "ganancia": 0.23175025970966345
+    },
+    {
+      "unidad": 280,
+      "nodo": 11,
+      "ganancia": 0.23135252440115295
+    },
+    {
+      "unidad": 281,
+      "nodo": 16,
+      "ganancia": 0.23081008475570997
+    },
+    {
+      "unidad": 282,
+      "nodo": 11,
+      "ganancia": 0.23025344387961866
+    },
+    {
+      "unidad": 283,
+      "nodo": 16,
+      "ganancia": 0.2298812602335829
+    },
+    {
+      "unidad": 284,
+      "nodo": 11,
+      "ganancia": 0.22916988022156914
+    },
+    {
+      "unidad": 285,
+      "nodo": 16,
+      "ganancia": 0.22896355958135217
+    },
+    {
+      "unidad": 286,
+      "nodo": 37,
+      "ganancia": 0.2281217168695786
+    },
+    {
+      "unidad": 287,
+      "nodo": 11,
+      "ganancia": 0.2281014717146519
+    },
+    {
+      "unidad": 288,
+      "nodo": 16,
+      "ganancia": 0.22805676251826412
+    },
+    {
+      "unidad": 289,
+      "nodo": 16,
+      "ganancia": 0.2271606548226046
+    },
+    {
+      "unidad": 290,
+      "nodo": 11,
+      "ganancia": 0.2270478683421686
+    },
+    {
+      "unidad": 291,
+      "nodo": 18,
+      "ganancia": 0.22684274485218126
+    },
+    {
+      "unidad": 292,
+      "nodo": 16,
+      "ganancia": 0.2262750281189767
+    },
+    {
+      "unidad": 293,
+      "nodo": 11,
+      "ganancia": 0.2260087313012633
+    },
+    {
+      "unidad": 294,
+      "nodo": 16,
+      "ganancia": 0.22539967967497176
+    },
+    {
+      "unidad": 295,
+      "nodo": 11,
+      "ganancia": 0.22498373254528303
+    },
+    {
+      "unidad": 296,
+      "nodo": 16,
+      "ganancia": 0.22453441220596204
+    },
+    {
+      "unidad": 297,
+      "nodo": 11,
+      "ganancia": 0.22397255434860597
+    },
+    {
+      "unidad": 298,
+      "nodo": 16,
+      "ganancia": 0.223679033688434
+    },
+    {
+      "unidad": 299,
+      "nodo": 29,
+      "ganancia": 0.2234589518959993
+    },
+    {
+      "unidad": 300,
+      "nodo": 11,
+      "ganancia": 0.22297488889283557
+    },
+    {
+      "unidad": 301,
+      "nodo": 16,
+      "ganancia": 0.22283335718101682
+    },
+    {
+      "unidad": 302,
+      "nodo": 16,
+      "ganancia": 0.22199720065266604
+    },
+    {
+      "unidad": 303,
+      "nodo": 11,
+      "ganancia": 0.2219904378732096
+    },
+    {
+      "unidad": 304,
+      "nodo": 16,
+      "ganancia": 0.2211703868182866
+    },
+    {
+      "unidad": 305,
+      "nodo": 11,
+      "ganancia": 0.22101891212376046
+    },
+    {
+      "unidad": 306,
+      "nodo": 16,
+      "ganancia": 0.22035274298064422
+    },
+    {
+      "unidad": 307,
+      "nodo": 11,
+      "ganancia": 0.22006003126054452
+    },
+    {
+      "unidad": 308,
+      "nodo": 16,
+      "ganancia": 0.21954410087889187
+    },
+    {
+      "unidad": 309,
+      "nodo": 11,
+      "ganancia": 0.21911352334160483
+    },
+    {
+      "unidad": 310,
+      "nodo": 16,
+      "ganancia": 0.2187442965431714
+    },
+    {
+      "unidad": 311,
+      "nodo": 11,
+      "ganancia": 0.21817912454300625
+    },
+    {
+      "unidad": 312,
+      "nodo": 16,
+      "ganancia": 0.21795317015483562
+    },
+    {
+      "unidad": 313,
+      "nodo": 18,
+      "ganancia": 0.217581230792959
+    },
+    {
+      "unidad": 314,
+      "nodo": 11,
+      "ganancia": 0.21725657884990568
+    },
+    {
+      "unidad": 315,
+      "nodo": 16,
+      "ganancia": 0.21717056591237593
+    },
+    {
+      "unidad": 316,
+      "nodo": 16,
+      "ganancia": 0.21639633190245178
+    },
+    {
+      "unidad": 317,
+      "nodo": 11,
+      "ganancia": 0.2163456377617905
+    },
+    {
+      "unidad": 318,
+      "nodo": 16,
+      "ganancia": 0.21563031997609983
+    },
+    {
+      "unidad": 319,
+      "nodo": 11,
+      "ganancia": 0.2154460600112813
+    },
+    {
+      "unidad": 320,
+      "nodo": 16,
+      "ganancia": 0.2148723856295618
+    }
+  ]
+}

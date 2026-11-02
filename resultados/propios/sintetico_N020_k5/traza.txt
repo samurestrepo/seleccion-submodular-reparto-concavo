@@ -1,0 +1,86 @@
+CASO: sintetico_N020_k5
+N = 20, k = 5, B = 40
+
+== Verificación de la entrada ==
+  [OK] 1 ≤ k < N: k = 5, N = 20
+  [OK] B ≥ 0: B = 40
+  [OK] ids únicos: sin repetidos
+  [OK] cada u_i creciente y cóncava en {0, …, B}: todas cumplen
+
+== Parte 2: selección de nodos (voraz) ==
+  Paso 1: Δ(1) = 2, Δ(2) = 4, Δ(3) = 4, Δ(4) = 2, Δ(5) = 1, Δ(6) = 4, Δ(7) = 4, Δ(8) = 4, Δ(9) = 5, Δ(10) = 5, Δ(11) = 2, Δ(12) = 5, Δ(13) = 4, Δ(14) = 2, Δ(15) = 5, Δ(16) = 3, Δ(17) = 5, Δ(18) = 3, Δ(19) = 3, Δ(20) = 1
+    → elige el nodo 9 (Δ = 5); f(S) = 5
+  Paso 2: Δ(1) = 2, Δ(2) = 4, Δ(3) = 3, Δ(4) = 2, Δ(5) = 1, Δ(6) = 3, Δ(7) = 4, Δ(8) = 3, Δ(10) = 5, Δ(11) = 2, Δ(12) = 5, Δ(13) = 3, Δ(14) = 1, Δ(15) = 4, Δ(16) = 3, Δ(17) = 4, Δ(18) = 2, Δ(19) = 3, Δ(20) = 1
+    → elige el nodo 10 (Δ = 5); f(S) = 10
+  Paso 3: Δ(1) = 2, Δ(2) = 3, Δ(3) = 3, Δ(4) = 1, Δ(5) = 1, Δ(6) = 3, Δ(7) = 4, Δ(8) = 3, Δ(11) = 2, Δ(12) = 4, Δ(13) = 1, Δ(14) = 1, Δ(15) = 3, Δ(16) = 3, Δ(17) = 4, Δ(18) = 2, Δ(19) = 3, Δ(20) = 1
+    → elige el nodo 7 (Δ = 4); f(S) = 14
+  Paso 4: Δ(1) = 2, Δ(2) = 3, Δ(3) = 3, Δ(4) = 1, Δ(5) = 1, Δ(6) = 3, Δ(8) = 2, Δ(11) = 1, Δ(12) = 4, Δ(13) = 1, Δ(14) = 0, Δ(15) = 0, Δ(16) = 2, Δ(17) = 3, Δ(18) = 1, Δ(19) = 2, Δ(20) = 0
+    → elige el nodo 12 (Δ = 4); f(S) = 18
+  Paso 5: Δ(1) = 2, Δ(2) = 2, Δ(3) = 3, Δ(4) = 0, Δ(5) = 1, Δ(6) = 2, Δ(8) = 1, Δ(11) = 0, Δ(13) = 1, Δ(14) = 0, Δ(15) = 0, Δ(16) = 2, Δ(17) = 2, Δ(18) = 1, Δ(19) = 2, Δ(20) = 0
+    → elige el nodo 3 (Δ = 3); f(S) = 21
+  Resultado: S = [9, 10, 7, 12, 3], f(S) = 21, llamadas a Δ = 90
+
+== Parte 1: reparto del presupuesto (voraz con montículo) ==
+  Unidad 1: al nodo 7 (Δ = 9.3400)
+  Unidad 2: al nodo 9 (Δ = 8.6200)
+  Unidad 3: al nodo 12 (Δ = 7.5900)
+  Unidad 4: al nodo 3 (Δ = 7.4900)
+  Unidad 5: al nodo 10 (Δ = 4.7300)
+  Unidad 6: al nodo 7 (Δ = 3.8688)
+  Unidad 7: al nodo 9 (Δ = 3.5705)
+  Unidad 8: al nodo 12 (Δ = 3.1439)
+  Unidad 9: al nodo 3 (Δ = 3.1025)
+  Unidad 10: al nodo 7 (Δ = 2.9686)
+  Unidad 11: al nodo 9 (Δ = 2.7398)
+  Unidad 12: al nodo 7 (Δ = 2.5026)
+  Unidad 13: al nodo 12 (Δ = 2.4124)
+  Unidad 14: al nodo 3 (Δ = 2.3806)
+  Unidad 15: al nodo 9 (Δ = 2.3097)
+  Unidad 16: al nodo 7 (Δ = 2.2049)
+  Unidad 17: al nodo 9 (Δ = 2.0349)
+  Unidad 18: al nodo 12 (Δ = 2.0337)
+  Unidad 19: al nodo 3 (Δ = 2.0069)
+  Unidad 20: al nodo 7 (Δ = 1.9934)
+  Unidad 21: al nodo 10 (Δ = 1.9592)
+  Unidad 22: al nodo 9 (Δ = 1.8397)
+  Unidad 23: al nodo 7 (Δ = 1.8331)
+  Unidad 24: al nodo 12 (Δ = 1.7918)
+  Unidad 25: al nodo 3 (Δ = 1.7681)
+  Unidad 26: al nodo 7 (Δ = 1.7062)
+  Unidad 27: al nodo 9 (Δ = 1.6918)
+  Unidad 28: al nodo 12 (Δ = 1.6199)
+  Unidad 29: al nodo 7 (Δ = 1.6025)
+  Unidad 30: al nodo 3 (Δ = 1.5985)
+  Unidad 31: al nodo 9 (Δ = 1.5747)
+  Unidad 32: al nodo 7 (Δ = 1.5157)
+  Unidad 33: al nodo 10 (Δ = 1.5034)
+  Unidad 34: al nodo 12 (Δ = 1.4896)
+  Unidad 35: al nodo 9 (Δ = 1.4790)
+  Unidad 36: al nodo 3 (Δ = 1.4700)
+  Unidad 37: al nodo 7 (Δ = 1.4416)
+  Unidad 38: al nodo 9 (Δ = 1.3988)
+  Unidad 39: al nodo 12 (Δ = 1.3865)
+  Unidad 40: al nodo 7 (Δ = 1.3774)
+  Resultado: x_9 = 10, x_10 = 3, x_7 = 12, x_12 = 8, x_3 = 7; utilidad total = 109.090582
+
+== Verificación: Parte 2 ==
+  [OK] S ⊆ V: S = [9, 10, 7, 12, 3]
+  [OK] S sin repetidos: |S| = 5
+  [OK] |S| ≤ k: |S| = 5, k = 5
+  [OK] valor acumulado = f(S) recalculada: acumulado = 21, recalculado = 21
+  [OK] llamadas a Δ = k·N − k(k−1)/2: contadas = 90, fórmula = 90
+
+== Verificación: Parte 1 ==
+  [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
+  [OK] Σ x_i = B: Σ x_i = 40, B = 40
+  [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 109.090582, recalculada = 109.090582
+  [OK] extracciones = inserciones = B: extracciones = 40, inserciones = 40
+
+== Verificación: Ejecución ==
+  [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
+
+== Tiempos (solo los algoritmos, sin lectura ni escritura) ==
+  Parte 2 (selección): 0.000041259 s
+  Parte 1 (reparto):   0.000032670 s
+
+TODAS LAS VERIFICACIONES: CUMPLEN

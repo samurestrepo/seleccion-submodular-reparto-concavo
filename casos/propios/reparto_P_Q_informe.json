@@ -1,0 +1,49 @@
+{
+  "k": 2,
+  "B": 4,
+  "nodos": [
+    {
+      "id": 1,
+      "cubre": [
+        "a",
+        "b",
+        "c"
+      ],
+      "utilidad": {
+        "tipo": "tabla",
+        "ganancias": [
+          9,
+          5,
+          2,
+          1
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "cubre": [
+        "d",
+        "e"
+      ],
+      "utilidad": {
+        "tipo": "tabla",
+        "ganancias": [
+          7,
+          6,
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "cubre": [
+        "a"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.0
+      }
+    }
+  ]
+}

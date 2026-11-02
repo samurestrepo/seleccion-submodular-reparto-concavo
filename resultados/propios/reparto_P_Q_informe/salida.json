@@ -1,0 +1,111 @@
+{
+  "caso": "reparto_P_Q_informe",
+  "entrada": {
+    "N": 3,
+    "k": 2,
+    "B": 4
+  },
+  "verificaciones": {
+    "entrada": [
+      {
+        "nombre": "1 ≤ k < N",
+        "cumple": true,
+        "detalle": "k = 2, N = 3"
+      },
+      {
+        "nombre": "B ≥ 0",
+        "cumple": true,
+        "detalle": "B = 4"
+      },
+      {
+        "nombre": "ids únicos",
+        "cumple": true,
+        "detalle": "sin repetidos"
+      },
+      {
+        "nombre": "cada u_i creciente y cóncava en {0, …, B}",
+        "cumple": true,
+        "detalle": "todas cumplen"
+      }
+    ],
+    "seleccion": [
+      {
+        "nombre": "S ⊆ V",
+        "cumple": true,
+        "detalle": "S = [1, 2]"
+      },
+      {
+        "nombre": "S sin repetidos",
+        "cumple": true,
+        "detalle": "|S| = 2"
+      },
+      {
+        "nombre": "|S| ≤ k",
+        "cumple": true,
+        "detalle": "|S| = 2, k = 2"
+      },
+      {
+        "nombre": "valor acumulado = f(S) recalculada",
+        "cumple": true,
+        "detalle": "acumulado = 5, recalculado = 5"
+      },
+      {
+        "nombre": "llamadas a Δ = k·N − k(k−1)/2",
+        "cumple": true,
+        "detalle": "contadas = 5, fórmula = 5"
+      }
+    ],
+    "reparto": [
+      {
+        "nombre": "cada x_i entero con 0 ≤ x_i ≤ B",
+        "cumple": true,
+        "detalle": "todos cumplen"
+      },
+      {
+        "nombre": "Σ x_i = B",
+        "cumple": true,
+        "detalle": "Σ x_i = 4, B = 4"
+      },
+      {
+        "nombre": "utilidad acumulada = Σ u_i(x_i) recalculada",
+        "cumple": true,
+        "detalle": "acumulada = 27.000000, recalculada = 27.000000"
+      },
+      {
+        "nombre": "extracciones = inserciones = B",
+        "cumple": true,
+        "detalle": "extracciones = 4, inserciones = 4"
+      }
+    ],
+    "ejecucion": [
+      {
+        "nombre": "ejecución con traza = ejecución medida",
+        "cumple": true,
+        "detalle": "mismo S y mismo reparto"
+      }
+    ]
+  },
+  "seleccion": {
+    "S": [
+      1,
+      2
+    ],
+    "valor": 5,
+    "llamadas_ganancia": 5,
+    "llamadas_valor": 1
+  },
+  "reparto": {
+    "x": {
+      "1": 2,
+      "2": 2
+    },
+    "utilidad": 27,
+    "extracciones": 4,
+    "inserciones": 4
+  },
+  "tiempos_segundos": {
+    "seleccion": 8.367000006614944e-06,
+    "reparto": 9.474000009390693e-06
+  },
+  "todas_cumplen": true
+}

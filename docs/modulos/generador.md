@@ -24,7 +24,7 @@ Universo e1, …, e(tam_universo) (por omisión 2N). Cada nodo cubre entre 1 y m
 
 ## Pruebas
 - `test_ronda.py::test_generador_reproducible_y_valido`: misma semilla da la misma instancia y la ronda sale en OK.
-- `pruebas/test_generador.py`: `--help` se puede imprimir en cp1252; la semilla 1 reproduce `sintetico_N40_k5_B60.json`; los coeficientes generados cumplen a > 0.
+- `pruebas/test_generador.py`: `--help` se puede imprimir en cp1252; la semilla 1 reproduce `casos/propios/sintetico_N040_k5.json` (N = 40, k = 5, B = 80); los coeficientes generados cumplen a > 0.
 
 ## Preguntas probables en la sustentación
 - **¿Por qué semilla fija?** Para que cualquiera reproduzca exactamente los mismos casos y tiempos comparables.

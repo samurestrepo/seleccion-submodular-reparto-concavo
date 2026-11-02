@@ -1,0 +1,50 @@
+{
+  "k": 3,
+  "B": 6,
+  "nodos": [
+    {
+      "id": 1,
+      "cubre": [
+        "a",
+        "b"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.0
+      }
+    },
+    {
+      "id": 2,
+      "cubre": [
+        "b",
+        "c"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.0
+      }
+    },
+    {
+      "id": 3,
+      "cubre": [
+        "c",
+        "d"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.0
+      }
+    },
+    {
+      "id": 4,
+      "cubre": [
+        "a",
+        "d"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.0
+      }
+    }
+  ]
+}

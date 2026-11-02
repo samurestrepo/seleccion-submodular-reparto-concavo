@@ -28,13 +28,16 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `pruebas/test_traza.py` | Lo que anota la traza y el reporte de un caso válido o rechazado |
 | `pruebas/test_ejecutar.py` | Lotes con archivos malos, evidencias de casos rechazados, colisiones de nombres y `resumen.csv` |
 | `pruebas/test_generador.py` | Ayuda imprimible en cp1252, instancia guardada reproducible y a > 0 |
+| `pruebas/test_bateria.py` | Toda la carpeta `casos/`: los válidos cumplen y dan lo esperado, los inválidos se rechazan |
 | `pruebas/__init__.py` | Marca `pruebas/` como paquete (para importar `fuerza_bruta`) |
 | `pruebas/fuerza_bruta.py` | Fuerza bruta **solo para pruebas** (comparar el reparto y la cota 1 − 1/e en instancias pequeñas) |
 | `pytest.ini` | Le dice a pytest que las pruebas están en `pruebas/` |
 | `requirements-dev.txt` | Única dependencia externa: `pytest`, solo para las pruebas |
-| `casos/propios/` | `ejemplo_informe.json` (sección 6.5), `contraejemplo_seleccion.json`, `sintetico_N40_k5_B60.json` (semilla 1) |
+| `casos/CATALOGO.md` | Tabla de la batería: qué comprueba cada caso, esperado y obtenido |
+| `casos/propios/` | Batería de casos válidos: ejemplos del informe, contraejemplo, bordes, empates y 5 sintéticos (N = 20 a 320, semilla 1) |
+| `casos/invalidos/` | Casos que deben rechazarse: utilidad convexa, k = N, ids repetidos |
 | `casos/profesora/` | Casos oficiales (cuando lleguen); `LEEME.md` explica cómo correrlos |
-| `resultados/` | Salidas, trazas y tiempos por caso (evidencias de la entrega); `resultados/propios/` con los casos propios |
+| `resultados/` | Salidas, trazas y tiempos por caso (evidencias de la entrega); `resultados/propios/` y `resultados/invalidos/` |
 | `docs/curso/` | Enunciado, guía de la entrega y enlace al informe |
 | `docs/modulos/` | Una ficha por archivo de código |
 | `docs/agente/` | Memoria del agente: bitácora, mapa, decisiones, guía de cambios, plantilla |

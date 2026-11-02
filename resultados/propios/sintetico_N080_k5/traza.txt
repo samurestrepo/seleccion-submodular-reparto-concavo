@@ -1,0 +1,206 @@
+CASO: sintetico_N080_k5
+N = 80, k = 5, B = 160
+
+== Verificación de la entrada ==
+  [OK] 1 ≤ k < N: k = 5, N = 80
+  [OK] B ≥ 0: B = 160
+  [OK] ids únicos: sin repetidos
+  [OK] cada u_i creciente y cóncava en {0, …, B}: todas cumplen
+
+== Parte 2: selección de nodos (voraz) ==
+  Paso 1: Δ(1) = 2, Δ(2) = 4, Δ(3) = 4, Δ(4) = 2, Δ(5) = 1, Δ(6) = 4, Δ(7) = 4, Δ(8) = 1, Δ(9) = 3, Δ(10) = 2, Δ(11) = 5, Δ(12) = 2, Δ(13) = 5, Δ(14) = 4, Δ(15) = 2, Δ(16) = 5, Δ(17) = 3, Δ(18) = 5, Δ(19) = 3, Δ(20) = 3, Δ(21) = 1, Δ(22) = 2, Δ(23) = 1, Δ(24) = 3, Δ(25) = 1, Δ(26) = 2, Δ(27) = 4, Δ(28) = 2, Δ(29) = 5, Δ(30) = 1, Δ(31) = 4, Δ(32) = 1, Δ(33) = 4, Δ(34) = 1, Δ(35) = 4, Δ(36) = 2, Δ(37) = 5, Δ(38) = 4, Δ(39) = 4, Δ(40) = 2, Δ(41) = 2, Δ(42) = 3, Δ(43) = 1, Δ(44) = 5, Δ(45) = 3, Δ(46) = 5, Δ(47) = 2, Δ(48) = 4, Δ(49) = 3, Δ(50) = 3, Δ(51) = 1, Δ(52) = 1, Δ(53) = 5, Δ(54) = 1, Δ(55) = 5, Δ(56) = 3, Δ(57) = 3, Δ(58) = 3, Δ(59) = 5, Δ(60) = 2, Δ(61) = 4, Δ(62) = 1, Δ(63) = 5, Δ(64) = 1, Δ(65) = 5, Δ(66) = 2, Δ(67) = 2, Δ(68) = 3, Δ(69) = 2, Δ(70) = 5, Δ(71) = 2, Δ(72) = 5, Δ(73) = 3, Δ(74) = 4, Δ(75) = 2, Δ(76) = 2, Δ(77) = 2, Δ(78) = 2, Δ(79) = 2, Δ(80) = 2
+    → elige el nodo 11 (Δ = 5); f(S) = 5
+  Paso 2: Δ(1) = 2, Δ(2) = 4, Δ(3) = 4, Δ(4) = 2, Δ(5) = 1, Δ(6) = 4, Δ(7) = 4, Δ(8) = 1, Δ(9) = 3, Δ(10) = 2, Δ(12) = 2, Δ(13) = 4, Δ(14) = 4, Δ(15) = 2, Δ(16) = 5, Δ(17) = 3, Δ(18) = 5, Δ(19) = 3, Δ(20) = 3, Δ(21) = 1, Δ(22) = 2, Δ(23) = 1, Δ(24) = 3, Δ(25) = 1, Δ(26) = 2, Δ(27) = 4, Δ(28) = 2, Δ(29) = 5, Δ(30) = 1, Δ(31) = 4, Δ(32) = 1, Δ(33) = 4, Δ(34) = 1, Δ(35) = 4, Δ(36) = 2, Δ(37) = 5, Δ(38) = 4, Δ(39) = 4, Δ(40) = 2, Δ(41) = 2, Δ(42) = 3, Δ(43) = 1, Δ(44) = 5, Δ(45) = 3, Δ(46) = 5, Δ(47) = 2, Δ(48) = 4, Δ(49) = 3, Δ(50) = 3, Δ(51) = 1, Δ(52) = 1, Δ(53) = 5, Δ(54) = 1, Δ(55) = 4, Δ(56) = 3, Δ(57) = 2, Δ(58) = 3, Δ(59) = 5, Δ(60) = 2, Δ(61) = 4, Δ(62) = 1, Δ(63) = 4, Δ(64) = 0, Δ(65) = 5, Δ(66) = 2, Δ(67) = 2, Δ(68) = 3, Δ(69) = 2, Δ(70) = 5, Δ(71) = 2, Δ(72) = 5, Δ(73) = 3, Δ(74) = 4, Δ(75) = 2, Δ(76) = 2, Δ(77) = 2, Δ(78) = 2, Δ(79) = 2, Δ(80) = 2
+    → elige el nodo 16 (Δ = 5); f(S) = 10
+  Paso 3: Δ(1) = 2, Δ(2) = 4, Δ(3) = 4, Δ(4) = 2, Δ(5) = 1, Δ(6) = 4, Δ(7) = 2, Δ(8) = 1, Δ(9) = 3, Δ(10) = 2, Δ(12) = 1, Δ(13) = 4, Δ(14) = 4, Δ(15) = 2, Δ(17) = 2, Δ(18) = 5, Δ(19) = 3, Δ(20) = 2, Δ(21) = 1, Δ(22) = 2, Δ(23) = 1, Δ(24) = 3, Δ(25) = 1, Δ(26) = 2, Δ(27) = 4, Δ(28) = 2, Δ(29) = 5, Δ(30) = 1, Δ(31) = 4, Δ(32) = 1, Δ(33) = 4, Δ(34) = 1, Δ(35) = 4, Δ(36) = 2, Δ(37) = 4, Δ(38) = 4, Δ(39) = 4, Δ(40) = 2, Δ(41) = 2, Δ(42) = 3, Δ(43) = 1, Δ(44) = 5, Δ(45) = 3, Δ(46) = 5, Δ(47) = 2, Δ(48) = 3, Δ(49) = 3, Δ(50) = 3, Δ(51) = 1, Δ(52) = 1, Δ(53) = 5, Δ(54) = 1, Δ(55) = 3, Δ(56) = 3, Δ(57) = 2, Δ(58) = 3, Δ(59) = 5, Δ(60) = 2, Δ(61) = 4, Δ(62) = 1, Δ(63) = 4, Δ(64) = 0, Δ(65) = 5, Δ(66) = 2, Δ(67) = 2, Δ(68) = 2, Δ(69) = 2, Δ(70) = 5, Δ(71) = 2, Δ(72) = 5, Δ(73) = 3, Δ(74) = 4, Δ(75) = 2, Δ(76) = 2, Δ(77) = 2, Δ(78) = 2, Δ(79) = 2, Δ(80) = 2
+    → elige el nodo 18 (Δ = 5); f(S) = 15
+  Paso 4: Δ(1) = 2, Δ(2) = 4, Δ(3) = 4, Δ(4) = 2, Δ(5) = 1, Δ(6) = 4, Δ(7) = 2, Δ(8) = 1, Δ(9) = 3, Δ(10) = 2, Δ(12) = 1, Δ(13) = 4, Δ(14) = 4, Δ(15) = 2, Δ(17) = 2, Δ(19) = 3, Δ(20) = 2, Δ(21) = 1, Δ(22) = 2, Δ(23) = 1, Δ(24) = 3, Δ(25) = 1, Δ(26) = 2, Δ(27) = 4, Δ(28) = 2, Δ(29) = 5, Δ(30) = 1, Δ(31) = 3, Δ(32) = 1, Δ(33) = 4, Δ(34) = 1, Δ(35) = 3, Δ(36) = 2, Δ(37) = 4, Δ(38) = 4, Δ(39) = 4, Δ(40) = 2, Δ(41) = 2, Δ(42) = 3, Δ(43) = 1, Δ(44) = 5, Δ(45) = 3, Δ(46) = 5, Δ(47) = 2, Δ(48) = 3, Δ(49) = 3, Δ(50) = 3, Δ(51) = 1, Δ(52) = 1, Δ(53) = 5, Δ(54) = 1, Δ(55) = 3, Δ(56) = 3, Δ(57) = 2, Δ(58) = 3, Δ(59) = 5, Δ(60) = 2, Δ(61) = 4, Δ(62) = 1, Δ(63) = 4, Δ(64) = 0, Δ(65) = 5, Δ(66) = 2, Δ(67) = 2, Δ(68) = 2, Δ(69) = 2, Δ(70) = 4, Δ(71) = 2, Δ(72) = 5, Δ(73) = 3, Δ(74) = 4, Δ(75) = 2, Δ(76) = 2, Δ(77) = 2, Δ(78) = 2, Δ(79) = 2, Δ(80) = 2
+    → elige el nodo 29 (Δ = 5); f(S) = 20
+  Paso 5: Δ(1) = 2, Δ(2) = 3, Δ(3) = 2, Δ(4) = 2, Δ(5) = 1, Δ(6) = 4, Δ(7) = 2, Δ(8) = 1, Δ(9) = 3, Δ(10) = 2, Δ(12) = 1, Δ(13) = 4, Δ(14) = 4, Δ(15) = 2, Δ(17) = 1, Δ(19) = 3, Δ(20) = 2, Δ(21) = 1, Δ(22) = 2, Δ(23) = 1, Δ(24) = 3, Δ(25) = 1, Δ(26) = 2, Δ(27) = 4, Δ(28) = 2, Δ(30) = 1, Δ(31) = 3, Δ(32) = 1, Δ(33) = 4, Δ(34) = 1, Δ(35) = 3, Δ(36) = 2, Δ(37) = 4, Δ(38) = 4, Δ(39) = 4, Δ(40) = 2, Δ(41) = 2, Δ(42) = 3, Δ(43) = 1, Δ(44) = 5, Δ(45) = 3, Δ(46) = 5, Δ(47) = 2, Δ(48) = 2, Δ(49) = 3, Δ(50) = 3, Δ(51) = 1, Δ(52) = 1, Δ(53) = 5, Δ(54) = 1, Δ(55) = 3, Δ(56) = 3, Δ(57) = 2, Δ(58) = 3, Δ(59) = 5, Δ(60) = 2, Δ(61) = 4, Δ(62) = 1, Δ(63) = 4, Δ(64) = 0, Δ(65) = 4, Δ(66) = 2, Δ(67) = 2, Δ(68) = 2, Δ(69) = 2, Δ(70) = 3, Δ(71) = 2, Δ(72) = 5, Δ(73) = 3, Δ(74) = 4, Δ(75) = 2, Δ(76) = 2, Δ(77) = 2, Δ(78) = 2, Δ(79) = 2, Δ(80) = 2
+    → elige el nodo 44 (Δ = 5); f(S) = 25
+  Resultado: S = [11, 16, 18, 29, 44], f(S) = 25, llamadas a Δ = 390
+
+== Parte 1: reparto del presupuesto (voraz con montículo) ==
+  Unidad 1: al nodo 16 (Δ = 5.1300)
+  Unidad 2: al nodo 11 (Δ = 4.7300)
+  Unidad 3: al nodo 44 (Δ = 4.3100)
+  Unidad 4: al nodo 18 (Δ = 3.6945)
+  Unidad 5: al nodo 29 (Δ = 3.1746)
+  Unidad 6: al nodo 18 (Δ = 2.1611)
+  Unidad 7: al nodo 16 (Δ = 2.1249)
+  Unidad 8: al nodo 11 (Δ = 1.9592)
+  Unidad 9: al nodo 29 (Δ = 1.8570)
+  Unidad 10: al nodo 44 (Δ = 1.7853)
+  Unidad 11: al nodo 16 (Δ = 1.6305)
+  Unidad 12: al nodo 18 (Δ = 1.5333)
+  Unidad 13: al nodo 11 (Δ = 1.5034)
+  Unidad 14: al nodo 16 (Δ = 1.3746)
+  Unidad 15: al nodo 44 (Δ = 1.3699)
+  Unidad 16: al nodo 29 (Δ = 1.3176)
+  Unidad 17: al nodo 11 (Δ = 1.2674)
+  Unidad 18: al nodo 16 (Δ = 1.2110)
+  Unidad 19: al nodo 18 (Δ = 1.1894)
+  Unidad 20: al nodo 44 (Δ = 1.1549)
+  Unidad 21: al nodo 11 (Δ = 1.1166)
+  Unidad 22: al nodo 16 (Δ = 1.0949)
+  Unidad 23: al nodo 29 (Δ = 1.0220)
+  Unidad 24: al nodo 44 (Δ = 1.0175)
+  Unidad 25: al nodo 11 (Δ = 1.0095)
+  Unidad 26: al nodo 16 (Δ = 1.0068)
+  Unidad 27: al nodo 18 (Δ = 0.9718)
+  Unidad 28: al nodo 16 (Δ = 0.9371)
+  Unidad 29: al nodo 11 (Δ = 0.9283)
+  Unidad 30: al nodo 44 (Δ = 0.9198)
+  Unidad 31: al nodo 16 (Δ = 0.8802)
+  Unidad 32: al nodo 11 (Δ = 0.8641)
+  Unidad 33: al nodo 44 (Δ = 0.8459)
+  Unidad 34: al nodo 29 (Δ = 0.8350)
+  Unidad 35: al nodo 16 (Δ = 0.8325)
+  Unidad 36: al nodo 18 (Δ = 0.8216)
+  Unidad 37: al nodo 11 (Δ = 0.8115)
+  Unidad 38: al nodo 16 (Δ = 0.7918)
+  Unidad 39: al nodo 44 (Δ = 0.7873)
+  Unidad 40: al nodo 11 (Δ = 0.7676)
+  Unidad 41: al nodo 16 (Δ = 0.7566)
+  Unidad 42: al nodo 44 (Δ = 0.7395)
+  Unidad 43: al nodo 11 (Δ = 0.7301)
+  Unidad 44: al nodo 16 (Δ = 0.7256)
+  Unidad 45: al nodo 18 (Δ = 0.7117)
+  Unidad 46: al nodo 29 (Δ = 0.7060)
+  Unidad 47: al nodo 44 (Δ = 0.6994)
+  Unidad 48: al nodo 16 (Δ = 0.6982)
+  Unidad 49: al nodo 11 (Δ = 0.6976)
+  Unidad 50: al nodo 16 (Δ = 0.6737)
+  Unidad 51: al nodo 11 (Δ = 0.6691)
+  Unidad 52: al nodo 44 (Δ = 0.6652)
+  Unidad 53: al nodo 16 (Δ = 0.6516)
+  Unidad 54: al nodo 11 (Δ = 0.6438)
+  Unidad 55: al nodo 44 (Δ = 0.6356)
+  Unidad 56: al nodo 16 (Δ = 0.6315)
+  Unidad 57: al nodo 18 (Δ = 0.6278)
+  Unidad 58: al nodo 11 (Δ = 0.6212)
+  Unidad 59: al nodo 16 (Δ = 0.6132)
+  Unidad 60: al nodo 29 (Δ = 0.6116)
+  Unidad 61: al nodo 44 (Δ = 0.6096)
+  Unidad 62: al nodo 11 (Δ = 0.6008)
+  Unidad 63: al nodo 16 (Δ = 0.5964)
+  Unidad 64: al nodo 44 (Δ = 0.5866)
+  Unidad 65: al nodo 11 (Δ = 0.5823)
+  Unidad 66: al nodo 16 (Δ = 0.5809)
+  Unidad 67: al nodo 16 (Δ = 0.5666)
+  Unidad 68: al nodo 44 (Δ = 0.5660)
+  Unidad 69: al nodo 11 (Δ = 0.5654)
+  Unidad 70: al nodo 18 (Δ = 0.5616)
+  Unidad 71: al nodo 16 (Δ = 0.5532)
+  Unidad 72: al nodo 11 (Δ = 0.5499)
+  Unidad 73: al nodo 44 (Δ = 0.5474)
+  Unidad 74: al nodo 16 (Δ = 0.5408)
+  Unidad 75: al nodo 29 (Δ = 0.5394)
+  Unidad 76: al nodo 11 (Δ = 0.5356)
+  Unidad 77: al nodo 44 (Δ = 0.5306)
+  Unidad 78: al nodo 16 (Δ = 0.5291)
+  Unidad 79: al nodo 11 (Δ = 0.5224)
+  Unidad 80: al nodo 16 (Δ = 0.5182)
+  Unidad 81: al nodo 44 (Δ = 0.5152)
+  Unidad 82: al nodo 11 (Δ = 0.5101)
+  Unidad 83: al nodo 18 (Δ = 0.5080)
+  Unidad 84: al nodo 16 (Δ = 0.5080)
+  Unidad 85: al nodo 44 (Δ = 0.5011)
+  Unidad 86: al nodo 11 (Δ = 0.4986)
+  Unidad 87: al nodo 16 (Δ = 0.4983)
+  Unidad 88: al nodo 16 (Δ = 0.4891)
+  Unidad 89: al nodo 44 (Δ = 0.4881)
+  Unidad 90: al nodo 11 (Δ = 0.4879)
+  Unidad 91: al nodo 29 (Δ = 0.4826)
+  Unidad 92: al nodo 16 (Δ = 0.4805)
+  Unidad 93: al nodo 11 (Δ = 0.4778)
+  Unidad 94: al nodo 44 (Δ = 0.4760)
+  Unidad 95: al nodo 16 (Δ = 0.4723)
+  Unidad 96: al nodo 11 (Δ = 0.4684)
+  Unidad 97: al nodo 44 (Δ = 0.4648)
+  Unidad 98: al nodo 16 (Δ = 0.4645)
+  Unidad 99: al nodo 18 (Δ = 0.4638)
+  Unidad 100: al nodo 11 (Δ = 0.4594)
+  Unidad 101: al nodo 16 (Δ = 0.4570)
+  Unidad 102: al nodo 44 (Δ = 0.4543)
+  Unidad 103: al nodo 11 (Δ = 0.4510)
+  Unidad 104: al nodo 16 (Δ = 0.4499)
+  Unidad 105: al nodo 44 (Δ = 0.4446)
+  Unidad 106: al nodo 16 (Δ = 0.4432)
+  Unidad 107: al nodo 11 (Δ = 0.4430)
+  Unidad 108: al nodo 16 (Δ = 0.4367)
+  Unidad 109: al nodo 29 (Δ = 0.4365)
+  Unidad 110: al nodo 11 (Δ = 0.4354)
+  Unidad 111: al nodo 44 (Δ = 0.4354)
+  Unidad 112: al nodo 16 (Δ = 0.4305)
+  Unidad 113: al nodo 11 (Δ = 0.4282)
+  Unidad 114: al nodo 44 (Δ = 0.4268)
+  Unidad 115: al nodo 18 (Δ = 0.4266)
+  Unidad 116: al nodo 16 (Δ = 0.4246)
+  Unidad 117: al nodo 11 (Δ = 0.4214)
+  Unidad 118: al nodo 16 (Δ = 0.4189)
+  Unidad 119: al nodo 44 (Δ = 0.4186)
+  Unidad 120: al nodo 11 (Δ = 0.4149)
+  Unidad 121: al nodo 16 (Δ = 0.4134)
+  Unidad 122: al nodo 44 (Δ = 0.4110)
+  Unidad 123: al nodo 11 (Δ = 0.4086)
+  Unidad 124: al nodo 16 (Δ = 0.4081)
+  Unidad 125: al nodo 44 (Δ = 0.4037)
+  Unidad 126: al nodo 16 (Δ = 0.4031)
+  Unidad 127: al nodo 11 (Δ = 0.4027)
+  Unidad 128: al nodo 29 (Δ = 0.3985)
+  Unidad 129: al nodo 16 (Δ = 0.3982)
+  Unidad 130: al nodo 11 (Δ = 0.3969)
+  Unidad 131: al nodo 44 (Δ = 0.3968)
+  Unidad 132: al nodo 18 (Δ = 0.3950)
+  Unidad 133: al nodo 16 (Δ = 0.3935)
+  Unidad 134: al nodo 11 (Δ = 0.3915)
+  Unidad 135: al nodo 44 (Δ = 0.3902)
+  Unidad 136: al nodo 16 (Δ = 0.3889)
+  Unidad 137: al nodo 11 (Δ = 0.3862)
+  Unidad 138: al nodo 16 (Δ = 0.3845)
+  Unidad 139: al nodo 44 (Δ = 0.3840)
+  Unidad 140: al nodo 11 (Δ = 0.3812)
+  Unidad 141: al nodo 16 (Δ = 0.3803)
+  Unidad 142: al nodo 44 (Δ = 0.3780)
+  Unidad 143: al nodo 11 (Δ = 0.3763)
+  Unidad 144: al nodo 16 (Δ = 0.3762)
+  Unidad 145: al nodo 44 (Δ = 0.3723)
+  Unidad 146: al nodo 16 (Δ = 0.3722)
+  Unidad 147: al nodo 11 (Δ = 0.3716)
+  Unidad 148: al nodo 16 (Δ = 0.3683)
+  Unidad 149: al nodo 18 (Δ = 0.3677)
+  Unidad 150: al nodo 11 (Δ = 0.3671)
+  Unidad 151: al nodo 44 (Δ = 0.3669)
+  Unidad 152: al nodo 29 (Δ = 0.3666)
+  Unidad 153: al nodo 16 (Δ = 0.3646)
+  Unidad 154: al nodo 11 (Δ = 0.3628)
+  Unidad 155: al nodo 44 (Δ = 0.3617)
+  Unidad 156: al nodo 16 (Δ = 0.3609)
+  Unidad 157: al nodo 11 (Δ = 0.3586)
+  Unidad 158: al nodo 16 (Δ = 0.3574)
+  Unidad 159: al nodo 44 (Δ = 0.3567)
+  Unidad 160: al nodo 11 (Δ = 0.3545)
+  Resultado: x_11 = 45, x_16 = 52, x_18 = 14, x_29 = 12, x_44 = 37; utilidad total = 121.120843
+
+== Verificación: Parte 2 ==
+  [OK] S ⊆ V: S = [11, 16, 18, 29, 44]
+  [OK] S sin repetidos: |S| = 5
+  [OK] |S| ≤ k: |S| = 5, k = 5
+  [OK] valor acumulado = f(S) recalculada: acumulado = 25, recalculado = 25
+  [OK] llamadas a Δ = k·N − k(k−1)/2: contadas = 390, fórmula = 390
+
+== Verificación: Parte 1 ==
+  [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
+  [OK] Σ x_i = B: Σ x_i = 160, B = 160
+  [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 121.120843, recalculada = 121.120843
+  [OK] extracciones = inserciones = B: extracciones = 160, inserciones = 160
+
+== Verificación: Ejecución ==
+  [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
+
+== Tiempos (solo los algoritmos, sin lectura ni escritura) ==
+  Parte 2 (selección): 0.000138637 s
+  Parte 1 (reparto):   0.000111557 s
+
+TODAS LAS VERIFICACIONES: CUMPLEN

@@ -1,0 +1,35 @@
+{
+  "k": 2,
+  "B": 3,
+  "nodos": [
+    {
+      "id": 1,
+      "cubre": [],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.0
+      }
+    },
+    {
+      "id": 2,
+      "cubre": [
+        "a",
+        "b"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.0
+      }
+    },
+    {
+      "id": 3,
+      "cubre": [
+        "c"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.0
+      }
+    }
+  ]
+}

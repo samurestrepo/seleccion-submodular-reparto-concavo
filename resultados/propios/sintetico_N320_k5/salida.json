@@ -1,0 +1,117 @@
+{
+  "caso": "sintetico_N320_k5",
+  "entrada": {
+    "N": 320,
+    "k": 5,
+    "B": 640
+  },
+  "verificaciones": {
+    "entrada": [
+      {
+        "nombre": "1 ≤ k < N",
+        "cumple": true,
+        "detalle": "k = 5, N = 320"
+      },
+      {
+        "nombre": "B ≥ 0",
+        "cumple": true,
+        "detalle": "B = 640"
+      },
+      {
+        "nombre": "ids únicos",
+        "cumple": true,
+        "detalle": "sin repetidos"
+      },
+      {
+        "nombre": "cada u_i creciente y cóncava en {0, …, B}",
+        "cumple": true,
+        "detalle": "todas cumplen"
+      }
+    ],
+    "seleccion": [
+      {
+        "nombre": "S ⊆ V",
+        "cumple": true,
+        "detalle": "S = [11, 16, 18, 29, 37]"
+      },
+      {
+        "nombre": "S sin repetidos",
+        "cumple": true,
+        "detalle": "|S| = 5"
+      },
+      {
+        "nombre": "|S| ≤ k",
+        "cumple": true,
+        "detalle": "|S| = 5, k = 5"
+      },
+      {
+        "nombre": "valor acumulado = f(S) recalculada",
+        "cumple": true,
+        "detalle": "acumulado = 25, recalculado = 25"
+      },
+      {
+        "nombre": "llamadas a Δ = k·N − k(k−1)/2",
+        "cumple": true,
+        "detalle": "contadas = 1590, fórmula = 1590"
+      }
+    ],
+    "reparto": [
+      {
+        "nombre": "cada x_i entero con 0 ≤ x_i ≤ B",
+        "cumple": true,
+        "detalle": "todos cumplen"
+      },
+      {
+        "nombre": "Σ x_i = B",
+        "cumple": true,
+        "detalle": "Σ x_i = 640, B = 640"
+      },
+      {
+        "nombre": "utilidad acumulada = Σ u_i(x_i) recalculada",
+        "cumple": true,
+        "detalle": "acumulada = 207.901642, recalculada = 207.901642"
+      },
+      {
+        "nombre": "extracciones = inserciones = B",
+        "cumple": true,
+        "detalle": "extracciones = 640, inserciones = 640"
+      }
+    ],
+    "ejecucion": [
+      {
+        "nombre": "ejecución con traza = ejecución medida",
+        "cumple": true,
+        "detalle": "mismo S y mismo reparto"
+      }
+    ]
+  },
+  "seleccion": {
+    "S": [
+      11,
+      16,
+      18,
+      29,
+      37
+    ],
+    "valor": 25,
+    "llamadas_ganancia": 1590,
+    "llamadas_valor": 1
+  },
+  "reparto": {
+    "x": {
+      "11": 256,
+      "16": 301,
+      "18": 35,
+      "29": 30,
+      "37": 18
+    },
+    "utilidad": 207.9016419981014,
+    "extracciones": 640,
+    "inserciones": 640
+  },
+  "tiempos_segundos": {
+    "seleccion": 0.0006846089999896776,
+    "reparto": 0.0004694930000113118
+  },
+  "todas_cumplen": true
+}

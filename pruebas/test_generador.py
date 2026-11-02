@@ -20,8 +20,8 @@ def test_ayuda_se_puede_imprimir_en_cp1252():
 
 
 def test_semilla_reproduce_el_caso_guardado():
-    guardado = json.loads((RAIZ / "casos" / "propios" / "sintetico_N40_k5_B60.json").read_text(encoding="utf-8"))
-    assert generar_instancia(40, 5, 60, semilla=1) == guardado
+    guardado = json.loads((RAIZ / "casos" / "propios" / "sintetico_N040_k5.json").read_text(encoding="utf-8"))
+    assert generar_instancia(40, 5, 80, semilla=1) == guardado
 
 
 def test_coeficientes_generados_cumplen_a_mayor_que_cero():

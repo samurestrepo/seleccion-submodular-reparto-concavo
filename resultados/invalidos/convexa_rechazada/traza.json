@@ -1,0 +1,7 @@
+{
+  "pasos_seleccion": [],
+  "unidades_reparto": [],
+  "motivo_rechazo": [
+    "cada u_i creciente y cóncava en {0, …, B}: nodo 1: Δ(1) > Δ(0) (no es cóncava)"
+  ]
+}

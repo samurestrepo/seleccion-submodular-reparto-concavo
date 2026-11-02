@@ -1,0 +1,33 @@
+{
+  "caso": "ids_repetidos",
+  "entrada": {
+    "N": 3,
+    "k": 1,
+    "B": 2
+  },
+  "verificaciones": {
+    "entrada": [
+      {
+        "nombre": "1 ≤ k < N",
+        "cumple": true,
+        "detalle": "k = 1, N = 3"
+      },
+      {
+        "nombre": "B ≥ 0",
+        "cumple": true,
+        "detalle": "B = 2"
+      },
+      {
+        "nombre": "ids únicos",
+        "cumple": false,
+        "detalle": "repetidos: [1]"
+      },
+      {
+        "nombre": "cada u_i creciente y cóncava en {0, …, B}",
+        "cumple": true,
+        "detalle": "todas cumplen"
+      }
+    ]
+  },
+  "todas_cumplen": false
+}

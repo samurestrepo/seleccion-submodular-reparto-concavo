@@ -1,5 +1,6 @@
 """Pruebas de la línea de comandos: lotes con archivos malos, evidencias y resumen."""
 
+import os
 import csv
 import json
 from pathlib import Path
@@ -136,7 +137,8 @@ def test_resumen_refleja_solo_la_ultima_corrida_y_avisa(tmp_path, capsys):
     salida = tmp_path / "salida"
     main([str(RAIZ / "casos" / "propios"), "--salida", str(salida)])
     assert "Aviso" not in capsys.readouterr().out
-    assert len(leer_resumen(salida)) == 3
+    casos = [f for f in os.listdir(RAIZ / "casos" / "propios") if f.endswith(".json")]
+    assert len(leer_resumen(salida)) == len(casos)
 
     main([str(EJEMPLO), "--salida", str(salida)])
     assert "Aviso: se reemplaza" in capsys.readouterr().out

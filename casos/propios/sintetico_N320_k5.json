@@ -1,0 +1,3856 @@
+{
+  "k": 5,
+  "B": 640,
+  "nodos": [
+    {
+      "id": 1,
+      "cubre": [
+        "e65",
+        "e583"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.06
+      }
+    },
+    {
+      "id": 2,
+      "cubre": [
+        "e97",
+        "e215",
+        "e389",
+        "e484"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.26
+      }
+    },
+    {
+      "id": 3,
+      "cubre": [
+        "e3",
+        "e444",
+        "e457",
+        "e623"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.49
+      }
+    },
+    {
+      "id": 4,
+      "cubre": [
+        "e105",
+        "e606"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.28
+      }
+    },
+    {
+      "id": 5,
+      "cubre": [
+        "e555"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.45
+      }
+    },
+    {
+      "id": 6,
+      "cubre": [
+        "e30",
+        "e222",
+        "e433",
+        "e541"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 7.87
+      }
+    },
+    {
+      "id": 7,
+      "cubre": [
+        "e237",
+        "e239",
+        "e354",
+        "e567"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 7.85
+      }
+    },
+    {
+      "id": 8,
+      "cubre": [
+        "e23",
+        "e427",
+        "e570"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.67
+      }
+    },
+    {
+      "id": 9,
+      "cubre": [
+        "e124",
+        "e341",
+        "e513"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.57
+      }
+    },
+    {
+      "id": 10,
+      "cubre": [
+        "e291",
+        "e311"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.62
+      }
+    },
+    {
+      "id": 11,
+      "cubre": [
+        "e36",
+        "e249",
+        "e403",
+        "e492",
+        "e604"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.73
+      }
+    },
+    {
+      "id": 12,
+      "cubre": [
+        "e376",
+        "e562"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.78
+      }
+    },
+    {
+      "id": 13,
+      "cubre": [
+        "e111",
+        "e168",
+        "e380",
+        "e403",
+        "e534"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.59
+      }
+    },
+    {
+      "id": 14,
+      "cubre": [
+        "e45",
+        "e316",
+        "e608",
+        "e630"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.82
+      }
+    },
+    {
+      "id": 15,
+      "cubre": [
+        "e233",
+        "e515"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 7.93
+      }
+    },
+    {
+      "id": 16,
+      "cubre": [
+        "e238",
+        "e353",
+        "e415",
+        "e527",
+        "e562"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.13
+      }
+    },
+    {
+      "id": 17,
+      "cubre": [
+        "e6",
+        "e562",
+        "e624"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.05
+      }
+    },
+    {
+      "id": 18,
+      "cubre": [
+        "e133",
+        "e211",
+        "e437",
+        "e532",
+        "e575"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.33
+      }
+    },
+    {
+      "id": 19,
+      "cubre": [
+        "e205",
+        "e568",
+        "e584"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.36
+      }
+    },
+    {
+      "id": 20,
+      "cubre": [
+        "e2",
+        "e355",
+        "e425"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.12
+      }
+    },
+    {
+      "id": 21,
+      "cubre": [
+        "e236"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.96
+      }
+    },
+    {
+      "id": 22,
+      "cubre": [
+        "e94",
+        "e565"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.29
+      }
+    },
+    {
+      "id": 23,
+      "cubre": [
+        "e86"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.08
+      }
+    },
+    {
+      "id": 24,
+      "cubre": [
+        "e113",
+        "e256",
+        "e276"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.1
+      }
+    },
+    {
+      "id": 25,
+      "cubre": [
+        "e172"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.3
+      }
+    },
+    {
+      "id": 26,
+      "cubre": [
+        "e280",
+        "e302"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.32
+      }
+    },
+    {
+      "id": 27,
+      "cubre": [
+        "e25",
+        "e117",
+        "e320",
+        "e486"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.09
+      }
+    },
+    {
+      "id": 28,
+      "cubre": [
+        "e112",
+        "e265"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.1
+      }
+    },
+    {
+      "id": 29,
+      "cubre": [
+        "e22",
+        "e215",
+        "e231",
+        "e443",
+        "e621"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.58
+      }
+    },
+    {
+      "id": 30,
+      "cubre": [
+        "e165"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.34
+      }
+    },
+    {
+      "id": 31,
+      "cubre": [
+        "e226",
+        "e462",
+        "e529",
+        "e558"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.72
+      }
+    },
+    {
+      "id": 32,
+      "cubre": [
+        "e405"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.94
+      }
+    },
+    {
+      "id": 33,
+      "cubre": [
+        "e61",
+        "e129",
+        "e218",
+        "e306"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.76
+      }
+    },
+    {
+      "id": 34,
+      "cubre": [
+        "e318"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.69
+      }
+    },
+    {
+      "id": 35,
+      "cubre": [
+        "e9",
+        "e134",
+        "e259",
+        "e579"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.32
+      }
+    },
+    {
+      "id": 36,
+      "cubre": [
+        "e472",
+        "e584"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.45
+      }
+    },
+    {
+      "id": 37,
+      "cubre": [
+        "e39",
+        "e206",
+        "e356",
+        "e388",
+        "e522"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.85
+      }
+    },
+    {
+      "id": 38,
+      "cubre": [
+        "e107",
+        "e199",
+        "e505",
+        "e606"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.66
+      }
+    },
+    {
+      "id": 39,
+      "cubre": [
+        "e18",
+        "e334",
+        "e412",
+        "e627"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.16
+      }
+    },
+    {
+      "id": 40,
+      "cubre": [
+        "e336",
+        "e577"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.05
+      }
+    },
+    {
+      "id": 41,
+      "cubre": [
+        "e99",
+        "e273"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.39
+      }
+    },
+    {
+      "id": 42,
+      "cubre": [
+        "e497",
+        "e546",
+        "e548"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.59
+      }
+    },
+    {
+      "id": 43,
+      "cubre": [
+        "e87"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.53
+      }
+    },
+    {
+      "id": 44,
+      "cubre": [
+        "e219",
+        "e275",
+        "e341",
+        "e519",
+        "e615"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.31
+      }
+    },
+    {
+      "id": 45,
+      "cubre": [
+        "e117",
+        "e241",
+        "e299"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.22
+      }
+    },
+    {
+      "id": 46,
+      "cubre": [
+        "e41",
+        "e75",
+        "e107",
+        "e329",
+        "e417"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.8
+      }
+    },
+    {
+      "id": 47,
+      "cubre": [
+        "e129",
+        "e350"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.54
+      }
+    },
+    {
+      "id": 48,
+      "cubre": [
+        "e79",
+        "e230",
+        "e564",
+        "e585"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.57
+      }
+    },
+    {
+      "id": 49,
+      "cubre": [
+        "e303",
+        "e548",
+        "e578"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.12
+      }
+    },
+    {
+      "id": 50,
+      "cubre": [
+        "e47",
+        "e111",
+        "e303"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.52
+      }
+    },
+    {
+      "id": 51,
+      "cubre": [
+        "e94"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.04
+      }
+    },
+    {
+      "id": 52,
+      "cubre": [
+        "e193"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.07
+      }
+    },
+    {
+      "id": 53,
+      "cubre": [
+        "e119",
+        "e166",
+        "e172",
+        "e432",
+        "e462"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.43
+      }
+    },
+    {
+      "id": 54,
+      "cubre": [
+        "e446"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.26
+      }
+    },
+    {
+      "id": 55,
+      "cubre": [
+        "e260",
+        "e302",
+        "e323",
+        "e489",
+        "e564"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.87
+      }
+    },
+    {
+      "id": 56,
+      "cubre": [
+        "e11",
+        "e28",
+        "e41"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.54
+      }
+    },
+    {
+      "id": 57,
+      "cubre": [
+        "e321",
+        "e401",
+        "e461"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.57
+      }
+    },
+    {
+      "id": 58,
+      "cubre": [
+        "e115",
+        "e467",
+        "e616"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.94
+      }
+    },
+    {
+      "id": 59,
+      "cubre": [
+        "e188",
+        "e266",
+        "e365",
+        "e481",
+        "e556"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.77
+      }
+    },
+    {
+      "id": 60,
+      "cubre": [
+        "e84",
+        "e370"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.8
+      }
+    },
+    {
+      "id": 61,
+      "cubre": [
+        "e93",
+        "e233",
+        "e348",
+        "e589"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.7
+      }
+    },
+    {
+      "id": 62,
+      "cubre": [
+        "e336"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.85
+      }
+    },
+    {
+      "id": 63,
+      "cubre": [
+        "e104",
+        "e252",
+        "e311",
+        "e343",
+        "e558"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.21
+      }
+    },
+    {
+      "id": 64,
+      "cubre": [
+        "e250"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.65
+      }
+    },
+    {
+      "id": 65,
+      "cubre": [
+        "e11",
+        "e23",
+        "e73",
+        "e77",
+        "e298"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.44
+      }
+    },
+    {
+      "id": 66,
+      "cubre": [
+        "e104",
+        "e514"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.69
+      }
+    },
+    {
+      "id": 67,
+      "cubre": [
+        "e154",
+        "e184"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.39
+      }
+    },
+    {
+      "id": 68,
+      "cubre": [
+        "e110",
+        "e313",
+        "e527"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.14
+      }
+    },
+    {
+      "id": 69,
+      "cubre": [
+        "e146",
+        "e559"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.02
+      }
+    },
+    {
+      "id": 70,
+      "cubre": [
+        "e183",
+        "e211",
+        "e307",
+        "e444",
+        "e567"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.44
+      }
+    },
+    {
+      "id": 71,
+      "cubre": [
+        "e66",
+        "e259"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.27
+      }
+    },
+    {
+      "id": 72,
+      "cubre": [
+        "e257",
+        "e450",
+        "e465",
+        "e551",
+        "e555"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.56
+      }
+    },
+    {
+      "id": 73,
+      "cubre": [
+        "e176",
+        "e265",
+        "e498"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.14
+      }
+    },
+    {
+      "id": 74,
+      "cubre": [
+        "e20",
+        "e64",
+        "e364",
+        "e585"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.34
+      }
+    },
+    {
+      "id": 75,
+      "cubre": [
+        "e266",
+        "e284"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.08
+      }
+    },
+    {
+      "id": 76,
+      "cubre": [
+        "e92",
+        "e628"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.37
+      }
+    },
+    {
+      "id": 77,
+      "cubre": [
+        "e325",
+        "e542"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.37
+      }
+    },
+    {
+      "id": 78,
+      "cubre": [
+        "e245",
+        "e321"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.18
+      }
+    },
+    {
+      "id": 79,
+      "cubre": [
+        "e346",
+        "e423"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.75
+      }
+    },
+    {
+      "id": 80,
+      "cubre": [
+        "e50",
+        "e74"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.44
+      }
+    },
+    {
+      "id": 81,
+      "cubre": [
+        "e306",
+        "e320"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.64
+      }
+    },
+    {
+      "id": 82,
+      "cubre": [
+        "e170",
+        "e476",
+        "e609"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.71
+      }
+    },
+    {
+      "id": 83,
+      "cubre": [
+        "e160",
+        "e181",
+        "e387",
+        "e527",
+        "e585"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.84
+      }
+    },
+    {
+      "id": 84,
+      "cubre": [
+        "e54",
+        "e357",
+        "e394",
+        "e404",
+        "e507"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.9
+      }
+    },
+    {
+      "id": 85,
+      "cubre": [
+        "e537"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.27
+      }
+    },
+    {
+      "id": 86,
+      "cubre": [
+        "e274"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.63
+      }
+    },
+    {
+      "id": 87,
+      "cubre": [
+        "e84",
+        "e632"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.66
+      }
+    },
+    {
+      "id": 88,
+      "cubre": [
+        "e392",
+        "e444"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.48
+      }
+    },
+    {
+      "id": 89,
+      "cubre": [
+        "e130",
+        "e449",
+        "e638"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.63
+      }
+    },
+    {
+      "id": 90,
+      "cubre": [
+        "e442"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.18
+      }
+    },
+    {
+      "id": 91,
+      "cubre": [
+        "e255",
+        "e285",
+        "e388"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.64
+      }
+    },
+    {
+      "id": 92,
+      "cubre": [
+        "e22",
+        "e32",
+        "e450",
+        "e593",
+        "e621"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.52
+      }
+    },
+    {
+      "id": 93,
+      "cubre": [
+        "e178",
+        "e292"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.88
+      }
+    },
+    {
+      "id": 94,
+      "cubre": [
+        "e257",
+        "e319",
+        "e600"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.12
+      }
+    },
+    {
+      "id": 95,
+      "cubre": [
+        "e366",
+        "e559"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.78
+      }
+    },
+    {
+      "id": 96,
+      "cubre": [
+        "e214"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.84
+      }
+    },
+    {
+      "id": 97,
+      "cubre": [
+        "e25"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.12
+      }
+    },
+    {
+      "id": 98,
+      "cubre": [
+        "e559"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.68
+      }
+    },
+    {
+      "id": 99,
+      "cubre": [
+        "e77",
+        "e513"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.15
+      }
+    },
+    {
+      "id": 100,
+      "cubre": [
+        "e366",
+        "e448",
+        "e516"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.01
+      }
+    },
+    {
+      "id": 101,
+      "cubre": [
+        "e313",
+        "e359",
+        "e461",
+        "e553"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.05
+      }
+    },
+    {
+      "id": 102,
+      "cubre": [
+        "e116",
+        "e209",
+        "e387",
+        "e392",
+        "e505"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.95
+      }
+    },
+    {
+      "id": 103,
+      "cubre": [
+        "e204",
+        "e473",
+        "e524",
+        "e530",
+        "e616"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.44
+      }
+    },
+    {
+      "id": 104,
+      "cubre": [
+        "e175",
+        "e461",
+        "e635"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.23
+      }
+    },
+    {
+      "id": 105,
+      "cubre": [
+        "e399"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.73
+      }
+    },
+    {
+      "id": 106,
+      "cubre": [
+        "e70",
+        "e599",
+        "e637"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.89
+      }
+    },
+    {
+      "id": 107,
+      "cubre": [
+        "e22",
+        "e298"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.49
+      }
+    },
+    {
+      "id": 108,
+      "cubre": [
+        "e277",
+        "e407"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 7.91
+      }
+    },
+    {
+      "id": 109,
+      "cubre": [
+        "e11",
+        "e271",
+        "e358",
+        "e422",
+        "e558"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.37
+      }
+    },
+    {
+      "id": 110,
+      "cubre": [
+        "e174",
+        "e479",
+        "e497"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.44
+      }
+    },
+    {
+      "id": 111,
+      "cubre": [
+        "e605"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.63
+      }
+    },
+    {
+      "id": 112,
+      "cubre": [
+        "e454"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.48
+      }
+    },
+    {
+      "id": 113,
+      "cubre": [
+        "e96",
+        "e412"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.44
+      }
+    },
+    {
+      "id": 114,
+      "cubre": [
+        "e213",
+        "e541"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.97
+      }
+    },
+    {
+      "id": 115,
+      "cubre": [
+        "e71",
+        "e77",
+        "e536"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.21
+      }
+    },
+    {
+      "id": 116,
+      "cubre": [
+        "e51",
+        "e173",
+        "e277",
+        "e305",
+        "e570"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.49
+      }
+    },
+    {
+      "id": 117,
+      "cubre": [
+        "e402",
+        "e575"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.55
+      }
+    },
+    {
+      "id": 118,
+      "cubre": [
+        "e228",
+        "e338",
+        "e626"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.67
+      }
+    },
+    {
+      "id": 119,
+      "cubre": [
+        "e32",
+        "e638"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.85
+      }
+    },
+    {
+      "id": 120,
+      "cubre": [
+        "e75",
+        "e195",
+        "e255",
+        "e276"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.84
+      }
+    },
+    {
+      "id": 121,
+      "cubre": [
+        "e152",
+        "e269",
+        "e455",
+        "e596",
+        "e621"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.74
+      }
+    },
+    {
+      "id": 122,
+      "cubre": [
+        "e142",
+        "e452"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.79
+      }
+    },
+    {
+      "id": 123,
+      "cubre": [
+        "e119",
+        "e212",
+        "e247",
+        "e313"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.96
+      }
+    },
+    {
+      "id": 124,
+      "cubre": [
+        "e103",
+        "e192",
+        "e330",
+        "e505"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.5
+      }
+    },
+    {
+      "id": 125,
+      "cubre": [
+        "e24",
+        "e36",
+        "e222",
+        "e507",
+        "e542"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.08
+      }
+    },
+    {
+      "id": 126,
+      "cubre": [
+        "e121",
+        "e177",
+        "e628"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.0
+      }
+    },
+    {
+      "id": 127,
+      "cubre": [
+        "e461",
+        "e507"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.76
+      }
+    },
+    {
+      "id": 128,
+      "cubre": [
+        "e242",
+        "e291"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.92
+      }
+    },
+    {
+      "id": 129,
+      "cubre": [
+        "e217",
+        "e265",
+        "e339",
+        "e463"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.34
+      }
+    },
+    {
+      "id": 130,
+      "cubre": [
+        "e48",
+        "e81"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.18
+      }
+    },
+    {
+      "id": 131,
+      "cubre": [
+        "e295",
+        "e328",
+        "e393",
+        "e595"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.6
+      }
+    },
+    {
+      "id": 132,
+      "cubre": [
+        "e16",
+        "e32"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.31
+      }
+    },
+    {
+      "id": 133,
+      "cubre": [
+        "e59",
+        "e134",
+        "e261",
+        "e389",
+        "e579"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.17
+      }
+    },
+    {
+      "id": 134,
+      "cubre": [
+        "e15",
+        "e37",
+        "e550"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.72
+      }
+    },
+    {
+      "id": 135,
+      "cubre": [
+        "e44",
+        "e281"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.89
+      }
+    },
+    {
+      "id": 136,
+      "cubre": [
+        "e29",
+        "e512"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 7.7
+      }
+    },
+    {
+      "id": 137,
+      "cubre": [
+        "e400",
+        "e459"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.68
+      }
+    },
+    {
+      "id": 138,
+      "cubre": [
+        "e62",
+        "e249",
+        "e252"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.15
+      }
+    },
+    {
+      "id": 139,
+      "cubre": [
+        "e63",
+        "e362",
+        "e535",
+        "e561",
+        "e574"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.84
+      }
+    },
+    {
+      "id": 140,
+      "cubre": [
+        "e72",
+        "e75",
+        "e274",
+        "e435",
+        "e626"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.6
+      }
+    },
+    {
+      "id": 141,
+      "cubre": [
+        "e155"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.27
+      }
+    },
+    {
+      "id": 142,
+      "cubre": [
+        "e46",
+        "e55",
+        "e94",
+        "e526"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.51
+      }
+    },
+    {
+      "id": 143,
+      "cubre": [
+        "e321"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.14
+      }
+    },
+    {
+      "id": 144,
+      "cubre": [
+        "e454"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.06
+      }
+    },
+    {
+      "id": 145,
+      "cubre": [
+        "e26",
+        "e93",
+        "e277",
+        "e538"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.2
+      }
+    },
+    {
+      "id": 146,
+      "cubre": [
+        "e310"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.74
+      }
+    },
+    {
+      "id": 147,
+      "cubre": [
+        "e268"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.62
+      }
+    },
+    {
+      "id": 148,
+      "cubre": [
+        "e120",
+        "e312",
+        "e390"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.82
+      }
+    },
+    {
+      "id": 149,
+      "cubre": [
+        "e515",
+        "e571"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.97
+      }
+    },
+    {
+      "id": 150,
+      "cubre": [
+        "e401",
+        "e522",
+        "e599"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.94
+      }
+    },
+    {
+      "id": 151,
+      "cubre": [
+        "e533",
+        "e537",
+        "e573",
+        "e596"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.07
+      }
+    },
+    {
+      "id": 152,
+      "cubre": [
+        "e161",
+        "e205",
+        "e380"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.69
+      }
+    },
+    {
+      "id": 153,
+      "cubre": [
+        "e420"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.14
+      }
+    },
+    {
+      "id": 154,
+      "cubre": [
+        "e45"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.33
+      }
+    },
+    {
+      "id": 155,
+      "cubre": [
+        "e306",
+        "e322",
+        "e327",
+        "e362",
+        "e428"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.93
+      }
+    },
+    {
+      "id": 156,
+      "cubre": [
+        "e9",
+        "e125",
+        "e153",
+        "e514",
+        "e539"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.23
+      }
+    },
+    {
+      "id": 157,
+      "cubre": [
+        "e71",
+        "e336",
+        "e587"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.81
+      }
+    },
+    {
+      "id": 158,
+      "cubre": [
+        "e81",
+        "e373",
+        "e390",
+        "e466"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.21
+      }
+    },
+    {
+      "id": 159,
+      "cubre": [
+        "e252",
+        "e258",
+        "e504",
+        "e588",
+        "e590"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.25
+      }
+    },
+    {
+      "id": 160,
+      "cubre": [
+        "e315",
+        "e413",
+        "e476"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.79
+      }
+    },
+    {
+      "id": 161,
+      "cubre": [
+        "e30",
+        "e152"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.19
+      }
+    },
+    {
+      "id": 162,
+      "cubre": [
+        "e116",
+        "e137",
+        "e190",
+        "e421",
+        "e635"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.31
+      }
+    },
+    {
+      "id": 163,
+      "cubre": [
+        "e69",
+        "e110",
+        "e210",
+        "e268",
+        "e273"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.7
+      }
+    },
+    {
+      "id": 164,
+      "cubre": [
+        "e178",
+        "e524"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.2
+      }
+    },
+    {
+      "id": 165,
+      "cubre": [
+        "e226",
+        "e291",
+        "e499"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.38
+      }
+    },
+    {
+      "id": 166,
+      "cubre": [
+        "e436",
+        "e464"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.9
+      }
+    },
+    {
+      "id": 167,
+      "cubre": [
+        "e75",
+        "e494"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.67
+      }
+    },
+    {
+      "id": 168,
+      "cubre": [
+        "e545"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.63
+      }
+    },
+    {
+      "id": 169,
+      "cubre": [
+        "e79",
+        "e414",
+        "e523",
+        "e631"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.36
+      }
+    },
+    {
+      "id": 170,
+      "cubre": [
+        "e6",
+        "e7",
+        "e195",
+        "e307"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.4
+      }
+    },
+    {
+      "id": 171,
+      "cubre": [
+        "e290",
+        "e324",
+        "e557",
+        "e565",
+        "e586"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.88
+      }
+    },
+    {
+      "id": 172,
+      "cubre": [
+        "e316",
+        "e419",
+        "e464",
+        "e596",
+        "e618"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.18
+      }
+    },
+    {
+      "id": 173,
+      "cubre": [
+        "e144",
+        "e167",
+        "e564",
+        "e601"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.73
+      }
+    },
+    {
+      "id": 174,
+      "cubre": [
+        "e38",
+        "e378",
+        "e431",
+        "e580"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.53
+      }
+    },
+    {
+      "id": 175,
+      "cubre": [
+        "e93"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.62
+      }
+    },
+    {
+      "id": 176,
+      "cubre": [
+        "e276",
+        "e279",
+        "e382",
+        "e476"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.92
+      }
+    },
+    {
+      "id": 177,
+      "cubre": [
+        "e120",
+        "e364",
+        "e468",
+        "e496"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.74
+      }
+    },
+    {
+      "id": 178,
+      "cubre": [
+        "e177"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.31
+      }
+    },
+    {
+      "id": 179,
+      "cubre": [
+        "e295",
+        "e604"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.32
+      }
+    },
+    {
+      "id": 180,
+      "cubre": [
+        "e281",
+        "e295",
+        "e344",
+        "e431",
+        "e444"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.94
+      }
+    },
+    {
+      "id": 181,
+      "cubre": [
+        "e66",
+        "e94",
+        "e412",
+        "e436"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.86
+      }
+    },
+    {
+      "id": 182,
+      "cubre": [
+        "e27",
+        "e235"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.28
+      }
+    },
+    {
+      "id": 183,
+      "cubre": [
+        "e4",
+        "e102",
+        "e192",
+        "e409"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.85
+      }
+    },
+    {
+      "id": 184,
+      "cubre": [
+        "e563"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.81
+      }
+    },
+    {
+      "id": 185,
+      "cubre": [
+        "e49",
+        "e106",
+        "e567"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.51
+      }
+    },
+    {
+      "id": 186,
+      "cubre": [
+        "e272"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.61
+      }
+    },
+    {
+      "id": 187,
+      "cubre": [
+        "e220"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.8
+      }
+    },
+    {
+      "id": 188,
+      "cubre": [
+        "e459"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.14
+      }
+    },
+    {
+      "id": 189,
+      "cubre": [
+        "e119",
+        "e403",
+        "e491",
+        "e621"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.34
+      }
+    },
+    {
+      "id": 190,
+      "cubre": [
+        "e172",
+        "e207",
+        "e264",
+        "e427",
+        "e534"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.82
+      }
+    },
+    {
+      "id": 191,
+      "cubre": [
+        "e106",
+        "e220",
+        "e346",
+        "e498",
+        "e639"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 7.82
+      }
+    },
+    {
+      "id": 192,
+      "cubre": [
+        "e58",
+        "e274",
+        "e554"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.7
+      }
+    },
+    {
+      "id": 193,
+      "cubre": [
+        "e235"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.43
+      }
+    },
+    {
+      "id": 194,
+      "cubre": [
+        "e152",
+        "e422"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.31
+      }
+    },
+    {
+      "id": 195,
+      "cubre": [
+        "e60",
+        "e546",
+        "e575",
+        "e613"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.51
+      }
+    },
+    {
+      "id": 196,
+      "cubre": [
+        "e287",
+        "e314",
+        "e492"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.42
+      }
+    },
+    {
+      "id": 197,
+      "cubre": [
+        "e248",
+        "e377",
+        "e482",
+        "e614"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.59
+      }
+    },
+    {
+      "id": 198,
+      "cubre": [
+        "e462",
+        "e595"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.52
+      }
+    },
+    {
+      "id": 199,
+      "cubre": [
+        "e139",
+        "e219",
+        "e542"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.6
+      }
+    },
+    {
+      "id": 200,
+      "cubre": [
+        "e122",
+        "e131",
+        "e144",
+        "e338"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.03
+      }
+    },
+    {
+      "id": 201,
+      "cubre": [
+        "e52",
+        "e119",
+        "e177",
+        "e232",
+        "e577"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.53
+      }
+    },
+    {
+      "id": 202,
+      "cubre": [
+        "e5",
+        "e336",
+        "e433"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.4
+      }
+    },
+    {
+      "id": 203,
+      "cubre": [
+        "e87",
+        "e226",
+        "e230",
+        "e287",
+        "e350"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.41
+      }
+    },
+    {
+      "id": 204,
+      "cubre": [
+        "e24",
+        "e125",
+        "e338",
+        "e356",
+        "e389"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.02
+      }
+    },
+    {
+      "id": 205,
+      "cubre": [
+        "e43",
+        "e588"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.7
+      }
+    },
+    {
+      "id": 206,
+      "cubre": [
+        "e308"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.24
+      }
+    },
+    {
+      "id": 207,
+      "cubre": [
+        "e32",
+        "e51",
+        "e81",
+        "e143",
+        "e371"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.35
+      }
+    },
+    {
+      "id": 208,
+      "cubre": [
+        "e97",
+        "e337"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.07
+      }
+    },
+    {
+      "id": 209,
+      "cubre": [
+        "e115",
+        "e129",
+        "e361"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.65
+      }
+    },
+    {
+      "id": 210,
+      "cubre": [
+        "e429",
+        "e487",
+        "e541",
+        "e578",
+        "e636"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.71
+      }
+    },
+    {
+      "id": 211,
+      "cubre": [
+        "e310",
+        "e563"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.49
+      }
+    },
+    {
+      "id": 212,
+      "cubre": [
+        "e113",
+        "e180",
+        "e221",
+        "e247",
+        "e446"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.91
+      }
+    },
+    {
+      "id": 213,
+      "cubre": [
+        "e278",
+        "e543",
+        "e552"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.26
+      }
+    },
+    {
+      "id": 214,
+      "cubre": [
+        "e71",
+        "e107",
+        "e383",
+        "e558"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.9
+      }
+    },
+    {
+      "id": 215,
+      "cubre": [
+        "e32",
+        "e316",
+        "e457",
+        "e595",
+        "e634"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.4
+      }
+    },
+    {
+      "id": 216,
+      "cubre": [
+        "e146",
+        "e222",
+        "e344",
+        "e374",
+        "e496"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.44
+      }
+    },
+    {
+      "id": 217,
+      "cubre": [
+        "e121",
+        "e416",
+        "e451",
+        "e616"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.43
+      }
+    },
+    {
+      "id": 218,
+      "cubre": [
+        "e9",
+        "e10",
+        "e136",
+        "e389",
+        "e551"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.14
+      }
+    },
+    {
+      "id": 219,
+      "cubre": [
+        "e283",
+        "e380",
+        "e433",
+        "e613"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.66
+      }
+    },
+    {
+      "id": 220,
+      "cubre": [
+        "e39",
+        "e55",
+        "e102",
+        "e483"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.31
+      }
+    },
+    {
+      "id": 221,
+      "cubre": [
+        "e602"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.77
+      }
+    },
+    {
+      "id": 222,
+      "cubre": [
+        "e278",
+        "e565",
+        "e582"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.22
+      }
+    },
+    {
+      "id": 223,
+      "cubre": [
+        "e246",
+        "e637"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.06
+      }
+    },
+    {
+      "id": 224,
+      "cubre": [
+        "e42",
+        "e120",
+        "e163"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.8
+      }
+    },
+    {
+      "id": 225,
+      "cubre": [
+        "e58",
+        "e260",
+        "e632"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.73
+      }
+    },
+    {
+      "id": 226,
+      "cubre": [
+        "e301",
+        "e350",
+        "e452"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.71
+      }
+    },
+    {
+      "id": 227,
+      "cubre": [
+        "e58",
+        "e117",
+        "e148",
+        "e350",
+        "e526"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.89
+      }
+    },
+    {
+      "id": 228,
+      "cubre": [
+        "e23",
+        "e125",
+        "e350",
+        "e597"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.08
+      }
+    },
+    {
+      "id": 229,
+      "cubre": [
+        "e103",
+        "e179",
+        "e234",
+        "e407"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.02
+      }
+    },
+    {
+      "id": 230,
+      "cubre": [
+        "e252",
+        "e473",
+        "e483"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.43
+      }
+    },
+    {
+      "id": 231,
+      "cubre": [
+        "e443",
+        "e452"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.88
+      }
+    },
+    {
+      "id": 232,
+      "cubre": [
+        "e13",
+        "e129",
+        "e154",
+        "e273",
+        "e500"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.73
+      }
+    },
+    {
+      "id": 233,
+      "cubre": [
+        "e77"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.13
+      }
+    },
+    {
+      "id": 234,
+      "cubre": [
+        "e158",
+        "e160",
+        "e296",
+        "e515"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.52
+      }
+    },
+    {
+      "id": 235,
+      "cubre": [
+        "e476"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.3
+      }
+    },
+    {
+      "id": 236,
+      "cubre": [
+        "e401",
+        "e551"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.9
+      }
+    },
+    {
+      "id": 237,
+      "cubre": [
+        "e163",
+        "e434"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.08
+      }
+    },
+    {
+      "id": 238,
+      "cubre": [
+        "e78",
+        "e550"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.58
+      }
+    },
+    {
+      "id": 239,
+      "cubre": [
+        "e23",
+        "e223",
+        "e242",
+        "e438",
+        "e526"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.42
+      }
+    },
+    {
+      "id": 240,
+      "cubre": [
+        "e517",
+        "e627"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.23
+      }
+    },
+    {
+      "id": 241,
+      "cubre": [
+        "e50",
+        "e122",
+        "e397",
+        "e581"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.04
+      }
+    },
+    {
+      "id": 242,
+      "cubre": [
+        "e13",
+        "e47",
+        "e245",
+        "e531"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.6
+      }
+    },
+    {
+      "id": 243,
+      "cubre": [
+        "e285",
+        "e426",
+        "e478"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.35
+      }
+    },
+    {
+      "id": 244,
+      "cubre": [
+        "e326",
+        "e428",
+        "e460",
+        "e514",
+        "e548"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 7.29
+      }
+    },
+    {
+      "id": 245,
+      "cubre": [
+        "e206",
+        "e286",
+        "e369",
+        "e508"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.34
+      }
+    },
+    {
+      "id": 246,
+      "cubre": [
+        "e86",
+        "e180",
+        "e637"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.03
+      }
+    },
+    {
+      "id": 247,
+      "cubre": [
+        "e262",
+        "e265"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.14
+      }
+    },
+    {
+      "id": 248,
+      "cubre": [
+        "e14",
+        "e479",
+        "e580"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.58
+      }
+    },
+    {
+      "id": 249,
+      "cubre": [
+        "e73",
+        "e202",
+        "e232"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.89
+      }
+    },
+    {
+      "id": 250,
+      "cubre": [
+        "e143",
+        "e592"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.52
+      }
+    },
+    {
+      "id": 251,
+      "cubre": [
+        "e80",
+        "e85"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.08
+      }
+    },
+    {
+      "id": 252,
+      "cubre": [
+        "e31"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.44
+      }
+    },
+    {
+      "id": 253,
+      "cubre": [
+        "e606",
+        "e612"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 7.05
+      }
+    },
+    {
+      "id": 254,
+      "cubre": [
+        "e76",
+        "e143",
+        "e248",
+        "e293",
+        "e391"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.96
+      }
+    },
+    {
+      "id": 255,
+      "cubre": [
+        "e183",
+        "e231",
+        "e305",
+        "e366"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.13
+      }
+    },
+    {
+      "id": 256,
+      "cubre": [
+        "e91",
+        "e214",
+        "e299",
+        "e307",
+        "e527"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.2
+      }
+    },
+    {
+      "id": 257,
+      "cubre": [
+        "e106",
+        "e382",
+        "e455",
+        "e607",
+        "e630"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.57
+      }
+    },
+    {
+      "id": 258,
+      "cubre": [
+        "e324"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.31
+      }
+    },
+    {
+      "id": 259,
+      "cubre": [
+        "e116"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.7
+      }
+    },
+    {
+      "id": 260,
+      "cubre": [
+        "e213",
+        "e517"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.09
+      }
+    },
+    {
+      "id": 261,
+      "cubre": [
+        "e394",
+        "e530"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.33
+      }
+    },
+    {
+      "id": 262,
+      "cubre": [
+        "e4",
+        "e124",
+        "e207",
+        "e261",
+        "e577"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.97
+      }
+    },
+    {
+      "id": 263,
+      "cubre": [
+        "e39",
+        "e172",
+        "e237",
+        "e275",
+        "e629"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.7
+      }
+    },
+    {
+      "id": 264,
+      "cubre": [
+        "e279",
+        "e409",
+        "e432"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.88
+      }
+    },
+    {
+      "id": 265,
+      "cubre": [
+        "e192",
+        "e573"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 5.09
+      }
+    },
+    {
+      "id": 266,
+      "cubre": [
+        "e501"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.55
+      }
+    },
+    {
+      "id": 267,
+      "cubre": [
+        "e44",
+        "e79",
+        "e97",
+        "e250",
+        "e345"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.5
+      }
+    },
+    {
+      "id": 268,
+      "cubre": [
+        "e178",
+        "e610"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.63
+      }
+    },
+    {
+      "id": 269,
+      "cubre": [
+        "e202",
+        "e239",
+        "e370",
+        "e535"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.93
+      }
+    },
+    {
+      "id": 270,
+      "cubre": [
+        "e46",
+        "e54",
+        "e67",
+        "e350",
+        "e470"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.02
+      }
+    },
+    {
+      "id": 271,
+      "cubre": [
+        "e45",
+        "e481",
+        "e598"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.92
+      }
+    },
+    {
+      "id": 272,
+      "cubre": [
+        "e95",
+        "e406",
+        "e410",
+        "e525",
+        "e587"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.55
+      }
+    },
+    {
+      "id": 273,
+      "cubre": [
+        "e51",
+        "e482",
+        "e566"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.16
+      }
+    },
+    {
+      "id": 274,
+      "cubre": [
+        "e153",
+        "e325",
+        "e603"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.59
+      }
+    },
+    {
+      "id": 275,
+      "cubre": [
+        "e25",
+        "e370",
+        "e401",
+        "e426",
+        "e533"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.33
+      }
+    },
+    {
+      "id": 276,
+      "cubre": [
+        "e15",
+        "e104",
+        "e341",
+        "e345",
+        "e378"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.74
+      }
+    },
+    {
+      "id": 277,
+      "cubre": [
+        "e76",
+        "e86",
+        "e457",
+        "e497",
+        "e553"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.5
+      }
+    },
+    {
+      "id": 278,
+      "cubre": [
+        "e4",
+        "e165",
+        "e220",
+        "e333",
+        "e370"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.06
+      }
+    },
+    {
+      "id": 279,
+      "cubre": [
+        "e111",
+        "e604"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.85
+      }
+    },
+    {
+      "id": 280,
+      "cubre": [
+        "e267",
+        "e350",
+        "e369",
+        "e431",
+        "e624"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.34
+      }
+    },
+    {
+      "id": 281,
+      "cubre": [
+        "e253"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 7.79
+      }
+    },
+    {
+      "id": 282,
+      "cubre": [
+        "e291",
+        "e564",
+        "e588",
+        "e634"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.67
+      }
+    },
+    {
+      "id": 283,
+      "cubre": [
+        "e274",
+        "e424"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.14
+      }
+    },
+    {
+      "id": 284,
+      "cubre": [
+        "e102",
+        "e216",
+        "e241",
+        "e270",
+        "e284"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.42
+      }
+    },
+    {
+      "id": 285,
+      "cubre": [
+        "e77",
+        "e209",
+        "e309",
+        "e557",
+        "e564"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.06
+      }
+    },
+    {
+      "id": 286,
+      "cubre": [
+        "e37",
+        "e137",
+        "e529"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.33
+      }
+    },
+    {
+      "id": 287,
+      "cubre": [
+        "e30"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 4.76
+      }
+    },
+    {
+      "id": 288,
+      "cubre": [
+        "e42",
+        "e571"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 2.66
+      }
+    },
+    {
+      "id": 289,
+      "cubre": [
+        "e118",
+        "e239"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.76
+      }
+    },
+    {
+      "id": 290,
+      "cubre": [
+        "e57",
+        "e126",
+        "e202",
+        "e273",
+        "e470"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.66
+      }
+    },
+    {
+      "id": 291,
+      "cubre": [
+        "e226",
+        "e364",
+        "e630"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.13
+      }
+    },
+    {
+      "id": 292,
+      "cubre": [
+        "e34",
+        "e169",
+        "e260",
+        "e566"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.08
+      }
+    },
+    {
+      "id": 293,
+      "cubre": [
+        "e537"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.32
+      }
+    },
+    {
+      "id": 294,
+      "cubre": [
+        "e206",
+        "e215",
+        "e249",
+        "e296",
+        "e454"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.55
+      }
+    },
+    {
+      "id": 295,
+      "cubre": [
+        "e76",
+        "e200",
+        "e402"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 2.69
+      }
+    },
+    {
+      "id": 296,
+      "cubre": [
+        "e305",
+        "e437",
+        "e486",
+        "e596",
+        "e629"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.21
+      }
+    },
+    {
+      "id": 297,
+      "cubre": [
+        "e108"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.45
+      }
+    },
+    {
+      "id": 298,
+      "cubre": [
+        "e76",
+        "e200",
+        "e348",
+        "e352",
+        "e431"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.57
+      }
+    },
+    {
+      "id": 299,
+      "cubre": [
+        "e490",
+        "e514",
+        "e564",
+        "e578",
+        "e615"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.43
+      }
+    },
+    {
+      "id": 300,
+      "cubre": [
+        "e275",
+        "e538"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 6.07
+      }
+    },
+    {
+      "id": 301,
+      "cubre": [
+        "e262",
+        "e266",
+        "e553",
+        "e622"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 1.13
+      }
+    },
+    {
+      "id": 302,
+      "cubre": [
+        "e469"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.03
+      }
+    },
+    {
+      "id": 303,
+      "cubre": [
+        "e455",
+        "e521"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 7.3
+      }
+    },
+    {
+      "id": 304,
+      "cubre": [
+        "e149",
+        "e394",
+        "e448"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.78
+      }
+    },
+    {
+      "id": 305,
+      "cubre": [
+        "e9",
+        "e262",
+        "e555"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.76
+      }
+    },
+    {
+      "id": 306,
+      "cubre": [
+        "e333"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.78
+      }
+    },
+    {
+      "id": 307,
+      "cubre": [
+        "e214"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 3.96
+      }
+    },
+    {
+      "id": 308,
+      "cubre": [
+        "e132"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 9.64
+      }
+    },
+    {
+      "id": 309,
+      "cubre": [
+        "e28",
+        "e188",
+        "e239",
+        "e349",
+        "e517"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 3.72
+      }
+    },
+    {
+      "id": 310,
+      "cubre": [
+        "e76",
+        "e431",
+        "e473",
+        "e540"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 4.67
+      }
+    },
+    {
+      "id": 311,
+      "cubre": [
+        "e44",
+        "e623"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.67
+      }
+    },
+    {
+      "id": 312,
+      "cubre": [
+        "e389",
+        "e405"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.6
+      }
+    },
+    {
+      "id": 313,
+      "cubre": [
+        "e2",
+        "e315",
+        "e369"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.48
+      }
+    },
+    {
+      "id": 314,
+      "cubre": [
+        "e32",
+        "e380"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 5.99
+      }
+    },
+    {
+      "id": 315,
+      "cubre": [
+        "e115",
+        "e326",
+        "e502",
+        "e598",
+        "e619"
+      ],
+      "utilidad": {
+        "tipo": "raiz",
+        "a": 8.29
+      }
+    },
+    {
+      "id": 316,
+      "cubre": [
+        "e12",
+        "e319",
+        "e440"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 6.75
+      }
+    },
+    {
+      "id": 317,
+      "cubre": [
+        "e514"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 8.83
+      }
+    },
+    {
+      "id": 318,
+      "cubre": [
+        "e237",
+        "e382",
+        "e448"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 1.92
+      }
+    },
+    {
+      "id": 319,
+      "cubre": [
+        "e133",
+        "e167",
+        "e300",
+        "e524",
+        "e527"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 9.81
+      }
+    },
+    {
+      "id": 320,
+      "cubre": [
+        "e224"
+      ],
+      "utilidad": {
+        "tipo": "log",
+        "a": 7.05
+      }
+    }
+  ]
+}

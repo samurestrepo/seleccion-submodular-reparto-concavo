@@ -1,0 +1,13 @@
+CASO: convexa_rechazada
+N = 2, k = 1, B = 2
+
+== Verificación de la entrada ==
+  [OK] 1 ≤ k < N: k = 1, N = 2
+  [OK] B ≥ 0: B = 2
+  [OK] ids únicos: sin repetidos
+  [FALLA] cada u_i creciente y cóncava en {0, …, B}: nodo 1: Δ(1) > Δ(0) (no es cóncava)
+
+== Caso rechazado: los algoritmos no se ejecutaron ==
+  Motivo: cada u_i creciente y cóncava en {0, …, B}: nodo 1: Δ(1) > Δ(0) (no es cóncava)
+
+TODAS LAS VERIFICACIONES: HAY FALLAS

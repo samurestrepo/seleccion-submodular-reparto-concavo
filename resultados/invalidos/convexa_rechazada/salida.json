@@ -1,0 +1,33 @@
+{
+  "caso": "convexa_rechazada",
+  "entrada": {
+    "N": 2,
+    "k": 1,
+    "B": 2
+  },
+  "verificaciones": {
+    "entrada": [
+      {
+        "nombre": "1 ≤ k < N",
+        "cumple": true,
+        "detalle": "k = 1, N = 2"
+      },
+      {
+        "nombre": "B ≥ 0",
+        "cumple": true,
+        "detalle": "B = 2"
+      },
+      {
+        "nombre": "ids únicos",
+        "cumple": true,
+        "detalle": "sin repetidos"
+      },
+      {
+        "nombre": "cada u_i creciente y cóncava en {0, …, B}",
+        "cumple": false,
+        "detalle": "nodo 1: Δ(1) > Δ(0) (no es cóncava)"
+      }
+    ]
+  },
+  "todas_cumplen": false
+}

@@ -27,6 +27,7 @@ python ejecutar.py casos/propios/ejemplo_informe.json
 
 # Todos los casos de una carpeta, con las evidencias en otra
 python ejecutar.py casos/propios --salida resultados/propios
+python ejecutar.py casos/invalidos --salida resultados/invalidos   # deben rechazarse
 python ejecutar.py casos/profesora --salida resultados/profesora
 ```
 
@@ -58,7 +59,8 @@ Mientras llegan los casos de la docente se usa el formato del informe (sección 
 ejecutar.py          línea de comandos
 red/                 la solución (un archivo por responsabilidad)
 pruebas/             pruebas con pytest
-casos/propios/       instancias de ejemplo
+casos/propios/       batería de casos válidos (ver casos/CATALOGO.md)
+casos/invalidos/     casos que deben rechazarse
 casos/profesora/     casos oficiales (pendientes)
 resultados/          evidencias de ejecución
 docs/modulos/        una ficha por archivo de código

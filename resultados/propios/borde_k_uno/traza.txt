@@ -1,0 +1,43 @@
+CASO: borde_k_uno
+N = 4, k = 1, B = 5
+
+== Verificación de la entrada ==
+  [OK] 1 ≤ k < N: k = 1, N = 4
+  [OK] B ≥ 0: B = 5
+  [OK] ids únicos: sin repetidos
+  [OK] cada u_i creciente y cóncava en {0, …, B}: todas cumplen
+
+== Parte 2: selección de nodos (voraz) ==
+  Paso 1: Δ(1) = 1, Δ(2) = 3, Δ(3) = 2, Δ(4) = 1
+    → elige el nodo 2 (Δ = 3); f(S) = 3
+  Resultado: S = [2], f(S) = 3, llamadas a Δ = 4
+
+== Parte 1: reparto del presupuesto (voraz con montículo) ==
+  Unidad 1: al nodo 2 (Δ = 2)
+  Unidad 2: al nodo 2 (Δ = 0.8284)
+  Unidad 3: al nodo 2 (Δ = 0.6357)
+  Unidad 4: al nodo 2 (Δ = 0.5359)
+  Unidad 5: al nodo 2 (Δ = 0.4721)
+  Resultado: x_2 = 5; utilidad total = 4.472136
+
+== Verificación: Parte 2 ==
+  [OK] S ⊆ V: S = [2]
+  [OK] S sin repetidos: |S| = 1
+  [OK] |S| ≤ k: |S| = 1, k = 1
+  [OK] valor acumulado = f(S) recalculada: acumulado = 3, recalculado = 3
+  [OK] llamadas a Δ = k·N − k(k−1)/2: contadas = 4, fórmula = 4
+
+== Verificación: Parte 1 ==
+  [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
+  [OK] Σ x_i = B: Σ x_i = 5, B = 5
+  [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 4.472136, recalculada = 4.472136
+  [OK] extracciones = inserciones = B: extracciones = 5, inserciones = 5
+
+== Verificación: Ejecución ==
+  [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
+
+== Tiempos (solo los algoritmos, sin lectura ni escritura) ==
+  Parte 2 (selección): 0.000006315 s
+  Parte 1 (reparto):   0.000009723 s
+
+TODAS LAS VERIFICACIONES: CUMPLEN

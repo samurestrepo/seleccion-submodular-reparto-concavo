@@ -112,10 +112,13 @@ Si la entrada no cumple sus restricciones, los algoritmos no se ejecutan y la tr
 4. `python ejecutar.py casos/profesora --salida resultados/profesora` (o cualquier archivo o carpeta de casos).
 5. Revisar `resultados/profesora/resumen.csv` y la carpeta de cada caso.
 
-## 5. Medición de tiempos
+## 5. Casos de prueba utilizados
+Los casos oficiales de la docente no se habían recibido al cerrar esta versión. Se usó una batería propia de 13 casos válidos y 3 inválidos, descrita caso por caso (qué comprueba, esperado y obtenido) en `casos/CATALOGO.md`. Las evidencias están en `resultados/propios/` y `resultados/invalidos/`, y `pruebas/test_bateria.py` comprueba automáticamente que los válidos cumplen todas las verificaciones y que los inválidos se rechazan.
+
+## 6. Medición de tiempos
 Se usa `time.perf_counter()` alrededor de cada algoritmo, en una ejecución **sin traza**; no incluye lectura, escritura, traza ni verificaciones. Luego se ejecuta otra vez con traza para la evidencia y se comprueba que ambas coinciden. En casos muy pequeños los tiempos son de microsegundos y tienen ruido del sistema; la comparación contra T(n) se hará en la entrega de experimentación con instancias grandes y repeticiones.
 
-## 6. Limitaciones
+## 7. Limitaciones
 - El formato de entrada es provisional hasta recibir los casos de la docente; adaptarlo solo requiere cambiar `red/entrada.py`.
 - La utilidad conjunta es la de cobertura; otra función submodular requiere solo otro oráculo con la misma interfaz.
 - La Parte 2 es aproximada: el voraz no siempre da el óptimo (ejemplo: `casos/propios/contraejemplo_seleccion.json` da 5 y el óptimo es 6).

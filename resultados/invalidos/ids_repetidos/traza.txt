@@ -1,0 +1,13 @@
+CASO: ids_repetidos
+N = 3, k = 1, B = 2
+
+== Verificación de la entrada ==
+  [OK] 1 ≤ k < N: k = 1, N = 3
+  [OK] B ≥ 0: B = 2
+  [FALLA] ids únicos: repetidos: [1]
+  [OK] cada u_i creciente y cóncava en {0, …, B}: todas cumplen
+
+== Caso rechazado: los algoritmos no se ejecutaron ==
+  Motivo: ids únicos: repetidos: [1]
+
+TODAS LAS VERIFICACIONES: HAY FALLAS

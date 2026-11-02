@@ -1,0 +1,13 @@
+CASO: k_igual_a_N
+N = 3, k = 3, B = 2
+
+== Verificación de la entrada ==
+  [FALLA] 1 ≤ k < N: k = 3, N = 3
+  [OK] B ≥ 0: B = 2
+  [OK] ids únicos: sin repetidos
+  [OK] cada u_i creciente y cóncava en {0, …, B}: todas cumplen
+
+== Caso rechazado: los algoritmos no se ejecutaron ==
+  Motivo: 1 ≤ k < N: k = 3, N = 3
+
+TODAS LAS VERIFICACIONES: HAY FALLAS

@@ -38,7 +38,7 @@ N = 3, k = 2, B = 4
   [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
 
 == Tiempos (solo los algoritmos, sin lectura ni escritura) ==
-  Parte 2 (selección): 0.000008593 s
-  Parte 1 (reparto):   0.000010314 s
+  Parte 2 (selección): 0.000007178 s
+  Parte 1 (reparto):   0.000010356 s
 
 TODAS LAS VERIFICACIONES: CUMPLEN

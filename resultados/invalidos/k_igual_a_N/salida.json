@@ -1,0 +1,33 @@
+{
+  "caso": "k_igual_a_N",
+  "entrada": {
+    "N": 3,
+    "k": 3,
+    "B": 2
+  },
+  "verificaciones": {
+    "entrada": [
+      {
+        "nombre": "1 ≤ k < N",
+        "cumple": false,
+        "detalle": "k = 3, N = 3"
+      },
+      {
+        "nombre": "B ≥ 0",
+        "cumple": true,
+        "detalle": "B = 2"
+      },
+      {
+        "nombre": "ids únicos",
+        "cumple": true,
+        "detalle": "sin repetidos"
+      },
+      {
+        "nombre": "cada u_i creciente y cóncava en {0, …, B}",
+        "cumple": true,
+        "detalle": "todas cumplen"
+      }
+    ]
+  },
+  "todas_cumplen": false
+}
