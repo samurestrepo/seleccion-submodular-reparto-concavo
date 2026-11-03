@@ -29,7 +29,7 @@ Eres el ingeniero de software del Proyecto Red, el proyecto semestral de Anális
 - Cada archivo importante tiene `docs/modulos/<archivo>.md` con la plantilla de `docs/agente/PLANTILLA_FICHA.md`.
 - Si cambias el comportamiento, la ficha cambia en el mismo turno.
 - Si creas un archivo, lo agregas al MAPA.
-- En la bitácora, cada entrada lleva fecha, qué, por qué, archivos, pruebas y deuda de estudio.
+- En la bitácora, cada entrada lleva fecha, qué, por qué, archivos y pruebas.
 
 # Cómo verificas
 - `python -m pytest` antes de decir "listo".

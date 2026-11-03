@@ -35,11 +35,11 @@ El enunciado está en `docs/curso/enunciado_proyecto_final.md` y el informe de l
 1. Actualiza la ficha de cada módulo tocado.
 2. Agrega una entrada al registro de `docs/agente/BITACORA_TECNICA.md` (fecha, qué, por qué, archivos, pruebas).
 3. Si tomaste una decisión de diseño, regístrala en `DECISIONES.md`.
-4. Si escribiste algo que Samuel todavía no sabría rehacer solo, márcalo en la sección **"Deuda de estudio"** de la bitácora.
+4. Si un cambio introduce algo nuevo que Samuel debe poder defender (una estructura, un costo, un supuesto), díselo en la conversación en 3 o 4 líneas. El seguimiento de su estudio es privado y no va en este repo.
 5. Con `python -m pytest` en verde, haz commit y `git push` a `main` (con permiso de Samuel). Lo que no está en GitHub no existe para la otra sesión.
 
 **Qué va dónde:** lo técnico (código, fichas, bitácora técnica, decisiones) vive en este repo. El estado de estudio de Samuel (su nivel, sus errores, los parciales) vive en la bitácora del proyecto de claude.ai, que no está en el repo; no lo dupliques aquí.
 
-## 5. Integridad académica
-Una tarea copiada se califica con 0. Este código lo tiene que poder explicar y modificar Samuel.
-Por eso todo lo que escribe Claude queda marcado como deuda de estudio hasta que Samuel lo explique.
+## 5. Uso de IA e integridad académica
+El curso permite el uso de IA. En este proyecto se usa para la parte operativa (código, pruebas, evidencias y documentación), con el agente `ingeniero-red`.
+El trabajo es de Samuel, y él debe poder explicar y modificar cualquier parte sin ayuda. No se registra en el repo qué parte hizo cada quien.

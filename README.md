@@ -10,6 +10,9 @@ En cada ronda, una red de N nodos:
 - Informe de la primera entrega: <https://docs.google.com/document/d/1Z7U0C04y9HhB1FRQQxCu9ldMJjMfnfyggFd_Ma2NNhE/edit>
 - Manual técnico: [`MANUAL_TECNICO.md`](MANUAL_TECNICO.md)
 
+## Uso de inteligencia artificial
+El curso permite el uso de IA. En este proyecto se usó Claude, con un agente configurado para el repositorio (`.claude/agents/ingeniero-red.md` y `CLAUDE.md`), en la parte operativa: implementación, pruebas, evidencias y documentación. El planteamiento del problema, las demostraciones y la sustentación son responsabilidad del autor.
+
 ## Requisitos
 - **Python 3.11 o superior.** La solución usa solo la biblioteca estándar (`heapq`, `json`, `time`, `argparse`, `random`, `csv`).
 - Para correr las pruebas: `pytest` (`requirements-dev.txt`).
