@@ -20,7 +20,7 @@ Se escribe para alguien que no recuerda nada: frases completas, sin "lo de ayer"
 7. [x] README y MANUAL_TECNICO.
 8. [ ] Correr los casos de la profesora cuando lleguen y guardar las evidencias en `resultados/profesora/`: `python ejecutar.py casos/profesora --salida resultados/profesora`.
 9. [ ] Repasar el código para la sustentación en el orden sugerido (abajo).
-10. [ ] **Pendiente de Samuel: alinear el informe (Google Doc) con el código.** El agente no puede editarlo. Revisar:
+10. [x] **Alinear el informe (Google Doc) con el código** (hecho el 2026-11-02 desde el chat del proyecto: 6.3, 6.4, 6.5, 6.6 y 6.7). El agente no puede editarlo. Revisar:
     - **Mejor caso del reparto:** si dice Θ(N + B), cambiarlo. Con `heapq` es Θ(N + B(1 + lg N)) para toda entrada; el peor caso O(N + B lg N) se mantiene (decisión 15).
     - **Tiempo de la selección y de la ronda (6.3, 6.7):** si dice O(k·M), cambiarlo por O(k·(N + M)), o aclarar que supone C_v no vacíos (decisión 16).
     - **Restricción a > 0 (6.5, 6.6):** a debe ser un número finito con a > 0, y su incumplimiento es error de forma; las ganancias de tabla deben ser números finitos (decisión 17).
@@ -54,3 +54,4 @@ De lo que más se pregunta en la sustentación a lo que menos:
 | 2026-11-02 | Se suben a `main` el diagnóstico y las correcciones H1 a H17, y se deja en "Estado actual" el contexto para la otra sesión | Samuel dio permiso de commit y push | BITACORA_TECNICA.md | 181 pruebas en verde antes del commit |
 | 2026-11-02 | Batería de casos propios (bordes, empates, P y Q del informe, 5 sintéticos de N = 20 a 320) y casos inválidos; catálogo y sección 5 del manual. Se junta con las correcciones H1 a H17 (se conserva su manejo de casos rechazados) | Por si la docente no envía casos | casos/*, resultados/*, pruebas/test_bateria.py, README, MANUAL_TECNICO, MAPA | 199 en verde (desde la raíz y desde `pruebas/`) |
 | 2026-11-02 | Se reemplaza el registro de autoría punto por punto por una declaración general de uso de IA (CLAUDE.md §5 y README); la bitácora pasa a tener un orden de repaso; DECISIONES sin columna de autor | El repo se hará público; el curso permite IA y el detalle se conversa en la sustentación | CLAUDE.md, README.md, BITACORA_TECNICA.md, DECISIONES.md, agente | 54 en verde |
+| 2026-11-02 | Informe alineado con las decisiones 15 a 22: reparto Θ(N + B(1 + lg N)) con heapq sin mejor caso más barato; selección O(k·(N + M)); a finito y > 0; concavidad en unidades entregables; casos rechazados en el resumen; enlace al repo en la introducción | Pendiente 10 | Informe (Google Doc) | Sin cambios de código |
