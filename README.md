@@ -7,7 +7,7 @@ En cada ronda, una red de N nodos:
 1. **Parte 2, selección:** elige k nodos que maximicen una utilidad conjunta f monótona y submodular (cobertura en el formato propio; cobertura por influencia en el de la profesora). El problema es NP-difícil; se usa un **voraz aproximado** con garantía ≥ (1 − 1/e)·OPT y Θ(N·k) llamadas a f.
 2. **Parte 1, reparto:** reparte B unidades entre los elegidos para maximizar Σ u_i(x_i), con u_i crecientes y cóncavas. Se usa un **voraz óptimo con montículo**, O(N + B lg N).
 
-- Informe de la primera entrega: <https://docs.google.com/document/d/1Z7U0C04y9HhB1FRQQxCu9ldMJjMfnfyggFd_Ma2NNhE/edit>
+- Informe de la primera entrega (versión oficial): [`entregables/primera_entrega/1_Informe_Primera_Entrega_G2.pdf`](entregables/primera_entrega/1_Informe_Primera_Entrega_G2.pdf). Versión de consulta en Google Docs, que puede tener cambios posteriores a la etiqueta: <https://docs.google.com/document/d/1Z7U0C04y9HhB1FRQQxCu9ldMJjMfnfyggFd_Ma2NNhE/edit>
 - Manual técnico: [`MANUAL_TECNICO.md`](MANUAL_TECNICO.md)
 
 ## Primera entrega
@@ -17,7 +17,7 @@ Versión: etiqueta `primera-entrega` del repositorio. Para reproducir el caso de
 python ejecutar.py casos/profesora --salida resultados/profesora
 ```
 
-Sus evidencias quedan en `resultados/profesora/` (`resumen.csv` y, en `entrada_G2_red_15_nodos/`, `salida.json`, `traza.json` y `traza.txt`). El informe, el manual técnico en PDF y el anexo están en `entregables/primera_entrega/` (ver su `LEEME.md`).
+Sus evidencias quedan en `resultados/profesora/` (`resumen.csv` y, en `entrada_G2_red_15_nodos/`, `salida.json`, `traza.json` y `traza.txt`). El informe y el anexo (PDF) están en `entregables/primera_entrega/` (ver su `LEEME.md`). El manual técnico es [`MANUAL_TECNICO.md`](MANUAL_TECNICO.md), en la raíz (https://github.com/samurestrepo/seleccion-submodular-reparto-concavo/blob/primera-entrega/MANUAL_TECNICO.md, en la etiqueta `primera-entrega`).
 
 ## Uso de inteligencia artificial
 El curso permite el uso de IA. En este proyecto se usó Claude, con un agente configurado para el repositorio (`.claude/agents/ingeniero-red.md` y `CLAUDE.md`), en la parte operativa: implementación, pruebas, evidencias y documentación. El planteamiento del problema, las demostraciones y la sustentación son responsabilidad del autor.

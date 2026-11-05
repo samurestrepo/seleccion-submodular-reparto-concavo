@@ -14,10 +14,10 @@ En k pasos agrega al equipo S el nodo de mayor ganancia marginal Δ(v | S). Empa
 |---|---|
 | Operación básica | una evaluación de Δ (llamada al oráculo) |
 | Conteo | k·N − k(k−1)/2, exacto y para toda entrada; entre kN/2 y kN ⇒ **Θ(N·k)** en mejor, peor y promedio |
-| Tiempo con cobertura | O(k·(N + M)), con M = Σ |C_v|. El N pesa porque cada paso recorre V; si ningún C_v es vacío, N ≤ M y queda O(k·M) |
-| Tiempo con influencia | O(k·(N + A)), con A = número de aristas: cada llamada cuesta O(1 + grado(v)). Con grafo completo, O(k·N²) |
-| Espacio adicional | O(k) más el estado del oráculo (O(|U|) con cobertura, O(N) con influencia) sin traza; la ejecución con traza guarda además los Δ de cada paso, Θ(N·k) |
-| Precondición | El modelo exige 1 ≤ k < N, y lo comprueba la verificación de entrada. El algoritmo por sí solo funciona con 1 ≤ k ≤ |V|, con V ordenado y sin repetidos. La valida la ronda; el algoritmo no la comprueba, para seguir el pseudocódigo |
+| Tiempo con cobertura | O(k·(N + M)), con M = Σ \|C_v\|. El N pesa porque cada paso recorre V; si ningún C_v es vacío, N ≤ M y queda O(k·M) |
+| Tiempo con influencia | O(k·(N + A)), con A = \|E\|, el número de aristas (en el informe se escribe \|E\|): cada llamada cuesta O(1 + grado(v)). Con grafo completo, O(k·N²) |
+| Espacio adicional | O(k) más el estado del oráculo (O(\|U\|) con cobertura, O(N) con influencia) sin traza; la ejecución con traza guarda además los Δ de cada paso, Θ(N·k) |
+| Precondición | El modelo exige 1 ≤ k < N, y lo comprueba la verificación de entrada. El algoritmo por sí solo funciona con 1 ≤ k ≤ \|V\|, con V ordenado y sin repetidos. La valida la ronda; el algoritmo no la comprueba, para seguir el pseudocódigo |
 | Garantía | f(S) ≥ (1 − 1/e)·OPT (Nemhauser, Wolsey y Fisher, 1978). Las dos f son monótonas, submodulares y con f(∅) = 0 |
 
 ### 1.2 Parte 1 — REPARTIR-PRESUPUESTO (voraz óptimo con montículo) · `red/reparto.py`
@@ -89,7 +89,7 @@ Cada archivo tiene su ficha en `docs/modulos/` con su complejidad, cómo modific
 | `numero_rondas`, `costo_participacion`, `presupuesto_costos_participacion_por_ronda` | de las variantes (b) y (a): **se leen y se reportan** en `informativo`, pero no se aplican |
 | `presupuesto_total_nodo` | tope c_i de x_i ≤ c_i. Entero ≥ 0 |
 
-**Supuestos de modelado adoptados** (decisiones 24 a 26 y 28, en docs/agente/DECISIONES.md, y se declaran en el informe):
+**Supuestos de modelado adoptados** (se declaran en el informe, sección 6.9):
 
 - f(S) = Σ_w a_w · (1 − Π_{v∈S} (1 − p_vw)), con p_vw = 0 si no hay arista y p_ww = 1.
 - u_i(x) = `coeficiente_utilidad` · ln(1 + x).
@@ -144,13 +144,13 @@ Por cada caso se escribe `<salida>/<caso>/salida.json`, `traza.json` y `traza.tx
 
 **Caso rechazado:** `salida.json` trae solo `caso`, `entrada`, `verificaciones.entrada` y `todas_cumplen = false`; `traza.json` trae las listas vacías y `motivo_rechazo`; `traza.txt` trae las verificaciones y el motivo. Si el archivo tiene forma inválida, N, k y B quedan en `null`. Si no se pudo ni abrir, no se escriben evidencias.
 
-**`<salida>/resumen.csv`:** columnas `caso, N, k, B, S, f(S), utilidad_reparto, tiempo_seleccion_s, tiempo_reparto_s, minimo_seleccion_s, minimo_reparto_s, repeticiones, todas_cumplen`. S va separado por espacios, la utilidad con 6 decimales y los tiempos con 9: `tiempo_*` son las medianas y `minimo_*` los mínimos de las R repeticiones. **Para la gráfica de T(n) se usa el mínimo** (decisión 30). Tiene una fila por caso de la **última corrida**, sin acumular. Un caso rechazado deja vacíos S, f(S), utilidad, tiempos, mínimos y repeticiones, con `todas_cumplen` en False. Si ya existía, se reemplaza y se avisa por consola. Dos archivos con el mismo nombre de caso (sin distinguir mayúsculas) son un error: corre el primero y el segundo no se ejecuta ni tiene fila.
+**`<salida>/resumen.csv`:** columnas `caso, N, k, B, S, f(S), utilidad_reparto, tiempo_seleccion_s, tiempo_reparto_s, minimo_seleccion_s, minimo_reparto_s, repeticiones, todas_cumplen`. S va separado por espacios, la utilidad con 6 decimales y los tiempos con 9: `tiempo_*` son las medianas y `minimo_*` los mínimos de las R repeticiones. **Para la gráfica de T(n) se usa el mínimo:** el ruido del sistema solo suma tiempo, así que el mínimo es la medición menos contaminada. Tiene una fila por caso de la **última corrida**, sin acumular. Un caso rechazado deja vacíos S, f(S), utilidad, tiempos, mínimos y repeticiones, con `todas_cumplen` en False. Si ya existía, se reemplaza y se avisa por consola. Dos archivos con el mismo nombre de caso (sin distinguir mayúsculas) son un error: corre el primero y el segundo no se ejecuta ni tiene fila.
 
 ### 3.3 Verificaciones
 | Parte | Comprobación |
 |---|---|
 | Entrada | 1 ≤ k < N; B ≥ 0; ids únicos; cada u_i creciente y cóncava en {0, …, B}; solo con influencia, cada peso en [0, 1] |
-| Parte 2 | S ⊆ V; sin repetidos; |S| ≤ k; valor acumulado = f(S) recalculada, con tolerancia 1e-9; llamadas = k·N − k(k−1)/2 |
+| Parte 2 | S ⊆ V; sin repetidos; \|S\| ≤ k; valor acumulado = f(S) recalculada, con tolerancia 1e-9; llamadas = k·N − k(k−1)/2 |
 | Parte 1 | x_i entero en [0, B]; si hay topes, x_i ≤ c_i; Σ x_i = mín(B, Σ c_i); utilidad finita e igual a Σ u_i(x_i) recalculada; extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope |
 | Ejecución | todas las repeticiones dan el mismo S y el mismo reparto; la ejecución con traza da lo mismo que la medida |
 
@@ -173,10 +173,10 @@ Si la entrada no cumple sus restricciones, los algoritmos no se ejecutan y la tr
 `pruebas/test_bateria.py` comprueba automáticamente que los válidos cumplen todas las verificaciones, que los inválidos se rechazan y que el caso oficial da esos valores.
 
 ## 6. Medición de tiempos
-Se usa `time.perf_counter()` alrededor de cada algoritmo, en ejecuciones **sin traza**; no incluye lectura, escritura, traza ni verificaciones. La ejecución medida se repite R veces (21 por omisión, `--repeticiones`), cada una con un oráculo nuevo, y se reporta la **mediana** de cada parte; `salida.json` trae también el mínimo y el máximo. Se verifica que todas las repeticiones den el mismo S y el mismo reparto. Luego se ejecuta otra vez con traza para la evidencia y se comprueba que coincide. En casos muy pequeños los tiempos son de microsegundos y tienen ruido del sistema: la mediana no se deja arrastrar por una repetición lenta, pero no resiste una ráfaga que cubra más de la mitad de las repeticiones (por eso para T(n) se usa el mínimo, que trae `salida.json` y `resumen.csv`: el ruido del sistema solo suma tiempo, así que el mínimo es la medición menos contaminada; decisión 30). La comparación contra T(n) se hará en la entrega de experimentación con instancias grandes y repeticiones.
+Se usa `time.perf_counter()` alrededor de cada algoritmo, en ejecuciones **sin traza**; no incluye lectura, escritura, traza ni verificaciones. La ejecución medida se repite R veces (21 por omisión, `--repeticiones`), cada una con un oráculo nuevo, y se reporta la **mediana** de cada parte; `salida.json` trae también el mínimo y el máximo. Se verifica que todas las repeticiones den el mismo S y el mismo reparto. Luego se ejecuta otra vez con traza para la evidencia y se comprueba que coincide. En casos muy pequeños los tiempos son de microsegundos y tienen ruido del sistema: la mediana no se deja arrastrar por una repetición lenta, pero no resiste una ráfaga que cubra más de la mitad de las repeticiones (por eso para T(n) se usa el mínimo, que trae `salida.json` y `resumen.csv`: el ruido del sistema solo suma tiempo, así que el mínimo es la medición menos contaminada). La comparación contra T(n) se hará en la entrega de experimentación con instancias grandes y repeticiones.
 
 ## 7. Limitaciones
-- El archivo de la docente no dice cómo usar sus datos: f, u_i y el alcance de una ronda son supuestos de modelado (decisiones 24 a 26, en docs/agente/DECISIONES.md), no confirmados todavía con la docente. Otro formato solo requiere cambiar `red/entrada.py`.
+- El archivo de la docente no dice cómo usar sus datos: f, u_i y el alcance de una ronda son supuestos de modelado (informe, sección 6.9), no confirmados todavía con la docente. Otro formato solo requiere cambiar `red/entrada.py`.
 - La solución base no aplica `numero_rondas`, `costo_participacion` ni `presupuesto_costos_participacion_por_ronda`.
 - El tope se aplica en una sola ronda y no se descuenta: eso es de la variante (b). Si los topes de S suman menos que B, el sobrante queda sin gastar. La selección no mira los topes, así que puede elegir un nodo con tope 0.
 - La concavidad se juzga hasta B, no hasta c_i: una tabla que se dañe entre c_i y B se rechaza, aunque esas unidades nunca se entreguen.
