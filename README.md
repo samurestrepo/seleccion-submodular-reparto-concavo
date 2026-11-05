@@ -17,7 +17,7 @@ Versión: etiqueta `primera-entrega` del repositorio. Para reproducir el caso de
 python ejecutar.py casos/profesora --salida resultados/profesora
 ```
 
-Sus evidencias quedan en `resultados/profesora/` (`resumen.csv` y, en `entrada_G2_red_15_nodos/`, `salida.json`, `traza.json` y `traza.txt`). El informe y el anexo (PDF) están en `entregables/primera_entrega/` (ver su `LEEME.md`). El manual técnico es [`MANUAL_TECNICO.md`](MANUAL_TECNICO.md), en la raíz (https://github.com/samurestrepo/seleccion-submodular-reparto-concavo/blob/primera-entrega/MANUAL_TECNICO.md, en la etiqueta `primera-entrega`).
+Sus evidencias quedan en `resultados/profesora/` (`resumen.csv` y, en `entrada_G2_red_15_nodos/`, `salida.json`, `traza.json` y `traza.txt`). El informe, el manual técnico en PDF y el anexo están en `entregables/primera_entrega/` (ver su `LEEME.md`). La fuente del manual es [`MANUAL_TECNICO.md`](MANUAL_TECNICO.md), en la raíz (https://github.com/samurestrepo/seleccion-submodular-reparto-concavo/blob/primera-entrega/MANUAL_TECNICO.md, en la etiqueta `primera-entrega`).
 
 ## Uso de inteligencia artificial
 El curso permite el uso de IA. En este proyecto se usó Claude, con un agente configurado para el repositorio (`.claude/agents/ingeniero-red.md` y `CLAUDE.md`), en la parte operativa: implementación, pruebas, evidencias y documentación. El planteamiento del problema, las demostraciones y la sustentación son responsabilidad del autor.
