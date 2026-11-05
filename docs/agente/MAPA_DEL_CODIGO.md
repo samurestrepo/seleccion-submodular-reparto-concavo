@@ -43,5 +43,6 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `docs/curso/` | Enunciado, guía de la entrega y enlace al informe |
 | `docs/modulos/` | Una ficha por archivo de código |
 | `docs/agente/` | Memoria del agente: bitácora, mapa, decisiones, guía de cambios, plantilla |
-| `README.md` | Instalación y ejecución (entregable) |
+| `entregables/primera_entrega/` | Archivos de la primera entrega: informe (PDF), manual técnico (PDF, generado de `MANUAL_TECNICO.md` con `markdown` y Edge o Chrome headless; `markdown` no es dependencia del proyecto), anexo de Samuel (PDF) y `LEEME.md` |
+| `README.md` | Instalación y ejecución (entregable), con la sección "Primera entrega" |
 | `MANUAL_TECNICO.md` | Algoritmos, estructura, formatos, ejecución y limitaciones (entregable) |

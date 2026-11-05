@@ -10,6 +10,15 @@ En cada ronda, una red de N nodos:
 - Informe de la primera entrega: <https://docs.google.com/document/d/1Z7U0C04y9HhB1FRQQxCu9ldMJjMfnfyggFd_Ma2NNhE/edit>
 - Manual técnico: [`MANUAL_TECNICO.md`](MANUAL_TECNICO.md)
 
+## Primera entrega
+Versión: etiqueta `primera-entrega` del repositorio. Para reproducir el caso de la docente, desde la raíz:
+
+```
+python ejecutar.py casos/profesora --salida resultados/profesora
+```
+
+Sus evidencias quedan en `resultados/profesora/` (`resumen.csv` y, en `entrada_G2_red_15_nodos/`, `salida.json`, `traza.json` y `traza.txt`). El informe, el manual técnico en PDF y el anexo están en `entregables/primera_entrega/` (ver su `LEEME.md`).
+
 ## Uso de inteligencia artificial
 El curso permite el uso de IA. En este proyecto se usó Claude, con un agente configurado para el repositorio (`.claude/agents/ingeniero-red.md` y `CLAUDE.md`), en la parte operativa: implementación, pruebas, evidencias y documentación. El planteamiento del problema, las demostraciones y la sustentación son responsabilidad del autor.
 

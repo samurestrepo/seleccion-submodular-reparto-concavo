@@ -1,5 +1,7 @@
 # Manual técnico — Proyecto Red (G2), primera entrega
 
+Versión: etiqueta primera-entrega del repositorio. El informe correspondiente está en entregables/primera_entrega/1_Informe_Primera_Entrega_G2.pdf.
+
 Solución base: selección de nodos (Parte 2) y reparto de presupuesto (Parte 1).
 Las demostraciones (NP-dureza, eficiencia) están en el informe; este manual describe el código.
 
@@ -8,20 +10,20 @@ Las demostraciones (NP-dureza, eficiencia) están en el informe; este manual des
 ### 1.1 Parte 2 — SELECCIONAR-NODOS (voraz aproximado) · `red/seleccion.py`
 En k pasos agrega al equipo S el nodo de mayor ganancia marginal Δ(v | S). Empates: el menor índice. El voraz no conoce f: se la pide a un oráculo con la interfaz `estado_inicial`, `ganancia`, `agregar` y `valor`. Con cobertura (formato propio), Δ(v | S) = |C_v ∖ cub(S)|. Con influencia (formato de la profesora), Δ(v | S) = a_v·q_v + Σ_{w vecino de v} a_w·p_vw·q_w.
 
-| | |
+| Aspecto | Detalle |
 |---|---|
 | Operación básica | una evaluación de Δ (llamada al oráculo) |
 | Conteo | k·N − k(k−1)/2, exacto y para toda entrada; entre kN/2 y kN ⇒ **Θ(N·k)** en mejor, peor y promedio |
 | Tiempo con cobertura | O(k·(N + M)), con M = Σ |C_v|. El N pesa porque cada paso recorre V; si ningún C_v es vacío, N ≤ M y queda O(k·M) |
 | Tiempo con influencia | O(k·(N + A)), con A = número de aristas: cada llamada cuesta O(1 + grado(v)). Con grafo completo, O(k·N²) |
 | Espacio adicional | O(k) más el estado del oráculo (O(|U|) con cobertura, O(N) con influencia) sin traza; la ejecución con traza guarda además los Δ de cada paso, Θ(N·k) |
-| Precondición | 1 ≤ k ≤ |V|, con V ordenado y sin repetidos. La valida la ronda; el algoritmo no la comprueba, para seguir el pseudocódigo |
+| Precondición | El modelo exige 1 ≤ k < N, y lo comprueba la verificación de entrada. El algoritmo por sí solo funciona con 1 ≤ k ≤ |V|, con V ordenado y sin repetidos. La valida la ronda; el algoritmo no la comprueba, para seguir el pseudocódigo |
 | Garantía | f(S) ≥ (1 − 1/e)·OPT (Nemhauser, Wolsey y Fisher, 1978). Las dos f son monótonas, submodulares y con f(∅) = 0 |
 
 ### 1.2 Parte 1 — REPARTIR-PRESUPUESTO (voraz óptimo con montículo) · `red/reparto.py`
 Entrega hasta B unidades una por una; cada unidad va al nodo cuya siguiente unidad aporta más. Montículo de máximos simulado con `heapq` (de mínimos) guardando parejas (−Δ_i(x_i), i). Empates: el menor índice. Un nodo que llega a su tope c_i no vuelve al montículo; si todos llegan, el ciclo termina y el sobrante queda sin gastar.
 
-| | |
+| Aspecto | Detalle |
 |---|---|
 | Construir el montículo | O(N) (`heapify`) |
 | Ciclo | B vueltas, cada una con un `heappop` y un `heappush` de O(lg N). Con topes, mín(B, Σ c_i) vueltas, y quien llega a su tope no hace `heappush` |
@@ -87,7 +89,8 @@ Cada archivo tiene su ficha en `docs/modulos/` con su complejidad, cómo modific
 | `numero_rondas`, `costo_participacion`, `presupuesto_costos_participacion_por_ronda` | de las variantes (b) y (a): **se leen y se reportan** en `informativo`, pero no se aplican |
 | `presupuesto_total_nodo` | tope c_i de x_i ≤ c_i. Entero ≥ 0 |
 
-**Supuestos de modelado adoptados** (decisiones 24 a 26 y 28, y se declaran en el informe):
+**Supuestos de modelado adoptados** (decisiones 24 a 26 y 28, en docs/agente/DECISIONES.md, y se declaran en el informe):
+
 - f(S) = Σ_w a_w · (1 − Π_{v∈S} (1 − p_vw)), con p_vw = 0 si no hay arista y p_ww = 1.
 - u_i(x) = `coeficiente_utilidad` · ln(1 + x).
 - La solución base corre una sola ronda.
@@ -95,7 +98,7 @@ Cada archivo tiene su ficha en `docs/modulos/` con su complejidad, cómo modific
 
 Es error de forma (`[ERROR]`): falta un campo; `numero_nodos` no coincide con la lista; una arista nombra un nodo inexistente, es un lazo o está repetida ({u, v} y {v, u} son la misma); un valor no es numérico (incluye `true`, `NaN` e `Infinity`); un id no es texto; k, B, `numero_nodos` o `numero_rondas` no son enteros; un coeficiente no es > 0; `presupuesto_total_nodo` no es un entero ≥ 0. Un peso fuera de [0, 1] no es error de forma, sino una verificación de entrada que falla (`[FALLA]`), y el caso no corre.
 
-### 3.1.1 Entrada: formato propio (provisional, informe 6.5)
+### 3.1.1 Entrada: formato propio (batería propia, informe 6.5)
 ```json
 {
   "k": 2,
@@ -156,14 +159,14 @@ La concavidad se revisa solo en las unidades que se pueden entregar: en log y ra
 Si la entrada no cumple sus restricciones, los algoritmos no se ejecutan y la traza lo reporta con el motivo.
 
 ## 4. Ejecución paso a paso
-1. Instalar Python 3.11+ (y `pytest` para las pruebas: `python -m pip install -r requirements-dev.txt`).
+1. Instalar Python 3.11+. La ejecución usa solo la biblioteca estándar de Python; `pytest` es solo para las pruebas (`python -m pip install -r requirements-dev.txt`). En Windows el comando puede ser `py` en lugar de `python`.
 2. Abrir una terminal en la raíz del repositorio.
 3. `python -m pytest` → todas las pruebas deben pasar.
 4. `python ejecutar.py casos/profesora --salida resultados/profesora` (o cualquier archivo o carpeta de casos).
 5. Revisar `resultados/profesora/resumen.csv` y la carpeta de cada caso.
 
 ## 5. Casos de prueba utilizados
-**Caso oficial:** `casos/profesora/entrada_G2_red_15_nodos.json` (N = 15, k = 5, B = 30), con evidencias en `resultados/profesora/`. Resultado: S = N11, N14, N09, N15, N13; f(S) ≈ 145.5795; 65 llamadas a Δ; reparto 5, 7, 7, 6, 5; U ≈ 88.5640; 30 extracciones y 30 inserciones. Todas las verificaciones cumplen. Depende de los supuestos de la sección 3.1.
+**Caso oficial:** `casos/profesora/entrada_G2_red_15_nodos.json` (N = 15, k = 5, B = 30), con evidencias en `resultados/profesora/`. Resultado: S = N11, N14, N09, N15, N13; f(S) ≈ 145.5795; 65 llamadas a Δ; reparto 5, 7, 7, 6, 5; U ≈ 88.5640; 30 extracciones y 30 inserciones. Todas las verificaciones cumplen. Depende de los supuestos de la sección 3.1. El informe reporta estos mismos valores en su sección 6.9.
 
 **Batería propia:** 14 casos válidos y 3 inválidos, descrita caso por caso (qué comprueba, esperado y obtenido) en `casos/CATALOGO.md`, con evidencias en `resultados/propios/` y `resultados/invalidos/`.
 
@@ -173,7 +176,7 @@ Si la entrada no cumple sus restricciones, los algoritmos no se ejecutan y la tr
 Se usa `time.perf_counter()` alrededor de cada algoritmo, en ejecuciones **sin traza**; no incluye lectura, escritura, traza ni verificaciones. La ejecución medida se repite R veces (21 por omisión, `--repeticiones`), cada una con un oráculo nuevo, y se reporta la **mediana** de cada parte; `salida.json` trae también el mínimo y el máximo. Se verifica que todas las repeticiones den el mismo S y el mismo reparto. Luego se ejecuta otra vez con traza para la evidencia y se comprueba que coincide. En casos muy pequeños los tiempos son de microsegundos y tienen ruido del sistema: la mediana no se deja arrastrar por una repetición lenta, pero no resiste una ráfaga que cubra más de la mitad de las repeticiones (por eso para T(n) se usa el mínimo, que trae `salida.json` y `resumen.csv`: el ruido del sistema solo suma tiempo, así que el mínimo es la medición menos contaminada; decisión 30). La comparación contra T(n) se hará en la entrega de experimentación con instancias grandes y repeticiones.
 
 ## 7. Limitaciones
-- El archivo de la docente no dice cómo usar sus datos: f, u_i y el alcance de una ronda son supuestos de modelado (decisiones 24 a 26), adoptados porque ella no responde esta semana. Otro formato solo requiere cambiar `red/entrada.py`.
+- El archivo de la docente no dice cómo usar sus datos: f, u_i y el alcance de una ronda son supuestos de modelado (decisiones 24 a 26, en docs/agente/DECISIONES.md), no confirmados todavía con la docente. Otro formato solo requiere cambiar `red/entrada.py`.
 - La solución base no aplica `numero_rondas`, `costo_participacion` ni `presupuesto_costos_participacion_por_ronda`.
 - El tope se aplica en una sola ronda y no se descuenta: eso es de la variante (b). Si los topes de S suman menos que B, el sobrante queda sin gastar. La selección no mira los topes, así que puede elegir un nodo con tope 0.
 - La concavidad se juzga hasta B, no hasta c_i: una tabla que se dañe entre c_i y B se rechaza, aunque esas unidades nunca se entreguen.
