@@ -62,9 +62,9 @@
         "detalle": "todos cumplen"
       },
       {
-        "nombre": "Σ x_i = B",
+        "nombre": "Σ x_i = mín(B, Σ c_i)",
         "cumple": true,
-        "detalle": "Σ x_i = 40, B = 40"
+        "detalle": "Σ x_i = 40, mín(B, Σ c_i) = 40, B = 40"
       },
       {
         "nombre": "utilidad acumulada = Σ u_i(x_i) recalculada",
@@ -72,12 +72,17 @@
         "detalle": "acumulada = 109.090582, recalculada = 109.090582"
       },
       {
-        "nombre": "extracciones = inserciones = B",
+        "nombre": "extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope",
         "cumple": true,
-        "detalle": "extracciones = 40, inserciones = 40"
+        "detalle": "extracciones = 40, inserciones = 40, Σ x_i = 40, nodos en su tope = 0"
       }
     ],
     "ejecucion": [
+      {
+        "nombre": "todas las repeticiones dan el mismo S y el mismo reparto",
+        "cumple": true,
+        "detalle": "R = 21"
+      },
       {
         "nombre": "ejecución con traza = ejecución medida",
         "cumple": true,
@@ -110,8 +115,17 @@
     "inserciones": 40
   },
   "tiempos_segundos": {
-    "seleccion": 4.125899999962712e-05,
-    "reparto": 3.267000001017095e-05
+    "repeticiones": 21,
+    "seleccion": {
+      "mediana": 4.6099999963189475e-05,
+      "minimo": 4.569999873638153e-05,
+      "maximo": 7.360000017797574e-05
+    },
+    "reparto": {
+      "mediana": 5.330000021785963e-05,
+      "minimo": 5.269999928714242e-05,
+      "maximo": 9.339999996882398e-05
+    }
   },
   "todas_cumplen": true
 }

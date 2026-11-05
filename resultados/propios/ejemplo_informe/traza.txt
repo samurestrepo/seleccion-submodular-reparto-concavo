@@ -30,15 +30,16 @@ N = 3, k = 2, B = 4
 
 == Verificación: Parte 1 ==
   [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
-  [OK] Σ x_i = B: Σ x_i = 4, B = 4
+  [OK] Σ x_i = mín(B, Σ c_i): Σ x_i = 4, mín(B, Σ c_i) = 4, B = 4
   [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 16.635532, recalculada = 16.635532
-  [OK] extracciones = inserciones = B: extracciones = 4, inserciones = 4
+  [OK] extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope: extracciones = 4, inserciones = 4, Σ x_i = 4, nodos en su tope = 0
 
 == Verificación: Ejecución ==
+  [OK] todas las repeticiones dan el mismo S y el mismo reparto: R = 21
   [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
 
-== Tiempos (solo los algoritmos, sin lectura ni escritura) ==
-  Parte 2 (selección): 0.000007178 s
-  Parte 1 (reparto):   0.000010356 s
+== Tiempos: mediana de 21 repeticiones (solo los algoritmos, sin lectura ni escritura) ==
+  Parte 2 (selección): 0.000012700 s
+  Parte 1 (reparto):   0.000023100 s
 
 TODAS LAS VERIFICACIONES: CUMPLEN

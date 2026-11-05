@@ -112,15 +112,16 @@ N = 40, k = 5, B = 80
 
 == Verificación: Parte 1 ==
   [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
-  [OK] Σ x_i = B: Σ x_i = 80, B = 80
+  [OK] Σ x_i = mín(B, Σ c_i): Σ x_i = 80, mín(B, Σ c_i) = 80, B = 80
   [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 105.265226, recalculada = 105.265226
-  [OK] extracciones = inserciones = B: extracciones = 80, inserciones = 80
+  [OK] extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope: extracciones = 80, inserciones = 80, Σ x_i = 80, nodos en su tope = 0
 
 == Verificación: Ejecución ==
+  [OK] todas las repeticiones dan el mismo S y el mismo reparto: R = 21
   [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
 
-== Tiempos (solo los algoritmos, sin lectura ni escritura) ==
-  Parte 2 (selección): 0.000086683 s
-  Parte 1 (reparto):   0.000064743 s
+== Tiempos: mediana de 21 repeticiones (solo los algoritmos, sin lectura ni escritura) ==
+  Parte 2 (selección): 0.000197400 s
+  Parte 1 (reparto):   0.000178000 s
 
 TODAS LAS VERIFICACIONES: CUMPLEN

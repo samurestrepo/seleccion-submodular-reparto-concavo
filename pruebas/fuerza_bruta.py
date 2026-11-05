@@ -23,6 +23,14 @@ def mejor_reparto(S, B, utilidades):
                for reparto in repartos(len(S), B))
 
 
+def mejor_reparto_con_topes(S, B, utilidades, topes):
+    """Máximo de Σ u_i(x_i) con x_i ≤ c_i, gastando mín(B, Σ c_i). Un nodo sin entrada en topes no tiene tope."""
+    total = min(B, sum(topes.get(i, B) for i in S))
+    return max(sum(utilidades[i].valor(x) for i, x in zip(S, reparto))
+               for reparto in repartos(len(S), total)
+               if all(x <= topes.get(i, B) for i, x in zip(S, reparto)))
+
+
 def mejor_seleccion(conjuntos, k):
     """Máximo de f(S) = |unión| sobre todos los S de tamaño k."""
     mejor = 0

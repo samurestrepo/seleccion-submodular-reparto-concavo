@@ -160,3 +160,66 @@ def test_archivo_con_bom_se_lee(tmp_path):
     caso = tmp_path / "con_bom.json"
     caso.write_bytes(b"\xef\xbb\xbf" + EJEMPLO.read_bytes())
     assert main([str(caso), "--salida", str(tmp_path / "salida")]) == 0
+
+
+def test_opcion_repeticiones_llega_a_las_evidencias(tmp_path):
+    assert main([str(EJEMPLO), "--salida", str(tmp_path), "--repeticiones", "4"]) == 0
+    salida = json.loads((tmp_path / "ejemplo_informe" / "salida.json").read_text(encoding="utf-8"))
+    tiempos = salida["tiempos_segundos"]
+    assert tiempos["repeticiones"] == 4
+    assert set(tiempos["seleccion"]) == set(tiempos["reparto"]) == {"mediana", "minimo", "maximo"}
+    fila = leer_resumen(tmp_path)[0]
+    assert fila["repeticiones"] == "4"
+    # El resumen usa la mediana
+    assert fila["tiempo_seleccion_s"] == f"{tiempos['seleccion']['mediana']:.9f}"
+    assert fila["tiempo_reparto_s"] == f"{tiempos['reparto']['mediana']:.9f}"
+
+
+def test_el_resumen_trae_el_minimo_igual_al_de_salida_json_y_menor_o_igual_a_la_mediana(tmp_path):
+    assert main([str(EJEMPLO), "--salida", str(tmp_path), "--repeticiones", "9"]) == 0
+    tiempos = json.loads((tmp_path / "ejemplo_informe" / "salida.json").read_text(encoding="utf-8"))["tiempos_segundos"]
+    fila = leer_resumen(tmp_path)[0]
+    for parte in ("seleccion", "reparto"):
+        minimo = float(fila[f"minimo_{parte}_s"])
+        assert fila[f"minimo_{parte}_s"] == f"{tiempos[parte]['minimo']:.9f}"
+        assert minimo <= float(fila[f"tiempo_{parte}_s"])
+    assert list(fila)[7:11] == ["tiempo_seleccion_s", "tiempo_reparto_s", "minimo_seleccion_s", "minimo_reparto_s"]
+
+
+def test_por_omision_el_resumen_trae_21_repeticiones(tmp_path):
+    assert main([str(EJEMPLO), "--salida", str(tmp_path)]) == 0
+    assert leer_resumen(tmp_path)[0]["repeticiones"] == "21"
+
+
+def test_un_caso_rechazado_deja_vacia_la_columna_de_repeticiones(tmp_path):
+    caso = tmp_path / "k_igual_N.json"
+    escribir_caso(caso, K_IGUAL_N)
+    assert main([str(caso), "--salida", str(tmp_path / "salida")]) == 1
+    fila = leer_resumen(tmp_path / "salida")[0]
+    assert fila["repeticiones"] == ""
+    assert fila["minimo_seleccion_s"] == fila["minimo_reparto_s"] == ""
+    assert fila["todas_cumplen"] == "False"
+
+
+@pytest.mark.parametrize("valor", ["0", "-3", "dos", "1.5"])
+def test_repeticiones_invalidas_las_rechaza_la_linea_de_comandos(tmp_path, valor):
+    with pytest.raises(SystemExit):
+        main([str(EJEMPLO), "--salida", str(tmp_path), f"--repeticiones={valor}"])
+
+
+def test_un_caso_malo_de_la_profesora_no_detiene_el_lote(tmp_path, capsys):
+    # La arista está repetida: el segundo caso del lote (por orden alfabético) igual corre
+    entrada = tmp_path / "entrada"
+    entrada.mkdir()
+    escribir_caso(entrada / "a_malo.json", {
+        "parametros": {"numero_nodos": 2, "numero_rondas": 1, "cupo_participantes_por_ronda_k": 1,
+                       "presupuesto_ruido_por_ronda_B": 1, "presupuesto_costos_participacion_por_ronda": 1},
+        "grafo": [{"u": "N1", "v": "N2", "peso_influencia": 0.5}, {"u": "N2", "v": "N1", "peso_influencia": 0.5}],
+        "nodos": [{"id": i, "coeficiente_utilidad": 1, "presupuesto_total_nodo": 1, "costo_participacion": 1}
+                  for i in ("N1", "N2")]})
+    (entrada / "b_bueno.json").write_bytes(EJEMPLO.read_bytes())
+    assert main([str(entrada), "--salida", str(tmp_path / "salida")]) == 1
+    consola = capsys.readouterr().out
+    assert "[ERROR]" in consola and "repetida" in consola
+    assert "[OK] b_bueno" in consola
+    assert "repetida" in (tmp_path / "salida" / "a_malo" / "traza.txt").read_text(encoding="utf-8")

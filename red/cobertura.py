@@ -16,9 +16,17 @@ class OraculoCobertura:
         self.llamadas_ganancia = 0   # evaluaciones de Δ(v | S): la operación básica del voraz
         self.llamadas_valor = 0      # evaluaciones de f(S) desde cero
 
-    def conjunto(self, v):
-        """C_v. No cuenta como llamada: solo devuelve el dato de entrada."""
-        return self.conjuntos[v]
+    def estado_inicial(self):
+        """El estado del equipo vacío: cub(∅), un set sin elementos. Tiempo O(1)."""
+        return set()
+
+    def agregar(self, estado, v):
+        """Actualiza cub(S) EN SU LUGAR cuando v entra al equipo y lo devuelve. No cuenta como llamada.
+
+        Tiempo O(|C_v|).
+        """
+        estado |= self.conjuntos[v]
+        return estado
 
     def valor(self, S):
         """f(S) calculada desde cero: tamaño de la unión de los C_v con v en S.
@@ -31,16 +39,16 @@ class OraculoCobertura:
             cubiertos |= self.conjuntos[v]
         return len(cubiertos)
 
-    def ganancia(self, v, cubiertos):
-        """Δ(v | S) = |C_v ∖ cub(S)|, donde `cubiertos` es cub(S) ya calculado.
+    def ganancia(self, v, estado):
+        """Δ(v | S) = |C_v ∖ cub(S)|, donde `estado` es cub(S) ya calculado.
 
         Recorre una sola vez los elementos de C_v: tiempo O(|C_v|)
-        (cada consulta 'e in cubiertos' es O(1) esperado en un set).
+        (cada consulta 'e in estado' es O(1) esperado en un set).
         Es una llamada al oráculo (línea 5 del pseudocódigo de SELECCIONAR-NODOS).
         """
         self.llamadas_ganancia += 1
         nuevos = 0
         for elemento in self.conjuntos[v]:
-            if elemento not in cubiertos:
+            if elemento not in estado:
                 nuevos += 1
         return nuevos

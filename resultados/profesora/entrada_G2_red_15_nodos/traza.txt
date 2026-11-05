@@ -1,0 +1,83 @@
+CASO: entrada_G2_red_15_nodos
+N = 15, k = 5, B = 30
+
+== Verificación de la entrada ==
+  [OK] 1 ≤ k < N: k = 5, N = 15
+  [OK] B ≥ 0: B = 30
+  [OK] ids únicos: sin repetidos
+  [OK] cada u_i creciente y cóncava en {0, …, B}: todas cumplen
+  [OK] cada peso de influencia en [0, 1]: todos cumplen
+
+== Parte 2: selección de nodos (voraz) ==
+  Paso 1: Δ(N01) = 74.1100, Δ(N02) = 75.3850, Δ(N03) = 77.9200, Δ(N04) = 74.3400, Δ(N05) = 82.6000, Δ(N06) = 72.8050, Δ(N07) = 88.8050, Δ(N08) = 72.2150, Δ(N09) = 95.7000, Δ(N10) = 73.6150, Δ(N11) = 103.4900, Δ(N12) = 75.4400, Δ(N13) = 40.2100, Δ(N14) = 82.9850, Δ(N15) = 44.0750
+    → elige el nodo N11 (Δ = 103.4900); f(S) = 103.4900
+  Paso 2: Δ(N01) = 19.0670, Δ(N02) = 19.3220, Δ(N03) = 19.8290, Δ(N04) = 19.1130, Δ(N05) = 20.7650, Δ(N06) = 18.8060, Δ(N07) = 22.0060, Δ(N08) = 18.6880, Δ(N09) = 23.3850, Δ(N10) = 18.9680, Δ(N12) = 21.5590, Δ(N13) = 16.1210, Δ(N14) = 24.2782, Δ(N15) = 16.4212
+    → elige el nodo N14 (Δ = 24.2782); f(S) = 127.7683
+  Paso 3: Δ(N01) = 7.9896, Δ(N02) = 8.1044, Δ(N03) = 8.3325, Δ(N04) = 8.0103, Δ(N05) = 8.7537, Δ(N06) = 7.8722, Δ(N07) = 9.3122, Δ(N08) = 7.8191, Δ(N09) = 9.9327, Δ(N10) = 7.9451, Δ(N12) = 9.1110, Δ(N13) = 6.6639, Δ(N15) = 9.0157
+    → elige el nodo N09 (Δ = 9.9327); f(S) = 137.7010
+  Paso 4: Δ(N01) = 3.3095, Δ(N02) = 3.3382, Δ(N03) = 3.3953, Δ(N04) = 3.3147, Δ(N05) = 3.5006, Δ(N06) = 3.2802, Δ(N07) = 3.6402, Δ(N08) = 3.2669, Δ(N10) = 3.5494, Δ(N12) = 3.9942, Δ(N13) = 4.1325, Δ(N15) = 5.5306
+    → elige el nodo N15 (Δ = 5.5306); f(S) = 143.2316
+  Paso 5: Δ(N01) = 1.7307, Δ(N02) = 1.7522, Δ(N03) = 1.7950, Δ(N04) = 1.7346, Δ(N05) = 1.8740, Δ(N06) = 1.7087, Δ(N07) = 1.9787, Δ(N08) = 1.6987, Δ(N10) = 1.9106, Δ(N12) = 2.2442, Δ(N13) = 2.3479
+    → elige el nodo N13 (Δ = 2.3479); f(S) = 145.5795
+  Resultado: S = ['N11', 'N14', 'N09', 'N15', 'N13'], f(S) = 145.5795, llamadas a Δ = 65
+
+== Parte 1: reparto del presupuesto (voraz con montículo) ==
+  Unidad 1: al nodo N14 (Δ = 7.0008)
+  Unidad 2: al nodo N09 (Δ = 6.8622)
+  Unidad 3: al nodo N15 (Δ = 6.5849)
+  Unidad 4: al nodo N13 (Δ = 5.7531)
+  Unidad 5: al nodo N11 (Δ = 5.2679)
+  Unidad 6: al nodo N14 (Δ = 4.0952)
+  Unidad 7: al nodo N09 (Δ = 4.0141)
+  Unidad 8: al nodo N15 (Δ = 3.8519)
+  Unidad 9: al nodo N13 (Δ = 3.3654)
+  Unidad 10: al nodo N11 (Δ = 3.0815)
+  Unidad 11: al nodo N14 (Δ = 2.9056)
+  Unidad 12: al nodo N09 (Δ = 2.8481)
+  Unidad 13: al nodo N15 (Δ = 2.7330)
+  Unidad 14: al nodo N13 (Δ = 2.3878)
+  Unidad 15: al nodo N14 (Δ = 2.2537)
+  Unidad 16: al nodo N09 (Δ = 2.2091)
+  Unidad 17: al nodo N11 (Δ = 2.1864)
+  Unidad 18: al nodo N15 (Δ = 2.1199)
+  Unidad 19: al nodo N13 (Δ = 1.8521)
+  Unidad 20: al nodo N14 (Δ = 1.8414)
+  Unidad 21: al nodo N09 (Δ = 1.8050)
+  Unidad 22: al nodo N15 (Δ = 1.7321)
+  Unidad 23: al nodo N11 (Δ = 1.6959)
+  Unidad 24: al nodo N14 (Δ = 1.5569)
+  Unidad 25: al nodo N09 (Δ = 1.5261)
+  Unidad 26: al nodo N13 (Δ = 1.5133)
+  Unidad 27: al nodo N15 (Δ = 1.4644)
+  Unidad 28: al nodo N11 (Δ = 1.3856)
+  Unidad 29: al nodo N14 (Δ = 1.3487)
+  Unidad 30: al nodo N09 (Δ = 1.3220)
+  Resultado: x_N11 = 5, x_N14 = 7, x_N09 = 7, x_N15 = 6, x_N13 = 5; utilidad total = 88.563953
+
+== Verificación: Parte 2 ==
+  [OK] S ⊆ V: S = ['N11', 'N14', 'N09', 'N15', 'N13']
+  [OK] S sin repetidos: |S| = 5
+  [OK] |S| ≤ k: |S| = 5, k = 5
+  [OK] valor acumulado = f(S) recalculada: acumulado = 145.57952, recalculado = 145.57952
+  [OK] llamadas a Δ = k·N − k(k−1)/2: contadas = 65, fórmula = 65
+
+== Verificación: Parte 1 ==
+  [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
+  [OK] cada x_i ≤ c_i: c = {'N11': 18, 'N14': 18, 'N09': 18, 'N15': 18, 'N13': 18}
+  [OK] Σ x_i = mín(B, Σ c_i): Σ x_i = 30, mín(B, Σ c_i) = 30, B = 30
+  [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 88.563953, recalculada = 88.563953
+  [OK] extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope: extracciones = 30, inserciones = 30, Σ x_i = 30, nodos en su tope = 0
+
+== Verificación: Ejecución ==
+  [OK] todas las repeticiones dan el mismo S y el mismo reparto: R = 21
+  [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
+
+== Informativo (no es una verificación) ==
+  Variante (a): Σ costo_participacion de S = 23 frente a presupuesto_costos_participacion_por_ronda = 24; no se aplica en la solución base
+  Variante (b): numero_rondas = 3; no se aplica en la solución base
+
+== Tiempos: mediana de 21 repeticiones (solo los algoritmos, sin lectura ni escritura) ==
+  Parte 2 (selección): 0.000171100 s
+  Parte 1 (reparto):   0.000037700 s
+
+TODAS LAS VERIFICACIONES: CUMPLEN

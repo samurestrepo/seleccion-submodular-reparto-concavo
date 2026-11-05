@@ -4,9 +4,10 @@ Uso (desde la raíz del repositorio):
     python ejecutar.py casos/propios/ejemplo_informe.json
     python ejecutar.py casos/profesora                  # todos los .json de la carpeta
     python ejecutar.py casos/propios --salida resultados/propios
+    python ejecutar.py casos/propios --repeticiones 5   # por omisión, 21
 
 Por cada caso escribe en <salida>/<nombre_del_caso>/:
-    salida.json   resultado, tiempos y verificaciones
+    salida.json   resultado, tiempos (mediana, mínimo, máximo y R) y verificaciones
     traza.json    paso a paso de los dos voraces (o el motivo, si el caso se rechazó)
     traza.txt     lo mismo, en texto legible
 y además <salida>/resumen.csv con una fila por caso de ESTA corrida: no acumula corridas
@@ -19,8 +20,19 @@ import os
 import sys
 
 from red.entrada import ErrorDeFormato, leer_instancia, nombre_del_caso
-from red.ronda import ejecutar_ronda, resultado_de_error
+from red.ronda import REPETICIONES, ejecutar_ronda, resultado_de_error
 from red.traza import a_texto, escribir_json
+
+
+def _entero_positivo(texto):
+    """Convierte el valor de --repeticiones. Si no es un entero ≥ 1, argparse muestra el error."""
+    try:
+        valor = int(texto)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"debe ser un entero; llegó {texto!r}") from None
+    if valor < 1:
+        raise argparse.ArgumentTypeError(f"debe ser al menos 1; llegó {valor}")
+    return valor
 
 
 def buscar_casos(rutas):
@@ -53,10 +65,10 @@ def guardar_evidencias(resultado, carpeta):
         archivo.write(a_texto(resultado))
 
 
-def correr_caso(ruta, salida):
+def correr_caso(ruta, salida, repeticiones=REPETICIONES):
     """Lee un caso, corre su ronda, guarda sus evidencias e imprime una línea. Devuelve el resultado.
 
-    Un archivo malo no detiene el lote: devuelve un resultado rechazado. Si no se pudo
+    repeticiones es R, las veces que se repite la ejecución medida. Un archivo malo no detiene el lote: devuelve un resultado rechazado. Si no se pudo
     ni abrir, no escribe evidencias, porque no hay caso del cual dejar constancia.
     """
     nombre = nombre_del_caso(ruta)
@@ -71,7 +83,7 @@ def correr_caso(ruta, salida):
         guardar_evidencias(resultado, os.path.join(salida, nombre))
         return resultado
 
-    resultado = ejecutar_ronda(instancia)
+    resultado = ejecutar_ronda(instancia, repeticiones)
     guardar_evidencias(resultado, os.path.join(salida, nombre))
     if "seleccion" not in resultado:
         print(f"[FALLA] {nombre}: la entrada no cumple sus restricciones (ver traza)")
@@ -80,20 +92,26 @@ def correr_caso(ruta, salida):
     print(f"[{'OK' if resultado['todas_cumplen'] else 'FALLA'}] {nombre}: "
           f"S = {resultado['seleccion']['S']}, f(S) = {resultado['seleccion']['valor']}, "
           f"utilidad = {resultado['reparto']['utilidad']:.4f}, "
-          f"tiempos = {t['seleccion']:.6f} s + {t['reparto']:.6f} s")
+          f"tiempos (mediana de {t['repeticiones']}) = "
+          f"{t['seleccion']['mediana']:.6f} s + {t['reparto']['mediana']:.6f} s")
     return resultado
 
 
 def fila_resumen(resultado):
-    """La fila de resumen.csv de un caso. Un caso rechazado deja vacíos S, f(S), utilidad y tiempos."""
+    """La fila de resumen.csv de un caso: las medianas y los mínimos de las R repeticiones.
+
+    Para la gráfica de T(n) se usa el mínimo (decisión 30). Un caso rechazado deja vacíos
+    S, f(S), utilidad, tiempos y repeticiones.
+    """
     e = resultado["entrada"]
     if "seleccion" not in resultado:
-        return [resultado["caso"], e["N"], e["k"], e["B"], "", "", "", "", "", False]
+        return [resultado["caso"], e["N"], e["k"], e["B"], "", "", "", "", "", "", "", "", False]
     t = resultado["tiempos_segundos"]
     return [resultado["caso"], e["N"], e["k"], e["B"],
             " ".join(map(str, resultado["seleccion"]["S"])), resultado["seleccion"]["valor"],
-            f"{resultado['reparto']['utilidad']:.6f}", f"{t['seleccion']:.9f}",
-            f"{t['reparto']:.9f}", resultado["todas_cumplen"]]
+            f"{resultado['reparto']['utilidad']:.6f}", f"{t['seleccion']['mediana']:.9f}",
+            f"{t['reparto']['mediana']:.9f}", f"{t['seleccion']['minimo']:.9f}",
+            f"{t['reparto']['minimo']:.9f}", t["repeticiones"], resultado["todas_cumplen"]]
 
 
 def escribir_resumen(filas, salida):
@@ -105,7 +123,8 @@ def escribir_resumen(filas, salida):
     with open(ruta, "w", encoding="utf-8", newline="") as archivo:
         escritor = csv.writer(archivo)
         escritor.writerow(["caso", "N", "k", "B", "S", "f(S)", "utilidad_reparto",
-                           "tiempo_seleccion_s", "tiempo_reparto_s", "todas_cumplen"])
+                           "tiempo_seleccion_s", "tiempo_reparto_s", "minimo_seleccion_s", "minimo_reparto_s",
+                           "repeticiones", "todas_cumplen"])
         escritor.writerows(filas)
 
 
@@ -120,6 +139,8 @@ def main(argumentos=None):
     p = argparse.ArgumentParser(description="Ejecuta la solución base del Proyecto Red.")
     p.add_argument("rutas", nargs="+", help="archivos .json o carpetas con casos")
     p.add_argument("--salida", default="resultados", help="carpeta de evidencias (por omisión: resultados)")
+    p.add_argument("--repeticiones", type=_entero_positivo, default=REPETICIONES,
+                   help=f"veces que se repite la ejecución medida; se reporta la mediana (por omisión: {REPETICIONES})")
     a = p.parse_args(argumentos)
 
     casos = buscar_casos(a.rutas)
@@ -138,7 +159,7 @@ def main(argumentos=None):
             hubo_fallas = True
             continue
         primera_ruta[clave] = ruta
-        resultado = correr_caso(ruta, a.salida)
+        resultado = correr_caso(ruta, a.salida, a.repeticiones)
         filas.append(fila_resumen(resultado))
         if not resultado["todas_cumplen"]:
             hubo_fallas = True

@@ -1,0 +1,9 @@
+{
+  "k": 2,
+  "B": 5,
+  "nodos": [
+    {"id": 1, "cubre": ["a", "b"], "utilidad": {"tipo": "log", "a": 10}, "tope": 2},
+    {"id": 2, "cubre": ["c"], "utilidad": {"tipo": "log", "a": 1}},
+    {"id": 3, "cubre": [], "utilidad": {"tipo": "log", "a": 1}}
+  ]
+}

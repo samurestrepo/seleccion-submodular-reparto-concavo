@@ -63,18 +63,39 @@ def verificar_entrada(instancia):
             malos.append(f"nodo {nodo.id}: {problema}")
     resultado.append(Verificacion("cada u_i creciente y cóncava en {0, …, B}", not malos,
                                   "todas cumplen" if not malos else "; ".join(malos)))
+
+    if instancia.vecinos is not None:   # solo el oráculo de influencia tiene pesos
+        resultado.append(_verificar_pesos(instancia.vecinos))
     return resultado
 
 
+def _verificar_pesos(vecinos):
+    """Cada peso de influencia en [0, 1]; fuera de ahí f deja de ser monótona y submodular.
+
+    Recibe id → {vecino: peso}. Cada arista está en sus dos puntas: se reporta una sola vez.
+    Tiempo O(N + A), con A = número de aristas.
+    """
+    malos = []
+    for v, adyacentes in vecinos.items():
+        for w, peso in adyacentes.items():
+            if v < w and not 0 <= peso <= 1:
+                malos.append(f"{{{v}, {w}}}: {peso}")
+    return Verificacion("cada peso de influencia en [0, 1]", not malos,
+                        "todos cumplen" if not malos else "; ".join(malos))
+
+
 def verificar_seleccion(instancia, oraculo, S, valorS):
-    """Parte 2: S ⊆ V, sin repetidos, |S| ≤ k, y valorS = f(S) recalculada desde cero."""
+    """Parte 2: S ⊆ V, sin repetidos, |S| ≤ k, y valorS = f(S) recalculada desde cero.
+
+    valorS se compara con tolerancia: con influencia f es real y lleva error de redondeo.
+    """
     resultado = []
     V = set(instancia.ids())
     resultado.append(Verificacion("S ⊆ V", set(S) <= V, f"S = {S}"))
     resultado.append(Verificacion("S sin repetidos", len(set(S)) == len(S), f"|S| = {len(S)}"))
     resultado.append(Verificacion("|S| ≤ k", len(S) <= instancia.k, f"|S| = {len(S)}, k = {instancia.k}"))
     recalculado = oraculo.valor([v for v in S if v in V])   # un id ajeno ya falló arriba; no debe lanzar KeyError
-    resultado.append(Verificacion("valor acumulado = f(S) recalculada", recalculado == valorS,
+    resultado.append(Verificacion("valor acumulado = f(S) recalculada", _iguales(recalculado, valorS),
                                   f"acumulado = {valorS}, recalculado = {recalculado}"))
     return resultado
 
@@ -86,22 +107,39 @@ def verificar_conteo_llamadas(N, k, llamadas):
                          f"contadas = {llamadas}, fórmula = {esperado}")]
 
 
-def verificar_reparto(S, B, utilidades, resultado_reparto):
-    """Parte 1: cada x_i entero en [0, B], Σ x_i = B, y la utilidad coincide con Σ u_i(x_i)."""
+def verificar_reparto(S, B, utilidades, resultado_reparto, topes=None):
+    """Parte 1: x_i entero en [0, B] y ≤ c_i, Σ x_i = mín(B, Σ c_i), y la utilidad coincide con Σ u_i(x_i).
+
+    topes: id → c_i; un nodo que no aparece no tiene tope (y entonces mín(B, Σ c_i) = B).
+    Las extracciones deben ser Σ x_i; las inserciones, Σ x_i menos los nodos que llegaron a su tope,
+    porque esos no vuelven al montículo. Un nodo con tope 0 nunca entró, así que no se descuenta.
+    La línea "x_i ≤ c_i" solo aparece si la instancia tiene topes. Tiempo O(|S|).
+    """
+    topes = topes or {}
     resultado = []
     x = resultado_reparto.x
     fuera = [i for i in S if not (isinstance(x[i], int) and 0 <= x[i] <= B)]
     resultado.append(Verificacion("cada x_i entero con 0 ≤ x_i ≤ B", not fuera,
                                   "todos cumplen" if not fuera else f"fallan: {fuera}"))
+    if topes:
+        pasados = [i for i in S if i in topes and x[i] > topes[i]]
+        topes_de_S = {str(i): topes[i] for i in S if i in topes}
+        resultado.append(Verificacion("cada x_i ≤ c_i", not pasados,
+                                      f"c = {topes_de_S}" if not pasados else f"fallan: {pasados}"))
     suma = sum(x[i] for i in S)
-    resultado.append(Verificacion("Σ x_i = B", suma == B, f"Σ x_i = {suma}, B = {B}"))
+    esperado = min(B, sum(topes.get(i, B) for i in S))
+    resultado.append(Verificacion("Σ x_i = mín(B, Σ c_i)", suma == esperado,
+                                  f"Σ x_i = {suma}, mín(B, Σ c_i) = {esperado}, B = {B}"))
     # Un x_i fuera de rango ya falló arriba; evaluar u_i con él no tendría sentido o lanzaría una excepción
     recalculada = sum(utilidades[i].valor(x[i]) for i in S if i not in fuera)
     resultado.append(Verificacion("utilidad acumulada = Σ u_i(x_i) recalculada",
                                   math.isfinite(recalculada) and _iguales(recalculada, resultado_reparto.utilidad),
                                   f"acumulada = {resultado_reparto.utilidad:.6f}, recalculada = {recalculada:.6f}"))
-    resultado.append(Verificacion("extracciones = inserciones = B",
-                                  resultado_reparto.extracciones == B == resultado_reparto.inserciones,
+    en_su_tope = sum(1 for i in S if i in topes and 0 < topes[i] == x[i])
+    resultado.append(Verificacion("extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope",
+                                  resultado_reparto.extracciones == suma
+                                  and resultado_reparto.inserciones == suma - en_su_tope,
                                   f"extracciones = {resultado_reparto.extracciones}, "
-                                  f"inserciones = {resultado_reparto.inserciones}"))
+                                  f"inserciones = {resultado_reparto.inserciones}, "
+                                  f"Σ x_i = {suma}, nodos en su tope = {en_su_tope}"))
     return resultado

@@ -12,15 +12,16 @@ Garantía: f(S) ≥ (1 − 1/e)·OPT si f es monótona, submodular y f(∅) = 0
 def seleccionar_nodos(oraculo, V, k, traza=None):
     """Elige k nodos con el voraz y devuelve (S, valorS).
 
-    Recibe: el oráculo de cobertura, V (ids sin repetir, en orden creciente), k y una traza opcional.
+    Recibe: un oráculo (cobertura o influencia), V (ids sin repetir, en orden creciente), k y una traza opcional.
     Precondición: 1 ≤ k ≤ |V|. Aquí no se comprueba, para seguir el pseudocódigo; la valida ronda.py.
     Devuelve: S como lista en el orden en que se eligieron, y valorS = f(S).
-    Complejidad: k·N − k(k−1)/2 llamadas a Δ, o sea Θ(N·k) en todos los casos; con cobertura,
-    O(k·(N + M)) en tiempo. Espacio adicional O(k + |U|) sin traza; con traza, además Θ(N·k).
+    Complejidad: k·N − k(k−1)/2 llamadas a Δ, o sea Θ(N·k) en todos los casos. En tiempo, O(k·(N + M))
+    con cobertura y O(k·(N + A)) con influencia (A = aristas). Espacio adicional: O(k) más el estado
+    del oráculo (O(|U|) con cobertura, O(N) con influencia); con traza, además Θ(N·k).
     """
     S = []                     # línea 1 del pseudocódigo
     en_S = set()               # para preguntar "¿v está en S?" en O(1)
-    cubiertos = set()          # cub(S): lo que ya cubre el equipo
+    cubiertos = oraculo.estado_inicial()   # estado de S: lo que ya cubre el equipo (ver cada oráculo)
     valorS = oraculo.valor(S)  # línea 1 del pseudocódigo: valorS ← f(∅), que vale 0
 
     for paso in range(1, k + 1):                       # línea 2 del pseudocódigo
@@ -38,7 +39,7 @@ def seleccionar_nodos(oraculo, V, k, traza=None):
                 mejor_delta = delta
         S.append(mejor)                                # línea 8 del pseudocódigo
         en_S.add(mejor)
-        cubiertos |= oraculo.conjunto(mejor)
+        cubiertos = oraculo.agregar(cubiertos, mejor)
         valorS = valorS + mejor_delta
         if traza is not None:                          # línea 9 del pseudocódigo
             traza.paso_seleccion(paso, aportes, mejor, mejor_delta, valorS)

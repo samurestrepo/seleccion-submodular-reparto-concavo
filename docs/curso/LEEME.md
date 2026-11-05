@@ -4,7 +4,7 @@
 |---|---|
 | `enunciado_proyecto_final.md` | Copia del enunciado del proyecto semestral 2026-2 |
 | `Guia_Primera_Entrega_ADAG_2026B_Resumen.docx` | Guía oficial de la primera entrega (resumen abajo, verificado contra el original) |
-| Casos de prueba de la profesora y su formato | **Pendiente:** no han llegado |
+| Casos de prueba de la profesora y su formato | Recibido: `casos/profesora/entrada_G2_red_15_nodos.json`. El archivo no dice cómo usar los datos: ver los supuestos en `casos/profesora/LEEME.md` |
 | Informe de la primera entrega | Google Doc: https://docs.google.com/document/d/1Z7U0C04y9HhB1FRQQxCu9ldMJjMfnfyggFd_Ma2NNhE/edit |
 
 ## Lo que pide la primera entrega (resumen de la guía)

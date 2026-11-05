@@ -1,0 +1,152 @@
+{
+  "caso": "entrada_G2_red_15_nodos",
+  "entrada": {
+    "N": 15,
+    "k": 5,
+    "B": 30
+  },
+  "verificaciones": {
+    "entrada": [
+      {
+        "nombre": "1 ≤ k < N",
+        "cumple": true,
+        "detalle": "k = 5, N = 15"
+      },
+      {
+        "nombre": "B ≥ 0",
+        "cumple": true,
+        "detalle": "B = 30"
+      },
+      {
+        "nombre": "ids únicos",
+        "cumple": true,
+        "detalle": "sin repetidos"
+      },
+      {
+        "nombre": "cada u_i creciente y cóncava en {0, …, B}",
+        "cumple": true,
+        "detalle": "todas cumplen"
+      },
+      {
+        "nombre": "cada peso de influencia en [0, 1]",
+        "cumple": true,
+        "detalle": "todos cumplen"
+      }
+    ],
+    "seleccion": [
+      {
+        "nombre": "S ⊆ V",
+        "cumple": true,
+        "detalle": "S = ['N11', 'N14', 'N09', 'N15', 'N13']"
+      },
+      {
+        "nombre": "S sin repetidos",
+        "cumple": true,
+        "detalle": "|S| = 5"
+      },
+      {
+        "nombre": "|S| ≤ k",
+        "cumple": true,
+        "detalle": "|S| = 5, k = 5"
+      },
+      {
+        "nombre": "valor acumulado = f(S) recalculada",
+        "cumple": true,
+        "detalle": "acumulado = 145.57952, recalculado = 145.57952"
+      },
+      {
+        "nombre": "llamadas a Δ = k·N − k(k−1)/2",
+        "cumple": true,
+        "detalle": "contadas = 65, fórmula = 65"
+      }
+    ],
+    "reparto": [
+      {
+        "nombre": "cada x_i entero con 0 ≤ x_i ≤ B",
+        "cumple": true,
+        "detalle": "todos cumplen"
+      },
+      {
+        "nombre": "cada x_i ≤ c_i",
+        "cumple": true,
+        "detalle": "c = {'N11': 18, 'N14': 18, 'N09': 18, 'N15': 18, 'N13': 18}"
+      },
+      {
+        "nombre": "Σ x_i = mín(B, Σ c_i)",
+        "cumple": true,
+        "detalle": "Σ x_i = 30, mín(B, Σ c_i) = 30, B = 30"
+      },
+      {
+        "nombre": "utilidad acumulada = Σ u_i(x_i) recalculada",
+        "cumple": true,
+        "detalle": "acumulada = 88.563953, recalculada = 88.563953"
+      },
+      {
+        "nombre": "extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope",
+        "cumple": true,
+        "detalle": "extracciones = 30, inserciones = 30, Σ x_i = 30, nodos en su tope = 0"
+      }
+    ],
+    "ejecucion": [
+      {
+        "nombre": "todas las repeticiones dan el mismo S y el mismo reparto",
+        "cumple": true,
+        "detalle": "R = 21"
+      },
+      {
+        "nombre": "ejecución con traza = ejecución medida",
+        "cumple": true,
+        "detalle": "mismo S y mismo reparto"
+      }
+    ]
+  },
+  "seleccion": {
+    "S": [
+      "N11",
+      "N14",
+      "N09",
+      "N15",
+      "N13"
+    ],
+    "valor": 145.57952,
+    "llamadas_ganancia": 65,
+    "llamadas_valor": 1
+  },
+  "reparto": {
+    "x": {
+      "N11": 5,
+      "N14": 7,
+      "N09": 7,
+      "N15": 6,
+      "N13": 5
+    },
+    "utilidad": 88.56395281034827,
+    "extracciones": 30,
+    "inserciones": 30
+  },
+  "tiempos_segundos": {
+    "repeticiones": 21,
+    "seleccion": {
+      "mediana": 0.00017109999862441327,
+      "minimo": 0.00016959999993559904,
+      "maximo": 0.00019699999938893598
+    },
+    "reparto": {
+      "mediana": 3.769999966607429e-05,
+      "minimo": 3.710000055434648e-05,
+      "maximo": 5.810000038763974e-05
+    }
+  },
+  "todas_cumplen": true,
+  "informativo": {
+    "variante_a": {
+      "suma_costos_de_S": 23,
+      "presupuesto_costos_participacion_por_ronda": 24,
+      "nota": "no se aplica en la solución base"
+    },
+    "variante_b": {
+      "numero_rondas": 3,
+      "nota": "no se aplica en la solución base"
+    }
+  }
+}

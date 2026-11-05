@@ -1,0 +1,47 @@
+CASO: tope_activo
+N = 3, k = 2, B = 5
+
+== Verificación de la entrada ==
+  [OK] 1 ≤ k < N: k = 2, N = 3
+  [OK] B ≥ 0: B = 5
+  [OK] ids únicos: sin repetidos
+  [OK] cada u_i creciente y cóncava en {0, …, B}: todas cumplen
+
+== Parte 2: selección de nodos (voraz) ==
+  Paso 1: Δ(1) = 2, Δ(2) = 1, Δ(3) = 0
+    → elige el nodo 1 (Δ = 2); f(S) = 2
+  Paso 2: Δ(2) = 1, Δ(3) = 0
+    → elige el nodo 2 (Δ = 1); f(S) = 3
+  Resultado: S = [1, 2], f(S) = 3, llamadas a Δ = 5
+
+== Parte 1: reparto del presupuesto (voraz con montículo) ==
+  Unidad 1: al nodo 1 (Δ = 6.9315)
+  Unidad 2: al nodo 1 (Δ = 4.0547)
+  Unidad 3: al nodo 2 (Δ = 0.6931)
+  Unidad 4: al nodo 2 (Δ = 0.4055)
+  Unidad 5: al nodo 2 (Δ = 0.2877)
+  Resultado: x_1 = 2, x_2 = 3; utilidad total = 12.372417
+
+== Verificación: Parte 2 ==
+  [OK] S ⊆ V: S = [1, 2]
+  [OK] S sin repetidos: |S| = 2
+  [OK] |S| ≤ k: |S| = 2, k = 2
+  [OK] valor acumulado = f(S) recalculada: acumulado = 3, recalculado = 3
+  [OK] llamadas a Δ = k·N − k(k−1)/2: contadas = 5, fórmula = 5
+
+== Verificación: Parte 1 ==
+  [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
+  [OK] cada x_i ≤ c_i: c = {'1': 2}
+  [OK] Σ x_i = mín(B, Σ c_i): Σ x_i = 5, mín(B, Σ c_i) = 5, B = 5
+  [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 12.372417, recalculada = 12.372417
+  [OK] extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope: extracciones = 5, inserciones = 4, Σ x_i = 5, nodos en su tope = 1
+
+== Verificación: Ejecución ==
+  [OK] todas las repeticiones dan el mismo S y el mismo reparto: R = 21
+  [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
+
+== Tiempos: mediana de 21 repeticiones (solo los algoritmos, sin lectura ni escritura) ==
+  Parte 2 (selección): 0.000010200 s
+  Parte 1 (reparto):   0.000019900 s
+
+TODAS LAS VERIFICACIONES: CUMPLEN

@@ -55,6 +55,20 @@ def escribir_json(ruta, datos):
         json.dump(datos, archivo, ensure_ascii=False, indent=2)
 
 
+def _lineas_informativo(informativo):
+    """La sección "Informativo" del reporte: datos de las variantes que no son verificaciones."""
+    a = informativo["variante_a"]
+    b = informativo["variante_b"]
+    return [
+        "== Informativo (no es una verificación) ==",
+        f"  Variante (a): Σ costo_participacion de S = {_numero(a['suma_costos_de_S'])} frente a "
+        f"presupuesto_costos_participacion_por_ronda = "
+        f"{_numero(a['presupuesto_costos_participacion_por_ronda'])}; {a['nota']}",
+        f"  Variante (b): numero_rondas = {b['numero_rondas']}; {b['nota']}",
+        "",
+    ]
+
+
 def a_texto(resultado):
     """Convierte el resultado de una ronda (ver ronda.py) en un reporte de texto.
 
@@ -108,10 +122,14 @@ def a_texto(resultado):
             lineas.append(f"  [{'OK' if v['cumple'] else 'FALLA'}] {v['nombre']}: {v['detalle']}")
         lineas.append("")
 
+    if "informativo" in resultado:
+        lineas.extend(_lineas_informativo(resultado["informativo"]))
+
     t = resultado["tiempos_segundos"]
-    lineas.append("== Tiempos (solo los algoritmos, sin lectura ni escritura) ==")
-    lineas.append(f"  Parte 2 (selección): {t['seleccion']:.9f} s")
-    lineas.append(f"  Parte 1 (reparto):   {t['reparto']:.9f} s")
+    lineas.append(f"== Tiempos: mediana de {t['repeticiones']} repeticiones "
+                  "(solo los algoritmos, sin lectura ni escritura) ==")
+    lineas.append(f"  Parte 2 (selección): {t['seleccion']['mediana']:.9f} s")
+    lineas.append(f"  Parte 1 (reparto):   {t['reparto']['mediana']:.9f} s")
     lineas.append("")
     lineas.append(f"TODAS LAS VERIFICACIONES: {'CUMPLEN' if resultado['todas_cumplen'] else 'HAY FALLAS'}")
     return "\n".join(lineas) + "\n"

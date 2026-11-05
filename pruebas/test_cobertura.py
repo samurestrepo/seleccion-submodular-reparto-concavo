@@ -25,3 +25,20 @@ def test_ganancia_coincide_con_la_resta_de_valores():
         cubiertos = set().union(*(CONJUNTOS[v] for v in S))
         for v in sorted(set(CONJUNTOS) - set(S)):
             assert f.ganancia(v, cubiertos) == f.valor(S + [v]) - f.valor(S)
+
+
+def test_estado_inicial_es_un_set_vacio_y_nuevo():
+    f = OraculoCobertura(CONJUNTOS)
+    estado = f.estado_inicial()
+    assert estado == set()
+    assert f.estado_inicial() is not estado
+
+
+def test_agregar_actualiza_en_su_lugar_y_no_cuenta():
+    f = OraculoCobertura(CONJUNTOS)
+    estado = f.estado_inicial()
+    assert f.agregar(estado, 2) is estado
+    assert estado == {"c", "d"}
+    assert f.ganancia(3, estado) == 1          # Δ(3 | {2}) de la sección 5.6
+    assert f.llamadas_ganancia == 1            # solo la de ganancia: agregar no cuenta
+    assert CONJUNTOS[2] == frozenset("cd")     # el dato de entrada no cambia
