@@ -21,7 +21,7 @@ def seleccionar_nodos(oraculo, V, k, traza=None):
     """
     S = []                     # línea 1 del pseudocódigo
     en_S = set()               # para preguntar "¿v está en S?" en O(1)
-    cubiertos = oraculo.estado_inicial()   # estado de S: lo que ya cubre el equipo (ver cada oráculo)
+    estado = oraculo.estado_inicial()   # estado de S: lo que ya cubre el equipo (ver cada oráculo)
     valorS = oraculo.valor(S)  # línea 1 del pseudocódigo: valorS ← f(∅), que vale 0
 
     for paso in range(1, k + 1):                       # línea 2 del pseudocódigo
@@ -31,7 +31,7 @@ def seleccionar_nodos(oraculo, V, k, traza=None):
         for v in V:                                    # línea 4 del pseudocódigo: v ∈ V \ S en orden creciente
             if v in en_S:
                 continue
-            delta = oraculo.ganancia(v, cubiertos)     # línea 5 del pseudocódigo: una llamada al oráculo
+            delta = oraculo.ganancia(v, estado)     # línea 5 del pseudocódigo: una llamada al oráculo
             if traza is not None:                      # la ejecución medida no anota nada
                 aportes.append((v, delta))
             if delta > mejor_delta:                    # línea 6 del pseudocódigo: '>' estricto ⇒ desempata el menor índice
@@ -39,7 +39,7 @@ def seleccionar_nodos(oraculo, V, k, traza=None):
                 mejor_delta = delta
         S.append(mejor)                                # línea 8 del pseudocódigo
         en_S.add(mejor)
-        cubiertos = oraculo.agregar(cubiertos, mejor)
+        estado = oraculo.agregar(estado, mejor)
         valorS = valorS + mejor_delta
         if traza is not None:                          # línea 9 del pseudocódigo
             traza.paso_seleccion(paso, aportes, mejor, mejor_delta, valorS)

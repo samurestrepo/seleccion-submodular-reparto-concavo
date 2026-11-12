@@ -15,7 +15,7 @@ M = Σ \|C_v\|, el total de elementos en los conjuntos. A = número de aristas d
 **Precondición** (en el docstring; aquí no se comprueba, para seguir el pseudocódigo, decisión 19): 1 ≤ k ≤ \|V\|, con V ordenado y sin repetidos. `ronda.py` ya lo valida antes de llamar. Si no se cumple: k > \|V\| lanza `KeyError: None`; k ≤ 0 devuelve S vacío; V desordenado rompe el desempate.
 
 ## Cómo funciona
-1. **Línea 1:** S vacío, `cubiertos` = el estado inicial del oráculo y valorS ← f(∅) = 0. La variable conserva el nombre `cubiertos`, porque solo cambiaron las dos líneas del estado; con influencia guarda los q_w.
+1. **Línea 1:** S vacío, `estado` = el estado inicial del oráculo y valorS ← f(∅) = 0. Con cobertura `estado` es cub(S); con influencia son los q_w. (Antes se llamaba `cubiertos`; se renombró el 2026-11-09 sin cambiar la lógica.)
 2. **Línea 2:** se repite k veces (un paso por cada nodo que entra).
 3. **Líneas 3 a 7:** se recorre V en orden creciente y se salta lo que ya está en S. Por cada candidato v se pide Δ(v | S) al oráculo (**línea 5**, una llamada) y se guarda el mejor.
 4. **Línea 8:** el mejor entra a S, `oraculo.agregar` actualiza el estado en su lugar y valorS sube en Δ.
@@ -46,6 +46,8 @@ M = Σ \|C_v\|, el total de elementos en los conjuntos. A = número de aristas d
 
 `pruebas/test_influencia.py` corre este mismo voraz con el oráculo de influencia: conteo de llamadas y cota (1 − 1/e) en 150 instancias, y el mismo S que cobertura con pesos 0 o 1. La regresión del caso de la profesora está en `pruebas/test_bateria.py`.
 
+`pruebas/test_exacto.py` compara este voraz contra el óptimo exacto (`red/exacto.py`): ver `docs/modulos/exacto.md`.
+
 ## Preguntas probables en la sustentación
 - **¿Por qué Θ(N·k) y no solo O(N·k)?** Porque se hacen exactamente k·N − k(k−1)/2 llamadas, y como k < N eso está entre kN/2 y kN (encierro). No hay salida anticipada, así que mejor, peor y promedio coinciden.
 - **¿El voraz da el óptimo?** No; el contraejemplo da 5 contra 6. Garantiza al menos 63 % del óptimo (Nemhauser, Wolsey y Fisher, 1978), porque la cobertura y la influencia son monótonas, submodulares y con f(∅) = 0. En el caso de la profesora, la fuerza bruta da 145.9072 y el voraz 145.5795 (99.8 %).
@@ -53,4 +55,4 @@ M = Σ \|C_v\|, el total de elementos en los conjuntos. A = número de aristas d
 - **¿Θ(N·k) es el tiempo?** Es el número de llamadas. El tiempo con cobertura es O(k·(N + M)), porque cada llamada cuesta O(\|C_v\|) y cada paso recorre V. Con influencia es O(k·(N + A)), porque cada llamada cuesta O(1 + grado(v)).
 - **¿Qué cambió para aceptar el oráculo de influencia?** Solo las dos líneas que crean y actualizan el estado. El ciclo, el desempate y el conteo son los mismos.
 
-_Última actualización: 2026-11-04 · el estado lo maneja el oráculo; tiempo y espacio con influencia_
+_Última actualización: 2026-11-09 · variable `cubiertos` renombrada a `estado`, sin cambio de lógica_

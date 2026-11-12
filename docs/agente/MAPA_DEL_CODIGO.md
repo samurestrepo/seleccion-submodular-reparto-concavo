@@ -9,12 +9,14 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `red/cobertura.py` | Oráculo f de cobertura (formato propio): estado, f(S) y Δ(v \| S); cuenta las llamadas | `docs/modulos/cobertura.md` | hecho |
 | `red/influencia.py` | Oráculo f de cobertura por influencia (formato de la profesora), con la misma interfaz | `docs/modulos/influencia.md` | hecho |
 | `red/seleccion.py` | Parte 2: voraz de selección, Θ(N·k) llamadas a f | `docs/modulos/seleccion.md` | hecho |
+| `red/exacto.py` | Parte 2, referencia: óptimo exacto por fuerza bruta (C(N, k) evaluaciones, se niega si C(N, k) > 200000). No forma parte de la ronda | `docs/modulos/exacto.md` | hecho |
 | `red/utilidades.py` | Familias de u_i (log, raíz, tabla) y su ganancia marginal Δ_i(x) en O(1) | `docs/modulos/utilidades.md` | hecho |
 | `red/reparto.py` | Parte 1: voraz con montículo (heapq) y topes por nodo opcionales, peor caso O(N + B lg N) | `docs/modulos/reparto.md` | hecho |
 | `red/verificacion.py` | Comprobar las restricciones de entrada y de salida | `docs/modulos/verificacion.md` | hecho |
 | `red/traza.py` | Registrar el paso a paso y escribirlo en texto y JSON | `docs/modulos/traza.md` | hecho |
 | `red/ronda.py` | Orquestar una ronda: Parte 2, luego Parte 1, verificar y medir tiempos (mediana de R repeticiones) | `docs/modulos/ronda.md` | hecho |
 | `red/generador.py` | Generar instancias sintéticas de tamaño creciente con semilla | `docs/modulos/generador.md` | hecho |
+| `scripts/tabla_cota.py` | Genera `resultados/cota/tabla_cota.csv`: voraz contra OPT exacto y las cotas 1 − (1 − 1/k)^k y 1 − 1/e | `docs/modulos/tabla_cota.md` | hecho |
 | `ejecutar.py` | Línea de comandos: correr un caso o una carpeta de casos | `docs/modulos/ejecutar.md` | hecho |
 | `red/__init__.py` | Marca `red/` como paquete de Python | — | hecho |
 
@@ -32,7 +34,9 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `pruebas/test_influencia.py` | Oráculo de influencia: Δ = resta de valores, monotonía y submodularidad por fuerza bruta, cobertura como caso particular, costo sin reloj y cota (1 − 1/e) |
 | `pruebas/test_bateria.py` | Toda la carpeta `casos/`: los válidos cumplen y dan lo esperado, los inválidos se rechazan, y la regresión del caso de la profesora. Esa regresión y `test_entrada.py` leen `casos/profesora/entrada_G2_red_15_nodos.json` |
 | `pruebas/__init__.py` | Marca `pruebas/` como paquete (para importar `fuerza_bruta`) |
-| `pruebas/fuerza_bruta.py` | Fuerza bruta **solo para pruebas** (comparar el reparto, con y sin topes, y la cota 1 − 1/e en instancias pequeñas) |
+| `pruebas/test_exacto.py` | Conteo C(N, k) de `exacto.py`, cota del voraz contra OPT en los casos con N <= 20 y en el de la profesora, contraejemplo (OPT = 6, S* = {2, 3}), empate y negativa por tamaño |
+| `resultados/cota/` | `tabla_cota.csv`, generado por `scripts/tabla_cota.py` (nada en `resultados/profesora/`) |
+| `pruebas/fuerza_bruta.py` | Fuerza bruta **solo para pruebas** (comparar el reparto, con y sin topes, y la cota 1 − 1/e en instancias pequeñas) Aclaración: no es el exacto que se entrega (ese es `red/exacto.py`, con oráculo y conteo de evaluaciones); esta calcula f por unión directa, sin oráculo, como verificación cruzada independiente |
 | `pytest.ini` | Le dice a pytest que las pruebas están en `pruebas/` |
 | `requirements-dev.txt` | Única dependencia externa: `pytest`, solo para las pruebas |
 | `casos/CATALOGO.md` | Tabla de la batería: qué comprueba cada caso, esperado y obtenido |

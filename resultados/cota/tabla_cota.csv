@@ -1,0 +1,12 @@
+caso,N,k,f_voraz,OPT,razon,cota_k,cota_e,cumple
+borde_B_cero,3,2,3,3,1.0,0.75,0.632121,True
+borde_k_N_menos_uno,4,3,4,4,1.0,0.703704,0.632121,True
+borde_k_uno,4,1,3,3,1.0,1.0,0.632121,True
+borde_nodo_sin_cobertura,3,2,3,3,1.0,0.75,0.632121,True
+contraejemplo_seleccion,3,2,5,6,0.833333,0.75,0.632121,True
+ejemplo_informe,3,2,5,5,1.0,0.75,0.632121,True
+empates,3,2,2,2,1.0,0.75,0.632121,True
+reparto_P_Q_informe,3,2,5,5,1.0,0.75,0.632121,True
+sintetico_N020_k5,20,5,21,21,1.0,0.67232,0.632121,True
+tope_activo,3,2,3,3,1.0,0.75,0.632121,True
+entrada_G2_red_15_nodos,15,5,145.57952,145.907178,0.997754,0.67232,0.632121,True
