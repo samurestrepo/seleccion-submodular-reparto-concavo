@@ -190,3 +190,12 @@ Se usa `time.perf_counter()` alrededor de cada algoritmo, en ejecuciones **sin t
 - Con coeficientes extremos (a cerca de 1e308) los valores se desbordan a infinito: el caso se reporta como FALLA en la verificación de la utilidad, y `salida.json` puede traer `Infinity`, que no es JSON estándar.
 - La ejecución con traza guarda Θ(N·k + B) anotaciones; con instancias muy grandes, la traza y sus archivos pesan.
 - No se incluyen todavía: el algoritmo exacto de la Parte 2, las variantes de la sección 4.4 del enunciado ni la validación experimental.
+
+## 8. Experimentos
+`scripts/experimentos.py` mide el tiempo de los algoritmos y lo contrasta con la T(n) del informe. Necesita `matplotlib` solo para las gráficas (`python -m pip install -r requirements-dev.txt`). Desde la raíz del repositorio:
+
+```
+python scripts/experimentos.py
+```
+
+Corre 7 series con semilla 1 y 21 repeticiones: voraz de la Parte 2 con cobertura (a) y con influencia en grafo completo (b) y de grado medio 5 (c); reparto de la Parte 1 variando N (d) y B (e); fuerza bruta con k = 3 (f) y k = N/2 (g). Por serie escribe `resultados/experimentos/<serie>.csv` (columnas `n`, `N`, `k`, `B`, `densidad`, `semilla`, `t_min`, `t_mediana`, `conteo`, `T_teorica`, `cociente`) y dos gráficas PNG: t_min contra n con la curva c·T_teorica, y el cociente t_min / T_teorica. Se cronometra solo el algoritmo y se usa el mínimo (el de las gráficas). Con d y e juntas se ajusta además t_min ≈ a·N + b·B·lg N por mínimos cuadrados (columna `t_ajustado` y `ajuste_reparto.png`). Opciones: `--series a d` (solo algunas), `--sin-graficas` y `--repeticiones R`. Para generar instancias de influencia a mano: `python -m red.generador --N 50 --k 5 --B 100 --formato influencia --densidad 0.1 --semilla 1 --salida caso.json`.
