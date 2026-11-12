@@ -17,7 +17,7 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `red/ronda.py` | Orquestar una ronda: Parte 2, luego Parte 1, verificar y medir tiempos (mediana de R repeticiones) | `docs/modulos/ronda.md` | hecho |
 | `red/generador.py` | Generar instancias sintéticas de tamaño creciente con semilla, en el formato propio (cobertura) o en el de la profesora (influencia, `--formato`) | `docs/modulos/generador.md` | hecho |
 | `red/pd_reparto.py` | Parte 1, referencia: reparto por programación dinámica (Θ(N·B²) candidatos, Θ(N·B) espacio), correcto aun con u_i no cóncavas. No forma parte de la ronda | `docs/modulos/pd_reparto.md` | hecho |
-| `scripts/tabla_cota.py` | Genera `resultados/cota/tabla_cota.csv`: voraz contra OPT exacto y las cotas 1 − (1 − 1/k)^k y 1 − 1/e | `docs/modulos/tabla_cota.md` | hecho |
+| `scripts/tabla_cota.py` | Genera `resultados/cota/tabla_cota.csv` (y `tabla_cota_aleatoria.csv`): voraz contra OPT exacto y las cotas 1 − (1 − 1/k)^k y 1 − 1/e | `docs/modulos/tabla_cota.md` | hecho |
 | `scripts/experimentos.py` | Mide el tiempo y el conteo de las 8 series (voraz Parte 2, reparto Parte 1 voraz y PD, fuerza bruta) y escribe CSV y gráficas en `resultados/experimentos/` | `docs/modulos/experimentos.md` | hecho |
 | `ejecutar.py` | Línea de comandos: correr un caso o una carpeta de casos | `docs/modulos/ejecutar.md` | hecho |
 | `red/__init__.py` | Marca `red/` como paquete de Python | — | hecho |
@@ -37,7 +37,8 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `pruebas/test_bateria.py` | Toda la carpeta `casos/`: los válidos cumplen y dan lo esperado, los inválidos se rechazan, y la regresión del caso de la profesora. Esa regresión y `test_entrada.py` leen `casos/profesora/entrada_G2_red_15_nodos.json` |
 | `pruebas/__init__.py` | Marca `pruebas/` como paquete (para importar `fuerza_bruta`) |
 | `pruebas/test_exacto.py` | Conteo C(N, k) de `exacto.py`, cota del voraz contra OPT en los casos con N <= 20 y en el de la profesora, contraejemplo (OPT = 6, S* = {2, 3}), empate y negativa por tamaño |
-| `resultados/cota/` | `tabla_cota.csv`, generado por `scripts/tabla_cota.py` (nada en `resultados/profesora/`) |
+| `resultados/cota/` | `tabla_cota.csv` y `tabla_cota_aleatoria.csv` (45 instancias aleatorias), generados por `scripts/tabla_cota.py` (nada en `resultados/profesora/`) |
+| `pruebas/test_tabla_cota.py` | Batería aleatoria de la cota: 45 filas, reproducible, f_voraz <= OPT, razón en (0, 1], cumplen y columnas del CSV |
 | `pruebas/fuerza_bruta.py` | Fuerza bruta **solo para pruebas** (comparar el reparto, con y sin topes, y la cota 1 − 1/e en instancias pequeñas) Aclaración: no es el exacto que se entrega (ese es `red/exacto.py`, con oráculo y conteo de evaluaciones); esta calcula f por unión directa, sin oráculo, como verificación cruzada independiente |
 | `pytest.ini` | Le dice a pytest que las pruebas están en `pruebas/` |
 | `requirements-dev.txt` | Dependencias externas, ambas fuera de la lógica: `pytest` (pruebas) y `matplotlib` (solo las gráficas de `scripts/experimentos.py`) |
