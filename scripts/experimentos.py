@@ -1,7 +1,7 @@
-"""Experimentos de tiempo: 7 series que contrastan lo medido con la T(n) teórica del informe.
+"""Experimentos de tiempo: 8 series que contrastan lo medido con la T(n) teórica del informe.
 
 Uso, desde la raíz del repositorio:
-    python scripts/experimentos.py                 # las 7 series: CSV y gráficas en resultados/experimentos/
+    python scripts/experimentos.py                 # las 8 series: CSV y gráficas en resultados/experimentos/
     python scripts/experimentos.py --series a d    # solo algunas
     python scripts/experimentos.py --sin-graficas  # solo CSV (no necesita matplotlib)
 
@@ -23,6 +23,7 @@ sys.path.insert(0, str(RAIZ))
 
 from red.entrada import instancia_desde_diccionario      # noqa: E402
 from red.exacto import seleccionar_exacto                # noqa: E402
+from red.pd_reparto import repartir_pd                  # noqa: E402
 from red.generador import generar_instancia, generar_instancia_influencia  # noqa: E402
 from red.reparto import repartir_presupuesto             # noqa: E402
 from red.seleccion import seleccionar_nodos              # noqa: E402
@@ -32,6 +33,9 @@ SEMILLA = 1          # misma semilla en todas las series (decisión 32)
 REPETICIONES = 21
 COLUMNAS = ["n", "N", "k", "B", "densidad", "semilla", "t_min", "t_mediana",
             "conteo", "T_teorica", "cociente"]
+COLUMNAS_H = COLUMNAS + ["repeticiones"]         # serie h: repeticiones realmente usadas (límite de 2 s)
+LIMITE_UNA_REPETICION = 2.0                      # s; si una repetición lo pasa, la serie h usa REPETICIONES_LENTAS
+REPETICIONES_LENTAS = 5
 COLUMNAS_AJUSTADAS = COLUMNAS + ["t_ajustado"]   # series d y e: se agrega el tiempo del ajuste (decisión 32)
 
 
@@ -44,16 +48,30 @@ def medir(preparar, repeticiones=REPETICIONES):
     `ejecutar()` es el algoritmo y es lo único que se cronometra; `contar()` lee el contador de
     operaciones básicas (se toma de la primera repetición). Tiempo: repeticiones · T(algoritmo).
     """
+    return medir_con_limite(preparar, repeticiones)[:3]
+
+
+def medir_con_limite(preparar, repeticiones=REPETICIONES, limite=None):
+    """Como `medir`, pero devuelve (t_min, t_mediana, conteo, repeticiones_usadas).
+
+    Si `limite` (segundos) no es None y la primera repetición lo pasa, se hacen solo
+    min(repeticiones, REPETICIONES_LENTAS) repeticiones en total: así la serie h no se vuelve eterna.
+    """
     tiempos = []
     conteo = None
-    for repeticion in range(repeticiones):
+    total = repeticiones
+    repeticion = 0
+    while repeticion < total:
         ejecutar, contar = preparar()
         inicio = time.perf_counter()
         ejecutar()
         tiempos.append(time.perf_counter() - inicio)
         if repeticion == 0:
             conteo = contar()
-    return min(tiempos), statistics.median(tiempos), conteo
+            if limite is not None and tiempos[0] > limite:
+                total = min(total, REPETICIONES_LENTAS)
+        repeticion += 1
+    return min(tiempos), statistics.median(tiempos), conteo, total
 
 
 # ------------------------------------------------- cómo se prepara cada algoritmo
@@ -84,6 +102,21 @@ def _preparar_reparto(instancia):
     return preparar
 
 
+def _preparar_pd(instancia):
+    """PD de la Parte 1 con los N nodos y topes ≥ B (sin topes). Conteo: candidatos t evaluados."""
+    ids = instancia.ids()
+    utilidades = instancia.utilidades()
+    resultado = []
+
+    def ejecutar():
+        resultado.append(repartir_pd(ids, instancia.B, utilidades))
+
+    def preparar():
+        resultado.clear()
+        return ejecutar, lambda: resultado[0].candidatos
+    return preparar
+
+
 def _preparar_exacto(instancia):
     """Fuerza bruta de la Parte 2. Conteo: evaluaciones de f(S) (exactamente C(N, k))."""
     ids = instancia.ids()
@@ -97,7 +130,7 @@ def _preparar_exacto(instancia):
     return preparar
 
 
-# ----------------------------------------------------------------- las 7 series
+# ----------------------------------------------------------------- las 8 series
 # Cada serie es (nombre, descripción, tamaños, construir(n) → (parámetros, preparar), T_teorica(parámetros)).
 # `construir` genera la instancia FUERA del reloj, directo del generador (sin archivos).
 
@@ -127,6 +160,11 @@ def _reparto_varia_b(b):
     return dict(N=100, k=K, B=b, densidad=""), _preparar_reparto(inst)
 
 
+def _pd_varia_b(b):
+    inst = instancia_desde_diccionario(generar_instancia(10, K, b, semilla=SEMILLA))
+    return dict(N=10, k=K, B=b, densidad=""), _preparar_pd(inst)
+
+
 def _exacto(k_de):
     def construir(n):
         k = k_de(n)
@@ -150,22 +188,25 @@ SERIES = {
           _exacto(lambda n: 3), lambda p: comb(p["N"], p["k"]) * p["k"] * p["N"], "C(N, k)·k·N"),
     "g": ("g_exacto_k_mitad", "Fuerza bruta, k = N/2, grafo completo", [8, 10, 12, 14, 16],
           _exacto(lambda n: n // 2), lambda p: comb(p["N"], p["k"]) * p["k"] * p["N"], "C(N, k)·k·N"),
+    "h": ("h_pd_varia_B", "PD Parte 1, N = 10, varía B, sin topes", [25, 50, 100, 200, 400],
+          _pd_varia_b, lambda p: p["N"] * p["B"] ** 2, "N·B²"),
 }
 
 
 def ejecutar_serie(clave, repeticiones=REPETICIONES):
     """Corre una serie y devuelve sus filas (diccionarios con COLUMNAS), una por tamaño.
 
-    Para cada n: construye la instancia, mide con `medir` y calcula cociente = t_min / T_teorica.
+    Para cada n: construye la instancia, mide con `medir_con_limite` y calcula cociente = t_min / T_teorica.
     """
     _, _, tamanos, construir, teorica, _ = SERIES[clave]
+    limite = LIMITE_UNA_REPETICION if clave == "h" else None      # solo la PD puede ser lenta
     filas = []
     for n in tamanos:
         parametros, preparar = construir(n)
-        t_min, t_mediana, conteo = medir(preparar, repeticiones)
+        t_min, t_mediana, conteo, usadas = medir_con_limite(preparar, repeticiones, limite)
         T = teorica(parametros)
         filas.append({"n": n, **parametros, "semilla": SEMILLA, "t_min": t_min, "t_mediana": t_mediana,
-                      "conteo": conteo, "T_teorica": T, "cociente": t_min / T})
+                      "conteo": conteo, "T_teorica": T, "cociente": t_min / T, "repeticiones": usadas})
     return filas
 
 
@@ -255,7 +296,7 @@ def graficar(clave, filas):
     nombre, titulo, _, _, _, formula = SERIES[clave]
     ns = [f["n"] for f in filas]
     c = filas[-1]["t_min"] / filas[-1]["T_teorica"]
-    etiqueta_n = "B" if clave == "e" else "N"
+    etiqueta_n = "B" if clave in ("e", "h") else "N"
 
     figura, eje = plt.subplots(figsize=(6, 4))
     eje.plot(ns, [f["t_min"] for f in filas], "o-", label="t_min medido")
@@ -291,6 +332,8 @@ def imprimir(clave, filas):
         print(f"{f['n']:>7} {f['t_min']:>12.6f} {f['t_mediana']:>14.6f} {f['conteo']:>10} "
               f"{f['T_teorica']:>14.1f} {f['cociente']:>12.4e}")
     print(f"pendiente log-log de t_min contra n: {pendiente_loglog(filas):.3f}")
+    if clave == "h":
+        print(f"repeticiones usadas por tamaño: {[f['repeticiones'] for f in filas]}")
     if clave in ("f", "g"):
         print(f"pendiente log-log de t_min contra T_teorica: {pendiente_loglog(filas, 'T_teorica'):.3f}")
 
@@ -318,7 +361,7 @@ def main(argumentos=None):
     if "d" in resultados and "e" in resultados:       # el ajuste usa las dos series juntas
         ajuste = ajustar_reparto(resultados["d"] + resultados["e"])
     for clave, filas in resultados.items():
-        columnas = COLUMNAS_AJUSTADAS if ajuste and clave in ("d", "e") else COLUMNAS
+        columnas = COLUMNAS_AJUSTADAS if ajuste and clave in ("d", "e") else (COLUMNAS_H if clave == "h" else COLUMNAS)
         escribir_csv(SERIES[clave][0], filas, columnas)
         if not a.sin_graficas:
             graficar(clave, filas)

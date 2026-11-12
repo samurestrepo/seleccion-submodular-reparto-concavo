@@ -1,13 +1,14 @@
 # Ficha: `scripts/experimentos.py`
 
 ## Para qué existe
-Contrasta lo medido con la T(n) del informe. Corre 7 series (voraz de la Parte 2 con cobertura y con influencia, reparto de la Parte 1 y fuerza bruta), y para cada tamaño guarda tiempo, conteo de operaciones y el cociente t_min / T_teorica. Uso, desde la raíz: `python scripts/experimentos.py` (opciones: `--series a d`, `--sin-graficas`, `--repeticiones R`).
+Contrasta lo medido con la T(n) del informe. Corre 8 series (voraz de la Parte 2 con cobertura y con influencia, reparto de la Parte 1 voraz y por PD, y fuerza bruta), y para cada tamaño guarda tiempo, conteo de operaciones y el cociente t_min / T_teorica. Uso, desde la raíz: `python scripts/experimentos.py` (opciones: `--series a d`, `--sin-graficas`, `--repeticiones R`).
 
 ## Funciones públicas
 | Función | Recibe | Devuelve | Complejidad |
 |---|---|---|---|
+| `medir_con_limite(preparar, repeticiones, limite)` | igual que `medir` y un límite en segundos para la primera repetición | `(t_min, t_mediana, conteo, repeticiones_usadas)`; si la primera repetición pasa el límite, se hacen solo 5 | igual que `medir` |
 | `medir(preparar, repeticiones)` | una función que crea el estado fresco y devuelve `(ejecutar, contar)` | `(t_min, t_mediana, conteo)` | R · T(algoritmo); el reloj solo envuelve `ejecutar()` |
-| `ejecutar_serie(clave, repeticiones)` | letra de la serie (`a` a `g`) | lista de filas con las columnas del CSV | suma de `medir` sobre sus tamaños |
+| `ejecutar_serie(clave, repeticiones)` | letra de la serie (`a` a `h`) | lista de filas con las columnas del CSV | suma de `medir` sobre sus tamaños |
 | `pendiente(xs, ys)` / `pendiente_loglog(filas, variable)` | datos | pendiente de la regresión (de log t_min contra log n o log T) | O(n) |
 | `ajustar_reparto(filas)` / `error_relativo(fila)` | filas de las series d y e juntas | `(a, b)` de t_min ≈ a·N + b·B·lg N (ecuaciones normales 2x2, sin término independiente, con el N y el B reales) y agrega `t_ajustado` a cada fila | O(filas) |
 | `escribir_csv`, `graficar`, `graficar_ajuste`, `imprimir`, `imprimir_ajuste`, `main` | — | CSV, dos PNG por serie, `ajuste_reparto.png` (t medido contra predicho, con y = x) y tablas por consola | — |
@@ -22,8 +23,9 @@ Contrasta lo medido con la T(n) del informe. Corre 7 series (voraz de la Parte 2
 | e | reparto, N = 100 | B = 1000 a 16000 | N + B·lg N | extracciones + inserciones |
 | f | fuerza bruta, k = 3, grafo completo | N = 10 a 30 | C(N, k)·k·N | evaluaciones de f |
 | g | fuerza bruta, k = N/2, grafo completo | N = 8 a 16 | C(N, k)·k·N | evaluaciones de f |
+| h | PD de la Parte 1 (`red/pd_reparto.py`), N = 10, sin topes | B = 25 a 400 | N·B² | candidatos t evaluados (exactamente N·(B+1)(B+2)/2) |
 
-Columnas de `resultados/experimentos/<serie>.csv`: `n` (la variable que cambia: N, salvo en la serie e, que es B), `N`, `k`, `B`, `densidad`, `semilla`, `t_min`, `t_mediana`, `conteo`, `T_teorica`, `cociente`. Las gráficas son `<serie>_tiempo.png` (t_min contra n y la curva c·T_teorica, con c = t_min / T_teorica en el n más grande) y `<serie>_cociente.png`; en la serie g el eje y es logarítmico. Los CSV de d y e agregan al final `t_ajustado` (el ajuste solo se hace si d y e se corren juntas); `ajuste_reparto.png` grafica t_min contra t_ajustado con la recta y = x, y la consola imprime a, b y el error relativo de cada punto.
+Columnas de `resultados/experimentos/<serie>.csv`: `n` (la variable que cambia: N, salvo en las series e y h, que es B), `N`, `k`, `B`, `densidad`, `semilla`, `t_min`, `t_mediana`, `conteo`, `T_teorica`, `cociente`. Las gráficas son `<serie>_tiempo.png` (t_min contra n y la curva c·T_teorica, con c = t_min / T_teorica en el n más grande) y `<serie>_cociente.png`; en la serie g el eje y es logarítmico. El CSV de h agrega al final `repeticiones` (las usadas en cada tamaño): 21, o 5 si una repetición pasa de 2 s (decisión 33); con n = B, los 5 tamaños de h terminan en menos de 0,2 s por repetición. Los CSV de d y e agregan al final `t_ajustado` (el ajuste solo se hace si d y e se corren juntas); `ajuste_reparto.png` grafica t_min contra t_ajustado con la recta y = x, y la consola imprime a, b y el error relativo de cada punto.
 
 ## Por qué así
 - **Solo el algoritmo en el reloj** (decisión 8): instancia y oráculo nuevo se crean antes; no se lee ni escribe ningún archivo. Las instancias salen directo de los generadores, sin pasar por disco.
@@ -36,11 +38,11 @@ Columnas de `resultados/experimentos/<serie>.csv`: `n` (la variable que cambia: 
 Cambiar tamaños: la lista de la serie en `SERIES`. Otra serie: una función `construir(n)` que devuelva `(parámetros, preparar)` y una entrada en `SERIES`. `matplotlib` se importa solo dentro de `graficar` (con `--sin-graficas` no hace falta).
 
 ## Pruebas
-`pruebas/test_experimentos.py`: `medir`, conteos de las series a, d y f contra k·N − k(k−1)/2, 2B y C(N, k), columnas del CSV, la pendiente y `ajustar_reparto` (recupera a y b de datos exactos).
+`pruebas/test_experimentos.py`: `medir`, conteos de las series a, d y f contra k·N − k(k−1)/2, 2B y C(N, k), serie h (conteo y repeticiones), `medir_con_limite`, columnas del CSV, la pendiente y `ajustar_reparto` (recupera a y b de datos exactos).
 
 ## Preguntas probables en la sustentación
 - **¿Por qué el mínimo y no el promedio?** El ruido del sistema solo suma tiempo.
 - **¿Qué se espera del cociente?** Que tienda a una constante si T teórica describe bien el crecimiento; si crece o decrece sin parar, falta un término.
 - **¿Por qué el conteo de la serie b no crece como N²?** Cuenta llamadas a Δ, y cada una recorre los vecinos del nodo.
 
-_Última actualización: 2026-11-12 · ajuste del reparto (a·N + b·B·lg N)_
+_Última actualización: 2026-11-12 · serie h (PD)_

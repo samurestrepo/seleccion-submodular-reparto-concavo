@@ -56,3 +56,21 @@ def test_ajustar_reparto_recupera_a_y_b_de_datos_exactos():
     a, b = experimentos.ajustar_reparto(filas)
     assert abs(a - 3e-6) < 1e-12 and abs(b - 2e-7) < 1e-12
     assert all(abs(experimentos.error_relativo(f)) < 1e-9 for f in filas)
+
+
+def test_serie_h_cuenta_candidatos_y_anota_las_repeticiones(monkeypatch):
+    monkeypatch.setitem(experimentos.SERIES, "h", (*experimentos.SERIES["h"][:2], [12], *experimentos.SERIES["h"][3:]))
+    fila = experimentos.ejecutar_serie("h", 3)[0]
+    assert fila["conteo"] == 10 * (12 + 1) * (12 + 2) // 2 and fila["T_teorica"] == 10 * 12 ** 2
+    assert fila["repeticiones"] == 3 and "repeticiones" in experimentos.COLUMNAS_H
+
+
+def test_medir_con_limite_baja_a_5_repeticiones_si_la_primera_es_lenta():
+    llamadas = []
+
+    def preparar():
+        return (lambda: llamadas.append(1), lambda: 0)
+
+    assert experimentos.medir_con_limite(preparar, 21, limite=-1.0)[3] == 5 and len(llamadas) == 5
+    llamadas.clear()
+    assert experimentos.medir_con_limite(preparar, 21, limite=1e9)[3] == 21 and len(llamadas) == 21

@@ -16,8 +16,9 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `red/traza.py` | Registrar el paso a paso y escribirlo en texto y JSON | `docs/modulos/traza.md` | hecho |
 | `red/ronda.py` | Orquestar una ronda: Parte 2, luego Parte 1, verificar y medir tiempos (mediana de R repeticiones) | `docs/modulos/ronda.md` | hecho |
 | `red/generador.py` | Generar instancias sintéticas de tamaño creciente con semilla, en el formato propio (cobertura) o en el de la profesora (influencia, `--formato`) | `docs/modulos/generador.md` | hecho |
+| `red/pd_reparto.py` | Parte 1, referencia: reparto por programación dinámica (Θ(N·B²) candidatos, Θ(N·B) espacio), correcto aun con u_i no cóncavas. No forma parte de la ronda | `docs/modulos/pd_reparto.md` | hecho |
 | `scripts/tabla_cota.py` | Genera `resultados/cota/tabla_cota.csv`: voraz contra OPT exacto y las cotas 1 − (1 − 1/k)^k y 1 − 1/e | `docs/modulos/tabla_cota.md` | hecho |
-| `scripts/experimentos.py` | Mide el tiempo y el conteo de las 7 series (voraz Parte 2, reparto Parte 1, fuerza bruta) y escribe CSV y gráficas en `resultados/experimentos/` | `docs/modulos/experimentos.md` | hecho |
+| `scripts/experimentos.py` | Mide el tiempo y el conteo de las 8 series (voraz Parte 2, reparto Parte 1 voraz y PD, fuerza bruta) y escribe CSV y gráficas en `resultados/experimentos/` | `docs/modulos/experimentos.md` | hecho |
 | `ejecutar.py` | Línea de comandos: correr un caso o una carpeta de casos | `docs/modulos/ejecutar.md` | hecho |
 | `red/__init__.py` | Marca `red/` como paquete de Python | — | hecho |
 
@@ -41,7 +42,8 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `pytest.ini` | Le dice a pytest que las pruebas están en `pruebas/` |
 | `requirements-dev.txt` | Dependencias externas, ambas fuera de la lógica: `pytest` (pruebas) y `matplotlib` (solo las gráficas de `scripts/experimentos.py`) |
 | `pruebas/test_experimentos.py` | `medir`, conteos de las series contra las fórmulas del informe, columnas del CSV y la pendiente log-log, con tamaños mínimos |
-| `resultados/experimentos/` | 7 CSV y 14 PNG (tiempo y cociente por serie) más `ajuste_reparto.png`, generados por `scripts/experimentos.py` (decisión 32) |
+| `pruebas/test_pd_reparto.py` | La PD iguala al voraz en los casos propios y en 200 instancias cóncavas, lo supera con una u convexa, bordes y el conteo exacto N·(B+1)(B+2)/2 |
+| `resultados/experimentos/` | 8 CSV y 16 PNG (tiempo y cociente por serie) más `ajuste_reparto.png`, generados por `scripts/experimentos.py` (decisión 32) |
 | `casos/CATALOGO.md` | Tabla de la batería: qué comprueba cada caso, esperado y obtenido |
 | `casos/propios/` | Batería de casos válidos: ejemplos del informe, contraejemplo, bordes, empates, `tope_activo` y 5 sintéticos (N = 20 a 320, semilla 1) |
 | `casos/invalidos/` | Casos que deben rechazarse: utilidad convexa, k = N, ids repetidos |
