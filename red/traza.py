@@ -33,6 +33,18 @@ class Traza:
             "valor_despues": valor,
         })
 
+    def paso_seleccion_costos(self, paso, aportes, elegido, ganancia, valor, costo_despues):
+        """Un paso del voraz por cociente (variante a): Δ, c y Δ/c de cada candidato que cabe, el elegido,
+        f(S) y Σ c(S) después. aportes: lista de (v, Δ, c(v))."""
+        self.pasos_seleccion.append({
+            "paso": paso,
+            "aportes": [{"nodo": v, "ganancia": d, "costo": c, "cociente": d / c} for v, d, c in aportes],
+            "elegido": elegido,
+            "ganancia_elegido": ganancia,
+            "valor_despues": valor,
+            "costo_despues": costo_despues,
+        })
+
     def unidad_reparto(self, unidad, nodo, ganancia):
         """Una unidad del reparto: qué nodo la recibe y cuánto aporta."""
         self.unidades_reparto.append({"unidad": unidad, "nodo": nodo, "ganancia": ganancia})
@@ -82,6 +94,10 @@ def a_texto(resultado):
         lineas.append("N, k y B: no se pudieron leer del archivo")
     else:
         lineas.append(f"N = {e['N']}, k = {e['k']}, B = {e['B']}")
+    if "variante" in resultado:   # variante (a): L reemplaza a k (Supuesto ❓, decisión 35)
+        va = resultado["variante"]
+        lineas.append(f"VARIANTE ({va['nombre']}): costos de participación, L = {_numero(va['L'])}; "
+                      f"{va['algoritmo']}. Supuesto ❓: L reemplaza a k")
     lineas.append("")
 
     lineas.append("== Verificación de la entrada ==")
@@ -97,15 +113,30 @@ def a_texto(resultado):
         lineas.append("TODAS LAS VERIFICACIONES: HAY FALLAS")
         return "\n".join(lineas) + "\n"
 
-    lineas.append("== Parte 2: selección de nodos (voraz) ==")
-    for p in resultado["traza"]["pasos_seleccion"]:
-        aportes = ", ".join(f"Δ({a['nodo']}) = {_numero(a['ganancia'])}" for a in p["aportes"])
-        lineas.append(f"  Paso {p['paso']}: {aportes}")
-        lineas.append(f"    → elige el nodo {p['elegido']} (Δ = {_numero(p['ganancia_elegido'])}); "
-                      f"f(S) = {_numero(p['valor_despues'])}")
     s = resultado["seleccion"]
-    lineas.append(f"  Resultado: S = {s['S']}, f(S) = {_numero(s['valor'])}, "
-                  f"llamadas a Δ = {s['llamadas_ganancia']}")
+    if "variante" in resultado:
+        lineas.append("== Parte 2: selección de nodos (variante a: voraz por cociente Δ/c entre los que caben) ==")
+    else:
+        lineas.append("== Parte 2: selección de nodos (voraz) ==")
+    for p in resultado["traza"]["pasos_seleccion"]:
+        if "costo_despues" in p:   # paso del voraz por cociente: se muestra Δ/c
+            aportes = ", ".join(f"Δ/c({a['nodo']}) = {_numero(a['ganancia'])}/{_numero(a['costo'])} = "
+                                f"{_numero(a['cociente'])}" for a in p["aportes"])
+            lineas.append(f"  Paso {p['paso']}: {aportes}")
+            lineas.append(f"    → elige el nodo {p['elegido']} (Δ = {_numero(p['ganancia_elegido'])}); "
+                          f"f(S) = {_numero(p['valor_despues'])}; Σ c(S) = {_numero(p['costo_despues'])}")
+        else:
+            aportes = ", ".join(f"Δ({a['nodo']}) = {_numero(a['ganancia'])}" for a in p["aportes"])
+            lineas.append(f"  Paso {p['paso']}: {aportes}")
+            lineas.append(f"    → elige el nodo {p['elegido']} (Δ = {_numero(p['ganancia_elegido'])}); "
+                          f"f(S) = {_numero(p['valor_despues'])}")
+    if "variante" in resultado:
+        lineas.append(f"  Resultado: S = {s['S']}, f(S) = {_numero(s['valor'])}, Σ c(S) = {_numero(s['costo'])} "
+                      f"≤ L = {_numero(resultado['variante']['L'])}; origen = {s['origen']}; "
+                      f"evaluaciones de f = {s['evaluaciones']}")
+    else:
+        lineas.append(f"  Resultado: S = {s['S']}, f(S) = {_numero(s['valor'])}, "
+                      f"llamadas a Δ = {s['llamadas_ganancia']}")
     lineas.append("")
 
     lineas.append("== Parte 1: reparto del presupuesto (voraz con montículo) ==")

@@ -8,6 +8,7 @@ Guarda el paso a paso de los dos voraces y lo escribe en texto y en JSON. La gu�
 |---|---|---|---|
 | `Traza()` | — | traza vacía | O(1) |
 | `.paso_seleccion(paso, aportes, elegido, ganancia, valor)` | datos de un paso del voraz de selección | — | O(N) por los aportes |
+| `.paso_seleccion_costos(paso, aportes, elegido, ganancia, valor, costo_despues)` | un paso del voraz por cociente (variante a): aportes = (v, Δ, c(v)); guarda además `costo` y `cociente` por candidato y `costo_despues` | — | O(N) por los aportes |
 | `.unidad_reparto(unidad, nodo, ganancia)` | datos de una unidad | — | O(1) |
 | `.entrada_rechazada(motivos)` | lista de textos | — | O(1) |
 | `.a_diccionario()` | — | dict para JSON; `motivo_rechazo` solo si hubo rechazo | O(1): devuelve referencias a las listas |
@@ -33,4 +34,6 @@ Los algoritmos llaman a la traza solo si la reciben (línea 9 de SELECCIONAR-NOD
 - **¿La traza afecta el tiempo medido?** No: el tiempo se mide en una ejecución sin traza, y sin traza los algoritmos no anotan nada.
 - **¿Qué queda en la traza si un caso se rechaza?** La entrada, sus verificaciones y el motivo.
 
-_Última actualización: 2026-11-04 · tiempos con mediana y R; sección "Informativo" en `a_texto`_
+`a_texto` con la variante (a) (P-4 fase 1): línea `VARIANTE (a)` bajo la cabecera, pasos con `Δ/c(v) = Δ/c = cociente` y `Σ c(S)`, y en el resultado `Σ c(S) ≤ L`, `origen` y `evaluaciones de f`. Sin variante, el texto es idéntico al de antes.
+
+_Última actualización: 2026-11-16 · `paso_seleccion_costos` y reporte de la variante (a) (P-4 fase 1)_

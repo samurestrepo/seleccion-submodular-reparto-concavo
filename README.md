@@ -44,6 +44,9 @@ python ejecutar.py casos/profesora --salida resultados/profesora
 
 # Cambiar las repeticiones de la medición (por omisión, 21)
 python ejecutar.py casos/profesora --repeticiones 5 --salida resultados/prueba
+
+# Variante (a), costos de participación: suma de costos <= L en lugar de |S| <= k (manual, sección 9)
+python ejecutar.py casos/profesora --variante a --salida resultados/variantes/a_profesora
 ```
 
 Un caso rechazado (archivo con forma inválida o entrada que no cumple las restricciones) no detiene a los demás: los algoritmos no corren y sus tres archivos traen el motivo. Dos archivos con el mismo nombre de caso son un error: corre solo el primero. El programa termina con código 0 si todas las verificaciones cumplen.

@@ -43,14 +43,16 @@ def _identificador(i, N):
     return f"N{i:0{max(2, len(str(N)))}d}"
 
 
-def generar_instancia_influencia(N, k, B, densidad, semilla=0):
+def generar_instancia_influencia(N, k, B, densidad, semilla=0, presupuesto_costos=None):
     """Crea una instancia en el formato de la profesora (parametros, grafo, nodos) como diccionario.
 
     Recibe: N nodos (ids "N01"…), k, B, densidad en [0, 1] y semilla. El grafo NO es dirigido: cada
     par {i, j} con i < j tiene una arista con probabilidad `densidad` (densidad 1 da N(N−1)/2 aristas)
     y peso_influencia uniforme en [0,05; 0,70] con 2 decimales. Cada nodo: coeficiente_utilidad
     uniforme en [1; 10] (2 decimales), costo_participacion entero en [1; 5] y presupuesto_total_nodo = B
-    (tope que nunca limita en una ronda). numero_rondas = 1. Tiempo O(N²) por recorrer todos los pares.
+    (tope que nunca limita en una ronda). numero_rondas = 1. presupuesto_costos es L
+    (presupuesto_costos_participacion_por_ronda, para la variante a); por omisión 5·k, como antes, y no
+    cambia nada más de la instancia. Tiempo O(N²) por recorrer todos los pares.
     """
     if not 1 <= k < N:
         raise ValueError(f"se necesita 1 ≤ k < N; llegó k = {k}, N = {N}")
@@ -58,6 +60,8 @@ def generar_instancia_influencia(N, k, B, densidad, semilla=0):
         raise ValueError("B debe ser ≥ 0")
     if not 0 <= densidad <= 1:
         raise ValueError(f"densidad debe estar en [0, 1]; llegó {densidad}")
+    if presupuesto_costos is not None and presupuesto_costos < 0:
+        raise ValueError(f"presupuesto_costos debe ser ≥ 0; llegó {presupuesto_costos}")
 
     azar = random.Random(semilla)
     ids = [_identificador(i, N) for i in range(1, N + 1)]
@@ -81,7 +85,8 @@ def generar_instancia_influencia(N, k, B, densidad, semilla=0):
         "numero_rondas": 1,
         "cupo_participantes_por_ronda_k": k,
         "presupuesto_ruido_por_ronda_B": B,
-        "presupuesto_costos_participacion_por_ronda": 5 * k,   # alcanza para cualquier k nodos (costo ≤ 5)
+        # por omisión 5·k: alcanza para cualquier k nodos (costo ≤ 5)
+        "presupuesto_costos_participacion_por_ronda": 5 * k if presupuesto_costos is None else presupuesto_costos,
     }
     return {"parametros": parametros, "grafo": grafo, "nodos": nodos}
 

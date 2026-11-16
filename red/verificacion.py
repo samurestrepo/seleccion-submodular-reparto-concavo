@@ -143,3 +143,59 @@ def verificar_reparto(S, B, utilidades, resultado_reparto, topes=None):
                                   f"inserciones = {resultado_reparto.inserciones}, "
                                   f"Σ x_i = {suma}, nodos en su tope = {en_su_tope}"))
     return resultado
+
+
+def verificar_variante_a(instancia):
+    """Variante (a): cada nodo tiene costo c(v) > 0 y existe el presupuesto L ≥ 0 (decisión 35).
+
+    Solo se llama cuando se pide la variante. Un costo ausente o ≤ 0, o un L ausente o < 0, es una
+    falla de entrada: la ronda no corre. Tiempo O(N).
+    """
+    costos = instancia.costos()
+    malos = [str(nodo.id) for nodo in instancia.nodos
+             if nodo.id not in costos or not costos[nodo.id] > 0]
+    L = instancia.presupuesto_costos
+    return [
+        Verificacion("variante (a): cada costo de participación c(v) > 0", not malos,
+                     "todos cumplen" if not malos else f"sin costo o con costo ≤ 0: {malos}"),
+        Verificacion("variante (a): presupuesto de participación L ≥ 0", L is not None and L >= 0,
+                     f"L = {L}" if L is not None else "falta presupuesto_costos"),
+    ]
+
+
+def verificar_seleccion_costos(instancia, oraculo, S, valorS, costos, L):
+    """Variante (a): S ⊆ V, sin repetidos, Σ c(S) ≤ L (en lugar de |S| ≤ k) y valorS = f(S) recalculada.
+
+    Supuesto ❓: la restricción de costos reemplaza a |S| ≤ k (decisión 35). Tiempo O(|S|) más `valor(S)`.
+    """
+    resultado = []
+    V = set(instancia.ids())
+    resultado.append(Verificacion("S ⊆ V", set(S) <= V, f"S = {S}"))
+    resultado.append(Verificacion("S sin repetidos", len(set(S)) == len(S), f"|S| = {len(S)}"))
+    costo = sum(costos[v] for v in S if v in costos)
+    resultado.append(Verificacion("Σ c(S) ≤ L (reemplaza a |S| ≤ k; Supuesto ❓)", costo <= L,
+                                  f"Σ c(S) = {costo}, L = {L}, |S| = {len(S)}, k = {instancia.k}"))
+    recalculado = oraculo.valor([v for v in S if v in V])
+    resultado.append(Verificacion("valor acumulado = f(S) recalculada", _iguales(recalculado, valorS),
+                                  f"acumulado = {valorS}, recalculado = {recalculado}"))
+    return resultado
+
+
+def verificar_conteo_evaluaciones_costos(N, S, origen, evaluaciones, llamadas_oraculo):
+    """Variante (a), voraz modificado: el contador del algoritmo coincide con el del oráculo y respeta la cota.
+
+    El voraz por cociente hace 1 evaluación (f(∅)) y en el paso j a lo sumo N − j + 1, y al menos una
+    (la del elegido): 1 + |S| ≤ evaluaciones ≤ 1 + |S|·N − |S|(|S| − 1)/2, con |S| el tamaño de su S.
+    Si ganó el mejor nodo solo (origen = "mejor_nodo_solo"), S no es el S del cociente y solo se exige
+    la cota absoluta 1 + N(N + 1)/2 (todo entró). Tiempo O(1).
+    """
+    if origen == "cociente":
+        inferior = 1 + len(S)
+        superior = 1 + len(S) * N - len(S) * (len(S) - 1) // 2
+    else:
+        inferior = 1
+        superior = 1 + N * (N + 1) // 2
+    cumple = evaluaciones == llamadas_oraculo and inferior <= evaluaciones <= superior
+    return [Verificacion("evaluaciones de f = contador del oráculo, dentro de la cota 1 + |S|·N − |S|(|S|−1)/2",
+                         cumple, f"contadas = {evaluaciones}, oráculo = {llamadas_oraculo}, "
+                                 f"cota [{inferior}, {superior}], origen = {origen}")]

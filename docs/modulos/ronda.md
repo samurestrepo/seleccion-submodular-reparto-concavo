@@ -6,7 +6,7 @@ Orquesta una ronda completa (informe 6.1): verificar la entrada, Parte 2, Parte 
 ## Funciones públicas
 | Función | Recibe | Devuelve | Complejidad |
 |---|---|---|---|
-| `ejecutar_ronda(instancia, repeticiones=REPETICIONES)` | `Instancia` y R ≥ 1 (por omisión, 21); con R < 1 lanza `ValueError` | diccionario con entrada, selección, reparto, tiempos, verificaciones, traza, `todas_cumplen` y, solo en el formato de la profesora, `informativo` | algoritmos, por repetición: O(k·(N + M) + B(1 + lg k)) con cobertura, O(k·(N + A) + B(1 + lg k)) con influencia; más la verificación O(N + M + Σ min(L_i, B)) con cobertura, O(N + A) con influencia |
+| `ejecutar_ronda(instancia, repeticiones=REPETICIONES, variante=None)` | `Instancia`, R ≥ 1 (por omisión, 21; con R < 1 lanza `ValueError`) y la variante: `None` (base) o `"a"` (otra cosa lanza `ValueError`) | diccionario con entrada, selección, reparto, tiempos, verificaciones, traza, `todas_cumplen` y, solo en el formato de la profesora, `informativo`; con la variante (a), además `variante` (nombre, L, algoritmo, supuesto), `entrada.L` y en `seleccion` `costo`, `evaluaciones` y `origen` | algoritmos, por repetición: O(k·(N + M) + B(1 + lg k)) con cobertura, O(k·(N + A) + B(1 + lg k)) con influencia; con la variante (a), la selección es O(\|S\|·(N + A)) con influencia (ver `variante_costos.md`); más la verificación O(N + M + Σ min(L_i, B)) con cobertura, O(N + A) con influencia |
 | `resultado_de_error(nombre, mensaje)` | nombre del caso y mensaje | resultado rechazado de un archivo que no se pudo leer; N, k y B en `None` | O(1) |
 
 ## Cómo funciona
@@ -17,6 +17,8 @@ Orquesta una ronda completa (informe 6.1): verificar la entrada, Parte 2, Parte 
 5. Si el caso es del formato de la profesora, agrega la sección `informativo` (`_informativo`).
 
 Cada ejecución usa su propio oráculo, pedido con `instancia.crear_oraculo()`: `ronda.py` no sabe si es de cobertura o de influencia, y los contadores no se mezclan.
+
+**Variante (a)** (P-4 fase 1, decisión 35): `_seleccionar` elige la Parte 2: el voraz base con k, o `voraz_modificado` con `instancia.costos()` y `instancia.presupuesto_costos` (L). Antes de correr se agregan a la entrada `verificar_variante_a` (c(v) > 0 y L ≥ 0; si fallan, el caso se rechaza con el motivo en la traza). Las verificaciones de la selección son `verificar_seleccion_costos` (Σ c(S) ≤ L **en lugar de** |S| ≤ k; Supuesto ❓) y `verificar_conteo_evaluaciones_costos` (contador del algoritmo = contador del oráculo, dentro de 1 + |S| ≤ evaluaciones ≤ 1 + |S|·N − |S|(|S| − 1)/2 cuando ganó el cociente). El reparto no cambia: recibe el S elegido, con sus topes. La nota de `informativo.variante_a` pasa a decir que sí se aplica (`SE_APLICA_A`). Con `variante=None` el resultado es idéntico al de antes.
 
 ## Por qué así
 - El tiempo se mide solo alrededor de cada algoritmo (decisión 8) y sin traza (decisión 11), para que corresponda a la T(n) deducida.
@@ -32,6 +34,7 @@ Cada ejecución usa su propio oráculo, pedido con `instancia.crear_oraculo()`: 
 - **Cambiar R:** la constante `REPETICIONES` o la opción `--repeticiones`. Ya está hecho (decisión 29).
 - **Reportar otra medida:** `salida.json` trae mediana, mínimo y máximo, y `resumen.csv` trae mediana y mínimo. `traza.txt` muestra la mediana (`a_texto`).
 - **Variante (b), T rondas:** llamar `ejecutar_ronda` T veces quitando los nodos que fallan entre rondas. Pendiente de diseño.
+- **Otra variante:** agregarla a `VARIANTES`, a `_seleccionar` (o al reparto) y a sus verificaciones; `ejecutar.py` la expone en `--variante`.
 
 ## Pruebas
 `pruebas/test_ronda.py`: la ronda del ejemplo del informe; una entrada con k = N no corre los algoritmos y deja el motivo en la traza; una utilidad no cóncava se reporta; una tabla mala fuera del presupuesto sí corre y es óptima; el generador produce rondas válidas; `ejecutar.py` escribe las evidencias. `pruebas/test_traza.py` revisa el reporte de `resultado_de_error`. También en `test_ronda.py`: el contenido de `informativo`; que no decide `todas_cumplen` aunque los costos superen el presupuesto; que no aparece en el formato propio ni en un caso rechazado; que `presupuesto_total_nodo` es el tope y sobrar presupuesto no es una falla; que los oráculos no comparten contadores. **Repeticiones:** mediana, mínimo, máximo y R; 21 por omisión; una repetición lenta no arrastra la mediana; cada repetición usa un oráculo nuevo; una repetición con otro S o con otro reparto se detecta; lo reportado es la primera; R = 1 funciona y R < 1 es un error.
@@ -43,4 +46,4 @@ Cada ejecución usa su propio oráculo, pedido con `instancia.crear_oraculo()`: 
 - **¿Cuánto cuesta la ronda?** O(k·(N + M)) de la selección más O(k + B(1 + lg k)) del reparto. Si ningún C_v es vacío, N ≤ M y la selección es O(k·M). Con influencia, la selección es O(k·(N + A)).
 - **¿Se pasó del presupuesto de costos?** En el caso de la profesora, la Σ de costos de S es 23 frente a 24. Es informativo: la solución base no aplica esa restricción.
 
-_Última actualización: 2026-11-04 · mediana de R repeticiones, topes, `crear_oraculo` y sección `informativo`_
+_Última actualización: 2026-11-16 · parámetro `variante` y `_seleccionar` (variante a, P-4 fase 1)_

@@ -86,7 +86,7 @@ Cada archivo tiene su ficha en `docs/modulos/` con su complejidad, cómo modific
 | `grafo` | aristas {u, v} no dirigidas, con p_vw = `peso_influencia`; definen f. El peso debe estar en [0, 1] |
 | `id` | texto. Con ceros a la izquierda, el orden de texto coincide con el numérico y define los desempates. Sin ceros, "N10" iría antes que "N2" |
 | `coeficiente_utilidad` | a de u_i y a_w de f. Debe ser un número finito > 0 |
-| `numero_rondas`, `costo_participacion`, `presupuesto_costos_participacion_por_ronda` | de las variantes (b) y (a): **se leen y se reportan** en `informativo`, pero no se aplican |
+| `numero_rondas`, `costo_participacion`, `presupuesto_costos_participacion_por_ronda` | de las variantes (b) y (a): **se leen y se reportan** en `informativo`; la solución base no los aplica. Con `--variante a`, `costo_participacion` es c(v) y `presupuesto_costos_participacion_por_ronda` es L (sección 9) |
 | `presupuesto_total_nodo` | tope c_i de x_i ≤ c_i. Entero ≥ 0 |
 
 **Supuestos de modelado adoptados** (se declaran en el informe, sección 6.9):
@@ -189,7 +189,7 @@ Se usa `time.perf_counter()` alrededor de cada algoritmo, en ejecuciones **sin t
 - La verificación de entrada cuesta O(N + Σ min(L_i, B)) esperado, con L_i el largo de cada tabla, y O(N + A) con influencia; no afecta los tiempos reportados.
 - Con coeficientes extremos (a cerca de 1e308) los valores se desbordan a infinito: el caso se reporta como FALLA en la verificación de la utilidad, y `salida.json` puede traer `Infinity`, que no es JSON estándar.
 - La ejecución con traza guarda Θ(N·k + B) anotaciones; con instancias muy grandes, la traza y sus archivos pesan.
-- No se incluyen todavía: el algoritmo exacto de la Parte 2, las variantes de la sección 4.4 del enunciado ni la validación experimental.
+- La variante (a) depende del Supuesto ❓ de que L reemplaza a k (sección 9); las variantes (b) y (c) no están todavía.
 
 ## 8. Experimentos
 `scripts/experimentos.py` mide el tiempo de los algoritmos y lo contrasta con la T(n) del informe. Necesita `matplotlib` solo para las gráficas (`python -m pip install -r requirements-dev.txt`). Desde la raíz del repositorio:
@@ -199,3 +199,27 @@ python scripts/experimentos.py
 ```
 
 Corre 8 series con semilla 1 y 21 repeticiones: voraz de la Parte 2 con cobertura (a) y con influencia en grafo completo (b) y de grado medio 5 (c); reparto de la Parte 1 variando N (d) y B (e); fuerza bruta con k = 3 (f) y k = N/2 (g); y la programación dinámica de la Parte 1 (`red/pd_reparto.py`, solo referencia: Θ(N·B²), correcta aun con u no cóncavas) con N = 10 y B = 25 a 400 (h; su CSV agrega la columna `repeticiones`). Por serie escribe `resultados/experimentos/<serie>.csv` (columnas `n`, `N`, `k`, `B`, `densidad`, `semilla`, `t_min`, `t_mediana`, `conteo`, `T_teorica`, `cociente`) y dos gráficas PNG: t_min contra n con la curva c·T_teorica, y el cociente t_min / T_teorica. Se cronometra solo el algoritmo y se usa el mínimo (el de las gráficas). Con d y e juntas se ajusta además t_min ≈ a·N + b·B·lg N por mínimos cuadrados (columna `t_ajustado` y `ajuste_reparto.png`). Opciones: `--series a d` (solo algunas), `--sin-graficas` y `--repeticiones R`. Para generar instancias de influencia a mano: `python -m red.generador --N 50 --k 5 --B 100 --formato influencia --densidad 0.1 --semilla 1 --salida caso.json`.
+
+## 9. Variantes (entrega final)
+
+Las variantes se piden con `--variante` en `ejecutar.py`; por omisión no se aplica ninguna y todo queda como en la solución base. Sus salidas van en `resultados/variantes/`; `resultados/profesora/` no se toca. Todo lo que depende de un supuesto no confirmado por la docente se marca **Supuesto ❓**.
+
+### 9.1 Variante (a): costos de participación · `red/variante_costos.py`
+Cada nodo v tiene un costo c(v) > 0 y hay un presupuesto de participación L. Se busca S que maximice f(S) con Σ_{v∈S} c(v) ≤ L. **Supuesto ❓:** esa restricción **reemplaza** a |S| ≤ k; no se usan las dos a la vez.
+
+**Campos.** Formato de la profesora: c(v) = `costo_participacion`, L = `presupuesto_costos_participacion_por_ronda` (24 en el caso oficial). Formato propio: campo opcional `costo` por nodo y `presupuesto_costos` en la raíz; sin ellos, nada cambia. Cuando se pide la variante, un costo ausente o ≤ 0, o un L ausente o < 0, es una falla de entrada (`[FALLA]`, con el motivo en la traza).
+
+**Ejecución.** `python ejecutar.py casos/profesora --variante a --salida resultados/variantes/a_profesora`. La Parte 2 pasa a ser el voraz modificado; el reparto de la Parte 1 no cambia (recibe el S elegido, con sus topes). `salida.json` trae además `variante` (nombre, L, algoritmo, supuesto) y, en `seleccion`, `costo`, `evaluaciones` y `origen`; la verificación «Σ c(S) ≤ L» reemplaza a «|S| ≤ k»; `traza.txt` muestra Δ/c de cada candidato que cabe. Las columnas de `resumen.csv` no cambian.
+
+| Algoritmo | Qué hace | Evaluaciones de f (T) | Garantía |
+|---|---|---|---|
+| Fuerza bruta con presupuesto (`seleccionar_exacto_costos`, referencia) | búsqueda en profundidad por los subconjuntos en orden lexicográfico, con poda (si S no cabe, ningún superconjunto cabe); se niega si 2^N > 200000 | F = subconjuntos factibles ≤ 2^N; peor caso Θ(2^N), mejor (L < c_mín) 1 evaluación y Θ(N) | exacta (OPT) |
+| Voraz por cociente (`voraz_por_cociente`) | en cada paso, entre los que todavía caben, el de mayor Δ(v \| S)/c(v); los que no caben se saltan sin evaluar | ≤ 1 + \|S\|·N − \|S\|(\|S\| − 1)/2, con \|S\| ≤ mín(N, ⌊L/c_mín⌋); peor caso 1 + N(N + 1)/2 = Θ(N²), mejor 1 y Θ(N) | ninguna constante: con un nodo barato de cociente apenas mayor que uno caro que ocupa todo L, la razón tiende a 0 |
+| Voraz modificado (`voraz_modificado`, **el de la ronda**) | el mejor entre el cociente y el mejor nodo que cabe solo | las mismas del cociente: el mejor nodo solo sale de su paso 1 (f({v}) = Δ(v \| ∅)) | (1 − 1/e)/2 ≈ 0,316 (Khuller, Moss y Naor, 1999); **0,405** para f monótona y submodular con mochila (Tang et al., 2021), que es la que se aplica porque la f de influencia es submodular general |
+| Enumeración parcial (`enumeracion_parcial`, referencia) | todos los factibles de tamaño ≤ 2 y, desde cada factible de tamaño 3, se completa con el cociente | O(N⁴ · mín(N, L/c_mín)) ⊆ O(N⁵); peor caso 1 + N + C(N, 2) + C(N, 3)·(1 + (N − 3)(N − 2)/2) | **1 − 1/e** (Sviridenko, 2004) |
+
+Con influencia, cada `ganancia` cuesta O(1 + grado(v)) y cada `valor(S)` O(N + Σ_{v∈S}(1 + grado(v))): el cociente cuesta O(|S|·(N + A)) y la fuerza bruta O(F·(N + A)). Espacio O(N) en los cuatro, más el estado del oráculo. Empates: el menor índice en los voraces y el primer subconjunto lexicográfico en la fuerza bruta.
+
+**Resultados** (`scripts/tabla_cota_variante_a.py` → `resultados/variantes/a_tabla_cota.csv`). Caso oficial con L = 24: OPT = 146,2714 (costo 23); el voraz modificado elige S = N05, N09, N14, N11, N15, N01 con f(S) = 145,9911, costo 21 ≤ 24 (razón 0,998, 74 evaluaciones) y el reparto da x = 4, 6, 6, 4, 5, 5 con U ≈ 95,9552; la enumeración alcanza el OPT (13117 evaluaciones); la fuerza bruta evalúa 4502 factibles. En 36 instancias aleatorias de influencia (N = 10 a 16, L = 12), la razón mínima del modificado fue 0,947 (cota 0,405) y la enumeración alcanzó el OPT en todas (cota 0,632). Ningún caso incumple su cota.
+
+Referencias: Khuller, Moss y Naor (1999), *Information Processing Letters* 70(1), 39–45, doi:10.1016/S0020-0190(99)00031-9. Sviridenko (2004), *Operations Research Letters* 32(1), 41–43, doi:10.1016/S0167-6377(03)00062-2. Tang, Tang, Lim, Han, Li y Yuan (2021), *Proc. ACM Meas. Anal. Comput. Syst.* 5(1), art. 8, doi:10.1145/3447386.

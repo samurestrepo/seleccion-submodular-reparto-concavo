@@ -1,0 +1,88 @@
+CASO: entrada_G2_red_15_nodos
+N = 15, k = 5, B = 30
+VARIANTE (a): costos de participación, L = 24; voraz modificado (Khuller, Moss y Naor, 1999; cota 0,405 de Tang et al., 2021). Supuesto ❓: L reemplaza a k
+
+== Verificación de la entrada ==
+  [OK] 1 ≤ k < N: k = 5, N = 15
+  [OK] B ≥ 0: B = 30
+  [OK] ids únicos: sin repetidos
+  [OK] cada u_i creciente y cóncava en {0, …, B}: todas cumplen
+  [OK] cada peso de influencia en [0, 1]: todos cumplen
+  [OK] variante (a): cada costo de participación c(v) > 0: todos cumplen
+  [OK] variante (a): presupuesto de participación L ≥ 0: L = 24
+
+== Parte 2: selección de nodos (variante a: voraz por cociente Δ/c entre los que caben) ==
+  Paso 1: Δ/c(N01) = 74.1100/3 = 24.7033, Δ/c(N02) = 75.3850/5 = 15.0770, Δ/c(N03) = 77.9200/4 = 19.4800, Δ/c(N04) = 74.3400/6 = 12.3900, Δ/c(N05) = 82.6000/2 = 41.3000, Δ/c(N06) = 72.8050/7 = 10.4007, Δ/c(N07) = 88.8050/4 = 22.2013, Δ/c(N08) = 72.2150/5 = 14.4430, Δ/c(N09) = 95.7000/3 = 31.9000, Δ/c(N10) = 73.6150/6 = 12.2692, Δ/c(N11) = 103.4900/4 = 25.8725, Δ/c(N12) = 75.4400/5 = 15.0880, Δ/c(N13) = 40.2100/7 = 5.7443, Δ/c(N14) = 82.9850/3 = 27.6617, Δ/c(N15) = 44.0750/6 = 7.3458
+    → elige el nodo N05 (Δ = 82.6000); f(S) = 82.6000; Σ c(S) = 2
+  Paso 2: Δ/c(N01) = 28.6770/3 = 9.5590, Δ/c(N02) = 29.1232/5 = 5.8246, Δ/c(N03) = 30.0105/4 = 7.5026, Δ/c(N04) = 28.7575/6 = 4.7929, Δ/c(N06) = 31.2037/7 = 4.4577, Δ/c(N07) = 34.7157/4 = 8.6789, Δ/c(N08) = 30.5862/5 = 6.1172, Δ/c(N09) = 37.9503/3 = 12.6501, Δ/c(N10) = 31.2875/6 = 5.2146, Δ/c(N11) = 41.6550/4 = 10.4138, Δ/c(N12) = 32.0040/5 = 6.4008, Δ/c(N13) = 20.2990/7 = 2.8999, Δ/c(N14) = 35.7677/3 = 11.9226, Δ/c(N15) = 21.6438/6 = 3.6073
+    → elige el nodo N09 (Δ = 37.9503); f(S) = 120.5503; Σ c(S) = 5
+  Paso 3: Δ/c(N01) = 10.4236/3 = 3.4745, Δ/c(N02) = 10.5351/5 = 2.1070, Δ/c(N03) = 10.7569/4 = 2.6892, Δ/c(N04) = 10.4437/6 = 1.7406, Δ/c(N06) = 11.0552/7 = 1.5793, Δ/c(N07) = 11.9332/4 = 2.9833, Δ/c(N08) = 10.9009/5 = 2.1802, Δ/c(N10) = 12.3871/6 = 2.0645, Δ/c(N11) = 14.3380/4 = 3.5845, Δ/c(N12) = 12.2726/5 = 2.4545, Δ/c(N13) = 10.6826/7 = 1.5261, Δ/c(N14) = 14.3046/3 = 4.7682, Δ/c(N15) = 10.8203/6 = 1.8034
+    → elige el nodo N14 (Δ = 14.3046); f(S) = 134.8548; Σ c(S) = 8
+  Paso 4: Δ/c(N01) = 4.5852/3 = 1.5284, Δ/c(N02) = 4.6354/5 = 0.9271, Δ/c(N03) = 4.7352/4 = 1.1838, Δ/c(N04) = 4.5942/6 = 0.7657, Δ/c(N06) = 4.8694/7 = 0.6956, Δ/c(N07) = 5.2645/4 = 1.3161, Δ/c(N08) = 4.8000/5 = 0.9600, Δ/c(N10) = 5.4688/6 = 0.9115, Δ/c(N11) = 6.3467/4 = 1.5867, Δ/c(N12) = 5.4173/5 = 1.0835, Δ/c(N13) = 4.7017/7 = 0.6717, Δ/c(N15) = 6.2421/6 = 1.0404
+    → elige el nodo N11 (Δ = 6.3467); f(S) = 141.2015; Σ c(S) = 12
+  Paso 5: Δ/c(N01) = 1.9322/3 = 0.6441, Δ/c(N02) = 1.9422/5 = 0.3884, Δ/c(N03) = 1.9622/4 = 0.4905, Δ/c(N04) = 1.9340/6 = 0.3223, Δ/c(N06) = 1.9890/7 = 0.2841, Δ/c(N07) = 2.0681/4 = 0.5170, Δ/c(N08) = 1.9752/5 = 0.3950, Δ/c(N10) = 2.1089/6 = 0.3515, Δ/c(N12) = 2.3059/5 = 0.4612, Δ/c(N13) = 2.9998/7 = 0.4285, Δ/c(N15) = 3.9040/6 = 0.6507
+    → elige el nodo N15 (Δ = 3.9040); f(S) = 145.1056; Σ c(S) = 18
+  Paso 6: Δ/c(N01) = 0.8855/3 = 0.2952, Δ/c(N02) = 0.8931/5 = 0.1786, Δ/c(N03) = 0.9081/4 = 0.2270, Δ/c(N04) = 0.8869/6 = 0.1478, Δ/c(N07) = 0.9875/4 = 0.2469, Δ/c(N08) = 0.9178/5 = 0.1836, Δ/c(N10) = 1.0181/6 = 0.1697, Δ/c(N12) = 1.1659/5 = 0.2332
+    → elige el nodo N01 (Δ = 0.8855); f(S) = 145.9911; Σ c(S) = 21
+  Resultado: S = ['N05', 'N09', 'N14', 'N11', 'N15', 'N01'], f(S) = 145.9911, Σ c(S) = 21 ≤ L = 24; origen = cociente; evaluaciones de f = 74
+
+== Parte 1: reparto del presupuesto (voraz con montículo) ==
+  Unidad 1: al nodo N14 (Δ = 7.0008)
+  Unidad 2: al nodo N09 (Δ = 6.8622)
+  Unidad 3: al nodo N15 (Δ = 6.5849)
+  Unidad 4: al nodo N01 (Δ = 5.8918)
+  Unidad 5: al nodo N05 (Δ = 5.4065)
+  Unidad 6: al nodo N11 (Δ = 5.2679)
+  Unidad 7: al nodo N14 (Δ = 4.0952)
+  Unidad 8: al nodo N09 (Δ = 4.0141)
+  Unidad 9: al nodo N15 (Δ = 3.8519)
+  Unidad 10: al nodo N01 (Δ = 3.4465)
+  Unidad 11: al nodo N05 (Δ = 3.1626)
+  Unidad 12: al nodo N11 (Δ = 3.0815)
+  Unidad 13: al nodo N14 (Δ = 2.9056)
+  Unidad 14: al nodo N09 (Δ = 2.8481)
+  Unidad 15: al nodo N15 (Δ = 2.7330)
+  Unidad 16: al nodo N01 (Δ = 2.4453)
+  Unidad 17: al nodo N14 (Δ = 2.2537)
+  Unidad 18: al nodo N05 (Δ = 2.2439)
+  Unidad 19: al nodo N09 (Δ = 2.2091)
+  Unidad 20: al nodo N11 (Δ = 2.1864)
+  Unidad 21: al nodo N15 (Δ = 2.1199)
+  Unidad 22: al nodo N01 (Δ = 1.8967)
+  Unidad 23: al nodo N14 (Δ = 1.8414)
+  Unidad 24: al nodo N09 (Δ = 1.8050)
+  Unidad 25: al nodo N05 (Δ = 1.7405)
+  Unidad 26: al nodo N15 (Δ = 1.7321)
+  Unidad 27: al nodo N11 (Δ = 1.6959)
+  Unidad 28: al nodo N14 (Δ = 1.5569)
+  Unidad 29: al nodo N01 (Δ = 1.5497)
+  Unidad 30: al nodo N09 (Δ = 1.5261)
+  Resultado: x_N05 = 4, x_N09 = 6, x_N14 = 6, x_N11 = 4, x_N15 = 5, x_N01 = 5; utilidad total = 95.955217
+
+== Verificación: Parte 2 ==
+  [OK] S ⊆ V: S = ['N05', 'N09', 'N14', 'N11', 'N15', 'N01']
+  [OK] S sin repetidos: |S| = 6
+  [OK] Σ c(S) ≤ L (reemplaza a |S| ≤ k; Supuesto ❓): Σ c(S) = 21, L = 24, |S| = 6, k = 5
+  [OK] valor acumulado = f(S) recalculada: acumulado = 145.99110040625, recalculado = 145.99110040625
+  [OK] evaluaciones de f = contador del oráculo, dentro de la cota 1 + |S|·N − |S|(|S|−1)/2: contadas = 74, oráculo = 74, cota [7, 76], origen = cociente
+
+== Verificación: Parte 1 ==
+  [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
+  [OK] cada x_i ≤ c_i: c = {'N05': 18, 'N09': 18, 'N14': 18, 'N11': 18, 'N15': 18, 'N01': 18}
+  [OK] Σ x_i = mín(B, Σ c_i): Σ x_i = 30, mín(B, Σ c_i) = 30, B = 30
+  [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 95.955217, recalculada = 95.955217
+  [OK] extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope: extracciones = 30, inserciones = 30, Σ x_i = 30, nodos en su tope = 0
+
+== Verificación: Ejecución ==
+  [OK] todas las repeticiones dan el mismo S y el mismo reparto: R = 21
+  [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
+
+== Informativo (no es una verificación) ==
+  Variante (a): Σ costo_participacion de S = 21 frente a presupuesto_costos_participacion_por_ronda = 24; se aplica en esta corrida (variante a): Σ c(S) ≤ L es una verificación
+  Variante (b): numero_rondas = 3; no se aplica en la solución base
+
+== Tiempos: mediana de 21 repeticiones (solo los algoritmos, sin lectura ni escritura) ==
+  Parte 2 (selección): 0.000222500 s
+  Parte 1 (reparto):   0.000039700 s
+
+TODAS LAS VERIFICACIONES: CUMPLEN

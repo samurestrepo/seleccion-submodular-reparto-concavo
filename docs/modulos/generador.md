@@ -7,7 +7,7 @@ Genera instancias sintéticas en el formato provisional, con semilla fija. Las p
 | Función | Recibe | Devuelve | Complejidad |
 |---|---|---|---|
 | `generar_instancia(N, k, B, tam_universo=None, max_cubre=None, semilla=0)` | parámetros | diccionario listo para JSON | O(N · max_cubre) |
-| `generar_instancia_influencia(N, k, B, densidad, semilla=0)` | parámetros y densidad en [0, 1] | diccionario en el formato de la profesora (`parametros`, `grafo`, `nodos`) | O(N²): recorre todos los pares |
+| `generar_instancia_influencia(N, k, B, densidad, semilla=0, presupuesto_costos=None)` | parámetros, densidad en [0, 1] y, opcional, L (`presupuesto_costos_participacion_por_ronda`; por omisión 5·k, como antes; < 0 es `ValueError`) | diccionario en el formato de la profesora (`parametros`, `grafo`, `nodos`); `presupuesto_costos` no cambia nada más de la instancia | O(N²): recorre todos los pares |
 | `main(argumentos)` | línea de comandos (`--formato {cobertura, influencia}`, `--densidad`) | escribe el archivo | — |
 
 Uso: `python -m red.generador --N 50 --k 5 --B 100 --semilla 1 --salida casos/propios/sintetico_N50.json`
@@ -35,4 +35,4 @@ Ids "N01", "N02", … con relleno de ceros (al menos 2 dígitos, más si N lo pi
 ## Preguntas probables en la sustentación
 - **¿Por qué semilla fija?** Para que cualquiera reproduzca exactamente los mismos casos y tiempos comparables.
 
-_Última actualización: 2026-11-12 · `generar_instancia_influencia`, `--formato` y `--densidad`_
+_Última actualización: 2026-11-16 · parámetro opcional `presupuesto_costos` para la variante (a) (P-4 fase 1)_

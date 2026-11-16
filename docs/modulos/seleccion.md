@@ -32,7 +32,7 @@ M = Σ \|C_v\|, el total de elementos en los conjuntos. A = número de aristas d
 
 ## Cómo modificarlo
 - **Desempatar por el mayor índice:** cambiar `>` por `>=` en `# línea 6 del pseudocódigo` (`if delta > mejor_delta`). La complejidad no cambia. También cambia `reparto.py`: ver la receta 1 de `docs/agente/GUIA_CAMBIOS.md`.
-- **Variante (a), costos por nodo:** elegir por Δ/costo y dejar de agregar cuando se acaba el presupuesto. Cambia la cota (ya no es 1 − 1/e). Pendiente de diseño.
+- **Variante (a), costos por nodo:** ya está hecha aparte, en `red/variante_costos.py` (voraz por cociente, voraz modificado con cota 0,405 y enumeración parcial con 1 − 1/e); este archivo no cambió.
 - Cualquier cambio aquí: correr `pruebas/test_seleccion.py`.
 
 ## Pruebas

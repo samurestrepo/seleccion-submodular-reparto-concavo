@@ -6,9 +6,9 @@ Es la línea de comandos: corre una ronda por cada caso y guarda las evidencias 
 ## Funciones públicas
 | Función | Recibe | Devuelve |
 |---|---|---|
-| `main(argumentos)` | rutas de archivos o carpetas, `--salida`, `--repeticiones` (entero ≥ 1; por omisión, 21) | código 0 si todo cumple, 1 si algo falla o no hay casos; un `--repeticiones` inválido termina con el error de `argparse` |
+| `main(argumentos)` | rutas de archivos o carpetas, `--salida`, `--repeticiones` (entero ≥ 1; por omisión, 21), `--variante a` (por omisión ninguna: solución base) | código 0 si todo cumple, 1 si algo falla o no hay casos; un `--repeticiones` o `--variante` inválido termina con el error de `argparse` |
 | `buscar_casos(rutas)` | rutas | lista de casos (una carpeta aporta sus `.json`, sin distinguir mayúsculas, en orden alfabético) |
-| `correr_caso(ruta, salida, repeticiones=REPETICIONES)` | ruta de un caso, carpeta de salida y R | el resultado; escribe evidencias e imprime una línea |
+| `correr_caso(ruta, salida, repeticiones=REPETICIONES, variante=None)` | ruta de un caso, carpeta de salida, R y la variante | el resultado; escribe evidencias e imprime una línea (con la variante (a), también `costo(S) <= L`) |
 | `guardar_evidencias(resultado, carpeta)` | resultado de la ronda | escribe siempre salida.json, traza.json y traza.txt |
 | `fila_resumen(resultado)` | resultado | la fila de `resumen.csv`: medianas, mínimos (`minimo_seleccion_s`, `minimo_reparto_s`) y R |
 | `escribir_resumen(filas, salida)` | filas y carpeta | escribe `resumen.csv`; avisa si reemplaza uno anterior |
@@ -30,7 +30,9 @@ Ejemplos:
 python ejecutar.py casos/propios/ejemplo_informe.json
 python ejecutar.py casos/profesora --salida resultados/profesora
 python ejecutar.py casos/propios --repeticiones 5
+python ejecutar.py casos/profesora --variante a --salida resultados/variantes/a_profesora
 ```
+**`--variante a`** (P-4 fase 1, decisión 35): la Parte 2 es el voraz modificado de `red/variante_costos.py` con Σ c(S) ≤ L en lugar de |S| ≤ k (Supuesto ❓); el reparto, las evidencias y `resumen.csv` son los mismos (las columnas del CSV no cambian; el costo va en `salida.json` y en la consola). Las salidas de las variantes van en `resultados/variantes/`; `resultados/profesora/` no se toca.
 
 ## Por qué así
 - La guía exige que sea reproducible **sin editar la lógica**: los casos entran por archivo y la salida va a una carpeta. Un archivo con formato inválido se reporta como `[ERROR]` y no detiene a los demás.
@@ -49,4 +51,4 @@ python ejecutar.py casos/propios --repeticiones 5
 - **¿Cómo se corre un caso nuevo?** Se pone el .json en una carpeta y se pasa la ruta; no se toca el código.
 - **¿Qué pasa si un caso está mal?** No detiene a los demás: da `[ERROR]` o `[FALLA]`, deja el motivo en la traza y el programa termina con código 1.
 
-_Última actualización: 2026-11-04 · opción `--repeticiones`; resumen con medianas, columnas de mínimo (para T(n)) y `repeticiones`_
+_Última actualización: 2026-11-16 · opción `--variante a` (P-4 fase 1)_

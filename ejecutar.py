@@ -5,6 +5,8 @@ Uso (desde la raíz del repositorio):
     python ejecutar.py casos/profesora                  # todos los .json de la carpeta
     python ejecutar.py casos/propios --salida resultados/propios
     python ejecutar.py casos/propios --repeticiones 5   # por omisión, 21
+    python ejecutar.py casos/profesora --variante a --salida resultados/variantes/a_profesora
+                                                        # variante (a): costos de participación
 
 Por cada caso escribe en <salida>/<nombre_del_caso>/:
     salida.json   resultado, tiempos (mediana, mínimo, máximo y R) y verificaciones
@@ -65,10 +67,11 @@ def guardar_evidencias(resultado, carpeta):
         archivo.write(a_texto(resultado))
 
 
-def correr_caso(ruta, salida, repeticiones=REPETICIONES):
+def correr_caso(ruta, salida, repeticiones=REPETICIONES, variante=None):
     """Lee un caso, corre su ronda, guarda sus evidencias e imprime una línea. Devuelve el resultado.
 
-    repeticiones es R, las veces que se repite la ejecución medida. Un archivo malo no detiene el lote: devuelve un resultado rechazado. Si no se pudo
+    repeticiones es R, las veces que se repite la ejecución medida; variante es None (base) o "a".
+    Un archivo malo no detiene el lote: devuelve un resultado rechazado. Si no se pudo
     ni abrir, no escribe evidencias, porque no hay caso del cual dejar constancia.
     """
     nombre = nombre_del_caso(ruta)
@@ -83,14 +86,17 @@ def correr_caso(ruta, salida, repeticiones=REPETICIONES):
         guardar_evidencias(resultado, os.path.join(salida, nombre))
         return resultado
 
-    resultado = ejecutar_ronda(instancia, repeticiones)
+    resultado = ejecutar_ronda(instancia, repeticiones, variante)
     guardar_evidencias(resultado, os.path.join(salida, nombre))
     if "seleccion" not in resultado:
         print(f"[FALLA] {nombre}: la entrada no cumple sus restricciones (ver traza)")
         return resultado
     t = resultado["tiempos_segundos"]
+    costo = ""
+    if "variante" in resultado:   # variante (a): se muestra el costo de S frente a L
+        costo = f"costo(S) = {resultado['seleccion']['costo']} <= L = {resultado['variante']['L']}, "
     print(f"[{'OK' if resultado['todas_cumplen'] else 'FALLA'}] {nombre}: "
-          f"S = {resultado['seleccion']['S']}, f(S) = {resultado['seleccion']['valor']}, "
+          f"S = {resultado['seleccion']['S']}, f(S) = {resultado['seleccion']['valor']}, {costo}"
           f"utilidad = {resultado['reparto']['utilidad']:.4f}, "
           f"tiempos (mediana de {t['repeticiones']}) = "
           f"{t['seleccion']['mediana']:.6f} s + {t['reparto']['mediana']:.6f} s")
@@ -141,6 +147,9 @@ def main(argumentos=None):
     p.add_argument("--salida", default="resultados", help="carpeta de evidencias (por omisión: resultados)")
     p.add_argument("--repeticiones", type=_entero_positivo, default=REPETICIONES,
                    help=f"veces que se repite la ejecución medida; se reporta la mediana (por omisión: {REPETICIONES})")
+    p.add_argument("--variante", choices=["a"], default=None,
+                   help="a = costos de participacion: la Parte 2 maximiza f con suma de costos <= L "
+                        "en lugar de |S| <= k (por omision: ninguna, solucion base)")
     a = p.parse_args(argumentos)
 
     casos = buscar_casos(a.rutas)
@@ -159,7 +168,7 @@ def main(argumentos=None):
             hubo_fallas = True
             continue
         primera_ruta[clave] = ruta
-        resultado = correr_caso(ruta, a.salida, a.repeticiones)
+        resultado = correr_caso(ruta, a.salida, a.repeticiones, a.variante)
         filas.append(fila_resumen(resultado))
         if not resultado["todas_cumplen"]:
             hubo_fallas = True

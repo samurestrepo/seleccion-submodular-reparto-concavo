@@ -13,17 +13,18 @@ Lee un caso desde un archivo JSON y lo convierte en una `Instancia`. Reconoce do
 | `Instancia.crear_oraculo()` | — | un oráculo **nuevo**, con los contadores en cero: influencia si hay grafo; si no, cobertura | O(N) |
 | `Instancia.numero_aristas()` | — | aristas del grafo (0 si el formato no trae grafo) | O(N) |
 | `Instancia.topes()` | — | id → c_i, solo de los nodos que tienen tope | O(N) |
+| `Instancia.costos()` | — | id → c(v), solo de los nodos que tienen costo de participación (variante a) | O(N) |
 
 M = total de elementos listados en los "cubre". L = largo de cada tabla de ganancias. A = número de aristas.
 
-Además, `Instancia.vecinos` (id → {vecino: peso}) y `Instancia.variantes` (`numero_rondas` y `presupuesto_costos_participacion_por_ronda`) valen `None` en el formato propio. `Nodo.costo_participacion` y `Nodo.presupuesto_total` también. `Nodo.tope` es c_i; `None` significa sin tope.
+Además, `Instancia.vecinos` (id → {vecino: peso}) y `Instancia.variantes` (`numero_rondas` y `presupuesto_costos_participacion_por_ronda`) valen `None` en el formato propio. `Nodo.presupuesto_total` también. `Nodo.tope` es c_i; `None` significa sin tope. **Variante (a), P-4 fase 1:** `Instancia.presupuesto_costos` es L (en la profesora, `presupuesto_costos_participacion_por_ronda`; en el propio, el campo opcional `presupuesto_costos`) y `Nodo.costo_participacion` es c(v) (en la profesora obligatorio; en el propio, el campo opcional `costo`). Sin esos campos valen `None` y todo queda como en la solución base; que c(v) > 0 y L ≥ 0 lo exige `verificar_variante_a` solo cuando se pide la variante.
 
 ## Cómo funciona
 `instancia_desde_diccionario` revisa que la raíz sea un objeto. **Si tiene "parametros", es el formato de la profesora; si no, es el propio**, que no cambió en nada.
 
 **Formato propio:**
 1. Revisa que existan `k`, `B` y `nodos`, y que k y B sean enteros.
-2. `_leer_nodo` revisa cada nodo: que sea un objeto, que traiga `id`, `cubre` (lista, sin listas ni objetos adentro) y `utilidad` (objeto), y construye la utilidad con `crear_utilidad`, que exige `a` finito y > 0 y ganancias finitas.
+2. `_leer_nodo` revisa cada nodo: que sea un objeto, que traiga `id`, `cubre` (lista, sin listas ni objetos adentro) y `utilidad` (objeto), y construye la utilidad con `crear_utilidad`, que exige `a` finito y > 0 y ganancias finitas. Los campos opcionales `tope` (entero ≥ 0) y `costo` (número finito; variante a) se leen si están. En la raíz, el opcional `presupuesto_costos` (número finito) es L.
 3. Ordena los nodos por id: ese es el "orden creciente de índice" que recorre el voraz.
 
 **Formato de la profesora** (`_instancia_de_la_profesora`):
@@ -61,6 +62,7 @@ En los dos formatos, si algo no cuadra lanza `ErrorDeFormato` con un mensaje que
   {"id": 2, "cubre": ["c", "d"], "utilidad": {"tipo": "raiz", "a": 7.0}},
   {"id": 3, "cubre": ["d", "e"], "utilidad": {"tipo": "tabla", "ganancias": [6, 3, 1]}}]}
 ```
+Opcionales de la variante (a): `"presupuesto_costos": 4` en la raíz y `"costo": 2` por nodo. Sin ellos, nada cambia.
 
 ## Cómo modificarlo
 - **Llega otro formato:** agregar otra rama en `instancia_desde_diccionario`, con su función de lectura, para producir la misma `Instancia` (y cambiar `leer_instancia` si no es JSON). Agregar un caso de ejemplo y una prueba en `test_entrada.py`. Si f cambia, también `crear_oraculo`.
@@ -81,4 +83,4 @@ Topes, en `pruebas/test_entrada.py`: `tope` es opcional en el formato propio; si
 - **¿Por qué un peso de 1.5 no es error de forma?** Porque es un número bien escrito que no cumple una restricción del problema: lo reporta la verificación de entrada, igual que la concavidad, y el caso no corre.
 - **¿Qué pasa con el desempate si los ids son texto?** Con ceros a la izquierda, el orden de texto coincide con el numérico.
 
-_Última actualización: 2026-11-04 · topes por nodo; formato de la profesora, `crear_oraculo`, `numero_aristas`_
+_Última actualización: 2026-11-16 · variante (a): `costo` y `presupuesto_costos` opcionales en el formato propio, `Instancia.costos()` y `presupuesto_costos` (P-4 fase 1)_

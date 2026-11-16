@@ -10,6 +10,9 @@ Comprueba las restricciones de la entrada y de las dos salidas (informe 6.6). La
 | `verificar_seleccion(instancia, oraculo, S, valorS)` | S ⊆ V; sin repetidos; \|S\| ≤ k; valorS = f(S) recalculada, con tolerancia | O(N + M) con cobertura; O(N + A) con influencia |
 | `verificar_conteo_llamadas(N, k, llamadas)` | llamadas a Δ = k·N − k(k−1)/2 | O(1) |
 | `verificar_reparto(S, B, utilidades, resultado, topes=None)` | cada x_i entero en [0, B]; si hay topes, cada x_i ≤ c_i; Σ x_i = mín(B, Σ c_i); utilidad finita e igual a Σ u_i(x_i) recalculada; extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope | O(\|S\|) |
+| `verificar_variante_a(instancia)` | **solo con `--variante a`:** cada c(v) > 0 (ausente o ≤ 0 falla) y L ≥ 0 (ausente falla) | O(N) |
+| `verificar_seleccion_costos(instancia, oraculo, S, valorS, costos, L)` | S ⊆ V; sin repetidos; **Σ c(S) ≤ L en lugar de \|S\| ≤ k** (Supuesto ❓, decisión 35); valorS = f(S) recalculada | O(\|S\|) + `valor(S)` |
+| `verificar_conteo_evaluaciones_costos(N, S, origen, evaluaciones, llamadas_oraculo)` | contador del algoritmo = `llamadas_ganancia + llamadas_valor` del oráculo; si `origen` = cociente, 1 + \|S\| ≤ evaluaciones ≤ 1 + \|S\|·N − \|S\|(\|S\| − 1)/2; si ganó el mejor nodo solo, 1 ≤ evaluaciones ≤ 1 + N(N + 1)/2 | O(1) |
 
 Cada una devuelve una lista de `Verificacion(nombre, cumple, detalle)`. Ninguna lanza excepciones: así **todas** quedan en la traza aunque alguna falle. Por eso no evalúan datos que ya fallaron: un id de S ajeno a V no entra al recálculo de f(S), y un x_i fuera de rango no se evalúa en u_i (decisión 23).
 
@@ -50,4 +53,4 @@ Cada una devuelve una lista de `Verificacion(nombre, cumple, detalle)`. Ninguna 
 - **¿Cómo revisa la concavidad sin recorrer B?** En log y raíz basta a > 0, porque la derivada es positiva y decrece para todo x. En tabla recorre su lista: después de ella todo vale 0.
 - **¿Cuánto cuesta verificar la entrada?** O(N + Σ min(L_i, B)) esperado, y no entra en los tiempos medidos.
 
-_Última actualización: 2026-11-04 · topes en `verificar_reparto`; pesos de influencia en [0, 1]; valor de f con tolerancia_
+_Última actualización: 2026-11-16 · tres verificaciones de la variante (a) (P-4 fase 1)_

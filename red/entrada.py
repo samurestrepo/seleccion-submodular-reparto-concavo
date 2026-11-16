@@ -23,9 +23,10 @@ class ErrorDeFormato(Exception):
 class Nodo:
     """Un nodo candidato: su identificador, lo que cubre (Parte 2) y su utilidad (Parte 1).
 
-    costo_participacion y presupuesto_total solo existen en el formato de la profesora; el costo
-    se guarda, pero la solución base no lo aplica (decisión 26). tope es c_i en x_i ≤ c_i: en la
-    profesora sale de presupuesto_total; en el propio es opcional; None significa sin tope (decisión 28).
+    costo_participacion es c(v) de la variante (a): en la profesora es obligatorio y en el propio es el
+    campo opcional "costo"; la solución base lo guarda sin aplicarlo (decisión 26) y la variante (a) lo usa
+    (decisión 35). presupuesto_total solo existe en el formato de la profesora. tope es c_i en x_i ≤ c_i:
+    en la profesora sale de presupuesto_total; en el propio es opcional; None significa sin tope (decisión 28).
     """
 
     def __init__(self, id, cubre, utilidad, costo_participacion=None, presupuesto_total=None, tope=None):
@@ -42,15 +43,19 @@ class Instancia:
 
     vecinos (id → {vecino: peso}) y variantes (datos de las variantes que solo se reportan)
     vienen en el formato de la profesora; en el propio quedan en None.
+    presupuesto_costos es L, el presupuesto de participación de la variante (a): en la profesora es
+    presupuesto_costos_participacion_por_ronda; en el propio, el campo opcional "presupuesto_costos";
+    None si no viene. La solución base no lo usa.
     """
 
-    def __init__(self, k, B, nodos, nombre="sin_nombre", vecinos=None, variantes=None):
+    def __init__(self, k, B, nodos, nombre="sin_nombre", vecinos=None, variantes=None, presupuesto_costos=None):
         self.k = k
         self.B = B
         self.nodos = sorted(nodos, key=lambda nodo: nodo.id)
         self.nombre = nombre
         self.vecinos = vecinos
         self.variantes = variantes
+        self.presupuesto_costos = presupuesto_costos
 
     @property
     def N(self):
@@ -72,6 +77,10 @@ class Instancia:
     def topes(self):
         """Diccionario id → c_i, solo de los nodos que tienen tope (para la Parte 1). Tiempo O(N)."""
         return {nodo.id: nodo.tope for nodo in self.nodos if nodo.tope is not None}
+
+    def costos(self):
+        """Diccionario id → c(v), solo de los nodos que tienen costo de participación (variante a). Tiempo O(N)."""
+        return {nodo.id: nodo.costo_participacion for nodo in self.nodos if nodo.costo_participacion is not None}
 
     def crear_oraculo(self):
         """Un oráculo NUEVO, con sus contadores en cero, del tipo que corresponde a este formato.
@@ -154,8 +163,11 @@ def _leer_nodo(d, posicion):
     tope = None
     if "tope" in d:              # campo opcional: sin él, el nodo no tiene tope
         tope = _exigir_tope(d["tope"], f"nodos[{posicion}].tope")
+    costo = None
+    if "costo" in d:             # campo opcional (variante a): un número finito; que sea > 0 lo exige la variante
+        costo = _exigir_numero(d["costo"], f"nodos[{posicion}].costo")
     try:
-        return Nodo(id_nodo, d["cubre"], utilidad, tope=tope)
+        return Nodo(id_nodo, d["cubre"], utilidad, costo_participacion=costo, tope=tope)
     except TypeError as error:   # frozenset no acepta listas ni objetos como elementos
         raise ErrorDeFormato(f"'cubre' del nodo {id_nodo} no puede tener listas ni objetos") from error
 
@@ -233,14 +245,16 @@ def _instancia_de_la_profesora(datos, nombre):
     if numero_nodos != len(nodos):
         raise ErrorDeFormato(f"numero_nodos = {numero_nodos}, pero la lista trae {len(nodos)} nodos")
     vecinos = _leer_grafo(_exigir_lista(datos["grafo"], "grafo"), [nodo.id for nodo in nodos])
-    return Instancia(k, B, nodos, nombre, vecinos, variantes)
+    return Instancia(k, B, nodos, nombre, vecinos, variantes,
+                     presupuesto_costos=variantes["presupuesto_costos_participacion_por_ronda"])
 
 
 def instancia_desde_diccionario(datos, nombre="sin_nombre"):
     """Convierte el contenido leído del JSON en una Instancia, según el formato que traiga.
 
     Si el objeto tiene "parametros", es el de la profesora. Si no, es el propio:
-    {"k": int, "B": int, "nodos": [{"id", "cubre", "utilidad"}, ...]}.
+    {"k": int, "B": int, "nodos": [{"id", "cubre", "utilidad"}, ...]}, con los campos opcionales
+    "presupuesto_costos" (L, número finito) y, por nodo, "tope" y "costo" (variante a).
     Devuelve: Instancia. Lanza ErrorDeFormato si falta un campo o un tipo no cuadra.
     Tiempo del formato propio: O(N + M + ΣL), con M = total de elementos en "cubre" y L = largo de cada tabla.
     """
@@ -256,8 +270,11 @@ def instancia_desde_diccionario(datos, nombre="sin_nombre"):
     if not isinstance(datos["nodos"], list):
         raise ErrorDeFormato("'nodos' debe ser una lista")
 
+    presupuesto_costos = None
+    if "presupuesto_costos" in datos:   # campo opcional (variante a); sin él todo queda como en la solución base
+        presupuesto_costos = _exigir_numero(datos["presupuesto_costos"], "presupuesto_costos")
     nodos = [_leer_nodo(d, posicion) for posicion, d in enumerate(datos["nodos"])]
-    return Instancia(k, B, nodos, nombre)
+    return Instancia(k, B, nodos, nombre, presupuesto_costos=presupuesto_costos)
 
 
 def nombre_del_caso(ruta):
