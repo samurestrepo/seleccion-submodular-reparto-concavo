@@ -1,0 +1,35 @@
+Corrida combinada (a)+(b)+(c1) · caso entrada_G2_red_15_nodos
+N = 15, B = 30, L = 24 (reemplaza a k = 5), T = 3, modo = transitorio, q = 0.2, semilla = 0, β = 0.2
+  Supuesto ❓ (decisión 56): en cada ronda Σ c(S_r) ≤ L reemplaza a |S_r| ≤ k (como la decisión 35)
+  Supuesto ❓ (decisión 56): los supuestos de (b) (decisión 39) y de (c) (decisión 43) valen tal cual
+  Supuesto ❓ (decisión 57): el exacto del reparto de c2 solo corre si los repartos caben en el límite
+
+Ronda 1
+  fallados: -; candidatos (15): ['N01', 'N02', 'N03', 'N04', 'N05', 'N06', 'N07', 'N08', 'N09', 'N10', 'N11', 'N12', 'N13', 'N14', 'N15']
+  S_r = ['N05', 'N09', 'N14', 'N11', 'N15', 'N01'] (origen: cociente), costo = 21 ≤ L, f(S_r) = 145.991100, evaluaciones = 74
+  OPT_r = 146.271410 con ['N05', 'N09', 'N11', 'N12', 'N14', 'N15'] (4502 subconjuntos factibles), razón = 0.998084 (cota 0,405)
+  x = N05:4, N09:6, N14:6, N11:4, N15:5, N01:5; U_r = 101.633876
+  a'_i = N05:8.4000, N09:10.5200, N14:10.5900, N11:8.2400, N15:9.7500, N01:9.1000
+  restante total tras la ronda = 240
+  verificaciones: todas cumplen
+
+Ronda 2
+  fallados: ['N11']; candidatos (14): ['N01', 'N02', 'N03', 'N04', 'N05', 'N06', 'N07', 'N08', 'N09', 'N10', 'N12', 'N13', 'N14', 'N15']
+  S_r = ['N05', 'N09', 'N14', 'N01', 'N07', 'N15'] (origen: cociente), costo = 21 ≤ L, f(S_r) = 145.530309, evaluaciones = 70
+  OPT_r = 145.928133 con ['N05', 'N07', 'N09', 'N10', 'N14', 'N15'] (3013 subconjuntos factibles), razón = 0.997274 (cota 0,405)
+  x = N05:4, N09:5, N14:6, N01:5, N07:5, N15:5; U_r = 103.668298
+  a'_i = N05:8.3800, N09:10.5100, N14:10.5900, N01:9.0800, N07:9.4900, N15:9.7500
+  restante total tras la ronda = 210
+  verificaciones: todas cumplen
+
+Ronda 3
+  fallados: ['N06', 'N11']; candidatos (13): ['N01', 'N02', 'N03', 'N04', 'N05', 'N07', 'N08', 'N09', 'N10', 'N12', 'N13', 'N14', 'N15']
+  S_r = ['N05', 'N09', 'N14', 'N01', 'N07', 'N15'] (origen: cociente), costo = 21 ≤ L, f(S_r) = 145.530309, evaluaciones = 64
+  OPT_r = 145.928133 con ['N05', 'N07', 'N09', 'N10', 'N14', 'N15'] (2333 subconjuntos factibles), razón = 0.997274 (cota 0,405)
+  x = N05:4, N09:5, N14:6, N01:5, N07:5, N15:5; U_r = 103.668298
+  a'_i = N05:8.3800, N09:10.5100, N14:10.5900, N01:9.0800, N07:9.4900, N15:9.7500
+  restante total tras la ronda = 180
+  verificaciones: todas cumplen
+
+Σ f = 437.051718; Σ U = 308.970473; todas cumplen: True
+Modo permanente: coincide con el transitorio = True

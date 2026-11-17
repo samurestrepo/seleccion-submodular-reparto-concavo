@@ -179,6 +179,7 @@ Si la entrada no cumple sus restricciones, los algoritmos no se ejecutan y la tr
    - (b) `python ejecutar.py casos/profesora --variante b --modo-fallo transitorio --prob-fallo 0.2 --semilla-fallos 0 --salida resultados/variantes/b_profesora_transitorio` (y lo mismo con `--modo-fallo permanente` y `b_profesora_permanente`); `--rondas T` cambia el número de rondas del archivo.
    - (c1) `python ejecutar.py casos/profesora --variante c1 --beta 0.2 --limite-repartos 302792 --salida resultados/variantes/c1_profesora`
    - (c2) `python ejecutar.py casos/profesora --variante c2 --beta 0.2 --limite-repartos 302792 --salida resultados/variantes/c2_profesora`
+   - Combinada (a)+(b)+(c), sección 9.4: `python scripts/corrida_combinada.py` → `resultados/variantes/combinada_c1/` y `combinada_c2/`.
 7. Experimentos (sección 8): `python scripts/experimentos.py` (todas las series) o `python scripts/experimentos.py --series i j k l m` (solo las de las variantes).
 8. Tablas de la cota (sección 10): `python scripts/tabla_cota.py`, `python scripts/tabla_cota_variante_a.py` y `python scripts/tabla_cota_variante_c.py`.
 
@@ -316,6 +317,13 @@ Con m = |S| ≤ k, A_S = aristas dentro de S y d(S) = Σ_{i∈S} grado(i): para 
 **Resultados** (`resultados/variantes/c1_profesora/`, `c2_profesora/`, β = 0,2, R = 21). S = N11, N14, N09, N15, N13 (el de la base; 10 aristas dentro de S). Con topes 18 hay C(35, 5) − 5·C(16, 5) = **302792** repartos, más que el límite por omisión: las corridas usan `--limite-repartos 302792`, el número exacto (decisión 46). **c1:** a' = 7,96, 10,48, 10,26, 9,70, 8,54; x = 5, 7, 7, 6, 5 (el mismo de la base); U = 91,5670 = OPT. **c2:** x = 4, 8, 7, 6, 5; U = 99,2470 = OPT (razón 1; cota 0,6383); 155 ganancias recalculadas y 150 nodos revisados en 30 pasos; el x de la base daría U = 99,2246 con este modelo. **Batería** (`scripts/tabla_cota_variante_c.py` → `resultados/variantes/c_tabla_cota.csv`): 27 instancias de influencia (N = 8 a 12, k = 4, tres densidades, semillas 1 a 3) × β ∈ {0,2; 0,5; 1; 2} × B ∈ {3, 6, 10} = 324 filas. c1 coincide con la enumeración en las 324; en c2 solo 7 filas quedan por debajo del óptimo (ninguna con β = 0,2) y la razón mínima es 0,9867 (B = 3, β = 2, cota 0,7037): **la cota se cumple en todas**.
 
 Referencia: Nemhauser, Wolsey y Fisher (1978), *Mathematical Programming* 14, 265–294, doi:10.1007/BF01588971.
+
+### 9.4 Corrida combinada (a)+(b)+(c) · `scripts/corrida_combinada.py`
+Las tres variantes juntas en el caso de la docente, sin cambiar ninguna: T = 3 rondas con fallos (q = 0,2, semilla 0); en cada ronda, el voraz modificado de (a) con V = candidatos y Σ c(S_r) ≤ L = 24 (**Supuesto ❓**, decisión 56: L reemplaza a k, como en la 35) y OPT_r por fuerza bruta con presupuesto; después el reparto c1 o c2 (β = 0,2) sobre S_r con topes = presupuesto restante, que se descuenta. El exacto del reparto de c2 no corre si hay más de 200000 repartos (decisión 57).
+
+**Ejecución.** `python scripts/corrida_combinada.py` (sin opciones). Corre c1 y c2 en modo transitorio y permanente; escribe `salida.json` y `traza.txt` en `resultados/variantes/combinada_c1/` y `combinada_c2/`, y la consola imprime Σ f, Σ U, si todo cumple y si el permanente coincide (con la semilla 0, sí). Para otros parámetros se llama `ejecutar_combinada(instancia, modelo, modo, prob_fallo, semilla, rondas, beta, exacto)`.
+
+**T(n).** Por ronda: Θ(N) del sorteo, O(m·(N + A)) del voraz modificado (m = \|S_r\| ≤ mín(n_r, ⌊L/c_mín⌋)), y el reparto: c1 Θ(m + d(S)) + O(m + B lg m); c2 Θ(m + d(S)) + O(B·(m + A_S)). Total O(T·(m·(N + A) + B lg m)) con c1 y O(T·(m·(N + A) + B·(m + A_S))) con c2; el OPT_r suma O(T·2^N·(N + A)). Espacio O(N + A). Resultados en §10.1.5 del informe y en la ficha `docs/modulos/corrida_combinada.md`.
 
 ## 10. Tablas de la cota (aproximados contra el óptimo)
 

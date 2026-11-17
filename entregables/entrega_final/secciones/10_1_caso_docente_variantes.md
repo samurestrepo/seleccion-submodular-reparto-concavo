@@ -69,3 +69,22 @@ Carpetas: `resultados/variantes/c1_profesora/` y `c2_profesora/`. La Parte 2 no 
 - **c2** sí cambia el reparto: le quita una unidad a N11 y se la da a N14. En c2, la ganancia de darle una unidad a un nodo incluye lo que sube la entrada efectiva de sus vecinos, y eso cambia el orden en que se entregan las unidades. El reparto de la base, evaluado con el modelo c2, da 99,2246; el voraz de c2 da 99,2470, que es el OPT. En este caso el voraz de c2 fue exacto, aunque en general no lo es (contraejemplo de §8.4.2 y §10.2.6).
 - **Conteos de c2.** 155 = m + B·m = 5 + 30·5 ganancias recalculadas y 150 = B·m revisados: con S completo, cada unidad cambia las ganancias de los 5 nodos (todos están a distancia ≤ 2 del que recibe). Por eso el reparto de c2 cuesta unas 40 veces más que el de la base (1,528 ms contra 0,038 ms): es O(B·k²) contra O(k + B lg k).
 - **Tiempo de la selección.** En la corrida de c2 la Parte 2 midió 0,441 ms de mediana (0,412 ms de mínimo), contra 0,171 ms en la base y 0,185 ms en c1, con el mismo algoritmo, el mismo S y las mismas 65 llamadas. La diferencia no viene del algoritmo: el equipo estaba más lento durante esa corrida. Muestra el ruido de medir tiempos de décimas de milisegundo (sección 11.3).
+
+### 10.1.5 Corrida combinada: (a) + (b) + (c)
+
+Carpetas: `resultados/variantes/combinada_c1/` y `combinada_c2/` (`salida.json` y `traza.txt`), generadas con `python scripts/corrida_combinada.py`. Se combinan las tres variantes sin cambiar ninguna: 3 rondas con fallos (q = 0,2, semilla 0, modo transitorio); en cada ronda, el voraz modificado de (a) sobre los candidatos con Σ c(S_r) ≤ L = 24; y el reparto de (c) con β = 0,2 y topes = presupuesto restante. **Supuesto ❓:** en cada ronda L reemplaza a k, como en la variante (a) sola. OPT_r es la fuerza bruta con presupuesto sobre los candidatos (§7.4). Con la semilla 0 los fallados de cada ronda contienen a los de la anterior, así que el modo permanente da exactamente lo mismo.
+
+| Ronda | Candidatos | S_r | Σ c(S_r) | f(S_r) | OPT_r (subconjuntos factibles) | Razón | x (c1) | U_r (c1) | x (c2) | U_r (c2) | Restante total |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | 15 | N05, N09, N14, N11, N15, N01 | 21 | 145,9911 | 146,2714 (4 502) | 0,9981 | 4, 6, 6, 4, 5, 5 | 101,6339 | 4, 6, 6, 4, 5, 5 | 115,1394 | 240 |
+| 2 | 14 (sin N11) | N05, N09, N14, N01, N07, N15 | 21 | 145,5303 | 145,9281 (3 013) | 0,9973 | 4, 5, 6, 5, 5, 5 | 103,6683 | 4, 6, 6, 4, 5, 5 | 117,4837 | 210 |
+| 3 | 13 (sin N06 ni N11) | N05, N09, N14, N01, N07, N15 | 21 | 145,5303 | 145,9281 (2 333) | 0,9973 | 4, 5, 6, 5, 5, 5 | 103,6683 | 4, 6, 6, 4, 5, 5 | 117,4837 | 180 |
+
+x va en el orden de S_r. Suma de las 3 rondas: Σ f(S_r) = 437,0517; Σ U_r = 308,9705 con c1 y 350,1068 con c2. Todas las verificaciones cumplen (Σ c(S_r) ≤ L, S_r ⊆ candidatos, f recalculada, f(S_r) ≥ 0,405·OPT_r, topes y restante ≥ 0).
+
+**Lectura.**
+- La ronda 1 es la variante (a) de §10.1.2 (mismo S_r y f), con el reparto de c1 o c2 en lugar del de la base.
+- La selección no depende del modelo de reparto: las dos corridas eligen los mismos S_r. Solo cambian x y U_r.
+- Las rondas 2 y 3 eligen lo mismo: la caída de N06 en la ronda 3 no afecta, porque N06 no estaba en S_r, y el restante alcanza justo: el reparto de la ronda 3 es el mismo de la ronda 2. Al final, N14 queda con 0 unidades en las dos corridas (6 por ronda) y N09 también en c2; no podrían participar en una cuarta ronda.
+- En c2 el exacto del reparto no corre: con 6 nodos, B = 30 y topes hay entre 0,5 y 1,9 millones de repartos por ronda, por encima del límite de 200 000. La referencia de c2 en este caso está en §10.1.4. En c1 el voraz es exacto (§7.1.1).
+- Costo: cada ronda cuesta lo mismo que la variante (a) más el reparto del modelo; la corrida completa es O(T·(m·(N + A) + B lg m)) con c1 y O(T·(m·(N + A) + B·(m + A_S))) con c2, con m = |S_r| (manual técnico, §9.4).

@@ -1,0 +1,427 @@
+{
+  "caso": "entrada_G2_red_15_nodos",
+  "entrada": {
+    "N": 15,
+    "k": 5,
+    "B": 30,
+    "L": 24,
+    "T": 3,
+    "modelo": "c2",
+    "beta": 0.2,
+    "modo": "transitorio",
+    "prob_fallo": 0.2,
+    "semilla": 0
+  },
+  "supuestos": [
+    "Supuesto ❓ (decisión 56): en cada ronda Σ c(S_r) ≤ L reemplaza a |S_r| ≤ k (como la decisión 35)",
+    "Supuesto ❓ (decisión 56): los supuestos de (b) (decisión 39) y de (c) (decisión 43) valen tal cual",
+    "Supuesto ❓ (decisión 57): el exacto del reparto de c2 solo corre si los repartos caben en el límite"
+  ],
+  "rondas": [
+    {
+      "ronda": 1,
+      "fallados": [],
+      "candidatos": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12",
+        "N13",
+        "N14",
+        "N15"
+      ],
+      "seleccion": {
+        "S": [
+          "N05",
+          "N09",
+          "N14",
+          "N11",
+          "N15",
+          "N01"
+        ],
+        "valor": 145.99110040625,
+        "costo": 21,
+        "evaluaciones": 74,
+        "origen": "cociente",
+        "OPT": 146.27141018749998,
+        "S_opt": [
+          "N05",
+          "N09",
+          "N11",
+          "N12",
+          "N14",
+          "N15"
+        ],
+        "razon": 0.9980836324686373,
+        "evaluaciones_OPT": 4502,
+        "verificaciones": [
+          {
+            "nombre": "S_r ⊆ candidatos de la ronda",
+            "cumple": true,
+            "detalle": "S_r = ['N05', 'N09', 'N14', 'N11', 'N15', 'N01']"
+          },
+          {
+            "nombre": "S_r sin repetidos",
+            "cumple": true,
+            "detalle": "|S_r| = 6"
+          },
+          {
+            "nombre": "Σ c(S_r) ≤ L (reemplaza a |S_r| ≤ k; Supuesto ❓)",
+            "cumple": true,
+            "detalle": "Σ c(S_r) = 21, L = 24"
+          },
+          {
+            "nombre": "f(S_r) acumulada = f(S_r) recalculada",
+            "cumple": true,
+            "detalle": "acumulada = 145.99110040625, recalculada = 145.99110040625"
+          },
+          {
+            "nombre": "f(S_r) ≥ 0,405·OPT_r (voraz modificado)",
+            "cumple": true,
+            "detalle": "f(S_r) = 145.99110040625, OPT_r = 146.27141018749998"
+          }
+        ]
+      },
+      "reparto": {
+        "x": {
+          "N05": 4,
+          "N09": 6,
+          "N14": 6,
+          "N11": 4,
+          "N15": 5,
+          "N01": 5
+        },
+        "U": 115.13936215263989,
+        "a_prima": null,
+        "pasos": 30,
+        "repartos": 1873536,
+        "cota": 0.6383384865383894,
+        "OPT": null,
+        "verificaciones": [
+          {
+            "nombre": "cada x_i entero con 0 ≤ x_i ≤ mín(B, c_i)",
+            "cumple": true,
+            "detalle": "todos cumplen"
+          },
+          {
+            "nombre": "Σ x_i = mín(B, Σ c_i)",
+            "cumple": true,
+            "detalle": "Σ x_i = 30, mín(B, Σ c_i) = 30"
+          },
+          {
+            "nombre": "pasos del voraz = Σ x_i",
+            "cumple": true,
+            "detalle": "pasos = 30, Σ x_i = 30"
+          },
+          {
+            "nombre": "U(x) acumulada = U(x) recalculada",
+            "cumple": true,
+            "detalle": "acumulada = 115.139362, recalculada = 115.139362"
+          }
+        ]
+      },
+      "restante": {
+        "N01": 13,
+        "N02": 18,
+        "N03": 18,
+        "N04": 18,
+        "N05": 14,
+        "N06": 18,
+        "N07": 18,
+        "N08": 18,
+        "N09": 12,
+        "N10": 18,
+        "N11": 14,
+        "N12": 18,
+        "N13": 18,
+        "N14": 12,
+        "N15": 13
+      },
+      "restante_total": 240
+    },
+    {
+      "ronda": 2,
+      "fallados": [
+        "N11"
+      ],
+      "candidatos": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N12",
+        "N13",
+        "N14",
+        "N15"
+      ],
+      "seleccion": {
+        "S": [
+          "N05",
+          "N09",
+          "N14",
+          "N01",
+          "N07",
+          "N15"
+        ],
+        "valor": 145.530308703125,
+        "costo": 21,
+        "evaluaciones": 70,
+        "origen": "cociente",
+        "OPT": 145.928133453125,
+        "S_opt": [
+          "N05",
+          "N07",
+          "N09",
+          "N10",
+          "N14",
+          "N15"
+        ],
+        "razon": 0.997273831024997,
+        "evaluaciones_OPT": 3013,
+        "verificaciones": [
+          {
+            "nombre": "S_r ⊆ candidatos de la ronda",
+            "cumple": true,
+            "detalle": "S_r = ['N05', 'N09', 'N14', 'N01', 'N07', 'N15']"
+          },
+          {
+            "nombre": "S_r sin repetidos",
+            "cumple": true,
+            "detalle": "|S_r| = 6"
+          },
+          {
+            "nombre": "Σ c(S_r) ≤ L (reemplaza a |S_r| ≤ k; Supuesto ❓)",
+            "cumple": true,
+            "detalle": "Σ c(S_r) = 21, L = 24"
+          },
+          {
+            "nombre": "f(S_r) acumulada = f(S_r) recalculada",
+            "cumple": true,
+            "detalle": "acumulada = 145.530308703125, recalculada = 145.530308703125"
+          },
+          {
+            "nombre": "f(S_r) ≥ 0,405·OPT_r (voraz modificado)",
+            "cumple": true,
+            "detalle": "f(S_r) = 145.530308703125, OPT_r = 145.928133453125"
+          }
+        ]
+      },
+      "reparto": {
+        "x": {
+          "N05": 4,
+          "N09": 6,
+          "N14": 6,
+          "N01": 4,
+          "N07": 5,
+          "N15": 5
+        },
+        "U": 117.48373389138126,
+        "a_prima": null,
+        "pasos": 30,
+        "repartos": 1530676,
+        "cota": 0.6383384865383894,
+        "OPT": null,
+        "verificaciones": [
+          {
+            "nombre": "cada x_i entero con 0 ≤ x_i ≤ mín(B, c_i)",
+            "cumple": true,
+            "detalle": "todos cumplen"
+          },
+          {
+            "nombre": "Σ x_i = mín(B, Σ c_i)",
+            "cumple": true,
+            "detalle": "Σ x_i = 30, mín(B, Σ c_i) = 30"
+          },
+          {
+            "nombre": "pasos del voraz = Σ x_i",
+            "cumple": true,
+            "detalle": "pasos = 30, Σ x_i = 30"
+          },
+          {
+            "nombre": "U(x) acumulada = U(x) recalculada",
+            "cumple": true,
+            "detalle": "acumulada = 117.483734, recalculada = 117.483734"
+          }
+        ]
+      },
+      "restante": {
+        "N01": 9,
+        "N02": 18,
+        "N03": 18,
+        "N04": 18,
+        "N05": 10,
+        "N06": 18,
+        "N07": 13,
+        "N08": 18,
+        "N09": 6,
+        "N10": 18,
+        "N11": 14,
+        "N12": 18,
+        "N13": 18,
+        "N14": 6,
+        "N15": 8
+      },
+      "restante_total": 210
+    },
+    {
+      "ronda": 3,
+      "fallados": [
+        "N06",
+        "N11"
+      ],
+      "candidatos": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N12",
+        "N13",
+        "N14",
+        "N15"
+      ],
+      "seleccion": {
+        "S": [
+          "N05",
+          "N09",
+          "N14",
+          "N01",
+          "N07",
+          "N15"
+        ],
+        "valor": 145.530308703125,
+        "costo": 21,
+        "evaluaciones": 64,
+        "origen": "cociente",
+        "OPT": 145.928133453125,
+        "S_opt": [
+          "N05",
+          "N07",
+          "N09",
+          "N10",
+          "N14",
+          "N15"
+        ],
+        "razon": 0.997273831024997,
+        "evaluaciones_OPT": 2333,
+        "verificaciones": [
+          {
+            "nombre": "S_r ⊆ candidatos de la ronda",
+            "cumple": true,
+            "detalle": "S_r = ['N05', 'N09', 'N14', 'N01', 'N07', 'N15']"
+          },
+          {
+            "nombre": "S_r sin repetidos",
+            "cumple": true,
+            "detalle": "|S_r| = 6"
+          },
+          {
+            "nombre": "Σ c(S_r) ≤ L (reemplaza a |S_r| ≤ k; Supuesto ❓)",
+            "cumple": true,
+            "detalle": "Σ c(S_r) = 21, L = 24"
+          },
+          {
+            "nombre": "f(S_r) acumulada = f(S_r) recalculada",
+            "cumple": true,
+            "detalle": "acumulada = 145.530308703125, recalculada = 145.530308703125"
+          },
+          {
+            "nombre": "f(S_r) ≥ 0,405·OPT_r (voraz modificado)",
+            "cumple": true,
+            "detalle": "f(S_r) = 145.530308703125, OPT_r = 145.928133453125"
+          }
+        ]
+      },
+      "reparto": {
+        "x": {
+          "N05": 4,
+          "N09": 6,
+          "N14": 6,
+          "N01": 4,
+          "N07": 5,
+          "N15": 5
+        },
+        "U": 117.48373389138126,
+        "a_prima": null,
+        "pasos": 30,
+        "repartos": 498048,
+        "cota": 0.6383384865383894,
+        "OPT": null,
+        "verificaciones": [
+          {
+            "nombre": "cada x_i entero con 0 ≤ x_i ≤ mín(B, c_i)",
+            "cumple": true,
+            "detalle": "todos cumplen"
+          },
+          {
+            "nombre": "Σ x_i = mín(B, Σ c_i)",
+            "cumple": true,
+            "detalle": "Σ x_i = 30, mín(B, Σ c_i) = 30"
+          },
+          {
+            "nombre": "pasos del voraz = Σ x_i",
+            "cumple": true,
+            "detalle": "pasos = 30, Σ x_i = 30"
+          },
+          {
+            "nombre": "U(x) acumulada = U(x) recalculada",
+            "cumple": true,
+            "detalle": "acumulada = 117.483734, recalculada = 117.483734"
+          }
+        ]
+      },
+      "restante": {
+        "N01": 5,
+        "N02": 18,
+        "N03": 18,
+        "N04": 18,
+        "N05": 6,
+        "N06": 18,
+        "N07": 8,
+        "N08": 18,
+        "N09": 0,
+        "N10": 18,
+        "N11": 14,
+        "N12": 18,
+        "N13": 18,
+        "N14": 0,
+        "N15": 3
+      },
+      "restante_total": 180
+    }
+  ],
+  "verificaciones_globales": [
+    {
+      "nombre": "presupuesto restante ≥ 0 en todos los nodos",
+      "cumple": true,
+      "detalle": "todos cumplen"
+    }
+  ],
+  "resumen": {
+    "suma_f": 437.0517178125,
+    "suma_U": 350.1068299354024
+  },
+  "todas_cumplen": true,
+  "modo_permanente": {
+    "coincide_con_transitorio": true,
+    "nota": "con la semilla 0 los fallados de cada ronda contienen a los de la anterior, así que los candidatos de los dos modos son iguales"
+  }
+}
