@@ -1,7 +1,7 @@
 # Ficha: `scripts/experimentos.py`
 
 ## Para qué existe
-Contrasta lo medido con la T(n) del informe y de las fichas de las variantes. Corre 13 series: a–h de la solución base y sus referencias (voraz de la Parte 2 con cobertura y con influencia, reparto de la Parte 1 voraz y por PD, y fuerza bruta) e i–m de las variantes (ic e im: voraz por cociente y modificado de la variante a; j: enumeración parcial; k: fuerza bruta con presupuesto; l: variante b variando T; m: voraz de c2 variando B). Para cada tamaño guarda tiempo, conteo de operaciones y el cociente t_min / T_teorica. Uso, desde la raíz: `python scripts/experimentos.py` (todas; opciones: `--series a d`, `--sin-graficas`, `--repeticiones R`). **Solo las de las variantes, sin regenerar las a–h:** `python scripts/experimentos.py --series i j k l m` (unos 2 min; `i` es el alias de `ic` e `im`).
+Contrasta lo medido con la T(n) del informe y de las fichas de las variantes. Corre 13 series por nombre, que dan **14 curvas y 14 CSV** porque la serie i se divide en ic e im: a–h de la solución base y sus referencias (voraz de la Parte 2 con cobertura y con influencia, reparto de la Parte 1 voraz y por PD, y fuerza bruta) e i–m de las variantes (ic e im: voraz por cociente y modificado de la variante a; j: enumeración parcial; k: fuerza bruta con presupuesto; l: variante b variando T; m: voraz de c2 variando B). Para cada tamaño guarda tiempo, conteo de operaciones y el cociente t_min / T_teorica. Uso, desde la raíz: `python scripts/experimentos.py` (todas; opciones: `--series a d`, `--sin-graficas`, `--repeticiones R`). **Solo las de las variantes, sin regenerar las a–h:** `python scripts/experimentos.py --series i j k l m` (unos 2 min; `i` es el alias de `ic` e `im`).
 
 ## Funciones públicas
 | Función | Recibe | Devuelve | Complejidad |
@@ -47,6 +47,8 @@ Columnas de `resultados/experimentos/<serie>.csv`: `n` (la variable que cambia: 
 | k | 8,635 (8,458) | 1,023 | 2,19e-7 a 2,73e-7 (1,25) | sí (contra n la pendiente no es constante: T es exponencial) |
 | l | 1,059 (1,000) | 1,059 | 3,69e-7 a 4,29e-7 (1,16) | sí; el cociente sube ~14 % desde T = 64 |
 | m | 1,046 (0,988) | 1,059 | 1,15e-6 a 1,36e-6 (1,18) | sí; el cociente crece despacio con B |
+
+**Máquina de las mediciones.** Las series i–m se corrieron el 2026-11-17 en un Intel Core i5-6300U a 2,40 GHz (2 núcleos, 4 hilos; caché L2 de 512 KB y L3 de 3 MB), 15,9 GB de RAM, Windows 10 Pro 10.0.19045, Python 3.14.7 (CPython), con el reloj `time.perf_counter`. De las series a–h (2026-11-12) no quedó registro del equipo: se supone el mismo (**Supuesto ❓**). Los tiempos absolutos dependen de la máquina; lo que se compara con la teoría es el crecimiento.
 
 Los conteos coinciden con las fórmulas exactas en todos los tamaños (la prueba lo verifica con tamaños pequeños). En l, con q = 0,2, cada ronda tuvo k_r = 5 y el restante nunca se agotó. **Nota:** la primera corrida de ic e im se contaminó porque pytest corría al mismo tiempo (im tardaba el doble que ic con el mismo trabajo); se repitió `--series i` sola y esos son los datos del repositorio.
 

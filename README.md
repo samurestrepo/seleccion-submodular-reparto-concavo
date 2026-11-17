@@ -19,6 +19,14 @@ python ejecutar.py casos/profesora --salida resultados/profesora
 
 Sus evidencias quedan en `resultados/profesora/` (`resumen.csv` y, en `entrada_G2_red_15_nodos/`, `salida.json`, `traza.json` y `traza.txt`). El informe, el manual técnico en PDF y el anexo están en `entregables/primera_entrega/` (ver su `LEEME.md`). La fuente del manual es [`MANUAL_TECNICO.md`](MANUAL_TECNICO.md), en la raíz (https://github.com/samurestrepo/seleccion-submodular-reparto-concavo/blob/primera-entrega/MANUAL_TECNICO.md, en la etiqueta `primera-entrega`).
 
+## Entrega final
+La entrega final agrega a la solución base (que no cambió de lógica) las tres variantes del enunciado, los algoritmos exactos de referencia y los experimentos de tiempo:
+
+- **Variantes:** (a) costos de participación (`red/variante_costos.py`), (b) T rondas con nodos que fallan (`red/variante_rondas.py`) y (c) vecinos que alteran la utilidad, modelos c1 y c2 (`red/variante_vecinos.py`). Se piden con `--variante a|b|c1|c2` (comandos más abajo y en la sección 9 del manual); las evidencias de la docente están en `resultados/variantes/`, y `resultados/profesora/` no cambia.
+- **Experimentos:** `scripts/experimentos.py`, 14 series (a–h de la base; ic, im, j, k, l y m de las variantes) con sus CSV y gráficas en `resultados/experimentos/` (sección 8 del manual). Las tablas contra el óptimo están en `resultados/cota/` y `resultados/variantes/` (sección 10 del manual).
+- **Textos del informe final:** `entregables/entrega_final/secciones/`, un archivo Markdown por sección (resumen, términos nuevos, formalización y algoritmos de las variantes, elección de la técnica, implementación, validación experimental, resumen de eficiencia y supuestos).
+- **Manual técnico:** [`MANUAL_TECNICO.md`](MANUAL_TECNICO.md), actualizado a la entrega final.
+
 ## Uso de inteligencia artificial
 El curso permite el uso de IA. En este proyecto se usó Claude, con un agente configurado para el repositorio (`.claude/agents/ingeniero-red.md` y `CLAUDE.md`), en la parte operativa: implementación, pruebas, evidencias y documentación. El planteamiento del problema, las demostraciones y la sustentación son responsabilidad del autor.
 

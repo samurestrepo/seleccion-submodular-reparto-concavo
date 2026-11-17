@@ -101,13 +101,14 @@ def voraz_por_cociente(oraculo, V, costos, L, traza=None, inicial=()):
     Los nodos que no caben se saltan sin evaluarlos; el ciclo termina cuando ninguno cabe.
     Devuelve ResultadoCostos; `mejor_solo` trae el mejor nodo que cabe solo, sacado del paso 1
     (f({v}) = Δ(v | ∅)) sin evaluaciones extra, y solo si `inicial` está vacío.
-    Complejidad: el paso j evalúa a lo sumo N − j + 1 candidatos, así que
-    evaluaciones ≤ |S|·N − |S|(|S| − 1)/2, con |S| ≤ mín(N, ⌊L / c_mín⌋): O(N · mín(N, L/c_mín)).
-    Peor caso (L ≥ Σ c, todo cabe siempre): exactamente N(N + 1)/2 evaluaciones, Θ(N²).
-    Mejor caso (L < c_mín): 0 evaluaciones y Θ(N) tiempo (un recorrido de V).
+    Complejidad: se cuenta 1 evaluación de f(inicial) con `valor` (f(∅) en el uso normal), y el
+    paso j evalúa a lo sumo N − j + 1 candidatos, así que
+    evaluaciones ≤ 1 + |S|·N − |S|(|S| − 1)/2, con |S| ≤ mín(N, ⌊L / c_mín⌋): O(N · mín(N, L/c_mín)).
+    Peor caso (L ≥ Σ c, todo cabe siempre): exactamente 1 + N(N + 1)/2 evaluaciones, Θ(N²).
+    Mejor caso (L < c_mín): 1 evaluación (la de f(∅)) y Θ(N) tiempo (un recorrido de V).
     Con influencia cada evaluación cuesta O(1 + grado(v)): un paso cuesta O(N + A) y el total
     O(|S| · (N + A)). Espacio O(N) (S, en_S) más el estado del oráculo.
-    Con `inicial` = T: una evaluación más (f(T) con `valor`) y los pasos arrancan desde T.
+    Con `inicial` = T, esa evaluación es f(T) y los pasos arrancan desde T.
     """
     S = list(inicial)
     en_S = set(S)

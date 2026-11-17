@@ -1,9 +1,9 @@
-# Manual técnico — Proyecto Red (G2), primera entrega
+# Manual técnico — Proyecto Red (G2), entrega final
 
-Versión: etiqueta primera-entrega del repositorio. El informe correspondiente está en entregables/primera_entrega/1_Informe_Primera_Entrega_G2.pdf.
+Versión: entrega final (rama `main`). Las secciones 1 a 7 describen la solución base de la primera entrega (etiqueta `primera-entrega`; informe en `entregables/primera_entrega/1_Informe_Primera_Entrega_G2.pdf`), que no cambió de lógica. La entrega final agrega los campos opcionales del formato propio (sección 3), los experimentos de tiempo (sección 8), las variantes (a), (b) y (c) (sección 9) y las tablas de la cota (sección 10). Los textos del informe final están en `entregables/entrega_final/secciones/`.
 
 Solución base: selección de nodos (Parte 2) y reparto de presupuesto (Parte 1).
-Las demostraciones (NP-dureza, eficiencia) están en el informe; este manual describe el código.
+Las demostraciones (NP-dureza, eficiencia) están en el informe; este manual describe el código. Cuando el manual cita una sección del informe, dice de cuál: la numeración del informe de la primera entrega y la del informe final no coinciden.
 
 ## 1. Algoritmos
 
@@ -48,7 +48,14 @@ Dentro de una ronda, N de la Parte 1 es k (los nodos elegidos).
 | `red/verificacion.py` | Restricciones de entrada y salida |
 | `red/traza.py` | Paso a paso en texto y JSON |
 | `red/ronda.py` | Orquesta la ronda y mide tiempos |
-| `red/generador.py` | Instancias sintéticas con semilla |
+| `red/generador.py` | Instancias sintéticas con semilla, en los dos formatos |
+| `red/exacto.py` | Parte 2, referencia: fuerza bruta con C(N, k) evaluaciones (no entra a la ronda) |
+| `red/pd_reparto.py` | Parte 1, referencia: programación dinámica Θ(N·B²) (no entra a la ronda) |
+| `red/variante_costos.py` | Variante (a): costos de participación (sección 9.1) |
+| `red/variante_rondas.py` | Variante (b): T rondas con nodos que fallan (sección 9.2) |
+| `red/variante_vecinos.py` | Variante (c): vecinos que alteran la utilidad, modelos c1 y c2 (sección 9.3) |
+| `scripts/experimentos.py` | Experimentos de tiempo, series a–m (sección 8) |
+| `scripts/tabla_cota.py`, `tabla_cota_variante_a.py`, `tabla_cota_variante_c.py` | Aproximados contra el óptimo exacto (sección 10) |
 
 Flujo de una ronda:
 ```
@@ -86,19 +93,19 @@ Cada archivo tiene su ficha en `docs/modulos/` con su complejidad, cómo modific
 | `grafo` | aristas {u, v} no dirigidas, con p_vw = `peso_influencia`; definen f. El peso debe estar en [0, 1] |
 | `id` | texto. Con ceros a la izquierda, el orden de texto coincide con el numérico y define los desempates. Sin ceros, "N10" iría antes que "N2" |
 | `coeficiente_utilidad` | a de u_i y a_w de f. Debe ser un número finito > 0 |
-| `numero_rondas`, `costo_participacion`, `presupuesto_costos_participacion_por_ronda` | de las variantes (b) y (a): **se leen y se reportan** en `informativo`; la solución base no los aplica. Con `--variante a`, `costo_participacion` es c(v) y `presupuesto_costos_participacion_por_ronda` es L (sección 9) |
+| `numero_rondas`, `costo_participacion`, `presupuesto_costos_participacion_por_ronda` | de las variantes (b) y (a): **se leen y se reportan** en `informativo`; la solución base no los aplica. Con `--variante a`, `costo_participacion` es c(v) y `presupuesto_costos_participacion_por_ronda` es L (sección 9.1); con `--variante b`, `numero_rondas` es T (sección 9.2) |
 | `presupuesto_total_nodo` | tope c_i de x_i ≤ c_i. Entero ≥ 0 |
 
-**Supuestos de modelado adoptados** (se declaran en el informe, sección 6.9):
+**Supuestos de modelado adoptados** (se declaran en el informe de la primera entrega, sección 6.9, y en el informe final, sección 13):
 
 - f(S) = Σ_w a_w · (1 − Π_{v∈S} (1 − p_vw)), con p_vw = 0 si no hay arista y p_ww = 1.
 - u_i(x) = `coeficiente_utilidad` · ln(1 + x).
 - La solución base corre una sola ronda.
-- `presupuesto_total_nodo` es lo que le queda al nodo para todo el proyecto, y en una ronda lo puede gastar completo. En la variante (b) se descontará ronda a ronda.
+- `presupuesto_total_nodo` es lo que le queda al nodo para todo el proyecto, y en una ronda lo puede gastar completo. En la variante (b) se descuenta ronda a ronda (sección 9.2).
 
 Es error de forma (`[ERROR]`): falta un campo; `numero_nodos` no coincide con la lista; una arista nombra un nodo inexistente, es un lazo o está repetida ({u, v} y {v, u} son la misma); un valor no es numérico (incluye `true`, `NaN` e `Infinity`); un id no es texto; k, B, `numero_nodos` o `numero_rondas` no son enteros; un coeficiente no es > 0; `presupuesto_total_nodo` no es un entero ≥ 0. Un peso fuera de [0, 1] no es error de forma, sino una verificación de entrada que falla (`[FALLA]`), y el caso no corre.
 
-### 3.1.1 Entrada: formato propio (batería propia, informe 6.5)
+### 3.1.1 Entrada: formato propio (batería propia; informe de la primera entrega, 6.5)
 ```json
 {
   "k": 2,
@@ -117,6 +124,8 @@ Es error de forma (`[ERROR]`): falta un campo; `numero_nodos` no coincide con la
 | `id` | entero único; define el orden y los desempates |
 | `tope` | opcional: tope c_i de x_i ≤ c_i, entero ≥ 0. Sin él, el nodo no tiene tope (en la variante (b), sin tope el restante arranca en B) |
 | `rondas` | opcional (variante b): T, entero ≥ 1. Sin él, T = 1. Solo se usa con `--variante b` |
+| `costo` | opcional, por nodo (variante a): c(v), número finito > 0. Solo se usa con `--variante a`; si se pide la variante y falta o es ≤ 0, el caso se rechaza |
+| `presupuesto_costos` | opcional, en la raíz (variante a): L, número finito ≥ 0. Solo se usa con `--variante a`; si se pide la variante y falta o es < 0, el caso se rechaza |
 | `cubre` | elementos que aporta el nodo (cadenas o números); definen f como cobertura |
 | `utilidad` | `{"tipo": "log", "a": a}` → a·ln(1 + x); `{"tipo": "raiz", "a": a}` → a·√x; `{"tipo": "tabla", "ganancias": [Δ(0), Δ(1), …]}` → ganancias explícitas por unidad (para ejemplos y contraejemplos). `a` debe ser un número finito con a > 0, y las ganancias, números finitos. Valores como `true`, `"3"`, `NaN` o `Infinity` son error de forma |
 
@@ -165,19 +174,42 @@ Si la entrada no cumple sus restricciones, los algoritmos no se ejecutan y la tr
 3. `python -m pytest` → todas las pruebas deben pasar.
 4. `python ejecutar.py casos/profesora --salida resultados/profesora` (o cualquier archivo o carpeta de casos).
 5. Revisar `resultados/profesora/resumen.csv` y la carpeta de cada caso.
+6. Variantes (sección 9), siempre con una carpeta de salida en `resultados/variantes/`; **no** se escribe sobre `resultados/profesora/`:
+   - (a) `python ejecutar.py casos/profesora --variante a --salida resultados/variantes/a_profesora`
+   - (b) `python ejecutar.py casos/profesora --variante b --modo-fallo transitorio --prob-fallo 0.2 --semilla-fallos 0 --salida resultados/variantes/b_profesora_transitorio` (y lo mismo con `--modo-fallo permanente` y `b_profesora_permanente`); `--rondas T` cambia el número de rondas del archivo.
+   - (c1) `python ejecutar.py casos/profesora --variante c1 --beta 0.2 --limite-repartos 302792 --salida resultados/variantes/c1_profesora`
+   - (c2) `python ejecutar.py casos/profesora --variante c2 --beta 0.2 --limite-repartos 302792 --salida resultados/variantes/c2_profesora`
+7. Experimentos (sección 8): `python scripts/experimentos.py` (todas las series) o `python scripts/experimentos.py --series i j k l m` (solo las de las variantes).
+8. Tablas de la cota (sección 10): `python scripts/tabla_cota.py`, `python scripts/tabla_cota_variante_a.py` y `python scripts/tabla_cota_variante_c.py`.
+
+**Opciones de `ejecutar.py`.**
+
+| Opción | Para qué | Por omisión |
+|---|---|---|
+| `--salida CARPETA` | carpeta de evidencias | `resultados` |
+| `--repeticiones R` | repeticiones medidas; se reporta la mediana | 21 |
+| `--variante a\|b\|c1\|c2` | aplica una variante; sin ella, la solución base | ninguna |
+| `--modo-fallo transitorio\|permanente` | (b) el nodo falla solo esa ronda, o no vuelve | `transitorio` |
+| `--prob-fallo q` | (b) probabilidad de fallo de cada nodo antes de cada ronda | 0.2 |
+| `--semilla-fallos s` | (b) semilla del sorteo de fallos | 0 |
+| `--rondas T` | (b) número de rondas; manda sobre `numero_rondas` o `rondas` del archivo | el del archivo, o 1 |
+| `--beta β` | (c1, c2) intensidad del efecto de los vecinos, número finito ≥ 0 | 0.2 |
+| `--limite-repartos L` | (c1, c2) máximo de repartos que enumera el exacto de referencia; si hay más, no corre (no es falla) | 200000 |
+
+Las opciones de una variante se ignoran si no se pide esa variante.
 
 ## 5. Casos de prueba utilizados
-**Caso oficial:** `casos/profesora/entrada_G2_red_15_nodos.json` (N = 15, k = 5, B = 30), con evidencias en `resultados/profesora/`. Resultado: S = N11, N14, N09, N15, N13; f(S) ≈ 145.5795; 65 llamadas a Δ; reparto 5, 7, 7, 6, 5; U ≈ 88.5640; 30 extracciones y 30 inserciones. Todas las verificaciones cumplen. Depende de los supuestos de la sección 3.1. El informe reporta estos mismos valores en su sección 6.9.
+**Caso oficial:** `casos/profesora/entrada_G2_red_15_nodos.json` (N = 15, k = 5, B = 30), con evidencias en `resultados/profesora/`. Resultado: S = N11, N14, N09, N15, N13; f(S) ≈ 145.5795; 65 llamadas a Δ; reparto 5, 7, 7, 6, 5; U ≈ 88.5640; 30 extracciones y 30 inserciones. Todas las verificaciones cumplen. Depende de los supuestos de la sección 3.1. El informe de la primera entrega reporta estos mismos valores en su sección 6.9, y el informe final en su sección 10.1.1. Las corridas de la docente con cada variante están en `resultados/variantes/` (sección 9).
 
 **Batería propia:** 14 casos válidos y 3 inválidos, descrita caso por caso (qué comprueba, esperado y obtenido) en `casos/CATALOGO.md`, con evidencias en `resultados/propios/` y `resultados/invalidos/`.
 
 `pruebas/test_bateria.py` comprueba automáticamente que los válidos cumplen todas las verificaciones, que los inválidos se rechazan y que el caso oficial da esos valores.
 
 ## 6. Medición de tiempos
-Se usa `time.perf_counter()` alrededor de cada algoritmo, en ejecuciones **sin traza**; no incluye lectura, escritura, traza ni verificaciones. La ejecución medida se repite R veces (21 por omisión, `--repeticiones`), cada una con un oráculo nuevo, y se reporta la **mediana** de cada parte; `salida.json` trae también el mínimo y el máximo. Se verifica que todas las repeticiones den el mismo S y el mismo reparto. Luego se ejecuta otra vez con traza para la evidencia y se comprueba que coincide. En casos muy pequeños los tiempos son de microsegundos y tienen ruido del sistema: la mediana no se deja arrastrar por una repetición lenta, pero no resiste una ráfaga que cubra más de la mitad de las repeticiones (por eso para T(n) se usa el mínimo, que trae `salida.json` y `resumen.csv`: el ruido del sistema solo suma tiempo, así que el mínimo es la medición menos contaminada). La comparación contra T(n) se hará en la entrega de experimentación con instancias grandes y repeticiones.
+Se usa `time.perf_counter()` alrededor de cada algoritmo, en ejecuciones **sin traza**; no incluye lectura, escritura, traza ni verificaciones. La ejecución medida se repite R veces (21 por omisión, `--repeticiones`), cada una con un oráculo nuevo, y se reporta la **mediana** de cada parte; `salida.json` trae también el mínimo y el máximo. Se verifica que todas las repeticiones den el mismo S y el mismo reparto. Luego se ejecuta otra vez con traza para la evidencia y se comprueba que coincide. En casos muy pequeños los tiempos son de microsegundos y tienen ruido del sistema: la mediana no se deja arrastrar por una repetición lenta, pero no resiste una ráfaga que cubra más de la mitad de las repeticiones (por eso para T(n) se usa el mínimo, que trae `salida.json` y `resumen.csv`: el ruido del sistema solo suma tiempo, así que el mínimo es la medición menos contaminada). La comparación contra T(n), con instancias de tamaño creciente, está en la sección 8.
 
 ## 7. Limitaciones
-- El archivo de la docente no dice cómo usar sus datos: f, u_i y el alcance de una ronda son supuestos de modelado (informe, sección 6.9), no confirmados todavía con la docente. Otro formato solo requiere cambiar `red/entrada.py`.
+- El archivo de la docente no dice cómo usar sus datos: f, u_i y el alcance de una ronda son supuestos de modelado (informe de la primera entrega, sección 6.9; informe final, sección 13), no confirmados todavía con la docente. Otro formato solo requiere cambiar `red/entrada.py`.
 - La solución base no aplica `numero_rondas`, `costo_participacion` ni `presupuesto_costos_participacion_por_ronda`; las variantes (a) y (b) los aplican solo con `--variante` (sección 9).
 - En la base el tope se aplica en una sola ronda y no se descuenta; descontarlo ronda a ronda es la variante (b) (sección 9.2). Si los topes de S suman menos que B, el sobrante queda sin gastar. La selección no mira los topes, así que puede elegir un nodo con tope 0.
 - La concavidad se juzga hasta B, no hasta c_i: una tabla que se dañe entre c_i y B se rechaza, aunque esas unidades nunca se entreguen.
@@ -199,7 +231,7 @@ Se usa `time.perf_counter()` alrededor de cada algoritmo, en ejecuciones **sin t
 python scripts/experimentos.py
 ```
 
-Corre 8 series con semilla 1 y 21 repeticiones: voraz de la Parte 2 con cobertura (a) y con influencia en grafo completo (b) y de grado medio 5 (c); reparto de la Parte 1 variando N (d) y B (e); fuerza bruta con k = 3 (f) y k = N/2 (g); y la programación dinámica de la Parte 1 (`red/pd_reparto.py`, solo referencia: Θ(N·B²), correcta aun con u no cóncavas) con N = 10 y B = 25 a 400 (h; su CSV agrega la columna `repeticiones`). Por serie escribe `resultados/experimentos/<serie>.csv` (columnas `n`, `N`, `k`, `B`, `densidad`, `semilla`, `t_min`, `t_mediana`, `conteo`, `T_teorica`, `cociente`) y dos gráficas PNG: t_min contra n con la curva c·T_teorica, y el cociente t_min / T_teorica. Se cronometra solo el algoritmo y se usa el mínimo (el de las gráficas). Con d y e juntas se ajusta además t_min ≈ a·N + b·B·lg N por mínimos cuadrados (columna `t_ajustado` y `ajuste_reparto.png`). Opciones: `--series a d` (solo algunas), `--sin-graficas` y `--repeticiones R`. Para generar instancias de influencia a mano: `python -m red.generador --N 50 --k 5 --B 100 --formato influencia --densidad 0.1 --semilla 1 --salida caso.json`.
+Las series a–h de la solución base son 8, con semilla 1 y 21 repeticiones: voraz de la Parte 2 con cobertura (a) y con influencia en grafo completo (b) y de grado medio 5 (c); reparto de la Parte 1 variando N (d) y B (e); fuerza bruta con k = 3 (f) y k = N/2 (g); y la programación dinámica de la Parte 1 (`red/pd_reparto.py`, solo referencia: Θ(N·B²), correcta aun con u no cóncavas) con N = 10 y B = 25 a 400 (h; su CSV agrega la columna `repeticiones`). Por serie escribe `resultados/experimentos/<serie>.csv` (columnas `n`, `N`, `k`, `B`, `densidad`, `semilla`, `t_min`, `t_mediana`, `conteo`, `T_teorica`, `cociente`) y dos gráficas PNG: t_min contra n con la curva c·T_teorica, y el cociente t_min / T_teorica. Se cronometra solo el algoritmo y se usa el mínimo (el de las gráficas). Con d y e juntas se ajusta además t_min ≈ a·N + b·B·lg N por mínimos cuadrados (columna `t_ajustado` y `ajuste_reparto.png`). Opciones: `--series a d` (solo algunas), `--sin-graficas` y `--repeticiones R`. Para generar instancias de influencia a mano: `python -m red.generador --N 50 --k 5 --B 100 --formato influencia --densidad 0.1 --semilla 1 --salida caso.json`.
 
 **Series de las variantes (i a m, entrega final).** Se corren aparte, sin regenerar las a–h:
 
@@ -217,7 +249,9 @@ python scripts/experimentos.py --series i j k l m
 | l | Variante (b): `ejecutar_rondas` sin exacto, N = 100, k = 5, B = 100, q = 0,2 transitorio | T = 8 a 128 rondas | T·[2(k(N + A) + B lg k) + N] |
 | m | Variante (c2): voraz unidad por unidad, N = 50, S del voraz base con m = 10 en grafo completo, β = 0,2 | B = 250 a 4000 | m + d(S) + B·(m + A_S) |
 
-Los CSV agregan al final las columnas propias de cada serie (`L`, `A`, `A_S`, `d_S`, `beta`, `modo`, `q`, `semilla_fallos`, `repeticiones`). La consola imprime, además, la pendiente log-log contra n y contra T_teorica, la pendiente esperada (la de T_teorica) y el rango del cociente. Sin `--series` el script corre las 13 series y regenera también las a–h.
+Los CSV agregan al final las columnas propias de cada serie (`L`, `A`, `A_S`, `d_S`, `beta`, `modo`, `q`, `semilla_fallos`, `repeticiones`). La consola imprime, además, la pendiente log-log contra n y contra T_teorica, la pendiente esperada (la de T_teorica) y el rango del cociente. Sin `--series` el script corre las 13 series por nombre (a–m), que dan 14 curvas y 14 CSV porque `i` se divide en `ic` e `im`, y regenera también las a–h.
+
+**Máquina de las mediciones.** Las series i–m se corrieron el 2026-11-17 en un Intel Core i5-6300U a 2,40 GHz (2 núcleos, 4 hilos; caché L2 de 512 KB y L3 de 3 MB), 15,9 GB de RAM, Windows 10 Pro 10.0.19045 y Python 3.14.7 (CPython), con el reloj `time.perf_counter`. De las series a–h (2026-11-12) no quedó registro del equipo; se supone el mismo (**Supuesto ❓**). En otra máquina los tiempos absolutos cambian; lo que se compara con la teoría es el crecimiento (pendiente log-log y cociente t_min/T).
 
 ## 9. Variantes (entrega final)
 
@@ -282,3 +316,15 @@ Con m = |S| ≤ k, A_S = aristas dentro de S y d(S) = Σ_{i∈S} grado(i): para 
 **Resultados** (`resultados/variantes/c1_profesora/`, `c2_profesora/`, β = 0,2, R = 21). S = N11, N14, N09, N15, N13 (el de la base; 10 aristas dentro de S). Con topes 18 hay C(35, 5) − 5·C(16, 5) = **302792** repartos, más que el límite por omisión: las corridas usan `--limite-repartos 302792`, el número exacto (decisión 46). **c1:** a' = 7,96, 10,48, 10,26, 9,70, 8,54; x = 5, 7, 7, 6, 5 (el mismo de la base); U = 91,5670 = OPT. **c2:** x = 4, 8, 7, 6, 5; U = 99,2470 = OPT (razón 1; cota 0,6383); 155 ganancias recalculadas y 150 nodos revisados en 30 pasos; el x de la base daría U = 99,2246 con este modelo. **Batería** (`scripts/tabla_cota_variante_c.py` → `resultados/variantes/c_tabla_cota.csv`): 27 instancias de influencia (N = 8 a 12, k = 4, tres densidades, semillas 1 a 3) × β ∈ {0,2; 0,5; 1; 2} × B ∈ {3, 6, 10} = 324 filas. c1 coincide con la enumeración en las 324; en c2 solo 7 filas quedan por debajo del óptimo (ninguna con β = 0,2) y la razón mínima es 0,9867 (B = 3, β = 2, cota 0,7037): **la cota se cumple en todas**.
 
 Referencia: Nemhauser, Wolsey y Fisher (1978), *Mathematical Programming* 14, 265–294, doi:10.1007/BF01588971.
+
+## 10. Tablas de la cota (aproximados contra el óptimo)
+
+Tres scripts comparan los aproximados con su algoritmo exacto de referencia. No tienen opciones (ignoran cualquier argumento), usan semillas fijas, reescriben su CSV con el mismo contenido en cada corrida y no escriben en `resultados/profesora/`. Se corren desde la raíz:
+
+| Script | Escribe | Qué compara |
+|---|---|---|
+| `python scripts/tabla_cota.py` | `resultados/cota/tabla_cota.csv` y `tabla_cota_aleatoria.csv` | Parte 2: voraz contra la fuerza bruta (`red/exacto.py`) en la docente, los casos propios con N ≤ 20 y 45 instancias aleatorias de influencia, con las cotas 1 − (1 − 1/k)ᵏ y 1 − 1/e |
+| `python scripts/tabla_cota_variante_a.py` | `resultados/variantes/a_tabla_cota.csv` (37 filas) | Variante (a): voraz por cociente, voraz modificado y enumeración parcial contra la fuerza bruta con presupuesto, en la docente (L = 24) y 36 instancias aleatorias (N = 10 a 16, L = 12); cotas 0,405 y 1 − 1/e |
+| `python scripts/tabla_cota_variante_c.py` | `resultados/variantes/c_tabla_cota.csv` (324 filas) | Variante (c): c1 y c2 contra la enumeración de repartos en 27 instancias × β ∈ {0,2; 0,5; 1; 2} × B ∈ {3, 6, 10}; c1 debe coincidir y c2 cumplir 1 − (1 − 1/B)ᴮ |
+
+La consola imprime el número de filas, las razones mínimas y si todas cumplen. Detalle de columnas en las fichas `docs/modulos/tabla_cota.md`, `tabla_cota_variante_a.md` y `tabla_cota_variante_c.md`.

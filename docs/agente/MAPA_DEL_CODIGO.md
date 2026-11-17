@@ -63,5 +63,6 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `docs/modulos/` | Una ficha por archivo de código |
 | `docs/agente/` | Memoria del agente: bitácora, mapa, decisiones, guía de cambios, plantilla |
 | `entregables/primera_entrega/` | Archivos de la primera entrega: informe (PDF), manual técnico (PDF, exportado desde Google Docs tras importar `MANUAL_TECNICO.md`), anexo de Samuel (PDF) y `LEEME.md` |
-| `README.md` | Instalación y ejecución (entregable), con la sección "Primera entrega" |
-| `MANUAL_TECNICO.md` | Algoritmos, estructura, formatos, ejecución y limitaciones (entregable) |
+| `entregables/entrega_final/secciones/` | Textos del informe final, un `.md` por sección (borradores en Markdown limpio para pegar en Google Docs): `00_resumen`, `01_2_que_contiene`, `02_terminos_nuevos` (incluye H1 a H4), `05_1` a `05_3` (formalización de las variantes), `06_9` (NP-dificultad de a), `07_4` (fuerza bruta de a), `08_2` a `08_4` (algoritmos de las variantes), `09_eleccion_tecnica`, `10_implementacion`, `10_1_caso_docente_variantes`, `10_2_casos_nuevos`, `11_validacion_experimental`, `12_resumen_eficiencia`, `13_supuestos_limitaciones` y `referencias_nuevas`. Las cifras citan su archivo del repositorio; no son código ni evidencias |
+| `README.md` | Instalación y ejecución (entregable), con las secciones "Primera entrega" y "Entrega final" |
+| `MANUAL_TECNICO.md` | Algoritmos, estructura, formatos, ejecución, limitaciones, experimentos (sección 8, con la máquina de las mediciones), variantes (sección 9) y tablas de la cota (sección 10) (entregable; versión de la entrega final) |
