@@ -199,3 +199,43 @@ def verificar_conteo_evaluaciones_costos(N, S, origen, evaluaciones, llamadas_or
     return [Verificacion("evaluaciones de f = contador del oráculo, dentro de la cota 1 + |S|·N − |S|(|S|−1)/2",
                          cumple, f"contadas = {evaluaciones}, oráculo = {llamadas_oraculo}, "
                                  f"cota [{inferior}, {superior}], origen = {origen}")]
+
+
+def verificar_variante_b(T):
+    """Variante (b): el número de rondas T debe ser un entero ≥ 1 (decisión 39). Tiempo O(1).
+
+    Solo se llama cuando se pide la variante. T sale de `numero_rondas` (profesora), del campo opcional
+    `rondas` (propio) o de --rondas; si no viene ninguno, vale 1.
+    """
+    return [Verificacion("variante (b): número de rondas T ≥ 1", isinstance(T, int) and T >= 1, f"T = {T}")]
+
+
+def verificar_seleccion_ronda(candidatos, k_r, oraculo, S, valorS):
+    """Variante (b), una ronda: S ⊆ candidatos, sin repetidos, |S| ≤ k_r y valorS = f(S) recalculada.
+
+    Es `verificar_seleccion` con V = candidatos de la ronda y k = k_r = mín(k, |candidatos|).
+    Tiempo O(|candidatos| + |S|) más `valor(S)`.
+    """
+    resultado = []
+    V = set(candidatos)
+    resultado.append(Verificacion("S_r ⊆ candidatos de la ronda", set(S) <= V, f"S_r = {S}"))
+    resultado.append(Verificacion("S_r sin repetidos", len(set(S)) == len(S), f"|S_r| = {len(S)}"))
+    resultado.append(Verificacion("|S_r| ≤ k_r = mín(k, |candidatos|)", len(S) <= k_r,
+                                  f"|S_r| = {len(S)}, k_r = {k_r}, candidatos = {len(candidatos)}"))
+    recalculado = oraculo.valor([v for v in S if v in V])
+    resultado.append(Verificacion("valor acumulado = f(S_r) recalculada", _iguales(recalculado, valorS),
+                                  f"acumulado = {valorS}, recalculado = {recalculado}"))
+    return resultado
+
+
+def verificar_cota_ronda(valor, OPT, k_r):
+    """Variante (b): f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r, la cota del voraz con k_r pasos, con tolerancia.
+
+    OPT_r es el óptimo sobre los candidatos de ESA ronda (fuerza bruta); no es una cota sobre las T rondas.
+    Con k_r = 0 no hay nada que elegir y la cota se cumple con 0 ≥ 0. Tiempo O(1).
+    """
+    cota = 1 - (1 - 1 / k_r) ** k_r if k_r >= 1 else 0.0
+    minimo = cota * OPT
+    cumple = valor >= minimo or _iguales(valor, minimo)
+    return [Verificacion("f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r (cota por ronda)", cumple,
+                         f"f(S_r) = {valor}, OPT_r = {OPT}, cota = {cota:.6f}, cota·OPT_r = {minimo}")]

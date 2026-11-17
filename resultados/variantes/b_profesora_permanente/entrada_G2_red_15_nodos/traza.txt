@@ -1,0 +1,228 @@
+CASO: entrada_G2_red_15_nodos
+N = 15, k = 5, B = 30, T = 3 rondas
+VARIANTE (b): nodos que fallan; modo = permanente, q = 0.2, semilla = 0
+  Supuesto ❓: el tope de cada nodo es su presupuesto restante (empieza en presupuesto_total_nodo o tope; sin tope, B) y se descuenta lo gastado en cada ronda
+  Supuesto ❓: candidatos = nodos que no fallaron y con presupuesto restante > 0; si son k o menos, participan todos (k_r = mín(k, |candidatos|))
+  Supuesto ❓: cada ronda se optimiza sola con el mismo k y el mismo B; no se planean las T rondas juntas
+  Supuesto ❓: cada nodo falla antes de cada ronda con probabilidad q, de forma independiente (random.Random(semilla)); transitorio = solo esa ronda, permanente = no vuelve
+
+== Verificación: entrada ==
+  [OK] 1 ≤ k < N: k = 5, N = 15
+  [OK] B ≥ 0: B = 30
+  [OK] ids únicos: sin repetidos
+  [OK] cada u_i creciente y cóncava en {0, …, B}: todas cumplen
+  [OK] cada peso de influencia en [0, 1]: todos cumplen
+  [OK] variante (b): número de rondas T ≥ 1: T = 3
+
+== Ronda 1 ==
+  Fallan en esta ronda: ninguno
+  Caídos acumulados: ninguno
+  Candidatos (15): ['N01', 'N02', 'N03', 'N04', 'N05', 'N06', 'N07', 'N08', 'N09', 'N10', 'N11', 'N12', 'N13', 'N14', 'N15']; k_r = 5
+  -- Parte 2: selección de nodos (voraz sobre los candidatos) --
+    Paso 1: Δ(N01) = 74.1100, Δ(N02) = 75.3850, Δ(N03) = 77.9200, Δ(N04) = 74.3400, Δ(N05) = 82.6000, Δ(N06) = 72.8050, Δ(N07) = 88.8050, Δ(N08) = 72.2150, Δ(N09) = 95.7000, Δ(N10) = 73.6150, Δ(N11) = 103.4900, Δ(N12) = 75.4400, Δ(N13) = 40.2100, Δ(N14) = 82.9850, Δ(N15) = 44.0750
+      → elige el nodo N11 (Δ = 103.4900); f(S) = 103.4900
+    Paso 2: Δ(N01) = 19.0670, Δ(N02) = 19.3220, Δ(N03) = 19.8290, Δ(N04) = 19.1130, Δ(N05) = 20.7650, Δ(N06) = 18.8060, Δ(N07) = 22.0060, Δ(N08) = 18.6880, Δ(N09) = 23.3850, Δ(N10) = 18.9680, Δ(N12) = 21.5590, Δ(N13) = 16.1210, Δ(N14) = 24.2782, Δ(N15) = 16.4212
+      → elige el nodo N14 (Δ = 24.2782); f(S) = 127.7683
+    Paso 3: Δ(N01) = 7.9896, Δ(N02) = 8.1044, Δ(N03) = 8.3325, Δ(N04) = 8.0103, Δ(N05) = 8.7537, Δ(N06) = 7.8722, Δ(N07) = 9.3122, Δ(N08) = 7.8191, Δ(N09) = 9.9327, Δ(N10) = 7.9451, Δ(N12) = 9.1110, Δ(N13) = 6.6639, Δ(N15) = 9.0157
+      → elige el nodo N09 (Δ = 9.9327); f(S) = 137.7010
+    Paso 4: Δ(N01) = 3.3095, Δ(N02) = 3.3382, Δ(N03) = 3.3953, Δ(N04) = 3.3147, Δ(N05) = 3.5006, Δ(N06) = 3.2802, Δ(N07) = 3.6402, Δ(N08) = 3.2669, Δ(N10) = 3.5494, Δ(N12) = 3.9942, Δ(N13) = 4.1325, Δ(N15) = 5.5306
+      → elige el nodo N15 (Δ = 5.5306); f(S) = 143.2316
+    Paso 5: Δ(N01) = 1.7307, Δ(N02) = 1.7522, Δ(N03) = 1.7950, Δ(N04) = 1.7346, Δ(N05) = 1.8740, Δ(N06) = 1.7087, Δ(N07) = 1.9787, Δ(N08) = 1.6987, Δ(N10) = 1.9106, Δ(N12) = 2.2442, Δ(N13) = 2.3479
+      → elige el nodo N13 (Δ = 2.3479); f(S) = 145.5795
+    Resultado: S_r = ['N11', 'N14', 'N09', 'N15', 'N13'], f(S_r) = 145.5795, llamadas a Δ = 65
+    Referencia (fuerza bruta sobre los candidatos): S* = ['N09', 'N11', 'N12', 'N13', 'N15'], OPT_r = 145.9072, evaluaciones = 3003; razón f(S_r)/OPT_r = 0.997754; cota 1 − (1 − 1/k_r)^k_r = 0.672320
+  -- Parte 1: reparto del presupuesto (topes = presupuesto restante) --
+    Unidad 1: al nodo N14 (Δ = 7.0008)
+    Unidad 2: al nodo N09 (Δ = 6.8622)
+    Unidad 3: al nodo N15 (Δ = 6.5849)
+    Unidad 4: al nodo N13 (Δ = 5.7531)
+    Unidad 5: al nodo N11 (Δ = 5.2679)
+    Unidad 6: al nodo N14 (Δ = 4.0952)
+    Unidad 7: al nodo N09 (Δ = 4.0141)
+    Unidad 8: al nodo N15 (Δ = 3.8519)
+    Unidad 9: al nodo N13 (Δ = 3.3654)
+    Unidad 10: al nodo N11 (Δ = 3.0815)
+    Unidad 11: al nodo N14 (Δ = 2.9056)
+    Unidad 12: al nodo N09 (Δ = 2.8481)
+    Unidad 13: al nodo N15 (Δ = 2.7330)
+    Unidad 14: al nodo N13 (Δ = 2.3878)
+    Unidad 15: al nodo N14 (Δ = 2.2537)
+    Unidad 16: al nodo N09 (Δ = 2.2091)
+    Unidad 17: al nodo N11 (Δ = 2.1864)
+    Unidad 18: al nodo N15 (Δ = 2.1199)
+    Unidad 19: al nodo N13 (Δ = 1.8521)
+    Unidad 20: al nodo N14 (Δ = 1.8414)
+    Unidad 21: al nodo N09 (Δ = 1.8050)
+    Unidad 22: al nodo N15 (Δ = 1.7321)
+    Unidad 23: al nodo N11 (Δ = 1.6959)
+    Unidad 24: al nodo N14 (Δ = 1.5569)
+    Unidad 25: al nodo N09 (Δ = 1.5261)
+    Unidad 26: al nodo N13 (Δ = 1.5133)
+    Unidad 27: al nodo N15 (Δ = 1.4644)
+    Unidad 28: al nodo N11 (Δ = 1.3856)
+    Unidad 29: al nodo N14 (Δ = 1.3487)
+    Unidad 30: al nodo N09 (Δ = 1.3220)
+    Resultado: x_N11 = 5, x_N14 = 7, x_N09 = 7, x_N15 = 6, x_N13 = 5; U_r = 88.563953
+  Presupuesto restante tras la ronda: N01: 18, N02: 18, N03: 18, N04: 18, N05: 18, N06: 18, N07: 18, N08: 18, N09: 11, N10: 18, N11: 13, N12: 18, N13: 13, N14: 11, N15: 12
+  == Verificación: Parte 2 ==
+    [OK] S_r ⊆ candidatos de la ronda: S_r = ['N11', 'N14', 'N09', 'N15', 'N13']
+    [OK] S_r sin repetidos: |S_r| = 5
+    [OK] |S_r| ≤ k_r = mín(k, |candidatos|): |S_r| = 5, k_r = 5, candidatos = 15
+    [OK] valor acumulado = f(S_r) recalculada: acumulado = 145.57952, recalculado = 145.57952
+    [OK] llamadas a Δ = k·N − k(k−1)/2: contadas = 65, fórmula = 65
+    [OK] f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r (cota por ronda): f(S_r) = 145.57952, OPT_r = 145.90717765625, cota = 0.672320, cota·OPT_r = 98.09631368184999
+  == Verificación: Parte 1 ==
+    [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
+    [OK] cada x_i ≤ c_i: c = {'N11': 18, 'N14': 18, 'N09': 18, 'N15': 18, 'N13': 18}
+    [OK] Σ x_i = mín(B, Σ c_i): Σ x_i = 30, mín(B, Σ c_i) = 30, B = 30
+    [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 88.563953, recalculada = 88.563953
+    [OK] extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope: extracciones = 30, inserciones = 30, Σ x_i = 30, nodos en su tope = 0
+  == Verificación: Ejecución ==
+    [OK] todas las repeticiones dan el mismo S y el mismo reparto: R = 21
+    [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
+  Tiempos (mediana de 21): selección 0.000191400 s, reparto 0.000044600 s
+
+== Ronda 2 ==
+  Fallan en esta ronda: ['N11']
+  Caídos acumulados: ['N11']
+  Candidatos (14): ['N01', 'N02', 'N03', 'N04', 'N05', 'N06', 'N07', 'N08', 'N09', 'N10', 'N12', 'N13', 'N14', 'N15']; k_r = 5
+  -- Parte 2: selección de nodos (voraz sobre los candidatos) --
+    Paso 1: Δ(N01) = 74.1100, Δ(N02) = 75.3850, Δ(N03) = 77.9200, Δ(N04) = 74.3400, Δ(N05) = 82.6000, Δ(N06) = 72.8050, Δ(N07) = 88.8050, Δ(N08) = 72.2150, Δ(N09) = 95.7000, Δ(N10) = 73.6150, Δ(N12) = 75.4400, Δ(N13) = 40.2100, Δ(N14) = 82.9850, Δ(N15) = 44.0750
+      → elige el nodo N09 (Δ = 95.7000); f(S) = 95.7000
+    Paso 2: Δ(N01) = 22.7277, Δ(N02) = 23.0465, Δ(N03) = 23.6802, Δ(N04) = 22.7852, Δ(N05) = 24.8502, Δ(N06) = 22.4015, Δ(N07) = 26.4015, Δ(N08) = 22.2540, Δ(N10) = 25.3925, Δ(N12) = 25.4540, Δ(N13) = 17.6790, Δ(N14) = 28.5628, Δ(N15) = 18.3688
+      → elige el nodo N14 (Δ = 28.5628); f(S) = 124.2628
+    Paso 3: Δ(N01) = 9.6370, Δ(N02) = 9.7804, Δ(N03) = 10.0656, Δ(N04) = 9.6629, Δ(N05) = 10.5921, Δ(N06) = 9.4902, Δ(N07) = 11.2902, Δ(N08) = 9.4238, Δ(N10) = 10.8361, Δ(N12) = 10.8638, Δ(N13) = 7.3650, Δ(N15) = 9.8921
+      → elige el nodo N07 (Δ = 11.2902); f(S) = 135.5529
+    Paso 4: Δ(N01) = 4.2799, Δ(N02) = 4.3230, Δ(N03) = 4.4085, Δ(N04) = 4.2877, Δ(N05) = 4.5665, Δ(N06) = 4.2359, Δ(N08) = 4.5208, Δ(N10) = 5.1547, Δ(N12) = 5.0682, Δ(N13) = 4.5621, Δ(N15) = 6.0676
+      → elige el nodo N15 (Δ = 6.0676); f(S) = 141.6205
+    Paso 5: Δ(N01) = 2.4585, Δ(N02) = 2.4908, Δ(N03) = 2.5549, Δ(N04) = 2.4643, Δ(N05) = 2.6734, Δ(N06) = 2.4255, Δ(N08) = 2.6391, Δ(N10) = 3.1145, Δ(N12) = 3.0497, Δ(N13) = 2.6701
+      → elige el nodo N10 (Δ = 3.1145); f(S) = 144.7351
+    Resultado: S_r = ['N09', 'N14', 'N07', 'N15', 'N10'], f(S_r) = 144.7351, llamadas a Δ = 60
+    Referencia (fuerza bruta sobre los candidatos): S* = ['N07', 'N09', 'N10', 'N14', 'N15'], OPT_r = 144.7351, evaluaciones = 2002; razón f(S_r)/OPT_r = 1.000000; cota 1 − (1 − 1/k_r)^k_r = 0.672320
+  -- Parte 1: reparto del presupuesto (topes = presupuesto restante) --
+    Unidad 1: al nodo N10 (Δ = 8.5950)
+    Unidad 2: al nodo N14 (Δ = 7.0008)
+    Unidad 3: al nodo N09 (Δ = 6.8622)
+    Unidad 4: al nodo N15 (Δ = 6.5849)
+    Unidad 5: al nodo N07 (Δ = 6.1690)
+    Unidad 6: al nodo N10 (Δ = 5.0278)
+    Unidad 7: al nodo N14 (Δ = 4.0952)
+    Unidad 8: al nodo N09 (Δ = 4.0141)
+    Unidad 9: al nodo N15 (Δ = 3.8519)
+    Unidad 10: al nodo N07 (Δ = 3.6086)
+    Unidad 11: al nodo N10 (Δ = 3.5673)
+    Unidad 12: al nodo N14 (Δ = 2.9056)
+    Unidad 13: al nodo N09 (Δ = 2.8481)
+    Unidad 14: al nodo N10 (Δ = 2.7670)
+    Unidad 15: al nodo N15 (Δ = 2.7330)
+    Unidad 16: al nodo N07 (Δ = 2.5604)
+    Unidad 17: al nodo N10 (Δ = 2.2608)
+    Unidad 18: al nodo N14 (Δ = 2.2537)
+    Unidad 19: al nodo N09 (Δ = 2.2091)
+    Unidad 20: al nodo N15 (Δ = 2.1199)
+    Unidad 21: al nodo N07 (Δ = 1.9860)
+    Unidad 22: al nodo N10 (Δ = 1.9115)
+    Unidad 23: al nodo N14 (Δ = 1.8414)
+    Unidad 24: al nodo N09 (Δ = 1.8050)
+    Unidad 25: al nodo N15 (Δ = 1.7321)
+    Unidad 26: al nodo N10 (Δ = 1.6558)
+    Unidad 27: al nodo N07 (Δ = 1.6227)
+    Unidad 28: al nodo N14 (Δ = 1.5569)
+    Unidad 29: al nodo N09 (Δ = 1.5261)
+    Unidad 30: al nodo N15 (Δ = 1.4644)
+    Resultado: x_N09 = 6, x_N14 = 6, x_N07 = 5, x_N15 = 6, x_N10 = 7; U_r = 99.136084
+  Presupuesto restante tras la ronda: N01: 18, N02: 18, N03: 18, N04: 18, N05: 18, N06: 18, N07: 13, N08: 18, N09: 5, N10: 11, N11: 13, N12: 18, N13: 13, N14: 5, N15: 6
+  == Verificación: Parte 2 ==
+    [OK] S_r ⊆ candidatos de la ronda: S_r = ['N09', 'N14', 'N07', 'N15', 'N10']
+    [OK] S_r sin repetidos: |S_r| = 5
+    [OK] |S_r| ≤ k_r = mín(k, |candidatos|): |S_r| = 5, k_r = 5, candidatos = 14
+    [OK] valor acumulado = f(S_r) recalculada: acumulado = 144.73506968750002, recalculado = 144.73506968750002
+    [OK] llamadas a Δ = k·N − k(k−1)/2: contadas = 60, fórmula = 60
+    [OK] f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r (cota por ronda): f(S_r) = 144.73506968750002, OPT_r = 144.73506968750002, cota = 0.672320, cota·OPT_r = 97.3082820523
+  == Verificación: Parte 1 ==
+    [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
+    [OK] cada x_i ≤ c_i: c = {'N09': 11, 'N14': 11, 'N07': 18, 'N15': 12, 'N10': 18}
+    [OK] Σ x_i = mín(B, Σ c_i): Σ x_i = 30, mín(B, Σ c_i) = 30, B = 30
+    [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 99.136084, recalculada = 99.136084
+    [OK] extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope: extracciones = 30, inserciones = 30, Σ x_i = 30, nodos en su tope = 0
+  == Verificación: Ejecución ==
+    [OK] todas las repeticiones dan el mismo S y el mismo reparto: R = 21
+    [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
+  Tiempos (mediana de 21): selección 0.000155900 s, reparto 0.000036400 s
+
+== Ronda 3 ==
+  Fallan en esta ronda: ['N06', 'N11']
+  Caídos acumulados: ['N06', 'N11']
+  Candidatos (13): ['N01', 'N02', 'N03', 'N04', 'N05', 'N07', 'N08', 'N09', 'N10', 'N12', 'N13', 'N14', 'N15']; k_r = 5
+  -- Parte 2: selección de nodos (voraz sobre los candidatos) --
+    Paso 1: Δ(N01) = 74.1100, Δ(N02) = 75.3850, Δ(N03) = 77.9200, Δ(N04) = 74.3400, Δ(N05) = 82.6000, Δ(N07) = 88.8050, Δ(N08) = 72.2150, Δ(N09) = 95.7000, Δ(N10) = 73.6150, Δ(N12) = 75.4400, Δ(N13) = 40.2100, Δ(N14) = 82.9850, Δ(N15) = 44.0750
+      → elige el nodo N09 (Δ = 95.7000); f(S) = 95.7000
+    Paso 2: Δ(N01) = 22.7277, Δ(N02) = 23.0465, Δ(N03) = 23.6802, Δ(N04) = 22.7852, Δ(N05) = 24.8502, Δ(N07) = 26.4015, Δ(N08) = 22.2540, Δ(N10) = 25.3925, Δ(N12) = 25.4540, Δ(N13) = 17.6790, Δ(N14) = 28.5628, Δ(N15) = 18.3688
+      → elige el nodo N14 (Δ = 28.5628); f(S) = 124.2628
+    Paso 3: Δ(N01) = 9.6370, Δ(N02) = 9.7804, Δ(N03) = 10.0656, Δ(N04) = 9.6629, Δ(N05) = 10.5921, Δ(N07) = 11.2902, Δ(N08) = 9.4238, Δ(N10) = 10.8361, Δ(N12) = 10.8638, Δ(N13) = 7.3650, Δ(N15) = 9.8921
+      → elige el nodo N07 (Δ = 11.2902); f(S) = 135.5529
+    Paso 4: Δ(N01) = 4.2799, Δ(N02) = 4.3230, Δ(N03) = 4.4085, Δ(N04) = 4.2877, Δ(N05) = 4.5665, Δ(N08) = 4.5208, Δ(N10) = 5.1547, Δ(N12) = 5.0682, Δ(N13) = 4.5621, Δ(N15) = 6.0676
+      → elige el nodo N15 (Δ = 6.0676); f(S) = 141.6205
+    Paso 5: Δ(N01) = 2.4585, Δ(N02) = 2.4908, Δ(N03) = 2.5549, Δ(N04) = 2.4643, Δ(N05) = 2.6734, Δ(N08) = 2.6391, Δ(N10) = 3.1145, Δ(N12) = 3.0497, Δ(N13) = 2.6701
+      → elige el nodo N10 (Δ = 3.1145); f(S) = 144.7351
+    Resultado: S_r = ['N09', 'N14', 'N07', 'N15', 'N10'], f(S_r) = 144.7351, llamadas a Δ = 55
+    Referencia (fuerza bruta sobre los candidatos): S* = ['N07', 'N09', 'N10', 'N14', 'N15'], OPT_r = 144.7351, evaluaciones = 1287; razón f(S_r)/OPT_r = 1.000000; cota 1 − (1 − 1/k_r)^k_r = 0.672320
+  -- Parte 1: reparto del presupuesto (topes = presupuesto restante) --
+    Unidad 1: al nodo N10 (Δ = 8.5950)
+    Unidad 2: al nodo N14 (Δ = 7.0008)
+    Unidad 3: al nodo N09 (Δ = 6.8622)
+    Unidad 4: al nodo N15 (Δ = 6.5849)
+    Unidad 5: al nodo N07 (Δ = 6.1690)
+    Unidad 6: al nodo N10 (Δ = 5.0278)
+    Unidad 7: al nodo N14 (Δ = 4.0952)
+    Unidad 8: al nodo N09 (Δ = 4.0141)
+    Unidad 9: al nodo N15 (Δ = 3.8519)
+    Unidad 10: al nodo N07 (Δ = 3.6086)
+    Unidad 11: al nodo N10 (Δ = 3.5673)
+    Unidad 12: al nodo N14 (Δ = 2.9056)
+    Unidad 13: al nodo N09 (Δ = 2.8481)
+    Unidad 14: al nodo N10 (Δ = 2.7670)
+    Unidad 15: al nodo N15 (Δ = 2.7330)
+    Unidad 16: al nodo N07 (Δ = 2.5604)
+    Unidad 17: al nodo N10 (Δ = 2.2608)
+    Unidad 18: al nodo N14 (Δ = 2.2537)
+    Unidad 19: al nodo N09 (Δ = 2.2091)
+    Unidad 20: al nodo N15 (Δ = 2.1199)
+    Unidad 21: al nodo N07 (Δ = 1.9860)
+    Unidad 22: al nodo N10 (Δ = 1.9115)
+    Unidad 23: al nodo N14 (Δ = 1.8414)
+    Unidad 24: al nodo N09 (Δ = 1.8050)
+    Unidad 25: al nodo N15 (Δ = 1.7321)
+    Unidad 26: al nodo N10 (Δ = 1.6558)
+    Unidad 27: al nodo N07 (Δ = 1.6227)
+    Unidad 28: al nodo N15 (Δ = 1.4644)
+    Unidad 29: al nodo N10 (Δ = 1.4605)
+    Unidad 30: al nodo N07 (Δ = 1.3719)
+    Resultado: x_N09 = 5, x_N14 = 5, x_N07 = 6, x_N15 = 6, x_N10 = 8; U_r = 98.885521
+  Presupuesto restante tras la ronda: N01: 18, N02: 18, N03: 18, N04: 18, N05: 18, N06: 18, N07: 7, N08: 18, N09: 0, N10: 3, N11: 13, N12: 18, N13: 13, N14: 0, N15: 0
+  == Verificación: Parte 2 ==
+    [OK] S_r ⊆ candidatos de la ronda: S_r = ['N09', 'N14', 'N07', 'N15', 'N10']
+    [OK] S_r sin repetidos: |S_r| = 5
+    [OK] |S_r| ≤ k_r = mín(k, |candidatos|): |S_r| = 5, k_r = 5, candidatos = 13
+    [OK] valor acumulado = f(S_r) recalculada: acumulado = 144.73506968750002, recalculado = 144.73506968750002
+    [OK] llamadas a Δ = k·N − k(k−1)/2: contadas = 55, fórmula = 55
+    [OK] f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r (cota por ronda): f(S_r) = 144.73506968750002, OPT_r = 144.73506968750002, cota = 0.672320, cota·OPT_r = 97.3082820523
+  == Verificación: Parte 1 ==
+    [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
+    [OK] cada x_i ≤ c_i: c = {'N09': 5, 'N14': 5, 'N07': 13, 'N15': 6, 'N10': 11}
+    [OK] Σ x_i = mín(B, Σ c_i): Σ x_i = 30, mín(B, Σ c_i) = 30, B = 30
+    [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 98.885521, recalculada = 98.885521
+    [OK] extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope: extracciones = 30, inserciones = 27, Σ x_i = 30, nodos en su tope = 3
+  == Verificación: Ejecución ==
+    [OK] todas las repeticiones dan el mismo S y el mismo reparto: R = 21
+    [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
+  Tiempos (mediana de 21): selección 0.000280800 s, reparto 0.000062700 s
+
+== Resumen de las 3 rondas ==
+  Σ f(S_r) = 435.0497; Σ U_r = 286.585557; rondas sin participantes = 0
+  La cota 1 − (1 − 1/k_r)^k_r vale ronda por ronda, no sobre las T rondas juntas.
+== Verificación: entre rondas ==
+  [OK] presupuesto restante ≥ 0 en todos los nodos tras las T rondas: todos cumplen
+  [OK] modo permanente: los candidatos nunca aumentan (cada ronda ⊆ la anterior): cumple
+
+TODAS LAS VERIFICACIONES: CUMPLEN

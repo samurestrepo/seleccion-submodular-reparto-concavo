@@ -115,7 +115,8 @@ Es error de forma (`[ERROR]`): falta un campo; `numero_nodos` no coincide con la
 | `k` | nodos a seleccionar (1 ≤ k < N) |
 | `B` | unidades de presupuesto (entero ≥ 0) |
 | `id` | entero único; define el orden y los desempates |
-| `tope` | opcional: tope c_i de x_i ≤ c_i, entero ≥ 0. Sin él, el nodo no tiene tope |
+| `tope` | opcional: tope c_i de x_i ≤ c_i, entero ≥ 0. Sin él, el nodo no tiene tope (en la variante (b), sin tope el restante arranca en B) |
+| `rondas` | opcional (variante b): T, entero ≥ 1. Sin él, T = 1. Solo se usa con `--variante b` |
 | `cubre` | elementos que aporta el nodo (cadenas o números); definen f como cobertura |
 | `utilidad` | `{"tipo": "log", "a": a}` → a·ln(1 + x); `{"tipo": "raiz", "a": a}` → a·√x; `{"tipo": "tabla", "ganancias": [Δ(0), Δ(1), …]}` → ganancias explícitas por unidad (para ejemplos y contraejemplos). `a` debe ser un número finito con a > 0, y las ganancias, números finitos. Valores como `true`, `"3"`, `NaN` o `Infinity` son error de forma |
 
@@ -177,8 +178,8 @@ Se usa `time.perf_counter()` alrededor de cada algoritmo, en ejecuciones **sin t
 
 ## 7. Limitaciones
 - El archivo de la docente no dice cómo usar sus datos: f, u_i y el alcance de una ronda son supuestos de modelado (informe, sección 6.9), no confirmados todavía con la docente. Otro formato solo requiere cambiar `red/entrada.py`.
-- La solución base no aplica `numero_rondas`, `costo_participacion` ni `presupuesto_costos_participacion_por_ronda`.
-- El tope se aplica en una sola ronda y no se descuenta: eso es de la variante (b). Si los topes de S suman menos que B, el sobrante queda sin gastar. La selección no mira los topes, así que puede elegir un nodo con tope 0.
+- La solución base no aplica `numero_rondas`, `costo_participacion` ni `presupuesto_costos_participacion_por_ronda`; las variantes (a) y (b) los aplican solo con `--variante` (sección 9).
+- En la base el tope se aplica en una sola ronda y no se descuenta; descontarlo ronda a ronda es la variante (b) (sección 9.2). Si los topes de S suman menos que B, el sobrante queda sin gastar. La selección no mira los topes, así que puede elegir un nodo con tope 0.
 - La concavidad se juzga hasta B, no hasta c_i: una tabla que se dañe entre c_i y B se rechaza, aunque esas unidades nunca se entreguen.
 - Otra función submodular requiere solo otro oráculo con la misma interfaz y devolverlo en `Instancia.crear_oraculo`.
 - Con influencia, f es real: un empate exacto en teoría podría romperse por el redondeo y no por el menor índice. En el caso oficial no hay empates (la menor brecha es 0.1037, medida con aritmética exacta).
@@ -189,7 +190,7 @@ Se usa `time.perf_counter()` alrededor de cada algoritmo, en ejecuciones **sin t
 - La verificación de entrada cuesta O(N + Σ min(L_i, B)) esperado, con L_i el largo de cada tabla, y O(N + A) con influencia; no afecta los tiempos reportados.
 - Con coeficientes extremos (a cerca de 1e308) los valores se desbordan a infinito: el caso se reporta como FALLA en la verificación de la utilidad, y `salida.json` puede traer `Infinity`, que no es JSON estándar.
 - La ejecución con traza guarda Θ(N·k + B) anotaciones; con instancias muy grandes, la traza y sus archivos pesan.
-- La variante (a) depende del Supuesto ❓ de que L reemplaza a k (sección 9); las variantes (b) y (c) no están todavía.
+- La variante (a) depende del Supuesto ❓ de que L reemplaza a k (sección 9.1). La variante (b) depende de los Supuestos ❓ de la sección 9.2 y **optimiza cada ronda por separado**: la cota 1 − (1 − 1/k_r)^k_r vale ronda por ronda y no sobre las T rondas; planear las T rondas juntas (con fallos inciertos) es otro problema que no se resuelve. La variante (c) no está todavía.
 
 ## 8. Experimentos
 `scripts/experimentos.py` mide el tiempo de los algoritmos y lo contrasta con la T(n) del informe. Necesita `matplotlib` solo para las gráficas (`python -m pip install -r requirements-dev.txt`). Desde la raíz del repositorio:
@@ -223,3 +224,20 @@ Con influencia, cada `ganancia` cuesta O(1 + grado(v)) y cada `valor(S)` O(N + �
 **Resultados** (`scripts/tabla_cota_variante_a.py` → `resultados/variantes/a_tabla_cota.csv`). Caso oficial con L = 24: OPT = 146,2714 (costo 23); el voraz modificado elige S = N05, N09, N14, N11, N15, N01 con f(S) = 145,9911, costo 21 ≤ 24 (razón 0,998, 74 evaluaciones) y el reparto da x = 4, 6, 6, 4, 5, 5 con U ≈ 95,9552; la enumeración alcanza el OPT (13117 evaluaciones); la fuerza bruta evalúa 4502 factibles. En 36 instancias aleatorias de influencia (N = 10 a 16, L = 12), la razón mínima del modificado fue 0,947 (cota 0,405) y la enumeración alcanzó el OPT en todas (cota 0,632). Ningún caso incumple su cota.
 
 Referencias: Khuller, Moss y Naor (1999), *Information Processing Letters* 70(1), 39–45, doi:10.1016/S0020-0190(99)00031-9. Sviridenko (2004), *Operations Research Letters* 32(1), 41–43, doi:10.1016/S0167-6377(03)00062-2. Tang, Tang, Lim, Han, Li y Yuan (2021), *Proc. ACM Meas. Anal. Comput. Syst.* 5(1), art. 8, doi:10.1145/3447386.
+
+### 9.2 Variante (b): T rondas con nodos que fallan · `red/variante_rondas.py`
+La red entrena T rondas y antes de cada una algunos nodos fallan. Por ronda corren los mismos dos voraces de la solución base sobre los nodos que pueden participar, y el presupuesto de cada nodo se descuenta ronda a ronda. **Supuestos ❓** (la docente no ha dicho cómo fallan los nodos ni cómo se gasta `presupuesto_total_nodo` entre rondas):
+- Cada nodo falla antes de cada ronda, de forma independiente, con probabilidad q (`--prob-fallo`, 0,2 por omisión; `random.Random(semilla)`, `--semilla-fallos` 0 por omisión). Modo **transitorio** (`--modo-fallo transitorio`, por omisión): falla solo esa ronda. Modo **permanente**: no vuelve. Con la misma semilla, los fallados de cada ronda coinciden en los dos modos.
+- El tope de cada nodo es su **presupuesto restante**: empieza en `presupuesto_total_nodo` (o `tope`; sin tope, B) y se le descuenta lo que recibe en cada ronda; nunca queda negativo. (Consecuencia: un nodo sin tope recibe a lo sumo B en total; con B = 0 nadie puede participar.)
+- Candidatos de la ronda: los nodos que no fallaron y tienen restante > 0. Se elige entre ellos con k_r = mín(k, |candidatos|): si son k o menos, participan todos; si no queda ninguno, la ronda es vacía y no es falla.
+- Cada ronda se optimiza sola, con el mismo k y el mismo B; f se mide sobre el grafo completo, solo cambia quién se puede elegir. **Limitación:** no se planean las T rondas juntas (eso es planeación con incertidumbre, otro problema).
+
+**Campos.** Formato de la profesora: T = `numero_rondas` (3 en el caso oficial), que **solo se aplica con `--variante b`**; tope inicial = `presupuesto_total_nodo`. Formato propio: campo opcional `rondas` (entero ≥ 1) y `tope` por nodo. `--rondas` manda sobre el archivo; sin ninguno, T = 1. T < 1 rechaza el caso.
+
+**Ejecución.** `python ejecutar.py casos/profesora --variante b --modo-fallo permanente --prob-fallo 0.2 --semilla-fallos 0 --salida resultados/variantes/b_profesora_permanente` (y lo mismo con `transitorio`). `salida.json` trae `rondas`: por ronda, fallados, caídos, candidatos, k_r, S_r y f(S_r), el exacto (S*, OPT_r, evaluaciones), la razón f(S_r)/OPT_r y la cota 1 − (1 − 1/k_r)^k_r, el reparto y U_r, el presupuesto restante de todos los nodos tras la ronda, los tiempos (mediana de R) y las verificaciones; además `resumen` (Σ f(S_r), Σ U_r, rondas sin participantes) y las verificaciones globales (restante ≥ 0; en permanente, candidatos que nunca aumentan). `traza.txt` muestra cada ronda con su paso a paso. **`resumen.csv` trae una fila por ronda** (columnas distintas a las de la base). Con q = 0 y T = 1 se reproduce exactamente la solución base (mismo S, f(S), reparto y U) en todos los casos con B > 0.
+
+**Algoritmo por ronda y verificación.** Parte 2: `seleccionar_nodos` con V = candidatos y k_r (k_r·n_r − k_r(k_r − 1)/2 llamadas a Δ). Parte 1: `repartir_presupuesto` con topes = restante. Referencia: `seleccionar_exacto` sobre los candidatos (C(n_r, k_r) evaluaciones; si supera 200000, OPT_r queda vacío). **Cota:** f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r **ronda por ronda**, porque f restringida a los candidatos sigue siendo monótona y submodular; no es una cota sobre las T rondas.
+
+**T(n) y espacio.** Por ronda: sorteo Θ(N); selección O(k·(N + A)) con influencia (O(k·(N + M)) con cobertura); reparto O(k + B lg k) (montículo de a lo sumo k nodos); descuento y copia del restante O(N); exacto O(C(N, k)·(N + A)). Total con R repeticiones medidas: **O(T·[(R + 1)·(k·(N + A) + B lg k) + N])** sin el exacto, más O(T·C(N, k)·(N + A)) con él; con R = 1 y sin exacto, O(T·(k·(N + A) + B lg k)): T veces una ronda de la base más el sorteo. Espacio: O(N + A) por oráculo, O(N) del restante y O(T·(k·N + B)) del resultado con sus trazas.
+
+**Resultados** (`resultados/variantes/b_profesora_transitorio/` y `b_profesora_permanente/`, q = 0,2, semilla 0, T = 3). Con esa semilla fallan ∅, {N11} y {N06, N11}; como N11 ya había caído, los dos modos dan la misma trayectoria. Ronda 1 (15 candidatos): S = N11, N14, N09, N15, N13; f = 145,5795; OPT = 145,9072 (razón 0,9978); x = 5, 7, 7, 6, 5; U = 88,5640. Ronda 2 (14 candidatos, sin N11): S = N09, N14, N07, N15, N10; f = OPT = 144,7351 (razón 1); x = 6, 6, 5, 6, 7; U = 99,1361. Ronda 3 (13 candidatos, sin N06 ni N11): mismo S; f = OPT = 144,7351; x = 5, 5, 6, 6, 8; U = 98,8855; tras ella N09, N14 y N15 quedan con restante 0 y no podrían participar en una cuarta ronda. En una batería de 27 instancias aleatorias de influencia (N = 8 a 12, k = 3) × 2 modos × 3 rondas con q = 0,3, la razón mínima por ronda fue 0,938 (cota 0,704) y ninguna ronda incumplió la cota.

@@ -12,6 +12,9 @@ Comprueba las restricciones de la entrada y de las dos salidas (informe 6.6). La
 | `verificar_reparto(S, B, utilidades, resultado, topes=None)` | cada x_i entero en [0, B]; si hay topes, cada x_i ≤ c_i; Σ x_i = mín(B, Σ c_i); utilidad finita e igual a Σ u_i(x_i) recalculada; extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope | O(\|S\|) |
 | `verificar_variante_a(instancia)` | **solo con `--variante a`:** cada c(v) > 0 (ausente o ≤ 0 falla) y L ≥ 0 (ausente falla) | O(N) |
 | `verificar_seleccion_costos(instancia, oraculo, S, valorS, costos, L)` | S ⊆ V; sin repetidos; **Σ c(S) ≤ L en lugar de \|S\| ≤ k** (Supuesto ❓, decisión 35); valorS = f(S) recalculada | O(\|S\|) + `valor(S)` |
+| `verificar_variante_b(T)` | **solo con `--variante b`:** T entero ≥ 1 (sale de `numero_rondas`, del opcional `rondas` o de `--rondas`; si no viene, 1) | O(1) |
+| `verificar_seleccion_ronda(candidatos, k_r, oraculo, S, valorS)` | **variante (b), una ronda:** S_r ⊆ candidatos; sin repetidos; \|S_r\| ≤ k_r = mín(k, \|candidatos\|); valorS = f(S_r) recalculada. Es `verificar_seleccion` con V = candidatos | O(\|candidatos\| + \|S\|) + `valor(S)` |
+| `verificar_cota_ronda(valor, OPT, k_r)` | **variante (b):** f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r con tolerancia; OPT_r es el óptimo sobre los candidatos de esa ronda, no una cota sobre las T rondas; con k_r = 0, 0 ≥ 0 | O(1) |
 | `verificar_conteo_evaluaciones_costos(N, S, origen, evaluaciones, llamadas_oraculo)` | contador del algoritmo = `llamadas_ganancia + llamadas_valor` del oráculo; si `origen` = cociente, 1 + \|S\| ≤ evaluaciones ≤ 1 + \|S\|·N − \|S\|(\|S\| − 1)/2; si ganó el mejor nodo solo, 1 ≤ evaluaciones ≤ 1 + N(N + 1)/2 | O(1) |
 
 Cada una devuelve una lista de `Verificacion(nombre, cumple, detalle)`. Ninguna lanza excepciones: así **todas** quedan en la traza aunque alguna falle. Por eso no evalúan datos que ya fallaron: un id de S ajeno a V no entra al recálculo de f(S), y un x_i fuera de rango no se evalúa en u_i (decisión 23).
@@ -53,4 +56,4 @@ Cada una devuelve una lista de `Verificacion(nombre, cumple, detalle)`. Ninguna 
 - **¿Cómo revisa la concavidad sin recorrer B?** En log y raíz basta a > 0, porque la derivada es positiva y decrece para todo x. En tabla recorre su lista: después de ella todo vale 0.
 - **¿Cuánto cuesta verificar la entrada?** O(N + Σ min(L_i, B)) esperado, y no entra en los tiempos medidos.
 
-_Última actualización: 2026-11-16 · tres verificaciones de la variante (a) (P-4 fase 1)_
+_Última actualización: 2026-11-16 · tres verificaciones de la variante (b): T ≥ 1, selección por ronda y cota por ronda (P-4 fase 2). Sus ramas de fallo están en `pruebas/test_variante_rondas.py`_

@@ -7,13 +7,16 @@ Uso (desde la raíz del repositorio):
     python ejecutar.py casos/propios --repeticiones 5   # por omisión, 21
     python ejecutar.py casos/profesora --variante a --salida resultados/variantes/a_profesora
                                                         # variante (a): costos de participación
+    python ejecutar.py casos/profesora --variante b --modo-fallo permanente --prob-fallo 0.2 \
+        --semilla-fallos 0 --salida resultados/variantes/b_profesora_permanente
+                                                        # variante (b): T rondas con nodos que fallan
 
 Por cada caso escribe en <salida>/<nombre_del_caso>/:
     salida.json   resultado, tiempos (mediana, mínimo, máximo y R) y verificaciones
     traza.json    paso a paso de los dos voraces (o el motivo, si el caso se rechazó)
     traza.txt     lo mismo, en texto legible
-y además <salida>/resumen.csv con una fila por caso de ESTA corrida: no acumula corridas
-anteriores. Si ya existía, se reemplaza y se avisa por consola.
+y además <salida>/resumen.csv con una fila por caso de ESTA corrida (con --variante b, una fila
+por ronda de cada caso): no acumula corridas anteriores. Si ya existía, se reemplaza y se avisa.
 """
 
 import argparse
@@ -24,16 +27,37 @@ import sys
 from red.entrada import ErrorDeFormato, leer_instancia, nombre_del_caso
 from red.ronda import REPETICIONES, ejecutar_ronda, resultado_de_error
 from red.traza import a_texto, escribir_json
+from red.variante_rondas import MODOS, PROBABILIDAD_FALLO, SEMILLA_FALLOS, a_texto_rondas, ejecutar_rondas
+
+# Columnas de resumen.csv: una fila por caso (base y variante a) o una por ronda (variante b)
+ENCABEZADO = ["caso", "N", "k", "B", "S", "f(S)", "utilidad_reparto",
+              "tiempo_seleccion_s", "tiempo_reparto_s", "minimo_seleccion_s", "minimo_reparto_s",
+              "repeticiones", "todas_cumplen"]
+ENCABEZADO_RONDAS = ["caso", "modo", "prob_fallo", "semilla", "T", "ronda", "N", "k", "B", "fallados",
+                     "candidatos", "k_ronda", "S_r", "f(S_r)", "OPT_r", "razon", "utilidad_reparto",
+                     "presupuesto_restante_total", "tiempo_seleccion_s", "tiempo_reparto_s",
+                     "repeticiones", "todas_cumplen"]
 
 
 def _entero_positivo(texto):
-    """Convierte el valor de --repeticiones. Si no es un entero ≥ 1, argparse muestra el error."""
+    """Convierte el valor de --repeticiones o --rondas. Si no es un entero ≥ 1, argparse muestra el error."""
     try:
         valor = int(texto)
     except ValueError:
         raise argparse.ArgumentTypeError(f"debe ser un entero; llegó {texto!r}") from None
     if valor < 1:
         raise argparse.ArgumentTypeError(f"debe ser al menos 1; llegó {valor}")
+    return valor
+
+
+def _probabilidad(texto):
+    """Convierte el valor de --prob-fallo: un número en [0, 1]. Si no, argparse muestra el error."""
+    try:
+        valor = float(texto)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"debe ser un número; llegó {texto!r}") from None
+    if not 0 <= valor <= 1:
+        raise argparse.ArgumentTypeError(f"debe estar en [0, 1]; llegó {valor}")
     return valor
 
 
@@ -63,14 +87,29 @@ def guardar_evidencias(resultado, carpeta):
     salida = {clave: valor for clave, valor in resultado.items() if clave != "traza"}
     escribir_json(os.path.join(carpeta, "salida.json"), salida)
     escribir_json(os.path.join(carpeta, "traza.json"), resultado["traza"])
+    texto = a_texto_rondas(resultado) if "rondas" in resultado else a_texto(resultado)   # variante (b)
     with open(os.path.join(carpeta, "traza.txt"), "w", encoding="utf-8") as archivo:
-        archivo.write(a_texto(resultado))
+        archivo.write(texto)
 
 
-def correr_caso(ruta, salida, repeticiones=REPETICIONES, variante=None):
-    """Lee un caso, corre su ronda, guarda sus evidencias e imprime una línea. Devuelve el resultado.
+def _imprimir_rondas(nombre, resultado):
+    """Una línea por ronda de la variante (b): candidatos, fallados, S_r, f(S_r), OPT_r, razón y U_r."""
+    estado = "OK" if resultado["todas_cumplen"] else "FALLA"
+    e = resultado["entrada"]
+    print(f"[{estado}] {nombre}: variante (b), modo = {e['modo']}, q = {e['prob_fallo']}, T = {e['T']} rondas")
+    for r in resultado["rondas"]:
+        opt = f"{r['exacto']['OPT']}" if r["exacto"]["disponible"] else "no disponible"
+        razon = "-" if r["razon"] is None else f"{r['razon']:.6f}"
+        print(f"    ronda {r['ronda']}: candidatos = {len(r['candidatos'])}, fallados = {r['fallados']}, "
+              f"S_r = {r['seleccion']['S']}, f(S_r) = {r['seleccion']['valor']}, OPT_r = {opt}, "
+              f"razon = {razon}, U_r = {r['reparto']['utilidad']:.4f}")
 
-    repeticiones es R, las veces que se repite la ejecución medida; variante es None (base) o "a".
+
+def correr_caso(ruta, salida, repeticiones=REPETICIONES, variante=None, fallos=None):
+    """Lee un caso, corre su ronda (o sus T rondas), guarda sus evidencias e imprime. Devuelve el resultado.
+
+    repeticiones es R, las veces que se repite la ejecución medida; variante es None (base), "a" o "b".
+    fallos son los parámetros de la variante (b): diccionario con modo, prob_fallo, semilla y rondas.
     Un archivo malo no detiene el lote: devuelve un resultado rechazado. Si no se pudo
     ni abrir, no escribe evidencias, porque no hay caso del cual dejar constancia.
     """
@@ -86,8 +125,14 @@ def correr_caso(ruta, salida, repeticiones=REPETICIONES, variante=None):
         guardar_evidencias(resultado, os.path.join(salida, nombre))
         return resultado
 
-    resultado = ejecutar_ronda(instancia, repeticiones, variante)
+    if variante == "b":
+        resultado = ejecutar_rondas(instancia, repeticiones=repeticiones, **(fallos or {}))
+    else:
+        resultado = ejecutar_ronda(instancia, repeticiones, variante)
     guardar_evidencias(resultado, os.path.join(salida, nombre))
+    if "rondas" in resultado:
+        _imprimir_rondas(nombre, resultado)
+        return resultado
     if "seleccion" not in resultado:
         print(f"[FALLA] {nombre}: la entrada no cumple sus restricciones (ver traza)")
         return resultado
@@ -120,7 +165,31 @@ def fila_resumen(resultado):
             f"{t['reparto']['minimo']:.9f}", t["repeticiones"], resultado["todas_cumplen"]]
 
 
-def escribir_resumen(filas, salida):
+def filas_resumen_rondas(resultado):
+    """Las filas de resumen.csv de un caso con la variante (b): una por ronda (`ENCABEZADO_RONDAS`).
+
+    Un caso rechazado deja una sola fila con lo que se conoce y las demás columnas vacías.
+    Tiempo O(T·N) por la suma del presupuesto restante de cada ronda.
+    """
+    e = resultado["entrada"]
+    if "rondas" not in resultado:
+        return [[resultado["caso"], e.get("modo", ""), e.get("prob_fallo", ""), e.get("semilla", ""),
+                 e.get("T", ""), "", e["N"], e["k"], e["B"]] + [""] * 12 + [False]]
+    filas = []
+    for r in resultado["rondas"]:
+        t = r["tiempos_segundos"]
+        opt = r["exacto"]["OPT"] if r["exacto"]["disponible"] else ""
+        razon = "" if r["razon"] is None else f"{r['razon']:.6f}"
+        filas.append([resultado["caso"], e["modo"], e["prob_fallo"], e["semilla"], e["T"], r["ronda"],
+                      e["N"], e["k"], e["B"], " ".join(map(str, r["fallados"])), len(r["candidatos"]),
+                      r["k_ronda"], " ".join(map(str, r["seleccion"]["S"])), r["seleccion"]["valor"], opt, razon,
+                      f"{r['reparto']['utilidad']:.6f}", sum(r["presupuesto_restante"].values()),
+                      f"{t['seleccion']['mediana']:.9f}", f"{t['reparto']['mediana']:.9f}", t["repeticiones"],
+                      r["todas_cumplen"]])
+    return filas
+
+
+def escribir_resumen(filas, salida, encabezado=ENCABEZADO):
     """Escribe <salida>/resumen.csv con las filas de esta corrida. Avisa si reemplaza uno anterior."""
     os.makedirs(salida, exist_ok=True)
     ruta = os.path.join(salida, "resumen.csv")
@@ -128,9 +197,7 @@ def escribir_resumen(filas, salida):
         print(f"Aviso: se reemplaza {ruta}; el resumen solo refleja esta corrida.")
     with open(ruta, "w", encoding="utf-8", newline="") as archivo:
         escritor = csv.writer(archivo)
-        escritor.writerow(["caso", "N", "k", "B", "S", "f(S)", "utilidad_reparto",
-                           "tiempo_seleccion_s", "tiempo_reparto_s", "minimo_seleccion_s", "minimo_reparto_s",
-                           "repeticiones", "todas_cumplen"])
+        escritor.writerow(encabezado)
         escritor.writerows(filas)
 
 
@@ -147,10 +214,22 @@ def main(argumentos=None):
     p.add_argument("--salida", default="resultados", help="carpeta de evidencias (por omisión: resultados)")
     p.add_argument("--repeticiones", type=_entero_positivo, default=REPETICIONES,
                    help=f"veces que se repite la ejecución medida; se reporta la mediana (por omisión: {REPETICIONES})")
-    p.add_argument("--variante", choices=["a"], default=None,
+    p.add_argument("--variante", choices=["a", "b"], default=None,
                    help="a = costos de participacion: la Parte 2 maximiza f con suma de costos <= L "
-                        "en lugar de |S| <= k (por omision: ninguna, solucion base)")
+                        "en lugar de |S| <= k; b = T rondas con nodos que fallan y presupuesto por nodo "
+                        "que se descuenta (por omision: ninguna, solucion base)")
+    p.add_argument("--modo-fallo", choices=list(MODOS), default=MODOS[0],
+                   help="variante b: transitorio = el nodo falla solo esa ronda; permanente = no vuelve "
+                        f"(por omision: {MODOS[0]})")
+    p.add_argument("--prob-fallo", type=_probabilidad, default=PROBABILIDAD_FALLO,
+                   help=f"variante b: probabilidad q de que cada nodo falle antes de una ronda (por omision: {PROBABILIDAD_FALLO})")
+    p.add_argument("--semilla-fallos", type=int, default=SEMILLA_FALLOS,
+                   help=f"variante b: semilla del sorteo de fallos (por omision: {SEMILLA_FALLOS})")
+    p.add_argument("--rondas", type=_entero_positivo, default=None,
+                   help="variante b: T, el numero de rondas; por omision el numero_rondas (o rondas) del caso, o 1")
     a = p.parse_args(argumentos)
+    fallos = {"modo": a.modo_fallo, "prob_fallo": a.prob_fallo, "semilla": a.semilla_fallos, "rondas": a.rondas}
+    encabezado = ENCABEZADO_RONDAS if a.variante == "b" else ENCABEZADO
 
     casos = buscar_casos(a.rutas)
     if not casos:
@@ -168,12 +247,15 @@ def main(argumentos=None):
             hubo_fallas = True
             continue
         primera_ruta[clave] = ruta
-        resultado = correr_caso(ruta, a.salida, a.repeticiones, a.variante)
-        filas.append(fila_resumen(resultado))
+        resultado = correr_caso(ruta, a.salida, a.repeticiones, a.variante, fallos)
+        if a.variante == "b":
+            filas += filas_resumen_rondas(resultado)
+        else:
+            filas.append(fila_resumen(resultado))
         if not resultado["todas_cumplen"]:
             hubo_fallas = True
 
-    escribir_resumen(filas, a.salida)
+    escribir_resumen(filas, a.salida, encabezado)
     print(f"Evidencias en {a.salida}/")
     return 1 if hubo_fallas else 0
 

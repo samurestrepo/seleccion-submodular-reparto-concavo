@@ -45,10 +45,12 @@ class Instancia:
     vienen en el formato de la profesora; en el propio quedan en None.
     presupuesto_costos es L, el presupuesto de participación de la variante (a): en la profesora es
     presupuesto_costos_participacion_por_ronda; en el propio, el campo opcional "presupuesto_costos";
-    None si no viene. La solución base no lo usa.
+    None si no viene. La solución base no lo usa. rondas es T, el número de rondas de la variante (b):
+    en la profesora es numero_rondas; en el propio, el campo opcional "rondas"; None si no viene.
     """
 
-    def __init__(self, k, B, nodos, nombre="sin_nombre", vecinos=None, variantes=None, presupuesto_costos=None):
+    def __init__(self, k, B, nodos, nombre="sin_nombre", vecinos=None, variantes=None, presupuesto_costos=None,
+                 rondas=None):
         self.k = k
         self.B = B
         self.nodos = sorted(nodos, key=lambda nodo: nodo.id)
@@ -56,6 +58,11 @@ class Instancia:
         self.vecinos = vecinos
         self.variantes = variantes
         self.presupuesto_costos = presupuesto_costos
+        self.rondas = rondas
+
+    def numero_rondas(self):
+        """T, el número de rondas de la variante (b); None si el caso no lo trae. Tiempo O(1)."""
+        return self.rondas
 
     @property
     def N(self):
@@ -246,7 +253,8 @@ def _instancia_de_la_profesora(datos, nombre):
         raise ErrorDeFormato(f"numero_nodos = {numero_nodos}, pero la lista trae {len(nodos)} nodos")
     vecinos = _leer_grafo(_exigir_lista(datos["grafo"], "grafo"), [nodo.id for nodo in nodos])
     return Instancia(k, B, nodos, nombre, vecinos, variantes,
-                     presupuesto_costos=variantes["presupuesto_costos_participacion_por_ronda"])
+                     presupuesto_costos=variantes["presupuesto_costos_participacion_por_ronda"],
+                     rondas=variantes["numero_rondas"])
 
 
 def instancia_desde_diccionario(datos, nombre="sin_nombre"):
@@ -254,7 +262,8 @@ def instancia_desde_diccionario(datos, nombre="sin_nombre"):
 
     Si el objeto tiene "parametros", es el de la profesora. Si no, es el propio:
     {"k": int, "B": int, "nodos": [{"id", "cubre", "utilidad"}, ...]}, con los campos opcionales
-    "presupuesto_costos" (L, número finito) y, por nodo, "tope" y "costo" (variante a).
+    "presupuesto_costos" (L, número finito; variante a), "rondas" (T, entero; variante b) y, por nodo,
+    "tope" y "costo" (variante a).
     Devuelve: Instancia. Lanza ErrorDeFormato si falta un campo o un tipo no cuadra.
     Tiempo del formato propio: O(N + M + ΣL), con M = total de elementos en "cubre" y L = largo de cada tabla.
     """
@@ -273,8 +282,11 @@ def instancia_desde_diccionario(datos, nombre="sin_nombre"):
     presupuesto_costos = None
     if "presupuesto_costos" in datos:   # campo opcional (variante a); sin él todo queda como en la solución base
         presupuesto_costos = _exigir_numero(datos["presupuesto_costos"], "presupuesto_costos")
+    rondas = None
+    if "rondas" in datos:               # campo opcional (variante b): T entero; que sea ≥ 1 lo exige la variante
+        rondas = _exigir_entero(datos["rondas"], "rondas")
     nodos = [_leer_nodo(d, posicion) for posicion, d in enumerate(datos["nodos"])]
-    return Instancia(k, B, nodos, nombre, presupuesto_costos=presupuesto_costos)
+    return Instancia(k, B, nodos, nombre, presupuesto_costos=presupuesto_costos, rondas=rondas)
 
 
 def nombre_del_caso(ruta):

@@ -1,0 +1,4 @@
+caso,modo,prob_fallo,semilla,T,ronda,N,k,B,fallados,candidatos,k_ronda,S_r,f(S_r),OPT_r,razon,utilidad_reparto,presupuesto_restante_total,tiempo_seleccion_s,tiempo_reparto_s,repeticiones,todas_cumplen
+entrada_G2_red_15_nodos,transitorio,0.2,0,3,1,15,5,30,,15,5,N11 N14 N09 N15 N13,145.57952,145.90717765625,0.997754,88.563953,240,0.000191600,0.000039900,21,True
+entrada_G2_red_15_nodos,transitorio,0.2,0,3,2,15,5,30,N11,14,5,N09 N14 N07 N15 N10,144.73506968750002,144.73506968750002,1.000000,99.136084,210,0.000212700,0.000047100,21,True
+entrada_G2_red_15_nodos,transitorio,0.2,0,3,3,15,5,30,N06 N11,13,5,N09 N14 N07 N15 N10,144.73506968750002,144.73506968750002,1.000000,98.885521,180,0.000154100,0.000036300,21,True

@@ -47,6 +47,10 @@ python ejecutar.py casos/profesora --repeticiones 5 --salida resultados/prueba
 
 # Variante (a), costos de participación: suma de costos <= L en lugar de |S| <= k (manual, sección 9)
 python ejecutar.py casos/profesora --variante a --salida resultados/variantes/a_profesora
+
+# Variante (b), T rondas con nodos que fallan (q = 0.2, semilla 0 por omisión; manual, sección 9.2)
+python ejecutar.py casos/profesora --variante b --modo-fallo transitorio --salida resultados/variantes/b_profesora_transitorio
+python ejecutar.py casos/profesora --variante b --modo-fallo permanente --salida resultados/variantes/b_profesora_permanente
 ```
 
 Un caso rechazado (archivo con forma inválida o entrada que no cumple las restricciones) no detiene a los demás: los algoritmos no corren y sus tres archivos traen el motivo. Dos archivos con el mismo nombre de caso son un error: corre solo el primero. El programa termina con código 0 si todas las verificaciones cumplen.
