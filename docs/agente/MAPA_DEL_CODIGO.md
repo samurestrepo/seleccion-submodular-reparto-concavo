@@ -23,7 +23,7 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `scripts/tabla_cota_variante_a.py` | Genera `resultados/variantes/a_tabla_cota.csv`: los tres aproximados de la variante (a) contra el OPT exacto en la docente (L = 24) y 36 instancias aleatorias (L = 12) | `docs/modulos/tabla_cota_variante_a.md` | hecho |
 | `scripts/tabla_cota_variante_c.py` | Genera `resultados/variantes/c_tabla_cota.csv`: c1 y c2 contra la enumeración en 27 instancias de influencia × 4 β × 3 B (324 filas) | `docs/modulos/tabla_cota_variante_c.md` | hecho |
 | `scripts/tabla_cota.py` | Genera `resultados/cota/tabla_cota.csv` (y `tabla_cota_aleatoria.csv`): voraz contra OPT exacto y las cotas 1 − (1 − 1/k)^k y 1 − 1/e | `docs/modulos/tabla_cota.md` | hecho |
-| `scripts/experimentos.py` | Mide el tiempo y el conteo de las 8 series (voraz Parte 2, reparto Parte 1 voraz y PD, fuerza bruta) y escribe CSV y gráficas en `resultados/experimentos/` | `docs/modulos/experimentos.md` | hecho |
+| `scripts/experimentos.py` | Mide el tiempo y el conteo de 13 series: a–h de la solución base (voraz Parte 2, reparto Parte 1 voraz y PD, fuerza bruta) e i–m de las variantes (ic, im, j, k: variante a; l: variante b; m: c2), y escribe CSV y gráficas en `resultados/experimentos/`. Las nuevas se corren solas con `--series i j k l m` | `docs/modulos/experimentos.md` | hecho |
 | `ejecutar.py` | Línea de comandos: correr un caso o una carpeta de casos | `docs/modulos/ejecutar.md` | hecho |
 | `red/__init__.py` | Marca `red/` como paquete de Python | — | hecho |
 
@@ -51,9 +51,9 @@ Qué hace cada archivo y dónde está su documentación. **Planeado** significa 
 | `pruebas/fuerza_bruta.py` | Fuerza bruta **solo para pruebas** (comparar el reparto, con y sin topes, y la cota 1 − 1/e en instancias pequeñas) Aclaración: no es el exacto que se entrega (ese es `red/exacto.py`, con oráculo y conteo de evaluaciones); esta calcula f por unión directa, sin oráculo, como verificación cruzada independiente |
 | `pytest.ini` | Le dice a pytest que las pruebas están en `pruebas/` |
 | `requirements-dev.txt` | Dependencias externas, ambas fuera de la lógica: `pytest` (pruebas) y `matplotlib` (solo las gráficas de `scripts/experimentos.py`) |
-| `pruebas/test_experimentos.py` | `medir`, conteos de las series contra las fórmulas del informe, columnas del CSV y la pendiente log-log, con tamaños mínimos |
+| `pruebas/test_experimentos.py` | `medir`, conteos de las series contra las fórmulas del informe y de las fichas de las variantes (series a, d, f, h e i–m), columnas del CSV, alias `i` y la pendiente log-log, con tamaños mínimos |
 | `pruebas/test_pd_reparto.py` | La PD iguala al voraz en los casos propios y en 200 instancias cóncavas, lo supera con una u convexa, bordes y el conteo exacto N·(B+1)(B+2)/2 |
-| `resultados/experimentos/` | 8 CSV y 16 PNG (tiempo y cociente por serie) más `ajuste_reparto.png`, generados por `scripts/experimentos.py` (decisión 32) |
+| `resultados/experimentos/` | 14 CSV y 28 PNG (tiempo y cociente por serie) más `ajuste_reparto.png`, generados por `scripts/experimentos.py`. Series a–h (decisión 32): `a_…` a `h_…`. Series de las variantes (decisiones 48 a 53): `i_costos_cociente`, `i_costos_modificado`, `j_costos_enumeracion`, `k_costos_fuerza_bruta`, `l_rondas_varia_T` y `m_c2_varia_B` (`.csv`, `_tiempo.png`, `_cociente.png`) |
 | `casos/CATALOGO.md` | Tabla de la batería: qué comprueba cada caso, esperado y obtenido |
 | `casos/propios/` | Batería de casos válidos: ejemplos del informe, contraejemplo, bordes, empates, `tope_activo` y 5 sintéticos (N = 20 a 320, semilla 1) |
 | `casos/invalidos/` | Casos que deben rechazarse: utilidad convexa, k = N, ids repetidos |

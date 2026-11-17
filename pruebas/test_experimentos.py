@@ -74,3 +74,104 @@ def test_medir_con_limite_baja_a_5_repeticiones_si_la_primera_es_lenta():
     assert experimentos.medir_con_limite(preparar, 21, limite=-1.0)[3] == 5 and len(llamadas) == 5
     llamadas.clear()
     assert experimentos.medir_con_limite(preparar, 21, limite=1e9)[3] == 21 and len(llamadas) == 21
+
+
+# ------------------------------------------------ series i a m (variantes, decisiones 48 a 53)
+
+def _con_tamanos(monkeypatch, clave, tamanos):
+    """Deja la serie `clave` con tamaños mínimos para la prueba."""
+    monkeypatch.setitem(experimentos.SERIES, clave,
+                        (*experimentos.SERIES[clave][:2], tamanos, *experimentos.SERIES[clave][3:]))
+
+
+def test_serie_i_cuenta_el_peor_caso_exacto_del_cociente_y_del_modificado(monkeypatch):
+    # L = 5N ≥ Σ c: todo cabe siempre, evaluaciones = 1 + N(N + 1)/2 (ficha de variante_costos)
+    for clave in ("ic", "im"):
+        _con_tamanos(monkeypatch, clave, [12, 20])
+        for fila in experimentos.ejecutar_serie(clave, 2):
+            n = fila["N"]
+            assert fila["conteo"] == 1 + n * (n + 1) // 2 and fila["L"] == 5 * n
+            assert fila["T_teorica"] == n * n * (1 + 2 * fila["A"] / n)
+
+
+def test_serie_i_el_conteo_es_el_de_los_contadores_del_oraculo():
+    inst, p = experimentos._instancia_costos(15)
+    assert p["L"] >= sum(inst.costos().values())
+    oraculo = inst.crear_oraculo()
+    r = experimentos.voraz_modificado(oraculo, inst.ids(), inst.costos(), p["L"])
+    assert r.evaluaciones == oraculo.llamadas_ganancia + oraculo.llamadas_valor == 1 + 15 * 16 // 2
+
+
+def test_serie_j_cuenta_las_evaluaciones_del_peor_caso_de_la_enumeracion(monkeypatch):
+    _con_tamanos(monkeypatch, "j", [8, 9])
+    for fila in experimentos.ejecutar_serie("j", 1):
+        n = fila["N"]
+        esperado = 1 + n + comb(n, 2) + comb(n, 3) * (1 + (n - 3) * (n - 2) // 2)
+        assert fila["conteo"] == esperado
+        assert abs(fila["T_teorica"] - esperado * (1 + 2 * fila["A"] / n)) < 1e-9
+
+
+def test_serie_k_evalua_los_2_a_la_N_subconjuntos(monkeypatch):
+    _con_tamanos(monkeypatch, "k", [8, 10])
+    for fila in experimentos.ejecutar_serie("k", 1):
+        assert fila["conteo"] == 2 ** fila["N"]
+        assert fila["T_teorica"] == 2 ** fila["N"] * (fila["N"] + fila["A"])
+
+
+def test_serie_l_cuenta_las_llamadas_de_cada_ronda_y_el_restante_no_se_agota():
+    preparar, resultado = experimentos._preparar_rondas(experimentos.instancia_rondas(), 6,
+                                                        experimentos.Q_RONDAS, experimentos.SEMILLA)
+    ejecutar, contar = preparar()
+    ejecutar()
+    rondas = resultado[0]["rondas"]
+    esperado = sum(r["k_ronda"] * len(r["candidatos"]) - r["k_ronda"] * (r["k_ronda"] - 1) // 2 for r in rondas)
+    assert len(rondas) == 6 and contar() == esperado
+    assert all(r["k_ronda"] == experimentos.K_RONDAS for r in rondas)       # cada ronda con k completo
+    assert all(r["exacto"]["disponible"] is False for r in rondas)          # el exacto no corre en el reloj
+    tope = experimentos.B_RONDAS * experimentos.MAXIMO_RONDAS
+    assert all(v >= tope - experimentos.B_RONDAS * 6 > 0 for v in rondas[-1]["presupuesto_restante"].values())
+    assert resultado[0]["todas_cumplen"]
+
+
+def test_serie_l_teorica_lineal_en_T(monkeypatch):
+    _con_tamanos(monkeypatch, "l", [2, 4])
+    filas = experimentos.ejecutar_serie("l", 1)
+    assert abs(filas[1]["T_teorica"] - 2 * filas[0]["T_teorica"]) < 1e-9
+    assert [f["n"] for f in filas] == [2, 4] and filas[0]["q"] == 0.2 and filas[0]["modo"] == "transitorio"
+
+
+def test_serie_m_cuenta_m_mas_B_por_m_ganancias_con_S_completo(monkeypatch):
+    # S completo y nadie en su tope: m + B·m ganancias recalculadas y B·m revisados (ficha de variante_vecinos)
+    _con_tamanos(monkeypatch, "m", [30, 60])
+    for fila in experimentos.ejecutar_serie("m", 2):
+        m, b = fila["k"], fila["B"]
+        assert m == experimentos.K_C2 and fila["A_S"] == m * (m - 1) // 2
+        assert fila["conteo"] == m + b * m
+        assert fila["T_teorica"] == m + fila["d_S"] + b * (m + fila["A_S"])
+    preparar, resultado = experimentos._preparar_c2(["N01", "N02", "N03"], 7, {"N01": 1, "N02": 2, "N03": 3},
+                                                    {"N01": {"N02": 0.5, "N03": 0.5}, "N02": {"N01": 0.5, "N03": 0.5},
+                                                     "N03": {"N01": 0.5, "N02": 0.5}}, 0.2)
+    ejecutar, contar = preparar()
+    ejecutar()
+    assert contar() == 3 + 7 * 3 and resultado[0].revisados == 7 * 3
+
+
+def test_alias_i_y_columnas_de_las_series_nuevas(tmp_path, monkeypatch):
+    assert experimentos.expandir_series(["i", "j", "ic"]) == ["ic", "im", "j"]
+    monkeypatch.setattr(experimentos, "SALIDA", tmp_path)
+    for clave in ("ic", "im", "m"):
+        _con_tamanos(monkeypatch, clave, [10, 12] if clave != "m" else [20, 40])
+    experimentos.main(["--series", "i", "m", "--sin-graficas", "--repeticiones", "1"])
+    for clave in ("ic", "im", "m"):
+        nombre = experimentos.SERIES[clave][0]
+        primera = (tmp_path / f"{nombre}.csv").read_text(encoding="utf-8").splitlines()[0]
+        assert primera.split(",") == experimentos.COLUMNAS + experimentos.COLUMNAS_EXTRA[clave]
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["i_costos_cociente.csv", "i_costos_modificado.csv",
+                                                           "m_c2_varia_B.csv"]
+
+
+def test_las_series_a_h_no_cambian_de_columnas():
+    assert experimentos.columnas_de("a") == experimentos.COLUMNAS
+    assert experimentos.columnas_de("h") == experimentos.COLUMNAS_H
+    assert experimentos.columnas_de("d", True) == experimentos.COLUMNAS_AJUSTADAS
+    assert experimentos.columnas_de("d", False) == experimentos.COLUMNAS

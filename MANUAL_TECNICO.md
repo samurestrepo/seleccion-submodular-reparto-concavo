@@ -201,6 +201,24 @@ python scripts/experimentos.py
 
 Corre 8 series con semilla 1 y 21 repeticiones: voraz de la Parte 2 con cobertura (a) y con influencia en grafo completo (b) y de grado medio 5 (c); reparto de la Parte 1 variando N (d) y B (e); fuerza bruta con k = 3 (f) y k = N/2 (g); y la programación dinámica de la Parte 1 (`red/pd_reparto.py`, solo referencia: Θ(N·B²), correcta aun con u no cóncavas) con N = 10 y B = 25 a 400 (h; su CSV agrega la columna `repeticiones`). Por serie escribe `resultados/experimentos/<serie>.csv` (columnas `n`, `N`, `k`, `B`, `densidad`, `semilla`, `t_min`, `t_mediana`, `conteo`, `T_teorica`, `cociente`) y dos gráficas PNG: t_min contra n con la curva c·T_teorica, y el cociente t_min / T_teorica. Se cronometra solo el algoritmo y se usa el mínimo (el de las gráficas). Con d y e juntas se ajusta además t_min ≈ a·N + b·B·lg N por mínimos cuadrados (columna `t_ajustado` y `ajuste_reparto.png`). Opciones: `--series a d` (solo algunas), `--sin-graficas` y `--repeticiones R`. Para generar instancias de influencia a mano: `python -m red.generador --N 50 --k 5 --B 100 --formato influencia --densidad 0.1 --semilla 1 --salida caso.json`.
 
+**Series de las variantes (i a m, entrega final).** Se corren aparte, sin regenerar las a–h:
+
+```
+python scripts/experimentos.py --series i j k l m
+```
+
+(tarda unos 2 minutos; `i` corre dos series, `ic` e `im`). Mismo método: semilla 1, 21 repeticiones (5 si una pasa de 2 s; la columna `repeticiones` lo anota), mínimo para las gráficas, instancia y oráculo fuera del reloj. Todas usan instancias de influencia del generador.
+
+| Serie | Qué mide | Varía | T teórica |
+|---|---|---|---|
+| ic, im | Variante (a): voraz por cociente y voraz modificado, L = 5N (todo cabe: peor caso), grado medio ~ 5 | N = 50 a 800 | N²·(1 + 2A/N) |
+| j | Variante (a): enumeración parcial, L = 5N, grado ~ 5 | N = 8 a 18 | evaluaciones del peor caso · (1 + 2A/N), Θ(N⁵) |
+| k | Variante (a): fuerza bruta con presupuesto, L = 5N (F = 2^N), grado ~ 5 | N = 8 a 16 | 2^N·(N + A) |
+| l | Variante (b): `ejecutar_rondas` sin exacto, N = 100, k = 5, B = 100, q = 0,2 transitorio | T = 8 a 128 rondas | T·[2(k(N + A) + B lg k) + N] |
+| m | Variante (c2): voraz unidad por unidad, N = 50, S del voraz base con m = 10 en grafo completo, β = 0,2 | B = 250 a 4000 | m + d(S) + B·(m + A_S) |
+
+Los CSV agregan al final las columnas propias de cada serie (`L`, `A`, `A_S`, `d_S`, `beta`, `modo`, `q`, `semilla_fallos`, `repeticiones`). La consola imprime, además, la pendiente log-log contra n y contra T_teorica, la pendiente esperada (la de T_teorica) y el rango del cociente. Sin `--series` el script corre las 13 series y regenera también las a–h.
+
 ## 9. Variantes (entrega final)
 
 Las variantes se piden con `--variante` en `ejecutar.py`; por omisión no se aplica ninguna y todo queda como en la solución base. Sus salidas van en `resultados/variantes/`; `resultados/profesora/` no se toca. Todo lo que depende de un supuesto no confirmado por la docente se marca **Supuesto ❓**.
