@@ -239,3 +239,55 @@ def verificar_cota_ronda(valor, OPT, k_r):
     cumple = valor >= minimo or _iguales(valor, minimo)
     return [Verificacion("f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r (cota por ronda)", cumple,
                          f"f(S_r) = {valor}, OPT_r = {OPT}, cota = {cota:.6f}, cota·OPT_r = {minimo}")]
+
+
+def verificar_variante_c(instancia):
+    """Variante (c): la instancia trae grafo y todas las u_i son de la familia log (decisión 43). Tiempo O(N).
+
+    Solo se llama cuando se pide la variante. Sin grafo (formato propio) no hay vecinos ni w_ij: el caso
+    se rechaza. Los pesos en [0, 1] ya los revisa verificar_entrada.
+    """
+    con_grafo = instancia.vecinos is not None
+    no_log = [nodo.id for nodo in instancia.nodos if nodo.utilidad.tipo != "log"]
+    return [Verificacion("variante (c): la instancia trae grafo", con_grafo,
+                         "formato de la profesora" if con_grafo else "el formato propio no trae grafo"),
+            Verificacion("variante (c): cada u_i es a_i·ln(1 + x_i)", not no_log,
+                         "todas cumplen" if not no_log else f"no son log: {no_log}")]
+
+
+def verificar_reparto_c2(S, B, reparto, valor_U, topes=None):
+    """Variante (c), modelo c2: x_i entero en [0, B] y ≤ c_i, Σ x_i = mín(B, Σ c_i), U(x) recalculada
+    con valor_U, y pasos = Σ x_i (una unidad por paso). Tiempo O(|S|) más una evaluación de valor_U.
+    """
+    topes = topes or {}
+    x = reparto.x
+    fuera = [i for i in S if not (isinstance(x[i], int) and 0 <= x[i] <= min(B, topes.get(i, B)))]
+    suma = sum(x[i] for i in S)
+    esperado = min(B, sum(topes.get(i, B) for i in S))
+    resultado = [
+        Verificacion("cada x_i entero con 0 ≤ x_i ≤ mín(B, c_i)", not fuera,
+                     "todos cumplen" if not fuera else f"fallan: {fuera}"),
+        Verificacion("Σ x_i = mín(B, Σ c_i)", suma == esperado, f"Σ x_i = {suma}, mín(B, Σ c_i) = {esperado}"),
+        Verificacion("pasos del voraz = Σ x_i", reparto.pasos == suma, f"pasos = {reparto.pasos}, Σ x_i = {suma}"),
+    ]
+    if not fuera:
+        recalculada = valor_U(x)
+        resultado.append(Verificacion("U(x) acumulada = U(x) recalculada", _iguales(recalculada, reparto.utilidad),
+                                      f"acumulada = {reparto.utilidad:.6f}, recalculada = {recalculada:.6f}"))
+    return resultado
+
+
+def verificar_reparto_contra_exacto(modelo, utilidad, OPT, cota):
+    """Variante (c): el voraz contra el óptimo de la enumeración. Tiempo O(1).
+
+    c1: U = OPT (el voraz es exacto por §7.1.1; cota = 1). c2: U ≤ OPT y U ≥ cota·OPT, con
+    cota = 1 − (1 − 1/B)^B (decisión 45). Con tolerancia, porque U lleva error de redondeo.
+    """
+    if modelo == "c1":
+        return [Verificacion("c1: U del voraz = OPT de la enumeración", _iguales(utilidad, OPT),
+                             f"U = {utilidad}, OPT = {OPT}")]
+    minimo = cota * OPT
+    return [Verificacion("c2: U del voraz ≤ OPT de la enumeración", utilidad <= OPT or _iguales(utilidad, OPT),
+                         f"U = {utilidad}, OPT = {OPT}"),
+            Verificacion("c2: U ≥ (1 − (1 − 1/B)^B)·OPT", utilidad >= minimo or _iguales(utilidad, minimo),
+                         f"U = {utilidad}, cota = {cota:.6f}, cota·OPT = {minimo}")]

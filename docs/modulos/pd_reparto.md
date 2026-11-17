@@ -19,6 +19,7 @@ Cada candidato t evaluado suma 1 a `candidatos`. u_i(0..c_i) se calcula una vez 
 - **Sin líneas numeradas:** el autor confirmó que el informe no tenía pseudocódigo de la PD; la §7.2 es nueva y no usa líneas numeradas, así que el código no lleva comentarios `# línea N del pseudocódigo` (decisión 33).
 - **"A lo sumo b" en lugar de "exactamente b":** con M[0][b] = 0 para todo b, la PD admite que sobre presupuesto cuando Σ c_i < B, igual que el voraz (que gasta mín(B, Σ c_i) y deja el resto). Con u crecientes las dos utilidades coinciden; con ganancias nulas en una tabla, x puede diferir del voraz (el voraz entrega unidades de ganancia 0; la PD, ante empate, usa el menor t).
 - **Desempate por el menor t**, en la línea de "menor índice" del proyecto (decisión 6).
+- **Variante (c):** la PD sirve en el modelo c1 (es separable con a'_i) pero **no en c2**: la recurrencia M[i][b] = máx_t u_i(t) + M[i−1][b−t] supone que la utilidad de i depende solo de x_i (H1), y en c2 depende también de los x de sus vecinos. Por eso el exacto de la variante es una enumeración (`red/variante_vecinos.py`, decisión 46).
 - **Tope por nodo** igual que en el voraz: c_i = `topes.get(i, B)`, acotado por B.
 - **Solo dos filas de M:** la reconstrucción necesita P completa, no M.
 
@@ -33,4 +34,4 @@ Para otra regla de empate, cambiar `>` por `>=` (gana el mayor t) y actualizar `
 - **¿Cuándo da lo mismo?** Con todas las u_i crecientes y cóncavas (misma utilidad; el x puede diferir por empates).
 - **¿Y si Σ c_i < B?** Sobra presupuesto en ambos: la PD lo permite porque M es "a lo sumo b".
 
-_Última actualización: 2026-11-12 · archivo nuevo_
+_Última actualización: 2026-11-17 · nota: por qué la PD no sirve en el modelo c2 de la variante (c); sin cambios de código (P-4 fase 3)_

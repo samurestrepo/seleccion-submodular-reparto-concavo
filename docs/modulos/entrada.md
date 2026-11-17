@@ -69,6 +69,7 @@ Opcionales de la variante (a): `"presupuesto_costos": 4` en la raíz y `"costo":
 - **Llega otro formato:** agregar otra rama en `instancia_desde_diccionario`, con su función de lectura, para producir la misma `Instancia` (y cambiar `leer_instancia` si no es JSON). Agregar un caso de ejemplo y una prueba en `test_entrada.py`. Si f cambia, también `crear_oraculo`.
 - **Un campo opcional por nodo:** leerlo en `_leer_nodo` y guardarlo en `Nodo`, como `tope`.
 - **Descontar el presupuesto ronda a ronda (variante b):** ya está hecho en `red/variante_rondas.py`, que arranca del `tope` de cada nodo y lleva el restante aparte; `entrada.py` no se toca.
+- **Variante (c), vecinos en el reparto:** usa `Instancia.vecinos` tal cual; no hay campo nuevo. El formato propio no trae grafo y la variante lo rechaza (decisión 43); para admitirlo habría que agregar un campo opcional de aristas y leerlo con `_leer_grafo`.
 
 ## Pruebas
 `pruebas/test_entrada.py`: lee el ejemplo del informe y ordena por id; rechaza formatos inválidos, incluidos los que antes tumbaban el programa (raíz, nodo o utilidad que no son objetos, `cubre` con listas); coeficientes y ganancias inválidos; archivos en latin-1, mal escritos, vacíos o con anidamiento sin fin; acepta BOM; nombre del caso con `.json` y `.JSON`. `pruebas/test_ejecutar.py` comprueba el efecto en un lote completo.
@@ -84,4 +85,4 @@ Topes, en `pruebas/test_entrada.py`: `tope` es opcional en el formato propio; si
 - **¿Por qué un peso de 1.5 no es error de forma?** Porque es un número bien escrito que no cumple una restricción del problema: lo reporta la verificación de entrada, igual que la concavidad, y el caso no corre.
 - **¿Qué pasa con el desempate si los ids son texto?** Con ceros a la izquierda, el orden de texto coincide con el numérico.
 
-_Última actualización: 2026-11-16 · variante (b): campo opcional `rondas` del formato propio e `Instancia.numero_rondas()` (P-4 fase 2)_
+_Última actualización: 2026-11-17 · nota: la variante (c) usa `vecinos` y no agrega campos; sin cambios de código (P-4 fase 3)_

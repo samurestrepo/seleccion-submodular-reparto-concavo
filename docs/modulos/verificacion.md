@@ -16,6 +16,9 @@ Comprueba las restricciones de la entrada y de las dos salidas (informe 6.6). La
 | `verificar_seleccion_ronda(candidatos, k_r, oraculo, S, valorS)` | **variante (b), una ronda:** S_r ⊆ candidatos; sin repetidos; \|S_r\| ≤ k_r = mín(k, \|candidatos\|); valorS = f(S_r) recalculada. Es `verificar_seleccion` con V = candidatos | O(\|candidatos\| + \|S\|) + `valor(S)` |
 | `verificar_cota_ronda(valor, OPT, k_r)` | **variante (b):** f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r con tolerancia; OPT_r es el óptimo sobre los candidatos de esa ronda, no una cota sobre las T rondas; con k_r = 0, 0 ≥ 0 | O(1) |
 | `verificar_conteo_evaluaciones_costos(N, S, origen, evaluaciones, llamadas_oraculo)` | contador del algoritmo = `llamadas_ganancia + llamadas_valor` del oráculo; si `origen` = cociente, 1 + \|S\| ≤ evaluaciones ≤ 1 + \|S\|·N − \|S\|(\|S\| − 1)/2; si ganó el mejor nodo solo, 1 ≤ evaluaciones ≤ 1 + N(N + 1)/2 | O(1) |
+| `verificar_variante_c(instancia)` | **solo con `--variante c1` o `c2`:** la instancia trae grafo (el formato propio no: se rechaza) y cada u_i es de la familia log (decisión 43) | O(N) |
+| `verificar_reparto_c2(S, B, reparto, valor_U, topes=None)` | **modelo c2:** cada x_i entero en [0, mín(B, c_i)]; Σ x_i = mín(B, Σ c_i); pasos del voraz = Σ x_i; U(x) igual a `valor_U(x)` recalculada (solo si los x_i están en rango) | O(\|S\|) + una evaluación de U, O(\|S\| + A_S) |
+| `verificar_reparto_contra_exacto(modelo, utilidad, OPT, cota)` | **variante (c), si corrió la enumeración:** c1, U = OPT (§7.1.1); c2, U ≤ OPT y U ≥ cota·OPT con cota = 1 − (1 − 1/B)^B (decisión 45). Con tolerancia | O(1) |
 
 Cada una devuelve una lista de `Verificacion(nombre, cumple, detalle)`. Ninguna lanza excepciones: así **todas** quedan en la traza aunque alguna falle. Por eso no evalúan datos que ya fallaron: un id de S ajeno a V no entra al recálculo de f(S), y un x_i fuera de rango no se evalúa en u_i (decisión 23).
 
@@ -49,6 +52,8 @@ Cada una devuelve una lista de `Verificacion(nombre, cumple, detalle)`. Ninguna 
 - **Topes:** tope activo; topes que no alcanzan B; tope 0 sin descontar; y que se detecte un x_i por encima del tope, gastar menos de mín(B, Σ c_i), y extracciones o inserciones mal contadas. Con R repeticiones, `test_ronda.py` comprueba que una repetición distinta se detecte (esa verificación vive en `ronda.py`).
 - **Influencia:** pesos en 0, 0.5 y 1 cumplen; −0.1, 1.5, NaN e Infinity fallan, la arista se reporta una vez y la ronda no corre; el formato propio no tiene esa línea; f real se compara con tolerancia.
 
+Las tres de la variante (c) tienen sus ramas de fallo en `pruebas/test_variante_vecinos.py` (sin grafo y familia no log; x fuera del tope y pasos mal contados; c1 con U < OPT; c2 por debajo de la cota o por encima de OPT).
+
 `pruebas/test_ronda.py` cubre la entrada inválida con k = N y la utilidad no cóncava reportada.
 
 ## Preguntas probables en la sustentación
@@ -56,4 +61,4 @@ Cada una devuelve una lista de `Verificacion(nombre, cumple, detalle)`. Ninguna 
 - **¿Cómo revisa la concavidad sin recorrer B?** En log y raíz basta a > 0, porque la derivada es positiva y decrece para todo x. En tabla recorre su lista: después de ella todo vale 0.
 - **¿Cuánto cuesta verificar la entrada?** O(N + Σ min(L_i, B)) esperado, y no entra en los tiempos medidos.
 
-_Última actualización: 2026-11-16 · tres verificaciones de la variante (b): T ≥ 1, selección por ronda y cota por ronda (P-4 fase 2). Sus ramas de fallo están en `pruebas/test_variante_rondas.py`_
+_Última actualización: 2026-11-17 · tres verificaciones de la variante (c): grafo y familia log, reparto de c2 y voraz contra la enumeración (P-4 fase 3)_

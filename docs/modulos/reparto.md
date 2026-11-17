@@ -54,6 +54,7 @@ Las recetas completas, con todo lo que hay que tocar, están en `docs/agente/GUI
 - **Desempatar por el mayor índice:** receta 1. Aquí: guardar `(-ganancia, -posicion[i])` en `# línea 2` y `# línea 6 del pseudocódigo`, y recuperar el id en `# línea 4`.
 - **Permitir gastar menos de B ("≤ B") con Δ negativas:** receta 2. Aquí: después de `if not H: break`, `if -H[0][0] < 0: break`. También cambian `utilidades.py` y `verificacion.py`.
 - **Tope por nodo (x_i ≤ c_i):** ya está hecho (receta 3, decisión 28).
+- **Variante (c), modelo c1:** no toca este archivo. `red/variante_vecinos.py` llama a `repartir_presupuesto` con `UtilidadLog(a'_i)`, a'_i = a_i + β·Σ_{j∈S vecino de i} w_ij: sigue siendo separable, creciente y cóncava, así que este voraz es exacto también ahí (decisión 44). El modelo c2 no es separable y tiene su propio voraz (ver `variante_vecinos.md`).
 - Cualquier cambio aquí: correr `pruebas/test_reparto.py` y después `python -m pytest`.
 
 ## Pruebas
@@ -75,4 +76,4 @@ Las recetas completas, con todo lo que hay que tocar, están en `docs/agente/GUI
 - **¿Y si los topes no alcanzan para B?** Se gastan Σ c_i y sobra el resto. No es un error.
 - **¿Sigue siendo óptimo con topes?** Sí: cada u_i cortada en c_i sigue siendo cóncava, y la fuerza bruta lo comprueba en instancias pequeñas.
 
-_Última actualización: 2026-11-04 · tope por nodo (x_i ≤ c_i)_
+_Última actualización: 2026-11-17 · nota: la variante (c1) reutiliza este voraz con otros coeficientes; sin cambios de código (P-4 fase 3)_

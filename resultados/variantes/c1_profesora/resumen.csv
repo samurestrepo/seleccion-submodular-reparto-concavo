@@ -1,0 +1,2 @@
+caso,N,k,B,S,f(S),utilidad_reparto,tiempo_seleccion_s,tiempo_reparto_s,minimo_seleccion_s,minimo_reparto_s,repeticiones,todas_cumplen
+entrada_G2_red_15_nodos,15,5,30,N11 N14 N09 N15 N13,145.57952,91.566977,0.000185200,0.000057100,0.000180900,0.000056300,21,True

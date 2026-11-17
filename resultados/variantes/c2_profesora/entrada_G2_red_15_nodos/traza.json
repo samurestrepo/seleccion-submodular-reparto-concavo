@@ -1,0 +1,456 @@
+{
+  "pasos_seleccion": [
+    {
+      "paso": 1,
+      "aportes": [
+        {
+          "nodo": "N01",
+          "ganancia": 74.11
+        },
+        {
+          "nodo": "N02",
+          "ganancia": 75.385
+        },
+        {
+          "nodo": "N03",
+          "ganancia": 77.92
+        },
+        {
+          "nodo": "N04",
+          "ganancia": 74.34
+        },
+        {
+          "nodo": "N05",
+          "ganancia": 82.60000000000001
+        },
+        {
+          "nodo": "N06",
+          "ganancia": 72.805
+        },
+        {
+          "nodo": "N07",
+          "ganancia": 88.805
+        },
+        {
+          "nodo": "N08",
+          "ganancia": 72.215
+        },
+        {
+          "nodo": "N09",
+          "ganancia": 95.7
+        },
+        {
+          "nodo": "N10",
+          "ganancia": 73.61500000000001
+        },
+        {
+          "nodo": "N11",
+          "ganancia": 103.49000000000002
+        },
+        {
+          "nodo": "N12",
+          "ganancia": 75.44000000000001
+        },
+        {
+          "nodo": "N13",
+          "ganancia": 40.21
+        },
+        {
+          "nodo": "N14",
+          "ganancia": 82.985
+        },
+        {
+          "nodo": "N15",
+          "ganancia": 44.075
+        }
+      ],
+      "elegido": "N11",
+      "ganancia_elegido": 103.49000000000002,
+      "valor_despues": 103.49000000000002
+    },
+    {
+      "paso": 2,
+      "aportes": [
+        {
+          "nodo": "N01",
+          "ganancia": 19.066999999999997
+        },
+        {
+          "nodo": "N02",
+          "ganancia": 19.321999999999996
+        },
+        {
+          "nodo": "N03",
+          "ganancia": 19.828999999999994
+        },
+        {
+          "nodo": "N04",
+          "ganancia": 19.112999999999996
+        },
+        {
+          "nodo": "N05",
+          "ganancia": 20.764999999999993
+        },
+        {
+          "nodo": "N06",
+          "ganancia": 18.805999999999997
+        },
+        {
+          "nodo": "N07",
+          "ganancia": 22.005999999999993
+        },
+        {
+          "nodo": "N08",
+          "ganancia": 18.687999999999995
+        },
+        {
+          "nodo": "N09",
+          "ganancia": 23.384999999999994
+        },
+        {
+          "nodo": "N10",
+          "ganancia": 18.967999999999996
+        },
+        {
+          "nodo": "N12",
+          "ganancia": 21.558999999999997
+        },
+        {
+          "nodo": "N13",
+          "ganancia": 16.121000000000002
+        },
+        {
+          "nodo": "N14",
+          "ganancia": 24.27825
+        },
+        {
+          "nodo": "N15",
+          "ganancia": 16.421249999999997
+        }
+      ],
+      "elegido": "N14",
+      "ganancia_elegido": 24.27825,
+      "valor_despues": 127.76825000000002
+    },
+    {
+      "paso": 3,
+      "aportes": [
+        {
+          "nodo": "N01",
+          "ganancia": 7.989637499999998
+        },
+        {
+          "nodo": "N02",
+          "ganancia": 8.104387499999998
+        },
+        {
+          "nodo": "N03",
+          "ganancia": 8.332537499999997
+        },
+        {
+          "nodo": "N04",
+          "ganancia": 8.010337499999999
+        },
+        {
+          "nodo": "N05",
+          "ganancia": 8.753737499999998
+        },
+        {
+          "nodo": "N06",
+          "ganancia": 7.872187499999998
+        },
+        {
+          "nodo": "N07",
+          "ganancia": 9.312187499999997
+        },
+        {
+          "nodo": "N08",
+          "ganancia": 7.819087499999998
+        },
+        {
+          "nodo": "N09",
+          "ganancia": 9.932737499999998
+        },
+        {
+          "nodo": "N10",
+          "ganancia": 7.945087499999998
+        },
+        {
+          "nodo": "N12",
+          "ganancia": 9.111037499999998
+        },
+        {
+          "nodo": "N13",
+          "ganancia": 6.6639375
+        },
+        {
+          "nodo": "N15",
+          "ganancia": 9.015749999999997
+        }
+      ],
+      "elegido": "N09",
+      "ganancia_elegido": 9.932737499999998,
+      "valor_despues": 137.70098750000002
+    },
+    {
+      "paso": 4,
+      "aportes": [
+        {
+          "nodo": "N01",
+          "ganancia": 3.3095306249999994
+        },
+        {
+          "nodo": "N02",
+          "ganancia": 3.338218124999999
+        },
+        {
+          "nodo": "N03",
+          "ganancia": 3.3952556249999994
+        },
+        {
+          "nodo": "N04",
+          "ganancia": 3.3147056249999993
+        },
+        {
+          "nodo": "N05",
+          "ganancia": 3.500555624999999
+        },
+        {
+          "nodo": "N06",
+          "ganancia": 3.2801681249999994
+        },
+        {
+          "nodo": "N07",
+          "ganancia": 3.640168124999999
+        },
+        {
+          "nodo": "N08",
+          "ganancia": 3.2668931249999993
+        },
+        {
+          "nodo": "N10",
+          "ganancia": 3.5493581249999995
+        },
+        {
+          "nodo": "N12",
+          "ganancia": 3.994183124999999
+        },
+        {
+          "nodo": "N13",
+          "ganancia": 4.132513124999999
+        },
+        {
+          "nodo": "N15",
+          "ganancia": 5.5306125
+        }
+      ],
+      "elegido": "N15",
+      "ganancia_elegido": 5.5306125,
+      "valor_despues": 143.23160000000001
+    },
+    {
+      "paso": 5,
+      "aportes": [
+        {
+          "nodo": "N01",
+          "ganancia": 1.7306831249999999
+        },
+        {
+          "nodo": "N02",
+          "ganancia": 1.7521987499999996
+        },
+        {
+          "nodo": "N03",
+          "ganancia": 1.794976875
+        },
+        {
+          "nodo": "N04",
+          "ganancia": 1.734564375
+        },
+        {
+          "nodo": "N05",
+          "ganancia": 1.8739518749999997
+        },
+        {
+          "nodo": "N06",
+          "ganancia": 1.7086612499999998
+        },
+        {
+          "nodo": "N07",
+          "ganancia": 1.9786612499999996
+        },
+        {
+          "nodo": "N08",
+          "ganancia": 1.6987049999999997
+        },
+        {
+          "nodo": "N10",
+          "ganancia": 1.9105537499999998
+        },
+        {
+          "nodo": "N12",
+          "ganancia": 2.2441725000000003
+        },
+        {
+          "nodo": "N13",
+          "ganancia": 2.34792
+        }
+      ],
+      "elegido": "N13",
+      "ganancia_elegido": 2.34792,
+      "valor_despues": 145.57952
+    }
+  ],
+  "unidades_reparto": [
+    {
+      "unidad": 1,
+      "nodo": "N14",
+      "ganancia": 10.156781478630515
+    },
+    {
+      "unidad": 2,
+      "nodo": "N09",
+      "ganancia": 8.658976744559691
+    },
+    {
+      "unidad": 3,
+      "nodo": "N15",
+      "ganancia": 7.258081105197099
+    },
+    {
+      "unidad": 4,
+      "nodo": "N13",
+      "ganancia": 6.164689146735287
+    },
+    {
+      "unidad": 5,
+      "nodo": "N11",
+      "ganancia": 5.729859393792395
+    },
+    {
+      "unidad": 6,
+      "nodo": "N14",
+      "ganancia": 4.951458710932263
+    },
+    {
+      "unidad": 7,
+      "nodo": "N09",
+      "ganancia": 4.514740272364722
+    },
+    {
+      "unidad": 8,
+      "nodo": "N15",
+      "ganancia": 4.029911704192036
+    },
+    {
+      "unidad": 9,
+      "nodo": "N14",
+      "ganancia": 3.6320817781717185
+    },
+    {
+      "unidad": 10,
+      "nodo": "N13",
+      "ganancia": 3.3453107557689847
+    },
+    {
+      "unidad": 11,
+      "nodo": "N09",
+      "ganancia": 3.2713813884752065
+    },
+    {
+      "unidad": 12,
+      "nodo": "N11",
+      "ganancia": 2.98564885196944
+    },
+    {
+      "unidad": 13,
+      "nodo": "N15",
+      "ganancia": 2.800803275438094
+    },
+    {
+      "unidad": 14,
+      "nodo": "N14",
+      "ganancia": 2.643059046153155
+    },
+    {
+      "unidad": 15,
+      "nodo": "N09",
+      "ganancia": 2.4727069571252365
+    },
+    {
+      "unidad": 16,
+      "nodo": "N13",
+      "ganancia": 2.3468353831903084
+    },
+    {
+      "unidad": 17,
+      "nodo": "N15",
+      "ganancia": 2.1864923880298015
+    },
+    {
+      "unidad": 18,
+      "nodo": "N14",
+      "ganancia": 2.1464248908043793
+    },
+    {
+      "unidad": 19,
+      "nodo": "N11",
+      "ganancia": 2.0772659174513777
+    },
+    {
+      "unidad": 20,
+      "nodo": "N09",
+      "ganancia": 1.9644276466286428
+    },
+    {
+      "unidad": 21,
+      "nodo": "N13",
+      "ganancia": 1.8316825176930163
+    },
+    {
+      "unidad": 22,
+      "nodo": "N14",
+      "ganancia": 1.7821965686694128
+    },
+    {
+      "unidad": 23,
+      "nodo": "N15",
+      "ganancia": 1.7441812433175716
+    },
+    {
+      "unidad": 24,
+      "nodo": "N09",
+      "ganancia": 1.6863067666391238
+    },
+    {
+      "unidad": 25,
+      "nodo": "N11",
+      "ganancia": 1.5977668814366872
+    },
+    {
+      "unidad": 26,
+      "nodo": "N14",
+      "ganancia": 1.5415462479239306
+    },
+    {
+      "unidad": 27,
+      "nodo": "N15",
+      "ganancia": 1.4849655784569187
+    },
+    {
+      "unidad": 28,
+      "nodo": "N13",
+      "ganancia": 1.4506788714970202
+    },
+    {
+      "unidad": 29,
+      "nodo": "N09",
+      "ganancia": 1.433251361063144
+    },
+    {
+      "unidad": 30,
+      "nodo": "N14",
+      "ganancia": 1.3575245254318098
+    }
+  ]
+}

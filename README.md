@@ -51,6 +51,12 @@ python ejecutar.py casos/profesora --variante a --salida resultados/variantes/a_
 # Variante (b), T rondas con nodos que fallan (q = 0.2, semilla 0 por omisión; manual, sección 9.2)
 python ejecutar.py casos/profesora --variante b --modo-fallo transitorio --salida resultados/variantes/b_profesora_transitorio
 python ejecutar.py casos/profesora --variante b --modo-fallo permanente --salida resultados/variantes/b_profesora_permanente
+
+# Variante (c), los vecinos en S alteran la utilidad del reparto (beta = 0.2 por omisión; manual, sección 9.3).
+# El exacto de referencia de la docente tiene 302792 repartos: se sube el límite solo para esta corrida.
+python ejecutar.py casos/profesora --variante c1 --beta 0.2 --limite-repartos 302792 --salida resultados/variantes/c1_profesora
+python ejecutar.py casos/profesora --variante c2 --beta 0.2 --limite-repartos 302792 --salida resultados/variantes/c2_profesora
+python scripts/tabla_cota_variante_c.py   # c1 y c2 contra la enumeración en 324 filas aleatorias
 ```
 
 Un caso rechazado (archivo con forma inválida o entrada que no cumple las restricciones) no detiene a los demás: los algoritmos no corren y sus tres archivos traen el motivo. Dos archivos con el mismo nombre de caso son un error: corre solo el primero. El programa termina con código 0 si todas las verificaciones cumplen.

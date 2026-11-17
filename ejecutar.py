@@ -10,6 +10,7 @@ Uso (desde la raíz del repositorio):
     python ejecutar.py casos/profesora --variante b --modo-fallo permanente --prob-fallo 0.2 \
         --semilla-fallos 0 --salida resultados/variantes/b_profesora_permanente
                                                         # variante (b): T rondas con nodos que fallan
+    python ejecutar.py casos/profesora --variante c2 --beta 0.2 --limite-repartos 302792         --salida resultados/variantes/c2_profesora   # variante (c): vecinos que alteran la utilidad (c1 o c2)
 
 Por cada caso escribe en <salida>/<nombre_del_caso>/:
     salida.json   resultado, tiempos (mediana, mínimo, máximo y R) y verificaciones
@@ -21,6 +22,7 @@ por ronda de cada caso): no acumula corridas anteriores. Si ya existía, se reem
 
 import argparse
 import csv
+import math
 import os
 import sys
 
@@ -28,6 +30,7 @@ from red.entrada import ErrorDeFormato, leer_instancia, nombre_del_caso
 from red.ronda import REPETICIONES, ejecutar_ronda, resultado_de_error
 from red.traza import a_texto, escribir_json
 from red.variante_rondas import MODOS, PROBABILIDAD_FALLO, SEMILLA_FALLOS, a_texto_rondas, ejecutar_rondas
+from red.variante_vecinos import BETA, LIMITE_REPARTOS, MODELOS, a_texto_vecinos, ejecutar_variante_c
 
 # Columnas de resumen.csv: una fila por caso (base y variante a) o una por ronda (variante b)
 ENCABEZADO = ["caso", "N", "k", "B", "S", "f(S)", "utilidad_reparto",
@@ -61,6 +64,17 @@ def _probabilidad(texto):
     return valor
 
 
+def _beta(texto):
+    """Convierte el valor de --beta: un número finito ≥ 0. Si no, argparse muestra el error."""
+    try:
+        valor = float(texto)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"debe ser un número; llegó {texto!r}") from None
+    if not math.isfinite(valor) or valor < 0:
+        raise argparse.ArgumentTypeError(f"debe ser un número finito >= 0; llegó {valor}")
+    return valor
+
+
 def buscar_casos(rutas):
     """Expande las rutas: un archivo se toma tal cual; una carpeta aporta sus .json en orden.
 
@@ -87,7 +101,12 @@ def guardar_evidencias(resultado, carpeta):
     salida = {clave: valor for clave, valor in resultado.items() if clave != "traza"}
     escribir_json(os.path.join(carpeta, "salida.json"), salida)
     escribir_json(os.path.join(carpeta, "traza.json"), resultado["traza"])
-    texto = a_texto_rondas(resultado) if "rondas" in resultado else a_texto(resultado)   # variante (b)
+    if "rondas" in resultado:              # variante (b)
+        texto = a_texto_rondas(resultado)
+    elif "variante_c" in resultado:        # variante (c)
+        texto = a_texto_vecinos(resultado)
+    else:
+        texto = a_texto(resultado)
     with open(os.path.join(carpeta, "traza.txt"), "w", encoding="utf-8") as archivo:
         archivo.write(texto)
 
@@ -105,11 +124,12 @@ def _imprimir_rondas(nombre, resultado):
               f"razon = {razon}, U_r = {r['reparto']['utilidad']:.4f}")
 
 
-def correr_caso(ruta, salida, repeticiones=REPETICIONES, variante=None, fallos=None):
+def correr_caso(ruta, salida, repeticiones=REPETICIONES, variante=None, fallos=None, vecinos=None):
     """Lee un caso, corre su ronda (o sus T rondas), guarda sus evidencias e imprime. Devuelve el resultado.
 
-    repeticiones es R, las veces que se repite la ejecución medida; variante es None (base), "a" o "b".
+    repeticiones es R, las veces que se repite la ejecución medida; variante es None (base), "a", "b", "c1" o "c2".
     fallos son los parámetros de la variante (b): diccionario con modo, prob_fallo, semilla y rondas.
+    vecinos son los de la variante (c): diccionario con beta y limite (de la enumeración).
     Un archivo malo no detiene el lote: devuelve un resultado rechazado. Si no se pudo
     ni abrir, no escribe evidencias, porque no hay caso del cual dejar constancia.
     """
@@ -127,6 +147,8 @@ def correr_caso(ruta, salida, repeticiones=REPETICIONES, variante=None, fallos=N
 
     if variante == "b":
         resultado = ejecutar_rondas(instancia, repeticiones=repeticiones, **(fallos or {}))
+    elif variante in MODELOS:
+        resultado = ejecutar_variante_c(instancia, variante, repeticiones=repeticiones, **(vecinos or {}))
     else:
         resultado = ejecutar_ronda(instancia, repeticiones, variante)
     guardar_evidencias(resultado, os.path.join(salida, nombre))
@@ -140,6 +162,10 @@ def correr_caso(ruta, salida, repeticiones=REPETICIONES, variante=None, fallos=N
     costo = ""
     if "variante" in resultado:   # variante (a): se muestra el costo de S frente a L
         costo = f"costo(S) = {resultado['seleccion']['costo']} <= L = {resultado['variante']['L']}, "
+    if "variante_c" in resultado:   # variante (c): el modelo, beta y el exacto si cupo
+        ex = resultado["exacto"]
+        opt = f"OPT = {ex['OPT']:.4f}, razon = {ex['razon']:.6f}" if ex["disponible"] else "OPT no disponible"
+        costo = f"modelo {resultado['variante_c']['modelo']}, beta = {resultado['variante_c']['beta']}, {opt}, "
     print(f"[{'OK' if resultado['todas_cumplen'] else 'FALLA'}] {nombre}: "
           f"S = {resultado['seleccion']['S']}, f(S) = {resultado['seleccion']['valor']}, {costo}"
           f"utilidad = {resultado['reparto']['utilidad']:.4f}, "
@@ -214,10 +240,11 @@ def main(argumentos=None):
     p.add_argument("--salida", default="resultados", help="carpeta de evidencias (por omisión: resultados)")
     p.add_argument("--repeticiones", type=_entero_positivo, default=REPETICIONES,
                    help=f"veces que se repite la ejecución medida; se reporta la mediana (por omisión: {REPETICIONES})")
-    p.add_argument("--variante", choices=["a", "b"], default=None,
+    p.add_argument("--variante", choices=["a", "b"] + list(MODELOS), default=None,
                    help="a = costos de participacion: la Parte 2 maximiza f con suma de costos <= L "
                         "en lugar de |S| <= k; b = T rondas con nodos que fallan y presupuesto por nodo "
-                        "que se descuenta (por omision: ninguna, solucion base)")
+                        "que se descuenta; c1 / c2 = los vecinos en S alteran la utilidad del reparto "
+                        "(c1 efecto aparte, c2 efecto dentro; solo con grafo) (por omision: ninguna, solucion base)")
     p.add_argument("--modo-fallo", choices=list(MODOS), default=MODOS[0],
                    help="variante b: transitorio = el nodo falla solo esa ronda; permanente = no vuelve "
                         f"(por omision: {MODOS[0]})")
@@ -227,7 +254,13 @@ def main(argumentos=None):
                    help=f"variante b: semilla del sorteo de fallos (por omision: {SEMILLA_FALLOS})")
     p.add_argument("--rondas", type=_entero_positivo, default=None,
                    help="variante b: T, el numero de rondas; por omision el numero_rondas (o rondas) del caso, o 1")
+    p.add_argument("--beta", type=_beta, default=BETA,
+                   help=f"variantes c1 y c2: intensidad beta >= 0 del efecto de los vecinos (por omision: {BETA})")
+    p.add_argument("--limite-repartos", type=_entero_positivo, default=LIMITE_REPARTOS,
+                   help="variantes c1 y c2: maximo de repartos que enumera el exacto de referencia; si hay "
+                        f"mas, no corre (por omision: {LIMITE_REPARTOS})")
     a = p.parse_args(argumentos)
+    vecinos = {"beta": a.beta, "limite": a.limite_repartos}
     fallos = {"modo": a.modo_fallo, "prob_fallo": a.prob_fallo, "semilla": a.semilla_fallos, "rondas": a.rondas}
     encabezado = ENCABEZADO_RONDAS if a.variante == "b" else ENCABEZADO
 
@@ -247,7 +280,7 @@ def main(argumentos=None):
             hubo_fallas = True
             continue
         primera_ruta[clave] = ruta
-        resultado = correr_caso(ruta, a.salida, a.repeticiones, a.variante, fallos)
+        resultado = correr_caso(ruta, a.salida, a.repeticiones, a.variante, fallos, vecinos)
         if a.variante == "b":
             filas += filas_resumen_rondas(resultado)
         else:

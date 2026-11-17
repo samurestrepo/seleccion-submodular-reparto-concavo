@@ -1,0 +1,85 @@
+CASO: entrada_G2_red_15_nodos
+N = 15, k = 5, B = 30
+VARIANTE (c1: el efecto va aparte, a'_i = a_i + β·Σ w_ij; voraz con montículo (exacto)), β = 0.2. Supuesto ❓: solo cuentan los vecinos que están en S (decisión 43)
+
+== Verificación: entrada ==
+  [OK] 1 ≤ k < N: k = 5, N = 15
+  [OK] B ≥ 0: B = 30
+  [OK] ids únicos: sin repetidos
+  [OK] cada u_i creciente y cóncava en {0, …, B}: todas cumplen
+  [OK] cada peso de influencia en [0, 1]: todos cumplen
+  [OK] variante (c): la instancia trae grafo: formato de la profesora
+  [OK] variante (c): cada u_i es a_i·ln(1 + x_i): todas cumplen
+
+== Parte 2: selección de nodos (voraz de la solución base, sin cambios) ==
+  Paso 1: elige N11 (Δ = 103.4900); f(S) = 103.4900
+  Paso 2: elige N14 (Δ = 24.2782); f(S) = 127.7683
+  Paso 3: elige N09 (Δ = 9.9327); f(S) = 137.7010
+  Paso 4: elige N15 (Δ = 5.5306); f(S) = 143.2316
+  Paso 5: elige N13 (Δ = 2.3479); f(S) = 145.5795
+  Resultado: S = ['N11', 'N14', 'N09', 'N15', 'N13'], f(S) = 145.5795; aristas dentro de S = 10
+
+== Coeficientes nuevos a'_i ==
+  a'_N11 = 7.9600, a'_N14 = 10.4800, a'_N09 = 10.2600, a'_N15 = 9.7000, a'_N13 = 8.5400
+
+== Parte 1: reparto (c1) ==
+  Unidad 1: al nodo N14 (Δ = 7.2642)
+  Unidad 2: al nodo N09 (Δ = 7.1117)
+  Unidad 3: al nodo N15 (Δ = 6.7235)
+  Unidad 4: al nodo N13 (Δ = 5.9195)
+  Unidad 5: al nodo N11 (Δ = 5.5175)
+  Unidad 6: al nodo N14 (Δ = 4.2493)
+  Unidad 7: al nodo N09 (Δ = 4.1601)
+  Unidad 8: al nodo N15 (Δ = 3.9330)
+  Unidad 9: al nodo N13 (Δ = 3.4627)
+  Unidad 10: al nodo N11 (Δ = 3.2275)
+  Unidad 11: al nodo N14 (Δ = 3.0149)
+  Unidad 12: al nodo N09 (Δ = 2.9516)
+  Unidad 13: al nodo N15 (Δ = 2.7905)
+  Unidad 14: al nodo N13 (Δ = 2.4568)
+  Unidad 15: al nodo N14 (Δ = 2.3385)
+  Unidad 16: al nodo N11 (Δ = 2.2899)
+  Unidad 17: al nodo N09 (Δ = 2.2895)
+  Unidad 18: al nodo N15 (Δ = 2.1645)
+  Unidad 19: al nodo N14 (Δ = 1.9107)
+  Unidad 20: al nodo N13 (Δ = 1.9056)
+  Unidad 21: al nodo N09 (Δ = 1.8706)
+  Unidad 22: al nodo N11 (Δ = 1.7762)
+  Unidad 23: al nodo N15 (Δ = 1.7685)
+  Unidad 24: al nodo N14 (Δ = 1.6155)
+  Unidad 25: al nodo N09 (Δ = 1.5816)
+  Unidad 26: al nodo N13 (Δ = 1.5570)
+  Unidad 27: al nodo N15 (Δ = 1.4953)
+  Unidad 28: al nodo N11 (Δ = 1.4513)
+  Unidad 29: al nodo N14 (Δ = 1.3994)
+  Unidad 30: al nodo N09 (Δ = 1.3700)
+  Resultado: x_N11 = 5, x_N14 = 7, x_N09 = 7, x_N15 = 6, x_N13 = 5; U = 91.566977
+  Reparto base (sin vecinos): x_N11 = 5, x_N14 = 7, x_N09 = 7, x_N15 = 6, x_N13 = 5; U con vecinos = 91.566977
+
+== Referencia: exacto por enumeración ==
+  302792 repartos evaluados; x* = x_N11 = 5, x_N14 = 7, x_N09 = 7, x_N15 = 6, x_N13 = 5; OPT = 91.566977; razón U/OPT = 1.000000 (cota 1.000000)
+
+== Verificación: Parte 2 ==
+  [OK] S ⊆ V: S = ['N11', 'N14', 'N09', 'N15', 'N13']
+  [OK] S sin repetidos: |S| = 5
+  [OK] |S| ≤ k: |S| = 5, k = 5
+  [OK] valor acumulado = f(S) recalculada: acumulado = 145.57952, recalculado = 145.57952
+  [OK] llamadas a Δ = k·N − k(k−1)/2: contadas = 65, fórmula = 65
+
+== Verificación: Parte 1 ==
+  [OK] cada x_i entero con 0 ≤ x_i ≤ B: todos cumplen
+  [OK] cada x_i ≤ c_i: c = {'N11': 18, 'N14': 18, 'N09': 18, 'N15': 18, 'N13': 18}
+  [OK] Σ x_i = mín(B, Σ c_i): Σ x_i = 30, mín(B, Σ c_i) = 30, B = 30
+  [OK] utilidad acumulada = Σ u_i(x_i) recalculada: acumulada = 91.566977, recalculada = 91.566977
+  [OK] extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope: extracciones = 30, inserciones = 30, Σ x_i = 30, nodos en su tope = 0
+  [OK] c1: U del voraz = OPT de la enumeración: U = 91.56697726253924, OPT = 91.56697726253924
+
+== Verificación: Ejecución ==
+  [OK] todas las repeticiones dan el mismo S y el mismo reparto: R = 21
+  [OK] ejecución con traza = ejecución medida: mismo S y mismo reparto
+
+== Tiempos: mediana de 21 repeticiones (sin el exacto) ==
+  Parte 2 (selección): 0.000185200 s
+  Parte 1 (reparto):   0.000057100 s
+
+TODAS LAS VERIFICACIONES: CUMPLEN
