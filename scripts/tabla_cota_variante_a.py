@@ -9,6 +9,7 @@ enumeración parcial, sus razones contra OPT, las evaluaciones de cada uno y si 
 No escribe en resultados/profesora/ ni toca la ronda.
 """
 
+import argparse
 import csv
 import sys
 from math import e
@@ -111,7 +112,30 @@ def escribir_csv(ruta, columnas, filas):
         escritor.writerows(filas)
 
 
-def main():
+def leer_argumentos(argumentos=None):
+    """Lee la línea de comandos. El script no tiene opciones: solo existe para atender --help (y -h).
+
+    argumentos: lista de textos (None = sys.argv[1:]). Con --help, argparse imprime la ayuda y sale
+    con SystemExit(0) antes de calcular o escribir nada. La ayuda va solo en caracteres de cp1252
+    (la consola de Windows), por eso no usa __doc__, que lleva símbolos matemáticos. O(1).
+    """
+    p = argparse.ArgumentParser(
+        description=(
+            'Genera resultados/variantes/a_tabla_cota.csv: los tres aproximados de la variante (a)\n'
+            '(voraz por cociente, voraz modificado y enumeración parcial) contra el OPT exacto de la fuerza bruta,\n'
+            'en el caso de la docente (N = 15, L = 24) y en 36 instancias aleatorias de influencia (L = 12).'
+        ),
+        epilog=(
+            'No recibe opciones: sin argumentos escribe el CSV (unos 3 s) e imprime las razones\n'
+            'mínimas; termina con 0 si todas las filas cumplen las cotas 0,405 y 1 - 1/e, y con 1 si no.\n'
+            'Uso, desde la raíz del repositorio:  python scripts/tabla_cota_variante_a.py'
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    return p.parse_args(argumentos)
+
+
+def main(argumentos=None):
+    leer_argumentos(argumentos)       # con --help sale aquí, sin escribir el CSV
     filas = [fila_de_la_profesora()] + bateria_aleatoria()
     escribir_csv(SALIDA, COLUMNAS, filas)
     minimos = {nombre: min(f[nombre] for f in filas)

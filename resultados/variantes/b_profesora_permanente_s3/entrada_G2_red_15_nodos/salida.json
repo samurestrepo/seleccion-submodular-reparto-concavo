@@ -1,0 +1,587 @@
+{
+  "caso": "entrada_G2_red_15_nodos",
+  "entrada": {
+    "N": 15,
+    "k": 5,
+    "B": 30,
+    "T": 3,
+    "modo": "permanente",
+    "prob_fallo": 0.2,
+    "semilla": 3
+  },
+  "variante": {
+    "nombre": "b",
+    "modo": "permanente",
+    "prob_fallo": 0.2,
+    "semilla": 3,
+    "T": 3,
+    "supuestos": [
+      "Supuesto ❓: el tope de cada nodo es su presupuesto restante (empieza en presupuesto_total_nodo o tope; sin tope, B) y se descuenta lo gastado en cada ronda",
+      "Supuesto ❓: candidatos = nodos que no fallaron y con presupuesto restante > 0; si son k o menos, participan todos (k_r = mín(k, |candidatos|))",
+      "Supuesto ❓: cada ronda se optimiza sola con el mismo k y el mismo B; no se planean las T rondas juntas",
+      "Supuesto ❓: cada nodo falla antes de cada ronda con probabilidad q, de forma independiente (random.Random(semilla)); transitorio = solo esa ronda, permanente = no vuelve"
+    ]
+  },
+  "verificaciones": {
+    "entrada": [
+      {
+        "nombre": "1 ≤ k < N",
+        "cumple": true,
+        "detalle": "k = 5, N = 15"
+      },
+      {
+        "nombre": "B ≥ 0",
+        "cumple": true,
+        "detalle": "B = 30"
+      },
+      {
+        "nombre": "ids únicos",
+        "cumple": true,
+        "detalle": "sin repetidos"
+      },
+      {
+        "nombre": "cada u_i creciente y cóncava en {0, …, B}",
+        "cumple": true,
+        "detalle": "todas cumplen"
+      },
+      {
+        "nombre": "cada peso de influencia en [0, 1]",
+        "cumple": true,
+        "detalle": "todos cumplen"
+      },
+      {
+        "nombre": "variante (b): número de rondas T ≥ 1",
+        "cumple": true,
+        "detalle": "T = 3"
+      }
+    ],
+    "globales": [
+      {
+        "nombre": "presupuesto restante ≥ 0 en todos los nodos tras las T rondas",
+        "cumple": true,
+        "detalle": "todos cumplen"
+      },
+      {
+        "nombre": "modo permanente: los candidatos nunca aumentan (cada ronda ⊆ la anterior)",
+        "cumple": true,
+        "detalle": "cumple"
+      }
+    ]
+  },
+  "rondas": [
+    {
+      "ronda": 1,
+      "candidatos": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12",
+        "N13",
+        "N14",
+        "N15"
+      ],
+      "k_ronda": 5,
+      "seleccion": {
+        "S": [
+          "N11",
+          "N14",
+          "N09",
+          "N15",
+          "N13"
+        ],
+        "valor": 145.57952,
+        "llamadas_ganancia": 55,
+        "llamadas_valor": 1
+      },
+      "exacto": {
+        "disponible": true,
+        "S": [
+          "N09",
+          "N11",
+          "N12",
+          "N13",
+          "N15"
+        ],
+        "OPT": 145.90717765625,
+        "evaluaciones": 1287
+      },
+      "razon": 0.9977543417567711,
+      "cota": 0.6723199999999999,
+      "reparto": {
+        "x": {
+          "N11": 5,
+          "N14": 7,
+          "N09": 7,
+          "N15": 6,
+          "N13": 5
+        },
+        "utilidad": 88.56395281034827,
+        "extracciones": 30,
+        "inserciones": 30
+      },
+      "tiempos_segundos": {
+        "repeticiones": 21,
+        "seleccion": {
+          "mediana": 0.0001496000331826508,
+          "minimo": 0.0001479999627918005,
+          "maximo": 0.00034149998100474477
+        },
+        "reparto": {
+          "mediana": 3.7999998312443495e-05,
+          "minimo": 3.709999145939946e-05,
+          "maximo": 6.799999391660094e-05
+        }
+      },
+      "verificaciones": {
+        "seleccion": [
+          {
+            "nombre": "S_r ⊆ candidatos de la ronda",
+            "cumple": true,
+            "detalle": "S_r = ['N11', 'N14', 'N09', 'N15', 'N13']"
+          },
+          {
+            "nombre": "S_r sin repetidos",
+            "cumple": true,
+            "detalle": "|S_r| = 5"
+          },
+          {
+            "nombre": "|S_r| ≤ k_r = mín(k, |candidatos|)",
+            "cumple": true,
+            "detalle": "|S_r| = 5, k_r = 5, candidatos = 13"
+          },
+          {
+            "nombre": "valor acumulado = f(S_r) recalculada",
+            "cumple": true,
+            "detalle": "acumulado = 145.57952, recalculado = 145.57952"
+          },
+          {
+            "nombre": "llamadas a Δ = k·N − k(k−1)/2",
+            "cumple": true,
+            "detalle": "contadas = 55, fórmula = 55"
+          },
+          {
+            "nombre": "f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r (cota por ronda)",
+            "cumple": true,
+            "detalle": "f(S_r) = 145.57952, OPT_r = 145.90717765625, cota = 0.672320, cota·OPT_r = 98.09631368184999"
+          }
+        ],
+        "reparto": [
+          {
+            "nombre": "cada x_i entero con 0 ≤ x_i ≤ B",
+            "cumple": true,
+            "detalle": "todos cumplen"
+          },
+          {
+            "nombre": "cada x_i ≤ c_i",
+            "cumple": true,
+            "detalle": "c = {'N11': 18, 'N14': 18, 'N09': 18, 'N15': 18, 'N13': 18}"
+          },
+          {
+            "nombre": "Σ x_i = mín(B, Σ c_i)",
+            "cumple": true,
+            "detalle": "Σ x_i = 30, mín(B, Σ c_i) = 30, B = 30"
+          },
+          {
+            "nombre": "utilidad acumulada = Σ u_i(x_i) recalculada",
+            "cumple": true,
+            "detalle": "acumulada = 88.563953, recalculada = 88.563953"
+          },
+          {
+            "nombre": "extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope",
+            "cumple": true,
+            "detalle": "extracciones = 30, inserciones = 30, Σ x_i = 30, nodos en su tope = 0"
+          }
+        ],
+        "ejecucion": [
+          {
+            "nombre": "todas las repeticiones dan el mismo S y el mismo reparto",
+            "cumple": true,
+            "detalle": "R = 21"
+          },
+          {
+            "nombre": "ejecución con traza = ejecución medida",
+            "cumple": true,
+            "detalle": "mismo S y mismo reparto"
+          }
+        ]
+      },
+      "todas_cumplen": true,
+      "fallados": [
+        "N06",
+        "N07"
+      ],
+      "caidos": [
+        "N06",
+        "N07"
+      ],
+      "presupuesto_restante": {
+        "N01": 18,
+        "N02": 18,
+        "N03": 18,
+        "N04": 18,
+        "N05": 18,
+        "N06": 18,
+        "N07": 18,
+        "N08": 18,
+        "N09": 11,
+        "N10": 18,
+        "N11": 13,
+        "N12": 18,
+        "N13": 13,
+        "N14": 11,
+        "N15": 12
+      }
+    },
+    {
+      "ronda": 2,
+      "candidatos": [
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N08",
+        "N09",
+        "N10",
+        "N12",
+        "N13",
+        "N14",
+        "N15"
+      ],
+      "k_ronda": 5,
+      "seleccion": {
+        "S": [
+          "N09",
+          "N14",
+          "N12",
+          "N15",
+          "N10"
+        ],
+        "valor": 144.49997562500002,
+        "llamadas_ganancia": 45,
+        "llamadas_valor": 1
+      },
+      "exacto": {
+        "disponible": true,
+        "S": [
+          "N09",
+          "N10",
+          "N12",
+          "N14",
+          "N15"
+        ],
+        "OPT": 144.499975625,
+        "evaluaciones": 462
+      },
+      "razon": 1.0000000000000002,
+      "cota": 0.6723199999999999,
+      "reparto": {
+        "x": {
+          "N09": 5,
+          "N14": 6,
+          "N12": 7,
+          "N15": 5,
+          "N10": 7
+        },
+        "utilidad": 104.73631151713496,
+        "extracciones": 30,
+        "inserciones": 30
+      },
+      "tiempos_segundos": {
+        "repeticiones": 21,
+        "seleccion": {
+          "mediana": 0.00012530002277344465,
+          "minimo": 0.00012450001668184996,
+          "maximo": 0.00016579998191446066
+        },
+        "reparto": {
+          "mediana": 3.709999145939946e-05,
+          "minimo": 3.6299985367804766e-05,
+          "maximo": 5.13000413775444e-05
+        }
+      },
+      "verificaciones": {
+        "seleccion": [
+          {
+            "nombre": "S_r ⊆ candidatos de la ronda",
+            "cumple": true,
+            "detalle": "S_r = ['N09', 'N14', 'N12', 'N15', 'N10']"
+          },
+          {
+            "nombre": "S_r sin repetidos",
+            "cumple": true,
+            "detalle": "|S_r| = 5"
+          },
+          {
+            "nombre": "|S_r| ≤ k_r = mín(k, |candidatos|)",
+            "cumple": true,
+            "detalle": "|S_r| = 5, k_r = 5, candidatos = 11"
+          },
+          {
+            "nombre": "valor acumulado = f(S_r) recalculada",
+            "cumple": true,
+            "detalle": "acumulado = 144.49997562500002, recalculado = 144.499975625"
+          },
+          {
+            "nombre": "llamadas a Δ = k·N − k(k−1)/2",
+            "cumple": true,
+            "detalle": "contadas = 45, fórmula = 45"
+          },
+          {
+            "nombre": "f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r (cota por ronda)",
+            "cumple": true,
+            "detalle": "f(S_r) = 144.49997562500002, OPT_r = 144.499975625, cota = 0.672320, cota·OPT_r = 97.15022361219998"
+          }
+        ],
+        "reparto": [
+          {
+            "nombre": "cada x_i entero con 0 ≤ x_i ≤ B",
+            "cumple": true,
+            "detalle": "todos cumplen"
+          },
+          {
+            "nombre": "cada x_i ≤ c_i",
+            "cumple": true,
+            "detalle": "c = {'N09': 11, 'N14': 11, 'N12': 18, 'N15': 12, 'N10': 18}"
+          },
+          {
+            "nombre": "Σ x_i = mín(B, Σ c_i)",
+            "cumple": true,
+            "detalle": "Σ x_i = 30, mín(B, Σ c_i) = 30, B = 30"
+          },
+          {
+            "nombre": "utilidad acumulada = Σ u_i(x_i) recalculada",
+            "cumple": true,
+            "detalle": "acumulada = 104.736312, recalculada = 104.736312"
+          },
+          {
+            "nombre": "extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope",
+            "cumple": true,
+            "detalle": "extracciones = 30, inserciones = 30, Σ x_i = 30, nodos en su tope = 0"
+          }
+        ],
+        "ejecucion": [
+          {
+            "nombre": "todas las repeticiones dan el mismo S y el mismo reparto",
+            "cumple": true,
+            "detalle": "R = 21"
+          },
+          {
+            "nombre": "ejecución con traza = ejecución medida",
+            "cumple": true,
+            "detalle": "mismo S y mismo reparto"
+          }
+        ]
+      },
+      "todas_cumplen": true,
+      "fallados": [
+        "N01",
+        "N07",
+        "N11"
+      ],
+      "caidos": [
+        "N01",
+        "N06",
+        "N07",
+        "N11"
+      ],
+      "presupuesto_restante": {
+        "N01": 18,
+        "N02": 18,
+        "N03": 18,
+        "N04": 18,
+        "N05": 18,
+        "N06": 18,
+        "N07": 18,
+        "N08": 18,
+        "N09": 6,
+        "N10": 11,
+        "N11": 13,
+        "N12": 11,
+        "N13": 13,
+        "N14": 5,
+        "N15": 7
+      }
+    },
+    {
+      "ronda": 3,
+      "candidatos": [
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N10",
+        "N12",
+        "N13",
+        "N14",
+        "N15"
+      ],
+      "k_ronda": 5,
+      "seleccion": {
+        "S": [
+          "N14",
+          "N05",
+          "N12",
+          "N15",
+          "N10"
+        ],
+        "valor": 143.28413187499999,
+        "llamadas_ganancia": 35,
+        "llamadas_valor": 1
+      },
+      "exacto": {
+        "disponible": true,
+        "S": [
+          "N05",
+          "N10",
+          "N12",
+          "N14",
+          "N15"
+        ],
+        "OPT": 143.28413187499999,
+        "evaluaciones": 126
+      },
+      "razon": 1.0,
+      "cota": 0.6723199999999999,
+      "reparto": {
+        "x": {
+          "N14": 5,
+          "N05": 4,
+          "N12": 7,
+          "N15": 6,
+          "N10": 8
+        },
+        "utilidad": 100.919527723006,
+        "extracciones": 30,
+        "inserciones": 29
+      },
+      "tiempos_segundos": {
+        "repeticiones": 21,
+        "seleccion": {
+          "mediana": 0.00010190001921728253,
+          "minimo": 0.00010080001084133983,
+          "maximo": 0.00010639999527484179
+        },
+        "reparto": {
+          "mediana": 3.659998765215278e-05,
+          "minimo": 3.609998384490609e-05,
+          "maximo": 4.0700018871575594e-05
+        }
+      },
+      "verificaciones": {
+        "seleccion": [
+          {
+            "nombre": "S_r ⊆ candidatos de la ronda",
+            "cumple": true,
+            "detalle": "S_r = ['N14', 'N05', 'N12', 'N15', 'N10']"
+          },
+          {
+            "nombre": "S_r sin repetidos",
+            "cumple": true,
+            "detalle": "|S_r| = 5"
+          },
+          {
+            "nombre": "|S_r| ≤ k_r = mín(k, |candidatos|)",
+            "cumple": true,
+            "detalle": "|S_r| = 5, k_r = 5, candidatos = 9"
+          },
+          {
+            "nombre": "valor acumulado = f(S_r) recalculada",
+            "cumple": true,
+            "detalle": "acumulado = 143.28413187499999, recalculado = 143.28413187499999"
+          },
+          {
+            "nombre": "llamadas a Δ = k·N − k(k−1)/2",
+            "cumple": true,
+            "detalle": "contadas = 35, fórmula = 35"
+          },
+          {
+            "nombre": "f(S_r) ≥ (1 − (1 − 1/k_r)^k_r)·OPT_r (cota por ronda)",
+            "cumple": true,
+            "detalle": "f(S_r) = 143.28413187499999, OPT_r = 143.28413187499999, cota = 0.672320, cota·OPT_r = 96.33278754219998"
+          }
+        ],
+        "reparto": [
+          {
+            "nombre": "cada x_i entero con 0 ≤ x_i ≤ B",
+            "cumple": true,
+            "detalle": "todos cumplen"
+          },
+          {
+            "nombre": "cada x_i ≤ c_i",
+            "cumple": true,
+            "detalle": "c = {'N14': 5, 'N05': 18, 'N12': 11, 'N15': 7, 'N10': 11}"
+          },
+          {
+            "nombre": "Σ x_i = mín(B, Σ c_i)",
+            "cumple": true,
+            "detalle": "Σ x_i = 30, mín(B, Σ c_i) = 30, B = 30"
+          },
+          {
+            "nombre": "utilidad acumulada = Σ u_i(x_i) recalculada",
+            "cumple": true,
+            "detalle": "acumulada = 100.919528, recalculada = 100.919528"
+          },
+          {
+            "nombre": "extracciones = Σ x_i e inserciones = Σ x_i − nodos en su tope",
+            "cumple": true,
+            "detalle": "extracciones = 30, inserciones = 29, Σ x_i = 30, nodos en su tope = 1"
+          }
+        ],
+        "ejecucion": [
+          {
+            "nombre": "todas las repeticiones dan el mismo S y el mismo reparto",
+            "cumple": true,
+            "detalle": "R = 21"
+          },
+          {
+            "nombre": "ejecución con traza = ejecución medida",
+            "cumple": true,
+            "detalle": "mismo S y mismo reparto"
+          }
+        ]
+      },
+      "todas_cumplen": true,
+      "fallados": [
+        "N08",
+        "N09"
+      ],
+      "caidos": [
+        "N01",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N11"
+      ],
+      "presupuesto_restante": {
+        "N01": 18,
+        "N02": 18,
+        "N03": 18,
+        "N04": 18,
+        "N05": 14,
+        "N06": 18,
+        "N07": 18,
+        "N08": 18,
+        "N09": 6,
+        "N10": 3,
+        "N11": 13,
+        "N12": 4,
+        "N13": 13,
+        "N14": 0,
+        "N15": 1
+      }
+    }
+  ],
+  "resumen": {
+    "suma_valores": 433.3636275,
+    "suma_utilidades": 294.2197920504892,
+    "rondas_sin_participantes": 0
+  },
+  "todas_cumplen": true
+}

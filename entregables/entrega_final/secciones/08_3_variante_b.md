@@ -61,4 +61,11 @@ donde OPTᵣ es el óptimo sobre los candidatos de esa ronda. **No hay una cota 
 
 Fuente: `resultados/variantes/b_profesora_transitorio/` y `b_profesora_permanente/` (`resumen.csv` y `salida.json`).
 
+Con la semilla 0 los dos modos coinciden porque los fallados de cada ronda quedan contenidos en los de la siguiente (∅, {N11}, {N06, N11}): el modo permanente no excluye a nadie más que el transitorio. Para ver los dos modos separados se corrió también la **semilla 3** (fallados {N06, N07}, {N01, N07, N11} y {N08, N09}); su tabla por ronda, en los dos modos, está en §10.1.3. Lo que comprueba del análisis:
+- Las evaluaciones del voraz siguen siendo kᵣ·nᵣ − kᵣ(kᵣ − 1)/2: 55, 50 y 55 en transitorio (nᵣ = 13, 12, 13) y 55, 45 y 35 en permanente (nᵣ = 13, 11, 9). En el modo permanente los candidatos solo disminuyen, como dice el caso promedio de §8.3.1.
+- Las razones son 0,997754, 1 y 0,998279 en transitorio y 0,997754, 1 y 1 en permanente, todas por encima de ρ(5) ≈ 0,6723.
+- El restante total baja de 270 a 240, 210 y 180 en los dos modos y nunca es negativo; tras la ronda 3, N14 queda en 0.
+
+Fuente: `resultados/variantes/b_profesora_transitorio_s3/` y `b_profesora_permanente_s3/` (`resumen.csv` y `salida.json`).
+
 **Batería.** 27 instancias aleatorias de influencia (N = 8, 10, 12; k = 3; B = 20), en los dos modos, con 3 rondas y q = 0,3: 162 rondas, todas cumplen su cota. La razón mínima es 0,938153, con cota 0,7037. Hay 30 rondas con razón < 1; las otras 132 alcanzan el OPT de su ronda (detalle, y por qué una comparación estricta cuenta 64, en §10.2.3; `pruebas/test_variante_rondas.py`, sin CSV).

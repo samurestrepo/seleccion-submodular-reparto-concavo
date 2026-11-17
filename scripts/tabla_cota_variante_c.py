@@ -8,6 +8,7 @@ en c1 (deben coincidir) y en c2 (razón U/OPT contra la cota 1 − (1 − 1/B)^B
 No escribe en resultados/profesora/ ni toca la ronda.
 """
 
+import argparse
 import csv
 import sys
 from pathlib import Path
@@ -102,7 +103,29 @@ def escribir_csv(ruta, columnas, filas):
         escritor.writerows(filas)
 
 
-def main():
+def leer_argumentos(argumentos=None):
+    """Lee la línea de comandos. El script no tiene opciones: solo existe para atender --help (y -h).
+
+    argumentos: lista de textos (None = sys.argv[1:]). Con --help, argparse imprime la ayuda y sale
+    con SystemExit(0) antes de calcular o escribir nada. La ayuda va solo en caracteres de cp1252
+    (la consola de Windows), por eso no usa __doc__, que lleva símbolos matemáticos. O(1).
+    """
+    p = argparse.ArgumentParser(
+        description=(
+            'Genera resultados/variantes/c_tabla_cota.csv: los voraces c1 y c2 de la variante (c)\n'
+            'contra el exacto por enumeración, en 27 instancias de influencia x 4 beta x 3 B (324 filas).'
+        ),
+        epilog=(
+            'No recibe opciones: sin argumentos escribe el CSV e imprime el resumen (c1 = exacto,\n'
+            'razón mínima de c2); termina con 0 si todas las filas cumplen y con 1 si no.\n'
+            'Uso, desde la raíz del repositorio:  python scripts/tabla_cota_variante_c.py'
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    return p.parse_args(argumentos)
+
+
+def main(argumentos=None):
+    leer_argumentos(argumentos)       # con --help sale aquí, sin escribir el CSV
     filas = bateria()
     escribir_csv(SALIDA, COLUMNAS, filas)
     peor = min(filas, key=lambda f: f["razon_c2"])
