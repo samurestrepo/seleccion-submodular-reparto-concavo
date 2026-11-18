@@ -38,6 +38,8 @@ Las series i–m llevan el límite de 2 s por repetición de la serie h (ninguna
 
 Columnas de `resultados/experimentos/<serie>.csv`: `n` (la variable que cambia: N, salvo en las series e y h, que es B), `N`, `k`, `B`, `densidad`, `semilla`, `t_min`, `t_mediana`, `conteo`, `T_teorica`, `cociente`. Las gráficas son `<serie>_tiempo.png` (t_min contra n y la curva c·T_teorica, con c = t_min / T_teorica en el n más grande) y `<serie>_cociente.png`; en la serie g el eje y es logarítmico. El CSV de h agrega al final `repeticiones` (las usadas en cada tamaño): 21, o 5 si una repetición pasa de 2 s (decisión 33); con n = B, los 5 tamaños de h terminan en menos de 0,2 s por repetición. Los CSV de d y e agregan al final `t_ajustado` (el ajuste solo se hace si d y e se corren juntas); `ajuste_reparto.png` grafica t_min contra t_ajustado con la recta y = x, y la consola imprime a, b y el error relativo de cada punto.
 
+**El ajuste conjunto es descriptivo (decisiones 32 y 60):** sus constantes salen en parte de los mismos puntos de d que luego «predice». La evidencia que cita el informe (sección 11.3, punto 2) es la **prueba fuera de muestra** de `scripts/serie_d_fuera_de_muestra.py`: a y b solo de la serie e, predicción de la d (a = 7,98·10⁻⁷ s, b = 1,99·10⁻⁷ s; errores de −0,2 % a −35,9 %; pendiente predicha 0,62 contra 0,78 medida). Se corre con `python scripts/serie_d_fuera_de_muestra.py`, no mide nada (lee los CSV de d y e) y escribe `resultados/experimentos/d_fuera_de_muestra.csv`; ficha propia: `docs/modulos/serie_d_fuera_de_muestra.md`. Usa la función `pendiente` de este script.
+
 ## Resultados de las series i–m (semilla 1, 21 repeticiones, 2026-11-17)
 | Serie | Pendiente log-log contra n (esperada) | Contra T_teorica | Cociente t_min/T (máx/mín) | ¿Ajusta? |
 |---|---|---|---|---|
@@ -73,4 +75,4 @@ Cambiar tamaños: la lista de la serie en `SERIES`. Otra serie: una función `co
 - **¿Por qué el voraz modificado tarda lo mismo que el de cociente (series ic e im)?** El mejor nodo solo sale del primer paso del cociente, f({v}) = Δ(v | ∅): no hay evaluaciones extra, y los conteos son idénticos.
 - **¿Por qué la pendiente de j es 5,0 y no 5,2?** Con N ≤ 18 los términos de menor orden pesan; contra la T exacta del peor caso la pendiente es 0,96.
 
-_Última actualización: 2026-11-17 · series i–m de las variantes (P-4 fase 4)_
+_Última actualización: 2026-11-17 · remite a la prueba fuera de muestra de la serie d (P-6 fase 1)_
