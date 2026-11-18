@@ -24,8 +24,9 @@ La entrega final agrega a la solución base (que no cambió de lógica) las tres
 
 - **Variantes:** (a) costos de participación (`red/variante_costos.py`), (b) T rondas con nodos que fallan (`red/variante_rondas.py`) y (c) vecinos que alteran la utilidad, modelos c1 y c2 (`red/variante_vecinos.py`). Se piden con `--variante a|b|c1|c2` (comandos más abajo y en la sección 9 del manual); las evidencias de la docente están en `resultados/variantes/`, y `resultados/profesora/` no cambia.
 - **Experimentos:** `scripts/experimentos.py`, 14 series (a–h de la base; ic, im, j, k, l y m de las variantes) con sus CSV y gráficas en `resultados/experimentos/` (sección 8 del manual). Las tablas contra el óptimo están en `resultados/cota/` y `resultados/variantes/` (sección 10 del manual).
-- **Textos del informe final:** `entregables/entrega_final/secciones/`, un archivo Markdown por sección (resumen, términos nuevos, formalización y algoritmos de las variantes, elección de la técnica, implementación, validación experimental, resumen de eficiencia y supuestos).
-- **Manual técnico:** [`MANUAL_TECNICO.md`](MANUAL_TECNICO.md), actualizado a la entrega final.
+- **Informe final:** [`entregables/entrega_final/1_Informe_final_G2.pdf`](entregables/entrega_final/1_Informe_final_G2.pdf). Los borradores de sus secciones, previos a la auditoría final, están en `entregables/entrega_final/secciones/`; el texto que vale es el del PDF.
+- **Manual técnico:** [`entregables/entrega_final/2_Manual_Tecnico_G2.pdf`](entregables/entrega_final/2_Manual_Tecnico_G2.pdf), exportado desde [`MANUAL_TECNICO.md`](MANUAL_TECNICO.md).
+- **Qué hay en la carpeta y cómo reproducir:** [`entregables/entrega_final/LEEME.md`](entregables/entrega_final/LEEME.md). Versión: etiqueta `entrega-final`.
 
 ## Uso de inteligencia artificial
 El curso permite el uso de IA. En este proyecto se usó Claude, con un agente configurado para el repositorio (`.claude/agents/ingeniero-red.md` y `CLAUDE.md`), en la parte operativa: implementación, pruebas, evidencias y documentación. El planteamiento del problema, las demostraciones y la sustentación son responsabilidad del autor.

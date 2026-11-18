@@ -50,7 +50,7 @@ Pendiente log-log: **predicha 0,62, medida 0,78** (con una sola constante se esp
 Otra serie de entrenamiento o de prueba: pasar otras rutas a `calcular`. Si se vuelven a medir d o e, correr el script de nuevo y actualizar esta ficha, el informe y los valores esperados de la prueba.
 
 ## Pruebas
-`pruebas/test_serie_d_fuera_de_muestra.py` (10 pruebas): a y b, el error de cada punto (tolerancia de 0,05 puntos porcentuales) y las dos pendientes contra los valores del informe, leyendo los CSV del repositorio; con datos exactos del modelo recupera a y b con error 0; una serie e con dos N se rechaza; el CSV del repositorio es igual byte a byte a lo que escribe el script; `--help` y `-h` salen con 0 en consola cp1252 sin cambiar el CSV (bytes y fecha); `main(["--help"])` no lee ni escribe; un argumento desconocido da código 2.
+`pruebas/test_serie_d_fuera_de_muestra.py` (10 pruebas): a y b, el error de cada punto (tolerancia de 0,05 puntos porcentuales) y las dos pendientes contra los valores del informe, leyendo los CSV del repositorio; con datos exactos del modelo recupera a y b con error 0; una serie e con dos N se rechaza; el CSV del repositorio es igual, línea por línea (sin depender de LF o CRLF), a lo que escribe el script; `--help` y `-h` salen con 0 en consola cp1252 sin cambiar el CSV (bytes y fecha); `main(["--help"])` no lee ni escribe; un argumento desconocido da código 2.
 
 ## Preguntas probables en la sustentación
 - **¿Por qué no basta el ajuste conjunto?** Porque sus constantes se calculan en parte con los puntos de d: que «ajuste» no prueba nada. Fuera de muestra, d no influye en a ni en b.

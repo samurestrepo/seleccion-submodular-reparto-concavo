@@ -78,7 +78,8 @@ def test_serie_e_con_varios_N_se_rechaza():
 def test_el_csv_del_repositorio_coincide_con_lo_calculado(resultado, tmp_path):
     nuevo = tmp_path / "d_fuera_de_muestra.csv"
     _cargar().escribir_csv(nuevo, resultado)
-    assert nuevo.read_bytes() == CSV.read_bytes()
+    # Se compara el texto línea por línea: git puede guardar el CSV con LF y sacarlo con CRLF.
+    assert nuevo.read_text(encoding="utf-8").splitlines() == CSV.read_text(encoding="utf-8").splitlines()
 
 
 @pytest.mark.parametrize("opcion", ["--help", "-h"])
